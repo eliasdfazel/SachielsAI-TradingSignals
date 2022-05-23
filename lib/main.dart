@@ -14,7 +14,9 @@ void main() async {
 
   runApp(
       Phoenix(
-          child: const MaterialApp(home: EntryConfigurations())
+          child: const MaterialApp(
+              home: EntryConfigurations()
+          )
       )
   );
 
@@ -37,8 +39,9 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
           title: StringsResources.applicationName(),
           color: ColorsResources.primaryColor,
           theme: ThemeData(
-            fontFamily: 'Sans',
+            fontFamily: 'Ubuntu',
             colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
+            backgroundColor: ColorsResources.dark,
             pageTransitionsTheme: const PageTransitionsTheme(builders: {
               TargetPlatform.android: ZoomPageTransitionsBuilder(),
               TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
@@ -53,7 +56,8 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                       topLeft: Radius.circular(17),
                       topRight: Radius.circular(17),
                       bottomLeft: Radius.circular(17),
-                      bottomRight: Radius.circular(17)),
+                      bottomRight: Radius.circular(17)
+                  ),
                   gradient: LinearGradient(
                       colors: [
                         ColorsResources.primaryColorDarkest,
