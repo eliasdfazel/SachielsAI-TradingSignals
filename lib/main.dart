@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
+import 'package:status_bar_control/status_bar_control.dart';
 
-void main() {
-  runApp(const EntryConfigurations());
+void main() async {
+
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  await StatusBarControl.setColor(ColorsResources.black, animated: true);
+  await StatusBarControl.setNavigationBarColor(ColorsResources.black, animated: true);
+
+  runApp(
+      Phoenix(
+          child: const MaterialApp(home: EntryConfigurations())
+      )
+  );
+
 }
 
 class EntryConfigurations extends StatefulWidget {
@@ -78,8 +93,11 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                         right: BorderSide(
                           color: Colors.black,
                           width: 7,
-                        )),
-                    color: Colors.transparent),
+                        )
+                    ),
+                    color: Colors.transparent
+                ),
+                child: ,
               ),
             ],
           ),
