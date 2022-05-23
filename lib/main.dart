@@ -59,8 +59,8 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                       bottomRight: Radius.circular(17)),
                   gradient: LinearGradient(
                       colors: [
-                        ColorsResources.light,
-                        ColorsResources.lightestBlue,
+                        ColorsResources.black,
+                        ColorsResources.primaryColorDarkest,
                       ],
                       begin: FractionalOffset(0.0, 0.0),
                       end: FractionalOffset(1.0, 0.0),
@@ -97,7 +97,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                     ),
                     color: Colors.transparent
                 ),
-                child: ,
               ),
             ],
           ),
