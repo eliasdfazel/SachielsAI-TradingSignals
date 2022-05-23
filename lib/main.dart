@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sachiel/dashboard/ui/interface.dart';
+import 'package:sachiel/resources/strings_resources.dart';
 
 void main() {
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: StringsResources.applicationName(),
       theme: ThemeData(
 
         primarySwatch: Colors.blue,
