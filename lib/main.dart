@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -8,7 +7,7 @@ import 'package:status_bar_control/status_bar_control.dart';
 void main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   await StatusBarControl.setColor(ColorsResources.dark, animated: true);
   await StatusBarControl.setNavigationBarColor(ColorsResources.dark, animated: true);
@@ -27,7 +26,6 @@ class EntryConfigurations extends StatefulWidget {
   @override
   State<EntryConfigurations> createState() => _EntryConfigurationsState();
 }
-
 class _EntryConfigurationsState extends State<EntryConfigurations> {
 
   @override
@@ -40,8 +38,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
           color: ColorsResources.primaryColor,
           theme: ThemeData(
             fontFamily: 'Sans',
-            colorScheme: ColorScheme.fromSwatch()
-                .copyWith(secondary: ColorsResources.primaryColor),
+            colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
             pageTransitionsTheme: const PageTransitionsTheme(builders: {
               TargetPlatform.android: ZoomPageTransitionsBuilder(),
               TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
@@ -100,6 +97,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
               ),
             ],
           ),
-        ));
+        )
+    );
   }
 }

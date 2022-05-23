@@ -5,8 +5,7 @@ class ColorsResources {
   static const primaryColor = Color.fromARGB(255, 14, 246, 190);
   static const primaryColorLightest = Color.fromARGB(255, 219, 255, 249);
   static const primaryColorDarker = Color.fromARGB(255, 58, 80, 75);
-  static const primaryColorDarkest = Color.fromARGB(255, 30, 40, 35);
-
+  static const primaryColorDarkest = Color.fromARGB(255, 30, 37, 40);
 
   static const Color blue = Color.fromARGB(255, 0, 161, 255);
   static const Color lightBlue = Color.fromARGB(255, 128, 208, 255);
