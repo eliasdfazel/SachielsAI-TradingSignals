@@ -42,7 +42,16 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
+
   uses-material-design: true
+
+  fonts:
+    - family: Ubuntu
+      fonts:
+        - asset: fonts/ubuntu.ttf
+    - family: Electric
+      fonts:
+        - asset: fonts/electric.ttf
 
 #flutter_native_splash:
 
