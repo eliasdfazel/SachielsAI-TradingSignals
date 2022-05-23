@@ -10,8 +10,8 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  await StatusBarControl.setColor(ColorsResources.black, animated: true);
-  await StatusBarControl.setNavigationBarColor(ColorsResources.black, animated: true);
+  await StatusBarControl.setColor(ColorsResources.dark, animated: true);
+  await StatusBarControl.setNavigationBarColor(ColorsResources.dark, animated: true);
 
   runApp(
       Phoenix(
@@ -59,7 +59,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                       bottomRight: Radius.circular(17)),
                   gradient: LinearGradient(
                       colors: [
-                        ColorsResources.black,
+                        ColorsResources.primaryColorDarkest,
                         ColorsResources.primaryColorDarkest,
                       ],
                       begin: FractionalOffset(0.0, 0.0),
@@ -79,19 +79,19 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                         bottomRight: Radius.circular(17)),
                     border: Border(
                         top: BorderSide(
-                          color: Colors.black,
+                          color: ColorsResources.dark,
                           width: 7,
                         ),
                         bottom: BorderSide(
-                          color: Colors.black,
+                          color: ColorsResources.dark,
                           width: 7,
                         ),
                         left: BorderSide(
-                          color: Colors.black,
+                          color: ColorsResources.dark,
                           width: 7,
                         ),
                         right: BorderSide(
-                          color: Colors.black,
+                          color: ColorsResources.dark,
                           width: 7,
                         )
                     ),
