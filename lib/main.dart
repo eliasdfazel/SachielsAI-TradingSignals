@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:sachiel/dashboard/ui/interface.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:status_bar_control/status_bar_control.dart';
@@ -10,8 +11,8 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  await StatusBarControl.setColor(ColorsResources.dark, animated: true);
-  await StatusBarControl.setNavigationBarColor(ColorsResources.dark, animated: true);
+  await StatusBarControl.setColor(ColorsResources.primaryColorDarkest, animated: true);
+  await StatusBarControl.setNavigationBarColor(ColorsResources.primaryColorDarkest, animated: true);
 
   runApp(
       Phoenix(
@@ -56,9 +57,9 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
             }),
           ),
           home: Scaffold(
-            backgroundColor: ColorsResources.dark,
+            backgroundColor: ColorsResources.primaryColorDarkest,
             body:Stack(
-              fit: StackFit.expand,
+
               children: [
                 // Gradient Background
                 Container(
@@ -82,39 +83,24 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                     ),
                   ),
                 ),
-                // Rounded Borders
-                Container(
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(17),
-                          topRight: Radius.circular(17),
-                          bottomLeft: Radius.circular(17),
-                          bottomRight: Radius.circular(17)),
-                      border: Border(
-                          top: BorderSide(
-                            color: ColorsResources.dark,
-                            width: 7,
-                          ),
-                          bottom: BorderSide(
-                            color: ColorsResources.dark,
-                            width: 7,
-                          ),
-                          left: BorderSide(
-                            color: ColorsResources.dark,
-                            width: 7,
-                          ),
-                          right: BorderSide(
-                            color: ColorsResources.dark,
-                            width: 7,
-                          )
-                      ),
-                      color: Colors.transparent
+                OutlinedButton(
+                  onPressed: () {
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DashboardInterface()),
+                    );
+
+                  },
+                  child: Text(
+                    "Enter Modern Monetary"
                   ),
-                ),
+                )
               ],
             )
           )
         )
     );
   }
+
 }

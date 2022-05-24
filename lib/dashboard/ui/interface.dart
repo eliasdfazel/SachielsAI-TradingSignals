@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
+import 'package:sachiel/utils/ui/system_bars.dart';
 
 class DashboardInterface extends StatefulWidget {
 
@@ -12,6 +13,19 @@ class DashboardInterface extends StatefulWidget {
 }
 
 class _DashboardInterfaceState extends State<DashboardInterface> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    changeColor(ColorsResources.dark, ColorsResources.dark);
+
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,4 +104,5 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
         )
     );
   }
+
 }
