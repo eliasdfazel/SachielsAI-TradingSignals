@@ -57,13 +57,11 @@ flutter:
 
   uses-material-design: true
 
-
   assets:
     - logo.png
     - logo_background.png
     - logo_android.png
     - logo_ios.png
-
 
   fonts:
     - family: Ubuntu
