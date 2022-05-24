@@ -24,6 +24,7 @@ void main() async {
 }
 
 class EntryConfigurations extends StatefulWidget {
+
   const EntryConfigurations({Key? key}) : super(key: key);
 
   @override
@@ -34,7 +35,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
   @override
   Widget build(BuildContext context) {
 
-    Future.delayed(Duration(milliseconds: 1357), () {
+    Future.delayed(const Duration(milliseconds: 1357), () {
 
       FlutterNativeSplash.remove();
 

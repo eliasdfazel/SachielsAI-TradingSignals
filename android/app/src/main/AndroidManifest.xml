@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="co.geeksempire.sachiel.signals.sachiel">
    <application
-        android:label="sachiel"
+        android:label="Sachiel Signals"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
