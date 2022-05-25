@@ -11,7 +11,6 @@ class DashboardInterface extends StatefulWidget {
   @override
   State<DashboardInterface> createState() => _DashboardInterfaceState();
 }
-
 class _DashboardInterfaceState extends State<DashboardInterface> {
 
   @override
