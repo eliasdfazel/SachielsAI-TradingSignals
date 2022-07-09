@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 
 class ColorsResources {
 
-  static const primaryColor = Color.fromARGB(255, 14, 246, 190);
-  static const primaryColorLightest = Color.fromARGB(255, 219, 255, 249);
-  static const primaryColorDarker = Color.fromARGB(255, 58, 80, 75);
-  static const primaryColorDarkest = Color.fromARGB(255, 30, 37, 40);
+  static const primaryColor = Color.fromARGB(255, 255, 153, 0);
+  static const primaryColorLighter = Color.fromARGB(255, 255, 222, 161);
+  static const primaryColorLightest = Color.fromARGB(255, 255, 237, 219);
+  static const primaryColorDarker = Color.fromARGB(255, 80, 72, 58);
+  static const primaryColorDarkest = Color.fromARGB(255, 40, 35, 30);
 
   static const Color blue = Color.fromARGB(255, 0, 161, 255);
   static const Color lightBlue = Color.fromARGB(255, 128, 208, 255);
   static const Color lightestBlue = Color.fromARGB(255, 220, 238, 255);
 
   static const Color green = Color.fromARGB(255, 0, 255, 76);
-  static const Color lightGreen = Color.fromARGB(255, 128, 255, 166);
+  static const Color lightGreen = Color.fromARGB(255, 14, 246, 190);
   static const Color lightestGreen = Color.fromARGB(255, 215, 255, 229);
 
   static const Color red = Color.fromARGB(255, 255, 0, 72);
@@ -36,7 +37,6 @@ class ColorsResources {
   static const Color cyan = Color.fromARGB(255, 2, 248, 192);
   static const Color lightestCyan = Color.fromARGB(255, 201, 255, 242);
 
-
   static const Color blueGreen = Color.fromARGB(255, 48, 105, 116);
   static const Color blueGray = Color.fromARGB(255, 55, 71, 79);
   static const Color greenGray = Color.fromARGB(255, 55, 79, 67);
@@ -51,20 +51,22 @@ class ColorsResources {
   static const Color autumnColor = Color.fromARGB(255, 238, 200, 104);
   static const Color winterColor = Color.fromARGB(255, 104, 238, 234);
 
-
   static const Color light = Color.fromARGB(255, 242, 247, 255);
   static const Color lightTransparent = Color.fromARGB(130, 242, 247, 255);
 
   static const Color dark = Color.fromARGB(255, 10, 15, 24);
   static const Color darkTransparent = Color.fromARGB(130, 10, 15, 24);
 
+  static const Color premiumDark = Color.fromARGB(255, 60, 67, 77);
+  static const Color premiumDarkTransparent = Color.fromARGB(131, 60, 67, 77);
+  static const Color premiumLight = Color.fromARGB(255, 213, 224, 243);
+  static const Color premiumLightTransparent = Color.fromARGB(131, 213, 224, 243);
 
   static const Color white = Color.fromARGB(255, 255, 255, 255);
   static const Color whiteTransparent = Color.fromARGB(201, 255, 255, 255);
 
   static const Color black = Color.fromARGB(255, 0, 0, 0);
   static const Color blackTransparent = Color.fromARGB(201, 0, 0, 0);
-
 
   static const Color applicationGeeksEmpire = Color.fromARGB(255, 35, 125, 174);
   static const Color applicationLightGeeksEmpire = Color.fromARGB(255, 36, 176, 255);
