@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "730794126051",
+    "project_id": "sachiel-s-signals",
+    "storage_bucket": "sachiel-s-signals.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730794126051:android:23edcd1950bd5176ffb3d6",
+        "android_client_info": {
+          "package_name": "co.geeksempire.sachiel.signals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730794126051-icg0efaquhvmr39v8eutglm9m429t8qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAY93XIKH52_iWPGJXXp6goYmikHDJEuno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730794126051-icg0efaquhvmr39v8eutglm9m429t8qu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
