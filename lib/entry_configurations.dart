@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
+import 'package:flutter_native_splash/flutter_native_splashace.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
@@ -79,35 +78,18 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                             transform: GradientRotation(45),
                             tileMode: TileMode.clamp
                         ),
-                      ),
+                        image: DecorationImage(
+                            image: AssetImage("entry_background.jpg"),
+                            fit: BoxFit.cover
+                        )
+                      )
                     ),
-                    OutlinedButton(
-                      onPressed: () {
 
-                        setupDashboardView();
-
-                      },
-                      child: Text(
-                          "Enter Modern Monetary"
-                      ),
-                    )
-                  ],
+                  ]
                 )
             )
         )
     );
-
-    setState(() {
-
-      contentView;
-
-    });
-
-  }
-
-  void setupDashboardView() {
-
-    contentView = const DashboardInterface();
 
     setState(() {
 
