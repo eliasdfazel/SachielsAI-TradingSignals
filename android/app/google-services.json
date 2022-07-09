@@ -29,6 +29,13 @@
             {
               "client_id": "730794126051-icg0efaquhvmr39v8eutglm9m429t8qu.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "730794126051-i1djtkuqt12t2rci5b0lqiv3ttr9jv52.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "co.geeksempire.sachiel.signals.sachiel"
+              }
             }
           ]
         }
