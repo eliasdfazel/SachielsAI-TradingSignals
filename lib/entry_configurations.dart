@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splashace.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
