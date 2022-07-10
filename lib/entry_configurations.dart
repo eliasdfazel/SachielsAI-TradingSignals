@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/9/22, 8:11 PM
+ * Last modified 7/9/22, 8:18 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
-import 'package:sachiel/utils/authentication/google_authentication.dart';
+import 'package:sachiel/utils/authentication/authentication_process.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 
@@ -28,7 +28,7 @@ class EntryConfigurations extends StatefulWidget {
 }
 class _EntryConfigurationsState extends State<EntryConfigurations> {
 
-  GoogleAuthentication googleAuthentication = GoogleAuthentication();
+  AuthenticationsProcess authenticationsProcess = AuthenticationsProcess();
 
   FirebaseAuth firebaseAuthentication = FirebaseAuth.instance;
 
@@ -63,7 +63,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
       Future.delayed(const Duration(milliseconds: 1357), () async {
         debugPrint("Google Authenticated");
 
-        UserCredential userCredential = await googleAuthentication.startProcess();
+        UserCredential userCredential = await authenticationsProcess.startGoogleAuthentication();
 
         if (userCredential.user!.phoneNumber == null) {
           debugPrint("Phone Number Not Authenticated");
@@ -126,15 +126,22 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                         ),
                       ),
                       phoneNumberAuthentication,
-                      const Positioned(
+                      Positioned(
                         bottom: 79,
                         left: 13,
                         right: 13,
-                        child: Image(
-                          image: AssetImage("entrance_next.png"),
-                          height: 239,
-                          fit: BoxFit.fitHeight,
-                        ),
+                        child: InkWell(
+                          onTap: () {
+
+                            authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text);
+
+                          },
+                          child: const Image(
+                            image: AssetImage("entrance_next.png"),
+                            height: 239,
+                            fit: BoxFit.fitHeight,
+                          ),
+                        )
                       ),
                     ]
                 )
