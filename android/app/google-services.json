@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "730794126051-1krtbvboikgaq8g0dck413tpmkqjhl4n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.geeksempire.sachiel.signals",
+            "certificate_hash": "6fa2d23f54167ebdfcb1ce7cb183c0f709f8934e"
+          }
+        },
+        {
           "client_id": "730794126051-icg0efaquhvmr39v8eutglm9m429t8qu.apps.googleusercontent.com",
           "client_type": 3
         }
