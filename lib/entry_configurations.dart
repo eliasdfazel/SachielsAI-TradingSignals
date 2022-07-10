@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/9/22, 7:15 PM
+ * Last modified 7/9/22, 7:32 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
-import 'package:sachiel/utils/authentication/google_authenticationnavigation_commands.dart';
+import 'package:sachiel/utils/authentication/google_authentication.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 
@@ -128,7 +128,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
       debugPrint("Phone Number Not Authenticated");
 
       phoneNumberAuthentication = Positioned(
-        top: displayHeight(context) / 2,
+        top: (displayHeight(context) / 2) - 39,
         left: 37,
         child: SizedBox(
           height: 113,
@@ -143,10 +143,10 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                 child: Stack(
                   children: [
                     Blur(
-                      blur: 7,
+                      blur: 5,
                       blurColor: ColorsResources.dark,
                       colorOpacity: 0.1,
-                      borderRadius: BorderRadius.circular(17),
+                      borderRadius: BorderRadius.circular(9),
                       child: const SizedBox(
                         height: 37,
                         width: 137,
@@ -261,11 +261,12 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                         errorText: warningNoticePhoneNumber,
                         contentPadding: const EdgeInsets.fromLTRB(19, 21, 19, 21),
                         hintText: StringsResources.phoneNumberHint(),
-                        hintStyle: const TextStyle(
-                            color: ColorsResources.lightTransparent,
-                            fontSize: 13.0
-                        ),
                       ),
+                      onSubmitted: (phoneNumber) {
+
+
+
+                      },
                     )
                   ]
                 )
