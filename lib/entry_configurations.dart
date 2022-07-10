@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/9/22, 8:18 PM
+ * Last modified 7/9/22, 8:30 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,9 +13,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/authentication/authentication_process.dart';
+import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 
@@ -133,7 +135,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                         child: InkWell(
                           onTap: () {
 
-                            authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text);
+                            authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, );
 
                           },
                           child: const Image(
@@ -312,7 +314,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
 
     } else {
 
-      // navigateTo(context, const DashboardInterface());
+      navigateTo(context, const DashboardInterface());
 
     }
 
