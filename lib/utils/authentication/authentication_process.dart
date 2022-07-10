@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/9/22, 8:18 PM
+ * Last modified 7/9/22, 8:24 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,9 +27,33 @@ class AuthenticationsProcess {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  Future<PhoneAuthCredential> startPhoneNumberAuthentication(String enteredPhoneNumber) async {
+  Future startPhoneNumberAuthentication(String enteredPhoneNumber) async {
+
+    String phoneNumber = "+${enteredPhoneNumber}";
+
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: (PhoneAuthCredential credential) {
 
 
+
+      },
+      verificationFailed: (FirebaseAuthException exception) {
+
+
+
+      },
+      codeSent: (String verificationId, int? resendToken) {
+
+
+
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {
+
+
+
+      },
+    );
 
   }
 
