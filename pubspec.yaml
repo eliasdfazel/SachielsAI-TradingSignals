@@ -117,6 +117,7 @@ flutter:
     - logo_android.png
     - logo_ios.png
     - entry_background.jpg
+    - entrance_next.png
 
   fonts:
     - family: Ubuntu
