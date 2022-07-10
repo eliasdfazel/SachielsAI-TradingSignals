@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/9/22, 7:32 PM
+ * Last modified 7/9/22, 7:59 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -95,6 +95,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
               }),
             ),
             home: Scaffold(
+                resizeToAvoidBottomInset: false,
                 backgroundColor: ColorsResources.black,
                 body: Stack(
                     children: [
@@ -114,7 +115,27 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                               )
                           )
                       ),
-                      phoneNumberAuthentication
+                      const Positioned(
+                        top: 59,
+                        left: 13,
+                        right: 13,
+                        child: Image(
+                          image: AssetImage("logo.png"),
+                          height: 339,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
+                      phoneNumberAuthentication,
+                      const Positioned(
+                        bottom: 79,
+                        left: 13,
+                        right: 13,
+                        child: Image(
+                          image: AssetImage("entrance_next.png"),
+                          height: 239,
+                          fit: BoxFit.fitHeight,
+                        ),
+                      ),
                     ]
                 )
             )
