@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/11/22, 3:51 PM
+ * Last modified 7/11/22, 4:15 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,11 @@ class StringsResources {
   static String applicationName() {
 
     return "Sachiel's Signals";
+  }
+
+  static String warningEmptyText() {
+
+    return "You Didn't Entered Text | Error Occurred";
   }
 
   /*

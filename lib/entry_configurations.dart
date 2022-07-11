@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/11/22, 4:11 PM
+ * Last modified 7/11/22, 4:17 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -134,7 +134,19 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                               child: InkWell(
                                 onTap: () {
 
-                                  authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+                                  if (phoneNumberController.text.isNotEmpty) {
+
+                                    authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+
+                                  } else {
+
+                                    setState(() {
+
+                                      warningNoticePhoneNumber = StringsResources.warningEmptyText();
+
+                                    });
+
+                                  }
 
                                 },
                                 child: const Image(
@@ -306,7 +318,19 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                           ),
                           onSubmitted: (phoneNumber) {
 
-                            authenticationsProcess.startPhoneNumberAuthentication(phoneNumber, this);
+                            if (phoneNumberController.text.isNotEmpty) {
+
+                              authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+
+                            } else {
+
+                              setState(() {
+
+                                warningNoticePhoneNumber = StringsResources.warningEmptyText();
+
+                              });
+
+                            }
 
                           },
                         )
