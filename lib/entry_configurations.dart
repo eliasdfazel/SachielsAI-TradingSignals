@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/11/22, 1:46 PM
+ * Last modified 7/11/22, 4:11 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,11 +13,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/authentication/authentication_process.dart';
-import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 
 class EntryConfigurations extends StatefulWidget {
@@ -157,11 +155,13 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
   }
 
   @override
-  void authenticationCompleted() {
+  void authenticationWithPhoneCompleted() {
 
     Future.delayed(const Duration(milliseconds: 379), () {
+      debugPrint("Authentication With Phone Number Completed");
 
-      navigateTo(context, const DashboardInterface());
+      print(">>> >> > Finished");
+      // navigateTo(context, const DashboardInterface());
 
     });
 
@@ -306,7 +306,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                           ),
                           onSubmitted: (phoneNumber) {
 
-
+                            authenticationsProcess.startPhoneNumberAuthentication(phoneNumber, this);
 
                           },
                         )
@@ -324,6 +324,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
       });
 
     } else {
+      debugPrint("Authentication With Phone Number Completed");
 
       // navigateTo(context, const DashboardInterface());
 
