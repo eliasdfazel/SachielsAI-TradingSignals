@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/11/22, 4:26 PM
+ * Last modified 7/11/22, 4:45 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,7 +48,7 @@ class AuthenticationsProcess {
 
       },
       verificationFailed: (FirebaseAuthException exception) {
-        debugPrint("Phone Authentication Failed");
+        debugPrint("Phone Authentication Failed \n ${exception.code}: ${exception.message}");
 
 
       },
