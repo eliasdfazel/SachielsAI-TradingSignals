@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/11/22, 4:17 PM
+ * Last modified 7/11/22, 4:24 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -137,6 +137,12 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                   if (phoneNumberController.text.isNotEmpty) {
 
                                     authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+
+                                    setState(() {
+
+                                      warningNoticePhoneNumber = null;
+
+                                    });
 
                                   } else {
 
@@ -321,6 +327,12 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                             if (phoneNumberController.text.isNotEmpty) {
 
                               authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+
+                              setState(() {
+
+                                warningNoticePhoneNumber = null;
+
+                              });
 
                             } else {
 
