@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/9/22, 8:30 PM
+ * Last modified 7/11/22, 1:28 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,7 +28,7 @@ class EntryConfigurations extends StatefulWidget {
   @override
   State<EntryConfigurations> createState() => _EntryConfigurationsState();
 }
-class _EntryConfigurationsState extends State<EntryConfigurations> {
+class _EntryConfigurationsState extends State<EntryConfigurations> with AuthenticationsCallback {
 
   AuthenticationsProcess authenticationsProcess = AuthenticationsProcess();
 
@@ -135,7 +135,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
                         child: InkWell(
                           onTap: () {
 
-                            authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, );
+                            authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
 
                           },
                           child: const Image(
@@ -150,6 +150,17 @@ class _EntryConfigurationsState extends State<EntryConfigurations> {
             )
         )
     );
+  }
+
+  @override
+  void authenticationCompleted() {
+
+    Future.delayed(const Duration(milliseconds: 379), () {
+
+      navigateTo(context, const DashboardInterface());
+
+    });
+
   }
 
   void phoneNumberCheckpoint() {
