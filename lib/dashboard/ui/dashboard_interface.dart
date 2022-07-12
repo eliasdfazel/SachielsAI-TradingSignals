@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/11/22, 8:17 PM
+ * Last modified 7/11/22, 8:26 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -82,7 +82,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       color: ColorsResources.black,
                     ),
                   ),
-                  // Content
                   Container(
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
@@ -121,39 +120,48 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                           tileMode: TileMode.clamp
                       ),
                     ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(17),
-                              topRight: Radius.circular(17),
-                              bottomLeft: Radius.circular(17),
-                              bottomRight: Radius.circular(17)
-                          ),
-                          gradient: RadialGradient(
-                            radius: 1.1,
-                            colors: <Color> [
-                              ColorsResources.primaryColorLighter.withOpacity(0.91),
-                              Colors.transparent,
-                            ],
-                            center: Alignment(0.79, -0.87),
-                          )
-                      ),
-                      child: SizedBox(
-                        height: calculatePercentage(79, displayHeight(context)),
-                        width: calculatePercentage(73, displayWidth(context)),
-                      ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(17),
+                            topRight: Radius.circular(17),
+                            bottomLeft: Radius.circular(17),
+                            bottomRight: Radius.circular(17)
+                        ),
+                        gradient: RadialGradient(
+                          radius: 1.1,
+                          colors: <Color> [
+                            ColorsResources.primaryColorLighter.withOpacity(0.91),
+                            Colors.transparent,
+                          ],
+                          center: const Alignment(0.79, -0.87),
+                        )
+                    ),
+                    child: SizedBox(
+                      height: calculatePercentage(79, displayHeight(context)),
+                      width: calculatePercentage(73, displayWidth(context)),
                     ),
                   ),
-                  Positioned(
+                  const Positioned(
                     right: 19,
                     top: 19,
                     child: SizedBox(
-                      height: 67,
-                      width: 67,
+                      height: 59,
+                      width: 59,
                       child: Image(
                         image: AssetImage("squircle_logo.png"),
                       ),
                     ),
+                  ),
+                  ListView(
+                    padding: const EdgeInsets.fromLTRB(0, 73, 0, 53),
+                    physics: const BouncingScrollPhysics(),
+                    children: [
+
+
+
+                    ],
                   )
                 ],
               )
