@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/12/22, 2:33 PM
+ * Last modified 7/12/22, 4:31 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -44,7 +44,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
   @override
   Widget build(BuildContext context) {
 
-    return      SizedBox(
+    return SizedBox(
       width: 311,
       height: 179,
       child: ListView(

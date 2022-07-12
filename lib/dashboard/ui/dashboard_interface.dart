@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/12/22, 2:33 PM
+ * Last modified 7/12/22, 4:29 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -310,9 +310,9 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       const LastSignalDetails(),
                       /* End - The Last Signal Details */
 
-                      /* Start - The Last Signal Details */
+                      /* Start - The Latest Signals Overview */
                       const LatestSignalsOverview(),
-                      /* End - The Last Signal Details */
+                      /* End - The Latest Signals Overview */
 
                     ],
                   )
