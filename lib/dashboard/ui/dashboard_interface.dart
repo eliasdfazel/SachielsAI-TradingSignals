@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/11/22, 8:26 PM
+ * Last modified 7/12/22, 12:33 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
+import 'package:widget_mask/widget_mask.dart';
 
 void main() async {
 
@@ -34,6 +35,11 @@ class DashboardInterface extends StatefulWidget {
   State<DashboardInterface> createState() => _DashboardInterfaceState();
 }
 class _DashboardInterfaceState extends State<DashboardInterface> {
+
+  Widget profileImage = const Image(
+    image: AssetImage("cyborg_girl.jpg"),
+    fit: BoxFit.cover,
+  );
 
   @override
   void initState() {
@@ -68,7 +74,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
           home: Scaffold(
               backgroundColor: ColorsResources.black,
               body:Stack(
-                fit: StackFit.expand,
+                // fit: StackFit.expand,
                 children: [
                   // Gradient Background
                   Container(
@@ -121,45 +127,105 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(17),
-                            topRight: Radius.circular(17),
-                            bottomLeft: Radius.circular(17),
-                            bottomRight: Radius.circular(17)
-                        ),
-                        gradient: RadialGradient(
-                          radius: 1.1,
-                          colors: <Color> [
-                            ColorsResources.primaryColorLighter.withOpacity(0.91),
-                            Colors.transparent,
-                          ],
-                          center: const Alignment(0.79, -0.87),
-                        )
-                    ),
-                    child: SizedBox(
-                      height: calculatePercentage(79, displayHeight(context)),
-                      width: calculatePercentage(73, displayWidth(context)),
-                    ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(17),
+                              topRight: Radius.circular(17),
+                              bottomLeft: Radius.circular(17),
+                              bottomRight: Radius.circular(17)
+                          ),
+                          gradient: RadialGradient(
+                            radius: 1.1,
+                            colors: <Color> [
+                              ColorsResources.primaryColorLighter.withOpacity(0.51),
+                              Colors.transparent,
+                            ],
+                            center: const Alignment(0.79, -0.87),
+                          )
+                      ),
+                      child: SizedBox(
+                        height: calculatePercentage(79, displayHeight(context)),
+                        width: calculatePercentage(73, displayWidth(context)),
+                      ),
+                    )
                   ),
-                  const Positioned(
+                  Positioned(
                     right: 19,
                     top: 19,
-                    child: SizedBox(
-                      height: 59,
-                      width: 59,
-                      child: Image(
-                        image: AssetImage("squircle_logo.png"),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: ColorsResources.primaryColorLighter,
+                              blurRadius: 51,
+                              spreadRadius: 0,
+                              offset: Offset(0, 0)
+                          )
+                        ]
                       ),
-                    ),
+                      child: const SizedBox(
+                          height: 59,
+                          width: 59,
+                          child: InkWell(
+                              child: Image(
+                                image: AssetImage("squircle_logo.png"),
+                              )
+                          )
+                      ),
+                    )
                   ),
                   ListView(
-                    padding: const EdgeInsets.fromLTRB(0, 73, 0, 53),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 73),
                     physics: const BouncingScrollPhysics(),
                     children: [
-
-
+                      /* Start - Account Information */
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                          child: SizedBox(
+                            height: 59,
+                            width: 59,
+                            child: Stack(
+                              children: [
+                                WidgetMask(
+                                  blendMode: BlendMode.srcATop,
+                                  childSaveLayer: true,
+                                  mask /* Original Image */: Container(
+                                    decoration: const BoxDecoration(
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          ColorsResources.premiumLight,
+                                          ColorsResources.primaryColorLightest,
+                                        ],
+                                        transform: GradientRotation(45)
+                                      )
+                                    ),
+                                  ),
+                                  child: const Image(
+                                    image: AssetImage("squircle_shape.png"),
+                                  ),
+                                ),
+                                Padding(
+                                    padding: const EdgeInsets.all(1.7),
+                                    child: WidgetMask(
+                                      blendMode: BlendMode.srcATop,
+                                      childSaveLayer: true,
+                                      mask /* Original Image */: profileImage,
+                                      child: const Image(
+                                        image: AssetImage("squircle_shape.png"),
+                                      ),
+                                    )
+                                )
+                              ],
+                            )
+                          )
+                        )
+                      ),
+                      /* End - Account Information */
 
                     ],
                   )
