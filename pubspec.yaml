@@ -125,15 +125,20 @@ flutter:
   uses-material-design: true
 
   assets:
+    - cyborg_girl.jpg
+
     - logo.png
     - logo_background.png
     - logo_android.png
     - logo_ios.png
+
     - entry_background.jpg
     - entrance_next.png
+
+    - rectircle_shape.png
+
     - squircle_logo.png
     - squircle_shape.png
-    - cyborg_girl.jpg
 
   fonts:
     - family: Ubuntu
