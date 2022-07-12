@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/11/22, 6:53 PM
+ * Last modified 7/11/22, 8:17 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,19 @@
 import 'package:flutter/material.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
+import 'package:sachiel/utils/data/numbers.dart';
+import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
+
+void main() async {
+
+  runApp(
+      const MaterialApp(
+          home: DashboardInterface()
+      )
+  );
+
+}
 
 class DashboardInterface extends StatefulWidget {
 
@@ -70,11 +82,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       color: ColorsResources.black,
                     ),
                   ),
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: ,
-                  ),
                   // Content
                   Container(
                     decoration: const BoxDecoration(
@@ -82,7 +89,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                           topLeft: Radius.circular(17),
                           topRight: Radius.circular(17),
                           bottomLeft: Radius.circular(17),
-                          bottomRight: Radius.circular(17)),
+                          bottomRight: Radius.circular(17)
+                      ),
                       border: Border(
                           top: BorderSide(
                             color: ColorsResources.black,
@@ -113,13 +121,40 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                           tileMode: TileMode.clamp
                       ),
                     ),
-                    child: ListView(
-                      padding: const EdgeInsets.fromLTRB(19, 53, 19, 53),
-                      children: [
-
-                      ],
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(17),
+                              topRight: Radius.circular(17),
+                              bottomLeft: Radius.circular(17),
+                              bottomRight: Radius.circular(17)
+                          ),
+                          gradient: RadialGradient(
+                            radius: 1.1,
+                            colors: <Color> [
+                              ColorsResources.primaryColorLighter.withOpacity(0.91),
+                              Colors.transparent,
+                            ],
+                            center: Alignment(0.79, -0.87),
+                          )
+                      ),
+                      child: SizedBox(
+                        height: calculatePercentage(79, displayHeight(context)),
+                        width: calculatePercentage(73, displayWidth(context)),
+                      ),
                     ),
                   ),
+                  Positioned(
+                    right: 19,
+                    top: 19,
+                    child: SizedBox(
+                      height: 67,
+                      width: 67,
+                      child: Image(
+                        image: AssetImage("squircle_logo.png"),
+                      ),
+                    ),
+                  )
                 ],
               )
           )

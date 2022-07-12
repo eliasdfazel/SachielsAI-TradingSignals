@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/11/22, 6:45 PM
+ * Last modified 7/11/22, 7:56 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -77,6 +77,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
       });
 
     } else {
+      debugPrint("Phone Number Not Authenticated");
 
       phoneNumberCheckpoint();
 
@@ -181,7 +182,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
     Future.delayed(const Duration(milliseconds: 379), () {
       debugPrint("Authentication With Phone Number Completed");
 
-      print(">>> >> > Finished");
       // navigateTo(context, const DashboardInterface());
 
     });
@@ -189,12 +189,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
   }
 
   void phoneNumberCheckpoint() {
-
-    if (kDebugMode) {
-
-      navigateTo(context, const DashboardInterface());
-
-    } else {
 
       if (firebaseAuthentication.currentUser!.phoneNumber == null) {
         debugPrint("Phone Number Not Authenticated");
@@ -374,8 +368,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
         navigateTo(context, const DashboardInterface());
 
       }
-
-    }
 
   }
 

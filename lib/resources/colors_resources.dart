@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/9/22, 6:12 PM
+ * Last modified 7/11/22, 8:12 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,8 +12,8 @@ import 'package:flutter/material.dart';
 
 class ColorsResources {
 
-  static const primaryColor = Color.fromARGB(255, 255, 153, 0);
-  static const primaryColorLighter = Color.fromARGB(255, 255, 222, 161);
+  static const primaryColor = Color.fromARGB(255, 255, 185, 0);
+  static const primaryColorLighter = Color.fromARGB(255, 255, 224, 144);
   static const primaryColorLightest = Color.fromARGB(255, 255, 237, 219);
   static const primaryColorDarker = Color.fromARGB(255, 80, 72, 58);
   static const primaryColorDarkest = Color.fromARGB(255, 40, 35, 30);
