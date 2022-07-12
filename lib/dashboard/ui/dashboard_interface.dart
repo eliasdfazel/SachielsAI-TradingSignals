@@ -3,13 +3,15 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/12/22, 2:11 PM
+ * Last modified 7/12/22, 2:33 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:flutter/material.dart';
+import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
+import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
@@ -180,7 +182,9 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                   ListView(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 73),
                     physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
                     children: [
+
                       /* Start - Account Information */
                       Row(
                         children: [
@@ -302,7 +306,13 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       ),
                       /* End - Account Information */
 
+                      /* Start - The Last Signal Details */
+                      const LastSignalDetails(),
+                      /* End - The Last Signal Details */
 
+                      /* Start - The Last Signal Details */
+                      const LatestSignalsOverview(),
+                      /* End - The Last Signal Details */
 
                     ],
                   )
