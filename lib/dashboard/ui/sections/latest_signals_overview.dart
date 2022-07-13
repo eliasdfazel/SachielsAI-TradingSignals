@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/12/22, 5:25 PM
+ * Last modified 7/12/22, 6:28 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -41,7 +41,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
       width: 311,
       height: 179,
       child: ListView(
-        padding: const EdgeInsets.fromLTRB(0, 0, 0, 73),
+        padding: const EdgeInsets.fromLTRB(19, 0, 19, 73),
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         children: [

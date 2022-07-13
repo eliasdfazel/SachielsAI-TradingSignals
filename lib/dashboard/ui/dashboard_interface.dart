@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/12/22, 4:29 PM
+ * Last modified 7/12/22, 6:25 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -78,18 +78,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
               backgroundColor: ColorsResources.black,
               body:Stack(
                 children: [
-                  // Gradient Background
-                  Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(17),
-                          topRight: Radius.circular(17),
-                          bottomLeft: Radius.circular(17),
-                          bottomRight: Radius.circular(17)
-                      ),
-                      color: ColorsResources.black,
-                    ),
-                  ),
+
+                  /* Start - Gradient Background - Dark */
                   Container(
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
@@ -129,6 +119,21 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       ),
                     ),
                   ),
+                  /* End - Gradient Background - Dark */
+
+                  /* Start - Branding Transparent */
+                  const Align(
+                    alignment: Alignment.center,
+                    child: Opacity(
+                      opacity: 0.1,
+                      child: Image(
+                        image: AssetImage("logo.png"),
+                      ),
+                    ),
+                  ),
+                  /* End - Branding Transparent */
+
+                  /* Start - Gradient Background - Golden */
                   Align(
                     alignment: Alignment.topRight,
                     child: Container(
@@ -154,6 +159,9 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       ),
                     )
                   ),
+                  /* End - Gradient Background - Golden */
+
+                  /* Start - Purchase Plan Picker */
                   Positioned(
                     right: 19,
                     top: 19,
@@ -179,6 +187,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       ),
                     )
                   ),
+                  /* End - Purchase Plan Picker */
+
                   ListView(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 73),
                     physics: const BouncingScrollPhysics(),
