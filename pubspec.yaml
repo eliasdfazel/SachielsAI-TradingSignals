@@ -135,6 +135,8 @@ flutter:
     - entry_background.jpg
     - entrance_next.png
 
+    - next_icon.png
+
     - rectircle_shape.png
 
     - squircle_logo.png
@@ -144,6 +146,9 @@ flutter:
     - family: Ubuntu
       fonts:
         - asset: fonts/ubuntu.ttf
+    - family: Handwriting
+      fonts:
+        - asset: fonts/waterfall.ttf
     - family: Electric
       fonts:
         - asset: fonts/electric.ttf

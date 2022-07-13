@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/12/22, 2:04 PM
+ * Last modified 7/12/22, 7:02 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,6 +17,9 @@ class ColorsResources {
   static const primaryColorLightest = Color.fromARGB(255, 255, 237, 219);
   static const primaryColorDarker = Color.fromARGB(255, 80, 72, 58);
   static const primaryColorDarkest = Color.fromARGB(255, 40, 35, 30);
+
+  static const sellColor = Color.fromARGB(255, 137, 0, 49);
+  static const buyColor = Color.fromARGB(255, 0, 79, 137);
 
   static const Color blue = Color.fromARGB(255, 0, 161, 255);
   static const Color lightBlue = Color.fromARGB(255, 128, 208, 255);

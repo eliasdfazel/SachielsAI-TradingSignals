@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/12/22, 6:28 PM
+ * Last modified 7/12/22, 6:30 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -45,21 +45,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         children: [
-          SizedBox(
-            width: 311,
-            height: 179,
-            child: ColoredBox(color: Colors.green,),
-          ),
-          SizedBox(
-            width: 311,
-            height: 179,
-            child: ColoredBox(color: Colors.blueAccent,),
-          ),
-          SizedBox(
-            width: 311,
-            height: 179,
-            child: ColoredBox(color: Colors.redAccent,),
-          )
+
         ],
       ),
     );
