@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/12/22, 8:41 PM
+ * Last modified 7/27/22, 5:56 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/data/signals_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
+import 'package:sachiel/utils/data/numbers.dart';
 
 class LastSignalDetails extends StatefulWidget {
 
@@ -21,6 +22,8 @@ class LastSignalDetails extends StatefulWidget {
   State<LastSignalDetails> createState() => _LastSignalDetailsState();
 }
 class _LastSignalDetailsState extends State<LastSignalDetails> {
+
+  ScrollController scrollController = ScrollController();
 
   List<Widget> lastSignalDetails = [];
 
@@ -49,6 +52,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
           padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
+          controller: scrollController,
           children: lastSignalDetails,
         )
       )
@@ -94,7 +98,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
   Widget overviewDetailsView(/*SignalsDataStructure signalsDataStructure*/) {
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(0, 0, 37, 0),
+      padding: const EdgeInsets.fromLTRB(0, 0, 37, 0),
       child: SizedBox(
         height: 399,
         width: 351,
@@ -127,12 +131,12 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                 bottom: -19,
                 left: 3,
                 child: Transform.rotate(
-                  angle: -0.33,
+                  angle: degreeToRadian(-19.0),
                   child: Text(
                     "\$",
                     style: TextStyle(
                         color: ColorsResources.black.withOpacity(0.17),
-                        fontSize: 201,
+                        fontSize: 207,
                         fontFamily: "Handwriting"
                     ),
                   ),
@@ -273,14 +277,21 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
             Positioned(
               bottom: 7,
               right: 11,
-              child: Image(
-                image: AssetImage("next_icon.png"),
-                height: 37,
-                width: 37,
-              ),
+              child: InkWell(
+                onTap: () {
+
+                  scrollController.jumpTo(379);
+
+                },
+                child: const Image(
+                  image: AssetImage("next_icon.png"),
+                  height: 37,
+                  width: 37,
+                )
+              )
             )
-          ],
-        ),
+          ]
+        )
       )
     );
   }

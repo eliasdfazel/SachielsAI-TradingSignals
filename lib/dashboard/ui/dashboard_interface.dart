@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/12/22, 6:25 PM
+ * Last modified 7/27/22, 5:50 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -176,11 +176,16 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                           )
                         ]
                       ),
-                      child: const SizedBox(
+                      child: SizedBox(
                           height: 59,
                           width: 59,
                           child: InkWell(
-                              child: Image(
+                              onTap: () {
+
+
+
+                              },
+                              child: const Image(
                                 image: AssetImage("squircle_logo.png"),
                               )
                           )
