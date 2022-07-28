@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/11/22, 7:56 PM
+ * Last modified 7/28/22, 4:22 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -163,9 +163,9 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                   image: AssetImage("entrance_next.png"),
                                   height: 239,
                                   fit: BoxFit.fitHeight,
-                                ),
-                              ),
-                            ),
+                                )
+                              )
+                            )
                           ],
                         ),
                       )
