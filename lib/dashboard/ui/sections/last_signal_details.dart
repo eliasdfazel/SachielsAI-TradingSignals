@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/30/22, 12:25 AM
+ * Last modified 7/30/22, 12:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -290,7 +290,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
               child: InkWell(
                 onTap: () {
 
-                  scrollController.jumpTo(379);
+                  scrollController.jumpTo(387);
 
                 },
                 child: const Image(
@@ -328,6 +328,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                         width: 351,
                       )
                   ),
+
                   Container(
                       height: 399,
                       width: 351,
@@ -399,6 +400,10 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                 ],
                               ),
                               /* End - Trade Command */
+
+                              const Divider(
+                                height: 11,
+                              ),
 
                               Container(
                                 width: 351,
@@ -587,21 +592,22 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            StringsResources.accuracyText(),
+                                            StringsResources.entryPriceText(),
                                             style: TextStyle(
                                                 fontSize: 19,
-                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                color: ColorsResources.entryPriceColor.withOpacity(0.91),
                                                 fontWeight: FontWeight.normal
                                             ),
                                           ),
                                         )
                                     ),
-                                    const Expanded(
+                                    Expanded(
                                         flex: 1,
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: AssetImage("point_icon.png"),
+                                            image: const AssetImage("point_icon.png"),
+                                            color: ColorsResources.entryPriceColor.withOpacity(0.91),
                                             height: 19,
                                             fit: BoxFit.contain,
                                           ),
@@ -612,10 +618,10 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            "93%",
+                                            "\$195,921",
                                             style: TextStyle(
                                                 fontSize: 19,
-                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                color: ColorsResources.entryPriceColor.withOpacity(0.91),
                                                 fontWeight: FontWeight.normal,
                                                 shadows: [
                                                   Shadow(
@@ -644,21 +650,22 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            StringsResources.lotSizeText(),
+                                            StringsResources.takeProfitText(),
                                             style: TextStyle(
                                                 fontSize: 19,
-                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                color: ColorsResources.takeProfitColor.withOpacity(0.91),
                                                 fontWeight: FontWeight.normal
                                             ),
                                           ),
                                         )
                                     ),
-                                    const Expanded(
+                                    Expanded(
                                         flex: 1,
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: AssetImage("point_icon.png"),
+                                            image: const AssetImage("point_icon.png"),
+                                            color: ColorsResources.takeProfitColor.withOpacity(0.91),
                                             height: 19,
                                             fit: BoxFit.contain,
                                           ),
@@ -669,10 +676,10 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            "3000",
+                                            "\$200,000",
                                             style: TextStyle(
                                                 fontSize: 19,
-                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                color: ColorsResources.takeProfitColor.withOpacity(0.91),
                                                 fontWeight: FontWeight.normal,
                                                 shadows: [
                                                   Shadow(
@@ -701,21 +708,22 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            StringsResources.earningsText(),
+                                            StringsResources.stopLossText(),
                                             style: TextStyle(
                                                 fontSize: 19,
-                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                color: ColorsResources.stopLossColor.withOpacity(0.91),
                                                 fontWeight: FontWeight.normal
                                             ),
                                           ),
                                         )
                                     ),
-                                    const Expanded(
+                                    Expanded(
                                         flex: 1,
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: AssetImage("point_icon.png"),
+                                            image: const AssetImage("point_icon.png"),
+                                            color: ColorsResources.stopLossColor.withOpacity(0.91),
                                             height: 19,
                                             fit: BoxFit.contain,
                                           ),
@@ -726,10 +734,10 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            "~" " " "\$7,337",
+                                            "\$195,310",
                                             style: TextStyle(
                                                 fontSize: 19,
-                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                color: ColorsResources.stopLossColor.withOpacity(0.91),
                                                 fontWeight: FontWeight.normal,
                                                 shadows: [
                                                   Shadow(
@@ -811,7 +819,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                       child: InkWell(
                           onTap: () {
 
-                            scrollController.jumpTo(793);
+                            scrollController.jumpTo(775);
 
                           },
                           child: const Image(
@@ -831,13 +839,94 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
   Widget shareDetailsView(/*SignalsDataStructure signalsDataStructure*/) {
 
-    return SizedBox(
-      width: 353,
-      height: 373,
-      child: Container(
-        color: Colors.redAccent,
-        child: Text("TEST"),
-      ),
+    return Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 37, 0),
+        child: SizedBox(
+            height: 399,
+            width: 351,
+            child: Stack(
+                children: [
+                  Blur(
+                      blur: 5,
+                      blurColor: ColorsResources.premiumLight,
+                      borderRadius: BorderRadius.circular(19),
+                      colorOpacity: 0.07,
+                      alignment: Alignment.center,
+                      child: const SizedBox(
+                        height: 399,
+                        width: 351,
+                      )
+                  ),
+
+                  Container(
+                      height: 399,
+                      width: 351,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(19),
+                            topRight: Radius.circular(19),
+                            bottomLeft: Radius.circular(19),
+                            bottomRight: Radius.circular(19)
+                        ),
+                        border: Border(
+                            top: BorderSide(
+                              color: ColorsResources.black,
+                              width: 1.3,
+                            ),
+                            bottom: BorderSide(
+                              color: ColorsResources.black,
+                              width: 1.3,
+                            ),
+                            left: BorderSide(
+                              color: ColorsResources.black,
+                              width: 1.3,
+                            ),
+                            right: BorderSide(
+                              color: ColorsResources.black,
+                              width: 1.3,
+                            )
+                        ),
+                      ),
+                    child: const Padding(
+                      padding: EdgeInsets.fromLTRB(0, 27, 0, 0),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Image(
+                          image: AssetImage("share_icon.png"),
+                          height: 233,
+                          width: 233,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    )
+                  ),
+
+                  Positioned(
+                    bottom: 31,
+                    left: 13,
+                    right: 13,
+                    child: Text(
+                      StringsResources.shareSachiel(),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: ColorsResources.light,
+                        fontSize: 23,
+                        fontWeight: FontWeight.normal,
+                        letterSpacing: 1.7,
+                        shadows: [
+                          Shadow(
+                            color: ColorsResources.goldenColor.withOpacity(0.31),
+                            blurRadius: 7,
+                            offset: const Offset(0, 3)
+                          )
+                        ]
+                      ),
+                    ),
+                  )
+
+                ]
+            )
+        )
     );
   }
 

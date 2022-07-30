@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/12/22, 7:02 PM
+ * Last modified 7/30/22, 12:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,6 +20,10 @@ class ColorsResources {
 
   static const sellColor = Color.fromARGB(255, 137, 0, 49);
   static const buyColor = Color.fromARGB(255, 0, 79, 137);
+
+  static const takeProfitColor = Color.fromARGB(255, 0, 218, 166);
+  static const stopLossColor = Color.fromARGB(255, 218, 0, 78);
+  static const entryPriceColor = Color.fromARGB(255, 0, 133, 255);
 
   static const Color blue = Color.fromARGB(255, 0, 161, 255);
   static const Color lightBlue = Color.fromARGB(255, 128, 208, 255);

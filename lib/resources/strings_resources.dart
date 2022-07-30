@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/30/22, 12:22 AM
+ * Last modified 7/30/22, 12:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,6 +18,11 @@ class StringsResources {
   static String sachielAI() {
 
     return "Sachiel AI";
+  }
+
+  static String shareSachiel() {
+
+    return "Share Sachiel's Signal";
   }
 
   static String warningEmptyText() {
@@ -38,6 +43,21 @@ class StringsResources {
   static String earningsText() {
 
     return "Earnings";
+  }
+
+  static String takeProfitText() {
+
+    return "Take Profit";
+  }
+
+  static String stopLossText() {
+
+    return "Stop Loss";
+  }
+
+  static String entryPriceText() {
+
+    return "Entry Price";
   }
 
   /*
