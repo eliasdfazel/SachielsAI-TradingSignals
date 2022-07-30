@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/27/22, 5:56 PM
+ * Last modified 7/29/22, 11:41 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -255,25 +255,34 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: 351,
-                      height: 59,
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        "Tue, July 7, 2022 - 17:13:37",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: ColorsResources.premiumLight,
-                          fontSize: 17,
-                        ),
-                      ),
-                    )
                   ],
                 )
               )
             ),
+
+            /* Start - Trade Time */
+            Positioned(
+              left: 13,
+              bottom: 7,
+              child: Container(
+                width: 351,
+                height: 59,
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  "Tue, July 7, 2022 - 17:13:37",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: ColorsResources.premiumLight,
+                    fontSize: 17,
+                  ),
+                ),
+              ),
+            ),
+            /* End - Trade Time */
+
+            /* Start - Next Slide */
             Positioned(
               bottom: 7,
               right: 11,
@@ -290,6 +299,8 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                 )
               )
             )
+            /* End - Next Slide */
+
           ]
         )
       )
@@ -298,13 +309,228 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
   Widget technicalDetailsView(/*SignalsDataStructure signalsDataStructure*/) {
 
-    return SizedBox(
-      width: 353,
-      height: 373,
-      child: Container(
-        color: Colors.blue,
-        child: Text("TEST"),
-      ),
+    return Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 37, 0),
+        child: SizedBox(
+            height: 399,
+            width: 351,
+            child: Stack(
+                children: [
+                  Blur(
+                      blur: 5,
+                      blurColor: ColorsResources.premiumLight,
+                      borderRadius: BorderRadius.circular(19),
+                      colorOpacity: 0.07,
+                      alignment: Alignment.center,
+                      child: const SizedBox(
+                        height: 399,
+                        width: 351,
+                      )
+                  ),
+                  Container(
+                      height: 399,
+                      width: 351,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(19),
+                            topRight: Radius.circular(19),
+                            bottomLeft: Radius.circular(19),
+                            bottomRight: Radius.circular(19)
+                        ),
+                        border: Border(
+                            top: BorderSide(
+                              color: ColorsResources.black,
+                              width: 1.3,
+                            ),
+                            bottom: BorderSide(
+                              color: ColorsResources.black,
+                              width: 1.3,
+                            ),
+                            left: BorderSide(
+                              color: ColorsResources.black,
+                              width: 1.3,
+                            ),
+                            right: BorderSide(
+                              color: ColorsResources.black,
+                              width: 1.3,
+                            )
+                        ),
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
+                          child: Column(
+                            children: [
+
+                              /* Start - Trade Command */
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "SELL" " ",
+                                      style: TextStyle(
+                                          color: ColorsResources.sellColor,
+                                          fontSize: 47,
+                                          fontWeight: FontWeight.bold,
+                                          shadows: [
+                                            Shadow(
+                                                color: ColorsResources.black.withOpacity(0.3),
+                                                blurRadius: 19,
+                                                offset: const Offset(0, 5)
+                                            )
+                                          ]
+                                      ),
+                                    ),
+                                  ),
+                                  const Align(
+                                    alignment: Alignment.centerRight,
+                                      child: Text(
+                                        " " "BTCUSD",
+                                        style: TextStyle(
+                                            color: ColorsResources.premiumLight,
+                                            fontSize: 47,
+                                            fontWeight: FontWeight.bold,
+                                            letterSpacing: 1.5
+                                        ),
+                                      ),
+                                  )
+                                ],
+                              ),
+                              /* End - Trade Command */
+
+                              Container(
+                                width: 351,
+                                height: 37,
+                                padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                                alignment: Alignment.centerLeft,
+                                color: Colors.amberAccent,
+                                child: Text("Test"),
+                              ),
+                              Container(
+                                width: 351,
+                                height: 37,
+                                padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                                alignment: Alignment.centerLeft,
+                                color: Colors.cyan,
+                                child: Text("Test"),
+                              ),
+                              Container(
+                                width: 351,
+                                height: 37,
+                                padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                                alignment: Alignment.centerLeft,
+                                color: Colors.blueAccent,
+                                child: Text("Test"),
+                              ),
+
+
+
+                              Container(
+                                width: 351,
+                                height: 37,
+                                padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                                alignment: Alignment.centerLeft,
+                                color: Colors.amberAccent,
+                                child: Text("Test"),
+                              ),
+                              Container(
+                                width: 351,
+                                height: 37,
+                                padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                                alignment: Alignment.centerLeft,
+                                color: Colors.cyan,
+                                child: Text("Test"),
+                              ),
+                              Container(
+                                width: 351,
+                                height: 37,
+                                padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                                alignment: Alignment.centerLeft,
+                                color: Colors.blueAccent,
+                                child: Text("Test"),
+                              ),
+
+                            ],
+                          )
+                      )
+                  ),
+
+                  /* Start - Trade Timeframe */
+                  Positioned(
+                    left: 13,
+                    bottom: 27,
+                    child: Container(
+                    width: 351,
+                    height: 39,
+                    padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Daily",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: ColorsResources.premiumLight,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.5,
+                          shadows: [
+                            Shadow(
+                                color: ColorsResources.black.withOpacity(0.5),
+                                blurRadius: 11,
+                                offset: const Offset(0.0, 3.0)
+                            )
+                          ]
+                      ),
+                    ),
+                  ),
+                  ),
+                  /* End - Trade Timeframe */
+
+                  /* Start - Trade Time */
+                  Positioned(
+                    left: 13,
+                    bottom: 7,
+                    child: Container(
+                      width: 351,
+                      height: 59,
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        "Tue, July 7, 2022 - 17:13:37",
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: ColorsResources.premiumLight,
+                          fontSize: 17,
+                        ),
+                      ),
+                    ),
+                  ),
+                  /* End - Trade Time */
+
+                  /* Start - Next Slide */
+                  Positioned(
+                      bottom: 7,
+                      right: 11,
+                      child: InkWell(
+                          onTap: () {
+
+                            scrollController.jumpTo(793);
+
+                          },
+                          child: const Image(
+                            image: AssetImage("next_icon.png"),
+                            height: 37,
+                            width: 37,
+                          )
+                      )
+                  )
+                  /* End - Next Slide */
+
+                ]
+            )
+        )
     );
   }
 
