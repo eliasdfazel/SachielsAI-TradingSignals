@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/30/22, 12:49 AM
+ * Last modified 7/30/22, 12:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -858,47 +858,54 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                       )
                   ),
 
-                  Container(
-                      height: 399,
-                      width: 351,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(19),
-                            topRight: Radius.circular(19),
-                            bottomLeft: Radius.circular(19),
-                            bottomRight: Radius.circular(19)
+                  InkWell(
+                    onTap: () {
+
+
+
+                    },
+                    child: Container(
+                        height: 399,
+                        width: 351,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(19),
+                              topRight: Radius.circular(19),
+                              bottomLeft: Radius.circular(19),
+                              bottomRight: Radius.circular(19)
+                          ),
+                          border: Border(
+                              top: BorderSide(
+                                color: ColorsResources.black,
+                                width: 1.3,
+                              ),
+                              bottom: BorderSide(
+                                color: ColorsResources.black,
+                                width: 1.3,
+                              ),
+                              left: BorderSide(
+                                color: ColorsResources.black,
+                                width: 1.3,
+                              ),
+                              right: BorderSide(
+                                color: ColorsResources.black,
+                                width: 1.3,
+                              )
+                          ),
                         ),
-                        border: Border(
-                            top: BorderSide(
-                              color: ColorsResources.black,
-                              width: 1.3,
+                        child: const Padding(
+                          padding: EdgeInsets.fromLTRB(0, 27, 0, 0),
+                          child: Align(
+                            alignment: Alignment.topCenter,
+                            child: Image(
+                              image: AssetImage("share_icon.png"),
+                              height: 233,
+                              width: 233,
+                              fit: BoxFit.contain,
                             ),
-                            bottom: BorderSide(
-                              color: ColorsResources.black,
-                              width: 1.3,
-                            ),
-                            left: BorderSide(
-                              color: ColorsResources.black,
-                              width: 1.3,
-                            ),
-                            right: BorderSide(
-                              color: ColorsResources.black,
-                              width: 1.3,
-                            )
-                        ),
-                      ),
-                    child: const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 27, 0, 0),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Image(
-                          image: AssetImage("share_icon.png"),
-                          height: 233,
-                          width: 233,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    )
+                          ),
+                        )
+                    ),
                   ),
 
                   Positioned(
