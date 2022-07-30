@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/29/22, 11:41 PM
+ * Last modified 7/30/22, 12:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/data/signals_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
+import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
 
 class LastSignalDetails extends StatefulWidget {
@@ -363,7 +364,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
                               /* Start - Trade Command */
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Align(
                                     alignment: Alignment.centerLeft,
@@ -401,54 +402,348 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
                               Container(
                                 width: 351,
-                                height: 37,
+                                height: 31,
                                 padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
                                 alignment: Alignment.centerLeft,
-                                color: Colors.amberAccent,
-                                child: Text("Test"),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          StringsResources.accuracyText(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.premiumLight.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal
+                                          ),
+                                        ),
+                                      )
+                                    ),
+                                    const Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Image(
+                                          image: AssetImage("point_icon.png"),
+                                          height: 19,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      )
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          "93%",
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.premiumLight.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.black.withOpacity(0.59),
+                                                    blurRadius: 7,
+                                                    offset: const Offset(0, 3)
+                                                )
+                                              ]
+                                          ),
+                                        ),
+                                      )
+                                    ),
+                                  ],
+                                ),
                               ),
                               Container(
                                 width: 351,
-                                height: 37,
+                                height: 31,
                                 padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
                                 alignment: Alignment.centerLeft,
-                                color: Colors.cyan,
-                                child: Text("Test"),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            StringsResources.lotSizeText(),
+                                            style: TextStyle(
+                                                fontSize: 19,
+                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                fontWeight: FontWeight.normal
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                    const Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Image(
+                                            image: AssetImage("point_icon.png"),
+                                            height: 19,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        )
+                                    ),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                            "3000",
+                                            style: TextStyle(
+                                                fontSize: 19,
+                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                fontWeight: FontWeight.normal,
+                                                shadows: [
+                                                  Shadow(
+                                                      color: ColorsResources.black.withOpacity(0.59),
+                                                      blurRadius: 7,
+                                                      offset: const Offset(0, 3)
+                                                  )
+                                                ]
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                  ],
+                                ),
                               ),
                               Container(
                                 width: 351,
-                                height: 37,
+                                height: 31,
                                 padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
                                 alignment: Alignment.centerLeft,
-                                color: Colors.blueAccent,
-                                child: Text("Test"),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            StringsResources.earningsText(),
+                                            style: TextStyle(
+                                                fontSize: 19,
+                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                fontWeight: FontWeight.normal
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                    const Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Image(
+                                            image: AssetImage("point_icon.png"),
+                                            height: 19,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        )
+                                    ),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                            "~" " " "\$7,337",
+                                            style: TextStyle(
+                                                fontSize: 19,
+                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                fontWeight: FontWeight.normal,
+                                                shadows: [
+                                                  Shadow(
+                                                      color: ColorsResources.black.withOpacity(0.59),
+                                                      blurRadius: 7,
+                                                      offset: const Offset(0, 3)
+                                                  )
+                                                ]
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                  ],
+                                ),
                               ),
 
-
+                              const Divider(
+                                height: 15,
+                              ),
 
                               Container(
                                 width: 351,
-                                height: 37,
+                                height: 31,
                                 padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
                                 alignment: Alignment.centerLeft,
-                                color: Colors.amberAccent,
-                                child: Text("Test"),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            StringsResources.accuracyText(),
+                                            style: TextStyle(
+                                                fontSize: 19,
+                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                fontWeight: FontWeight.normal
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                    const Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Image(
+                                            image: AssetImage("point_icon.png"),
+                                            height: 19,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        )
+                                    ),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                            "93%",
+                                            style: TextStyle(
+                                                fontSize: 19,
+                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                fontWeight: FontWeight.normal,
+                                                shadows: [
+                                                  Shadow(
+                                                      color: ColorsResources.black.withOpacity(0.59),
+                                                      blurRadius: 7,
+                                                      offset: const Offset(0, 3)
+                                                  )
+                                                ]
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                  ],
+                                ),
                               ),
                               Container(
                                 width: 351,
-                                height: 37,
+                                height: 31,
                                 padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
                                 alignment: Alignment.centerLeft,
-                                color: Colors.cyan,
-                                child: Text("Test"),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            StringsResources.lotSizeText(),
+                                            style: TextStyle(
+                                                fontSize: 19,
+                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                fontWeight: FontWeight.normal
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                    const Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Image(
+                                            image: AssetImage("point_icon.png"),
+                                            height: 19,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        )
+                                    ),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                            "3000",
+                                            style: TextStyle(
+                                                fontSize: 19,
+                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                fontWeight: FontWeight.normal,
+                                                shadows: [
+                                                  Shadow(
+                                                      color: ColorsResources.black.withOpacity(0.59),
+                                                      blurRadius: 7,
+                                                      offset: const Offset(0, 3)
+                                                  )
+                                                ]
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                  ],
+                                ),
                               ),
                               Container(
                                 width: 351,
-                                height: 37,
+                                height: 31,
                                 padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
                                 alignment: Alignment.centerLeft,
-                                color: Colors.blueAccent,
-                                child: Text("Test"),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            StringsResources.earningsText(),
+                                            style: TextStyle(
+                                                fontSize: 19,
+                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                fontWeight: FontWeight.normal
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                    const Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Image(
+                                            image: AssetImage("point_icon.png"),
+                                            height: 19,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        )
+                                    ),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                            "~" " " "\$7,337",
+                                            style: TextStyle(
+                                                fontSize: 19,
+                                                color: ColorsResources.premiumLight.withOpacity(0.91),
+                                                fontWeight: FontWeight.normal,
+                                                shadows: [
+                                                  Shadow(
+                                                      color: ColorsResources.black.withOpacity(0.59),
+                                                      blurRadius: 7,
+                                                      offset: const Offset(0, 3)
+                                                  )
+                                                ]
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                  ],
+                                ),
                               ),
 
                             ],
