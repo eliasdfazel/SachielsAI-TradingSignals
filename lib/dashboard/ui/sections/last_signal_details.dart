@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/31/22, 8:37 PM
+ * Last modified 7/31/22, 8:45 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/data/signals_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -28,7 +29,15 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
   ScrollController scrollController = ScrollController();
 
-  Widget lastSignalDetails = Container();
+  Widget lastSignalDetails = Container(
+    height: 399,
+    width: 351,
+    alignment: Alignment.center,
+    child: LoadingAnimationWidget.staggeredDotsWave(
+      color: ColorsResources.primaryColorLightest,
+      size: 173,
+    ),
+  );
 
   @override
   void initState() {
