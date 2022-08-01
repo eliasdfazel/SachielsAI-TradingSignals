@@ -73,6 +73,7 @@ dependencies:
 
 
   ####### ####### #######
+  loading_animation_widget: ^1.2.0+2
   local_auth: ^2.1.0
   lottie: ^1.4.0
   ####### ####### #######
