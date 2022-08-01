@@ -3,12 +3,13 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/27/22, 5:50 PM
+ * Last modified 7/31/22, 8:27 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
 import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
@@ -20,6 +21,10 @@ import 'package:sachiel/utils/ui/system_bars.dart';
 import 'package:widget_mask/widget_mask.dart';
 
 void main() async {
+
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
 
   runApp(
       const MaterialApp(

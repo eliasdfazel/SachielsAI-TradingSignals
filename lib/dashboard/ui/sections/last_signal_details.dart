@@ -2,14 +2,16 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/30/22, 12:52 AM
+ * Last modified 7/31/22, 8:26 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:blur/blur.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:sachiel/data/signals_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -61,32 +63,33 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
   }
 
   void retrieveLastSignalDetails() async {
+    debugPrint("Retrieve Last Signal Details");
 
-    // SignalsDataStructure signalsDataStructure = SignalsDataStructure(documentSnapshot);
-    //
-    // prepareLastSignalsDetails(signalsDataStructure);
+    FirebaseFirestore.instance
+        .collection("SachielsSignals")
+        .limit(1)
+        .orderBy("tradeTimestamp")
+        .get().then((QuerySnapshot querySnapshot) {
+          debugPrint("Last Signal Details Data: ${querySnapshot.docs.first.data()}");
 
-    lastSignalDetails.add(overviewDetailsView());
+          SignalsDataStructure signalsDataStructure = SignalsDataStructure(querySnapshot.docs.first);
 
-    lastSignalDetails.add(technicalDetailsView());
+          prepareLastSignalsDetails(signalsDataStructure);
 
-    lastSignalDetails.add(shareDetailsView());
+        },
+        onError: (e) => {
 
-    setState(() {
-
-      lastSignalDetails;
-
-    });
+        });
 
   }
 
   void prepareLastSignalsDetails(SignalsDataStructure signalsDataStructure) {
 
-    // lastSignalDetails.add(overviewDetailsView(signalsDataStructure));
-    //
-    // lastSignalDetails.add(technicalDetailsView(signalsDataStructure));
-    //
-    // lastSignalDetails.add(shareDetailsView(signalsDataStructure));
+    lastSignalDetails.add(overviewDetailsView(signalsDataStructure));
+
+    lastSignalDetails.add(technicalDetailsView(signalsDataStructure));
+
+    lastSignalDetails.add(shareDetailsView(signalsDataStructure));
 
     setState(() {
 
@@ -96,7 +99,28 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
   }
 
-  Widget overviewDetailsView(/*SignalsDataStructure signalsDataStructure*/) {
+  Widget overviewDetailsView(SignalsDataStructure signalsDataStructure) {
+    debugPrint("Overview Details: ${signalsDataStructure.signalsDocumentData}");
+
+    var tradeCommandColor = ColorsResources.sellColor;
+
+    if (signalsDataStructure.tradeCommand() == "Buy") {
+
+      tradeCommandColor = ColorsResources.buyColor;
+
+    }
+
+    DateTime tradeTimestamp = DateTime.fromMillisecondsSinceEpoch(int.parse(signalsDataStructure.tradeTimestamp()));
+
+    var tradeTimestampText = tradeTimestamp.toString();
+
+    try {
+
+      tradeTimestampText = "${DateFormat("EEEE").format(tradeTimestamp)}, ${DateFormat("MMMM").format(tradeTimestamp)} ${tradeTimestamp.day}, ${tradeTimestamp.year}"
+          " - "
+          "${tradeTimestamp.hour}:${tradeTimestamp.minute}:${tradeTimestamp.second}";
+
+    } catch (exception) {}
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 37, 0),
@@ -177,16 +201,16 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                 child: Column(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
 
                         /* Start - Trade Command */
                         Column(
                           children: [
                             Text(
-                              "SELL",
+                              signalsDataStructure.tradeCommand().toUpperCase(),
                               style: TextStyle(
-                                  color: ColorsResources.sellColor,
+                                  color: tradeCommandColor,
                                   fontSize: 87,
                                   fontWeight: FontWeight.bold,
                                   shadows: [
@@ -199,8 +223,8 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                               ),
                             ),
                             Text(
-                              "BTCUSD",
-                              style: TextStyle(
+                              signalsDataStructure.tradeMarketPair(),
+                              style: const TextStyle(
                                   color: ColorsResources.premiumLight,
                                   fontSize: 47,
                                   fontWeight: FontWeight.bold,
@@ -213,10 +237,10 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
                         /* Start - Trade Accuracy */
                         Padding(
-                            padding: EdgeInsets.fromLTRB(9, 0, 0, 0),
-                            child: const Text(
-                              "93",
-                              style: TextStyle(
+                            padding: const EdgeInsets.fromLTRB(9, 0, 0, 0),
+                            child: Text(
+                              signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", ""),
+                              style: const TextStyle(
                                   color: ColorsResources.white,
                                   fontSize: 101,
                                   shadows: [
@@ -239,7 +263,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                       padding: const EdgeInsets.fromLTRB(0, 31, 0, 0),
                       alignment: Alignment.center,
                       child: Text(
-                        "7,337.19",
+                        signalsDataStructure.tradeProfitAmount().replaceAll("\$", ""),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -271,10 +295,10 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
                 alignment: Alignment.bottomLeft,
                 child: Text(
-                  "Tue, July 7, 2022 - 17:13:37",
+                  tradeTimestampText,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: ColorsResources.premiumLight,
                     fontSize: 17,
                   ),
@@ -308,7 +332,27 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
     );
   }
 
-  Widget technicalDetailsView(/*SignalsDataStructure signalsDataStructure*/) {
+  Widget technicalDetailsView(SignalsDataStructure signalsDataStructure) {
+
+    var tradeCommandColor = ColorsResources.sellColor;
+
+    if (signalsDataStructure.tradeCommand() == "Buy") {
+
+      tradeCommandColor = ColorsResources.buyColor;
+
+    }
+
+    DateTime tradeTimestamp = DateTime.fromMillisecondsSinceEpoch(int.parse(signalsDataStructure.tradeTimestamp()));
+
+    var tradeTimestampText = tradeTimestamp.toString();
+
+    try {
+
+      tradeTimestampText = "${DateFormat("EEEE").format(tradeTimestamp)}, ${DateFormat("MMMM").format(tradeTimestamp)} ${tradeTimestamp.day}, ${tradeTimestamp.year}"
+          " - "
+          "${tradeTimestamp.hour}:${tradeTimestamp.minute}:${tradeTimestamp.second}";
+
+    } catch (exception) {}
 
     return Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 37, 0),
@@ -370,9 +414,9 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      "SELL" " ",
+                                      "${signalsDataStructure.tradeCommand().toUpperCase()}" " ",
                                       style: TextStyle(
-                                          color: ColorsResources.sellColor,
+                                          color: tradeCommandColor,
                                           fontSize: 47,
                                           fontWeight: FontWeight.bold,
                                           shadows: [
@@ -385,11 +429,11 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                       ),
                                     ),
                                   ),
-                                  const Align(
+                                  Align(
                                     alignment: Alignment.centerRight,
                                       child: Text(
-                                        " " "BTCUSD",
-                                        style: TextStyle(
+                                        " " "${signalsDataStructure.tradeMarketPair().toUpperCase()}",
+                                        style: const TextStyle(
                                             color: ColorsResources.premiumLight,
                                             fontSize: 47,
                                             fontWeight: FontWeight.bold,
@@ -442,7 +486,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                       child: Align(
                                         alignment: Alignment.centerRight,
                                         child: Text(
-                                          "93%",
+                                          signalsDataStructure.tradeAccuracyPercentage(),
                                           style: TextStyle(
                                               fontSize: 19,
                                               color: ColorsResources.premiumLight.withOpacity(0.91),
@@ -499,7 +543,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            "3000",
+                                            signalsDataStructure.tradeLotSize(),
                                             style: TextStyle(
                                                 fontSize: 19,
                                                 color: ColorsResources.premiumLight.withOpacity(0.91),
@@ -556,7 +600,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            "~" " " "\$7,337",
+                                            "~" " " "${signalsDataStructure.tradeProfitAmount()}",
                                             style: TextStyle(
                                                 fontSize: 19,
                                                 color: ColorsResources.premiumLight.withOpacity(0.91),
@@ -618,7 +662,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            "\$195,921",
+                                            signalsDataStructure.tradeEntryPrice(),
                                             style: TextStyle(
                                                 fontSize: 19,
                                                 color: ColorsResources.entryPriceColor.withOpacity(0.91),
@@ -676,7 +720,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            "\$200,000",
+                                            signalsDataStructure.tradeTakeProfit(),
                                             style: TextStyle(
                                                 fontSize: 19,
                                                 color: ColorsResources.takeProfitColor.withOpacity(0.91),
@@ -734,7 +778,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            "\$195,310",
+                                            signalsDataStructure.tradeStopLoss(),
                                             style: TextStyle(
                                                 fontSize: 19,
                                                 color: ColorsResources.stopLossColor.withOpacity(0.91),
@@ -769,7 +813,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                     padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "Daily",
+                      signalsDataStructure.tradeTimeframe(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -800,10 +844,10 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
                       alignment: Alignment.bottomLeft,
                       child: Text(
-                        "Tue, July 7, 2022 - 17:13:37",
+                        tradeTimestampText,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: ColorsResources.premiumLight,
                           fontSize: 17,
                         ),
@@ -837,7 +881,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
     );
   }
 
-  Widget shareDetailsView(/*SignalsDataStructure signalsDataStructure*/) {
+  Widget shareDetailsView(SignalsDataStructure signalsDataStructure) {
 
     return Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 37, 0),

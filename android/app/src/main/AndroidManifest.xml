@@ -2,7 +2,7 @@
   ~ Copyright © 2022 By Geeks Empire.
   ~
   ~ Created by Elias Fazel
-  ~ Last modified 7/9/22, 7:59 PM
+  ~ Last modified 7/31/22, 7:21 PM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -10,6 +10,9 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="co.geeksempire.sachiel.signals.sachiel">
+
+        <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="Sachiel Signals"
         android:name="${applicationName}"

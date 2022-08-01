@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/28/22, 4:22 PM
+ * Last modified 7/31/22, 7:27 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -128,7 +128,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                               padding: EdgeInsets.fromLTRB(0, 31, 0, 13),
                               child: Image(
                                 image: AssetImage("logo.png"),
-                                height: 339,
+                                height: 259,
                                 fit: BoxFit.fitHeight,
                               ),
                             ),
