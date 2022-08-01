@@ -99,6 +99,7 @@ dependencies:
 
 
   ####### ####### #######
+  screenshot: ^1.2.3
   share_plus: ^4.0.10
   status_bar_control: ^3.2.1
   ####### ####### #######
