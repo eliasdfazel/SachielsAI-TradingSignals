@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/31/22, 8:26 PM
+ * Last modified 7/31/22, 8:37 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,7 +28,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
   ScrollController scrollController = ScrollController();
 
-  List<Widget> lastSignalDetails = [];
+  Widget lastSignalDetails = Container();
 
   @override
   void initState() {
@@ -51,18 +51,12 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
       width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 37, 0, 13),
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-          physics: const BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          controller: scrollController,
-          children: lastSignalDetails,
-        )
+        child: lastSignalDetails
       )
     );
   }
 
-  void retrieveLastSignalDetails() async {
+  void retrieveLastSignalDetails() {
     debugPrint("Retrieve Last Signal Details");
 
     FirebaseFirestore.instance
@@ -85,15 +79,19 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
   void prepareLastSignalsDetails(SignalsDataStructure signalsDataStructure) {
 
-    lastSignalDetails.add(overviewDetailsView(signalsDataStructure));
-
-    lastSignalDetails.add(technicalDetailsView(signalsDataStructure));
-
-    lastSignalDetails.add(shareDetailsView(signalsDataStructure));
-
     setState(() {
 
-      lastSignalDetails;
+      lastSignalDetails = ListView(
+        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+        physics: const BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        controller: scrollController,
+        children: [
+          overviewDetailsView(signalsDataStructure),
+          technicalDetailsView(signalsDataStructure),
+          shareDetailsView(signalsDataStructure)
+        ],
+      );
 
     });
 
