@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/31/22, 8:27 PM
+ * Last modified 8/2/22, 10:43 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,14 +11,15 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sachiel/dashboard/ui/sections/account_information_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
 import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
+import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
-import 'package:widget_mask/widget_mask.dart';
 
 void main() async {
 
@@ -167,35 +168,10 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                   /* End - Gradient Background - Golden */
 
                   /* Start - Purchase Plan Picker */
-                  Positioned(
+                  const Positioned(
                     right: 19,
                     top: 19,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: ColorsResources.primaryColorLighter,
-                              blurRadius: 51,
-                              spreadRadius: 0,
-                              offset: Offset(0, 0)
-                          )
-                        ]
-                      ),
-                      child: SizedBox(
-                          height: 59,
-                          width: 59,
-                          child: InkWell(
-                              onTap: () {
-
-
-
-                              },
-                              child: const Image(
-                                image: AssetImage("squircle_logo.png"),
-                              )
-                          )
-                      ),
-                    )
+                    child: PurchasePlanPicker()
                   ),
                   /* End - Purchase Plan Picker */
 
@@ -206,124 +182,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                     children: [
 
                       /* Start - Account Information */
-                      Row(
-                        children: [
-                          Align(
-                              alignment: Alignment.topLeft,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
-                                  child: SizedBox(
-                                      height: 59,
-                                      width: 59,
-                                      child: Stack(
-                                        children: [
-                                          WidgetMask(
-                                            blendMode: BlendMode.srcATop,
-                                            childSaveLayer: true,
-                                            mask /* Original Image */: Container(
-                                              decoration: const BoxDecoration(
-                                                  gradient: LinearGradient(
-                                                      colors: [
-                                                        ColorsResources.premiumLight,
-                                                        ColorsResources.primaryColorLightest,
-                                                      ],
-                                                      transform: GradientRotation(45)
-                                                  )
-                                              ),
-                                            ),
-                                            child: const Image(
-                                              image: AssetImage("squircle_shape.png"),
-                                            ),
-                                          ),
-                                          Padding(
-                                              padding: const EdgeInsets.all(1.7),
-                                              child: WidgetMask(
-                                                blendMode: BlendMode.srcATop,
-                                                childSaveLayer: true,
-                                                mask /* Original Image */: profileImage,
-                                                child: const Image(
-                                                  image: AssetImage("squircle_shape.png"),
-                                                ),
-                                              )
-                                          )
-                                        ],
-                                      )
-                                  )
-                              )
-                          ),
-                          Align(
-                              alignment: Alignment.topLeft,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
-                                  child: SizedBox(
-                                      height: 59,
-                                      width: 155,
-                                      child: Stack(
-                                        children: [
-                                          WidgetMask(
-                                            blendMode: BlendMode.srcATop,
-                                            childSaveLayer: true,
-                                            mask /* Original Image */: Container(
-                                              decoration: const BoxDecoration(
-                                                  gradient: LinearGradient(
-                                                      colors: [
-                                                        ColorsResources.premiumLight,
-                                                        ColorsResources.primaryColorLightest,
-                                                      ],
-                                                      transform: GradientRotation(45)
-                                                  )
-                                              ),
-                                            ),
-                                            child: const Image(
-                                              image: AssetImage("rectircle_shape.png"),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Padding(
-                                                padding: const EdgeInsets.all(1.9),
-                                                child: WidgetMask(
-                                                  blendMode: BlendMode.srcATop,
-                                                  childSaveLayer: true,
-                                                  mask /* Original Image */: Container(
-                                                    decoration: const BoxDecoration(
-                                                        gradient: LinearGradient(
-                                                            colors: [
-                                                              ColorsResources.premiumDarkLighter,
-                                                              ColorsResources.premiumLight,
-                                                            ],
-                                                            transform: GradientRotation(45)
-                                                        )
-                                                    ),
-                                                  ),
-                                                  child: const Image(
-                                                    image: AssetImage("rectircle_shape.png"),
-                                                  ),
-                                                )
-                                            )
-                                          ),
-                                          Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Padding(
-                                              padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                              child: Text(
-                                                profileName,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: const TextStyle(
-                                                    color: ColorsResources.premiumDark,
-                                                    fontSize: 19
-                                                ),
-                                              ),
-                                            )
-                                          )
-                                        ],
-                                      )
-                                  )
-                              )
-                          ),
-                        ],
-                      ),
+                      const AccountInformationOverview(),
                       /* End - Account Information */
 
                       /* Start - The Last Signal Details */
