@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/3/22, 2:10 AM
+ * Last modified 8/3/22, 3:06 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -30,6 +30,7 @@ class LastSignalDetails extends StatefulWidget {
 
   @override
   State<LastSignalDetails> createState() => _LastSignalDetailsState();
+
 }
 class _LastSignalDetailsState extends State<LastSignalDetails> {
 
