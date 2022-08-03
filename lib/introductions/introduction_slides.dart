@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/3/22, 3:21 AM
+ * Last modified 8/3/22, 3:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -167,15 +167,13 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                         positionSlideIcon: 0.5,
                         waveType: WaveType.liquidReveal,
                         pages: [
-                          Container(
-                            color: ColorsResources.red,
-                          ),
-                          Container(
-                            color: ColorsResources.green,
-                          ),
-                          Container(
-                            color: ColorsResources.yellow,
-                          ),
+
+                          firstSlideIntroduction(),
+
+                          secondSlideIntroduction(),
+
+                          thirdSlideIntroduction(),
+
                         ],
                       ),
                     ),
@@ -232,6 +230,27 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                 )
             )
         )
+    );
+  }
+
+  Widget firstSlideIntroduction() {
+
+    return Container(
+      color: ColorsResources.red,
+    );
+  }
+
+  Widget secondSlideIntroduction() {
+
+    return Container(
+      color: ColorsResources.green,
+    );
+  }
+
+  Widget thirdSlideIntroduction() {
+
+    return Container(
+      color: ColorsResources.blue,
     );
   }
 
