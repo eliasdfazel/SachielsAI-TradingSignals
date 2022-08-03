@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/31/22, 11:36 PM
+ * Last modified 8/3/22, 2:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -100,11 +100,16 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
         padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
+
         controller: scrollController,
         children: [
+
           overviewDetailsView(signalsDataStructure),
+
           technicalDetailsView(signalsDataStructure),
+
           shareDetailsView(signalsDataStructure)
+
         ],
       );
 
