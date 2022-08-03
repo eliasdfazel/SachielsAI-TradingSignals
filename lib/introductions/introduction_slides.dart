@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/3/22, 3:15 AM
+ * Last modified 8/3/22, 3:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -152,29 +152,32 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                     /* End - Gradient Background - Golden */
 
                     /* Start - Introduction Liquid Slide */
-                    LiquidSwipe(
-                      liquidController: liquidController,
-                      onPageChangeCallback: (position) {
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(17),
+                      child: LiquidSwipe(
+                        liquidController: liquidController,
+                        onPageChangeCallback: (position) {
 
-                      },
-                      fullTransitionValue: 777,
-                      enableSideReveal: true,
-                      enableLoop: false,
-                      ignoreUserGestureWhileAnimating: true,
-                      slideIconWidget: const Icon(Icons.arrow_back_ios),
-                      positionSlideIcon: 0.5,
-                      waveType: WaveType.liquidReveal,
-                      pages: [
-                        Container(
-                          color: ColorsResources.red,
-                        ),
-                        Container(
-                          color: ColorsResources.green,
-                        ),
-                        Container(
-                          color: ColorsResources.yellow,
-                        ),
-                      ],
+                        },
+                        fullTransitionValue: 777,
+                        enableSideReveal: true,
+                        enableLoop: false,
+                        ignoreUserGestureWhileAnimating: true,
+                        slideIconWidget: const Icon(Icons.arrow_back_ios),
+                        positionSlideIcon: 0.5,
+                        waveType: WaveType.liquidReveal,
+                        pages: [
+                          Container(
+                            color: ColorsResources.red,
+                          ),
+                          Container(
+                            color: ColorsResources.green,
+                          ),
+                          Container(
+                            color: ColorsResources.yellow,
+                          ),
+                        ],
+                      ),
                     ),
                     /* End - Introduction Liquid Slide */
 
