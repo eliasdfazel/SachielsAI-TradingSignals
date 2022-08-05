@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/3/22, 3:06 AM
+ * Last modified 8/5/22, 5:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -527,7 +527,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                       shadows: [
                                         Shadow(
                                             color: ColorsResources.black.withOpacity(0.5),
-                                            blurRadius: 11,
+                                            blurRadius: 13,
                                             offset: const Offset(0.0, 3.0)
                                         )
                                       ]
