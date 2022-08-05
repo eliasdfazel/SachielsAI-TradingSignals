@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/3/22, 3:06 AM
+ * Last modified 8/5/22, 6:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -168,14 +168,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                   ),
                   /* End - Gradient Background - Golden */
 
-                  /* Start - Purchase Plan Picker */
-                  const Positioned(
-                    right: 19,
-                    top: 19,
-                    child: PurchasePlanPicker()
-                  ),
-                  /* End - Purchase Plan Picker */
-
                   ListView(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 73),
                     physics: const BouncingScrollPhysics(),
@@ -195,7 +187,16 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       /* End - The Latest Signals Overview */
 
                     ],
-                  )
+                  ),
+
+                  /* Start - Purchase Plan Picker */
+                  const Positioned(
+                      right: 19,
+                      top: 19,
+                      child: PurchasePlanPicker()
+                  ),
+                  /* End - Purchase Plan Picker */
+
                 ],
               )
           )
