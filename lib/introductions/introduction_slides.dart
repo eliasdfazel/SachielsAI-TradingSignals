@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/3/22, 3:24 AM
+ * Last modified 8/5/22, 1:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,6 @@ import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
-import 'package:widget_mask/widget_mask.dart';
 
 void main() async {
 
@@ -111,18 +110,6 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                     ),
                     /* End - Gradient Background - Dark */
 
-                    /* Start - Branding Transparent */
-                    const Align(
-                      alignment: Alignment.center,
-                      child: Opacity(
-                        opacity: 0.1,
-                        child: Image(
-                          image: AssetImage("logo.png"),
-                        ),
-                      ),
-                    ),
-                    /* End - Branding Transparent */
-
                     /* Start - Gradient Background - Golden */
                     Align(
                         alignment: Alignment.topRight,
@@ -161,9 +148,23 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                         },
                         fullTransitionValue: 777,
                         enableSideReveal: true,
-                        enableLoop: false,
+                        enableLoop: true,
                         ignoreUserGestureWhileAnimating: true,
-                        slideIconWidget: const Icon(Icons.arrow_back_ios),
+                        slideIconWidget: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                          child: Icon(
+                            Icons.arrow_back_ios_rounded,
+                            size: 27,
+                            color: ColorsResources.light,
+                            shadows: [
+                              Shadow(
+                                color: ColorsResources.light.withOpacity(0.37),
+                                blurRadius: 7,
+                                offset: const Offset(3, 0)
+                              )
+                            ],
+                          ),
+                        ),
                         positionSlideIcon: 0.5,
                         waveType: WaveType.liquidReveal,
                         pages: [
@@ -179,53 +180,6 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                     ),
                     /* End - Introduction Liquid Slide */
 
-                    /* Start - Introduction Skip */
-                    Positioned(
-                      bottom: 19,
-                      right: 19,
-                      child: InkWell(
-                          onTap: () {
-
-                            navigateTo(context, const DashboardInterface());
-
-                          },
-                          child: SizedBox(
-                              height: 59,
-                              width: 59,
-                              child: Stack(
-                                children: [
-                                  WidgetMask(
-                                    blendMode: BlendMode.srcATop,
-                                    childSaveLayer: true,
-                                    mask /* Original Image */: Container(
-                                      decoration: const BoxDecoration(
-                                          gradient: LinearGradient(
-                                              colors: [
-                                                ColorsResources.premiumLight,
-                                                ColorsResources.primaryColorLightest,
-                                              ],
-                                              transform: GradientRotation(45)
-                                          )
-                                      ),
-                                    ),
-                                    child: const Image(
-                                      image: AssetImage("squircle_shape.png"),
-                                    ),
-                                  ),
-                                  const Padding(
-                                      padding: EdgeInsets.all(11),
-                                      child: Image(
-                                        image: AssetImage("next_arrow_icon.png"),
-                                        fit: BoxFit.cover,
-                                      ),
-                                  )
-                                ],
-                              )
-                          )
-                      ),
-                    )
-                    /* End - Introduction Skip */
-
                   ],
                 )
             )
@@ -236,21 +190,93 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
   Widget firstSlideIntroduction() {
 
     return Container(
-      color: ColorsResources.red,
+      color: ColorsResources.dark,
+      child: Stack(
+        children: [
+
+          /* Start - Branding Transparent */
+          const Align(
+            alignment: Alignment.center,
+            child: Opacity(
+              opacity: 0.13,
+              child: Image(
+                image: AssetImage("logo.png"),
+              ),
+            ),
+          ),
+          /* End - Branding Transparent */
+
+        ],
+      )
     );
   }
 
   Widget secondSlideIntroduction() {
 
     return Container(
-      color: ColorsResources.green,
+      color: ColorsResources.premiumDark,
+        child: Stack(
+          children: [
+
+            /* Start - Branding Transparent */
+            const Align(
+              alignment: Alignment.center,
+              child: Opacity(
+                opacity: 0.1,
+                child: Image(
+                  image: AssetImage("logo.png"),
+                ),
+              ),
+            ),
+            /* End - Branding Transparent */
+
+          ],
+        )
     );
   }
 
   Widget thirdSlideIntroduction() {
 
     return Container(
-      color: ColorsResources.blue,
+      color: ColorsResources.primaryColor,
+        child: Stack(
+          children: [
+
+            /* Start - Branding Transparent */
+            const Align(
+              alignment: Alignment.center,
+              child: Opacity(
+                opacity: 0.1,
+                child: Image(
+                  image: AssetImage("logo.png"),
+                ),
+              ),
+            ),
+            /* End - Branding Transparent */
+
+            /* Start - Introduction Skip */
+            Positioned(
+              bottom: 19,
+              right: 31,
+              child: InkWell(
+                  onTap: () {
+
+                    navigateTo(context, const DashboardInterface());
+
+                  },
+                  child: SizedBox(
+                    width: 199,
+                    child: Image(
+                      image: AssetImage("continue_icon.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  )
+              ),
+            )
+            /* End - Introduction Skip */
+
+          ],
+        )
     );
   }
 

@@ -132,6 +132,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - continue_icon.png
     - cyborg_girl.jpg
 
     - logo.png
