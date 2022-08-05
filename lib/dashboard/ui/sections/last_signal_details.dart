@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/5/22, 5:27 AM
+ * Last modified 8/5/22, 6:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -384,7 +384,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
             child: Stack(
                 children: [
                   Blur(
-                      blur: 5,
+                      blur: 3,
                       blurColor: ColorsResources.premiumLight,
                       borderRadius: BorderRadius.circular(19),
                       colorOpacity: 0.07,
@@ -616,7 +616,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
             child: Stack(
                 children: [
                   Blur(
-                      blur: 5,
+                      blur: 3,
                       blurColor: ColorsResources.premiumLight,
                       borderRadius: BorderRadius.circular(19),
                       colorOpacity: 0.07,
@@ -1145,7 +1145,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
             child: Stack(
                 children: [
                   Blur(
-                      blur: 5,
+                      blur: 3,
                       blurColor: ColorsResources.premiumLight,
                       borderRadius: BorderRadius.circular(19),
                       colorOpacity: 0.07,
