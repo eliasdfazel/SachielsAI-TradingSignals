@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/5/22, 6:31 AM
+ * Last modified 8/5/22, 6:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -45,36 +45,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 13, 0, 0),
-      child: Column(
-
-        children: [
-
-          SizedBox(
-              height: 173,
-              width: double.infinity,
-              child: latestSignalsDetails
-          ),
-
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 7, 19, 0),
-            child: Align(
-                alignment: Alignment.centerRight,
-                child: InkWell(
-                  onTap: () {
-
-
-
-                  },
-                  child: const Image(
-                    image: AssetImage("show_history_icon.png"),
-                    width: 173,
-                  )
-                )
-            )
-          )
-
-        ],
-      )
+      child: latestSignalsDetails
     );
   }
 
@@ -116,12 +87,40 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
 
     setState(() {
 
-      latestSignalsDetails = ListView(
-        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        controller: scrollController,
-        children: aLatestSignal,
+      latestSignalsDetails = Column(
+          children: [
+
+            SizedBox(
+                height: 173,
+                width: double.infinity,
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  controller: scrollController,
+                  children: aLatestSignal,
+                )
+            ),
+
+            Padding(
+                padding: const EdgeInsets.fromLTRB(0, 7, 19, 0),
+                child: Align(
+                    alignment: Alignment.centerRight,
+                    child: InkWell(
+                        onTap: () {
+
+
+
+                        },
+                        child: const Image(
+                          image: AssetImage("show_history_icon.png"),
+                          width: 173,
+                        )
+                    )
+                )
+            )
+
+          ]
       );
 
     });
