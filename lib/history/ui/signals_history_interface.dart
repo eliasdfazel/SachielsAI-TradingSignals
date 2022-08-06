@@ -295,7 +295,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
 
     FirebaseFirestore.instance
         .collection("SachielsSignals")
-        .limit(37)
+        .limit(73)
         .orderBy("tradeTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
