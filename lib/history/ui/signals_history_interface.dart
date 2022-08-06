@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 2:10 AM
+ * Last modified 8/6/22, 2:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,8 +18,10 @@ import 'package:sachiel/data/signals_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
+import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
+import 'package:widget_mask/widget_mask.dart';
 
 class SignalsHistoryInterface extends StatefulWidget {
 
@@ -162,6 +164,117 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                 /* End - Gradient Background - Golden */
 
                 allSignalsHistory,
+
+                Row(
+                  children: [
+
+                    /* Start - Back */
+                    InkWell(
+                        onTap: () {
+
+                          navigatePop(context);
+
+                        },
+                        child: const Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                                padding: EdgeInsets.fromLTRB(19, 19, 0, 0),
+                                child: SizedBox(
+                                    height: 59,
+                                    width: 59,
+                                    child: Image(
+                                      image: AssetImage("back_icon.png"),
+                                    ),
+                                )
+                            )
+                        )
+                    ),
+                    /* End - Back */
+
+                    /* Start - Title */
+                    InkWell(
+                        onTap: () {
+
+
+
+                        },
+                        child:  Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                                child: SizedBox(
+                                    height: 59,
+                                    width: 155,
+                                    child: Stack(
+                                      children: [
+                                        WidgetMask(
+                                          blendMode: BlendMode.srcATop,
+                                          childSaveLayer: true,
+                                          mask /* Original Image */: Container(
+                                            decoration: const BoxDecoration(
+                                                gradient: LinearGradient(
+                                                    colors: [
+                                                      ColorsResources.premiumLight,
+                                                      ColorsResources.primaryColorLightest,
+                                                    ],
+                                                    transform: GradientRotation(45)
+                                                )
+                                            ),
+                                          ),
+                                          child: const Image(
+                                            image: AssetImage("rectircle_shape.png"),
+                                          ),
+                                        ),
+                                        Align(
+                                            alignment: Alignment.center,
+                                            child: Padding(
+                                                padding: const EdgeInsets.all(1.9),
+                                                child: WidgetMask(
+                                                    blendMode: BlendMode.srcATop,
+                                                    childSaveLayer: true,
+                                                    mask /* Original Image */: Container(
+                                                      decoration: const BoxDecoration(
+                                                          gradient: LinearGradient(
+                                                              colors: [
+                                                                ColorsResources.premiumDarkLighter,
+                                                                ColorsResources.premiumLight,
+                                                              ],
+                                                              transform: GradientRotation(45)
+                                                          )
+                                                      ),
+                                                    ),
+                                                    child: const Image(
+                                                      image: AssetImage("rectircle_shape.png"),
+                                                    )
+                                                )
+                                            )
+                                        ),
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                                child: Text(
+                                                    StringsResources.historyTitle(),
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: const TextStyle(
+                                                        color: ColorsResources.premiumDark,
+                                                        fontSize: 19
+                                                    )
+                                                )
+                                            )
+                                        )
+                                      ],
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    /* End - Title */
+
+                  ],
+                ),
+                /* End - Back */
 
                 /* Start - Purchase Plan Picker */
                 const Positioned(
