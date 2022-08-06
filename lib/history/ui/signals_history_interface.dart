@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 2:28 AM
+ * Last modified 8/6/22, 4:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -507,7 +507,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                           Container(
                             width: 351,
                             height: 113,
-                            padding: const EdgeInsets.fromLTRB(0, 31, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 37, 0, 0),
                             alignment: Alignment.center,
                             child: Text(
                               signalsDataStructure.tradeProfitAmount().replaceAll("\$", ""),
