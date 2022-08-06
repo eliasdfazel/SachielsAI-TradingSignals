@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 4:45 AM
+ * Last modified 8/6/22, 5:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -156,8 +156,8 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                           )
                       ),
                       child: SizedBox(
-                        height: calculatePercentage(79, displayHeight(context)),
-                        width: calculatePercentage(79, displayWidth(context)),
+                        height: calculatePercentage(99, displayHeight(context)),
+                        width: calculatePercentage(99, displayWidth(context)),
                       ),
                     )
                 ),
@@ -165,6 +165,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
 
                 allSignalsHistory,
 
+                /* Start - Back */
                 Row(
                   children: [
 
@@ -414,6 +415,8 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                     ),
                   )
               ),
+
+              /* Start - Trade Information */
               Container(
                   height: 399,
                   width: 351,
@@ -531,6 +534,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                       )
                   )
               ),
+              /* End - Trade Information */
 
               /* Start - Trade Time */
               Positioned(

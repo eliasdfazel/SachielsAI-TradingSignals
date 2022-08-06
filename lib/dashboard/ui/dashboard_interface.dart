@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 1:20 AM
+ * Last modified 8/6/22, 5:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -161,8 +161,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                           )
                       ),
                       child: SizedBox(
-                        height: calculatePercentage(79, displayHeight(context)),
-                        width: calculatePercentage(79, displayWidth(context)),
+                        height: calculatePercentage(99, displayHeight(context)),
+                        width: calculatePercentage(99, displayWidth(context)),
                       ),
                     )
                   ),
