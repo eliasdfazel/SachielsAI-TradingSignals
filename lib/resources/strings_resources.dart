@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 2:27 AM
+ * Last modified 8/6/22, 5:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -62,7 +62,12 @@ class StringsResources {
 
   static String historyTitle() {
 
-    return "Signals Histories";
+    return "Histories";
+  }
+
+  static String detailsTitle() {
+
+    return "Details";
   }
 
   /*
