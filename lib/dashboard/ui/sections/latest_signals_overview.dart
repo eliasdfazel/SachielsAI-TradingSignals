@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/5/22, 6:33 AM
+ * Last modified 8/6/22, 2:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,7 +11,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/data/signals_data_structure.dart';
+import 'package:sachiel/history/ui/signals_history_interface.dart';
 import 'package:sachiel/resources/colors_resources.dart';
+import 'package:sachiel/utils/navigations/navigation_commands.dart';
 
 class LatestSignalsOverview extends StatefulWidget {
 
@@ -54,7 +56,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
 
     FirebaseFirestore.instance
         .collection("SachielsSignals")
-        // .limit(7)
+        .limit(13)
         .orderBy("tradeTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
@@ -109,7 +111,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                     child: InkWell(
                         onTap: () {
 
-
+                          navigateTo(context, const SignalsHistoryInterface());
 
                         },
                         child: const Image(
