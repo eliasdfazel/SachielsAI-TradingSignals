@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 5:15 AM
+ * Last modified 8/6/22, 5:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -196,7 +196,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                     InkWell(
                         onTap: () {
 
-
+                          navigatePop(context);
 
                         },
                         child:  Align(
@@ -215,8 +215,8 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                                             decoration: const BoxDecoration(
                                                 gradient: LinearGradient(
                                                     colors: [
-                                                      ColorsResources.premiumLight,
-                                                      ColorsResources.primaryColorLightest,
+                                                      ColorsResources.premiumDark,
+                                                      ColorsResources.black,
                                                     ],
                                                     transform: GradientRotation(45)
                                                 )
@@ -237,8 +237,8 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                                                       decoration: const BoxDecoration(
                                                           gradient: LinearGradient(
                                                               colors: [
-                                                                ColorsResources.premiumDarkLighter,
-                                                                ColorsResources.premiumLight,
+                                                                ColorsResources.black,
+                                                                ColorsResources.premiumDark,
                                                               ],
                                                               transform: GradientRotation(45)
                                                           )
@@ -259,7 +259,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                                                     maxLines: 1,
                                                     overflow: TextOverflow.ellipsis,
                                                     style: const TextStyle(
-                                                        color: ColorsResources.premiumDark,
+                                                        color: ColorsResources.premiumLight,
                                                         fontSize: 19
                                                     )
                                                 )
