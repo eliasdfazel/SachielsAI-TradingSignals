@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/7/22, 12:15 AM
+ * Last modified 8/7/22, 1:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,7 @@ import 'dart:typed_data';
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/data/signals_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
@@ -39,7 +40,14 @@ class SignalsDetailsInterface extends StatefulWidget {
 }
 class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
 
-  Widget signalDetailsPlaceholder = Container();
+  Widget signalDetailsPlaceholder = Container(
+    alignment: Alignment.center,
+    child: LoadingAnimationWidget.staggeredDotsWave(
+      colorOne: ColorsResources.premiumLight,
+      colorTwo: ColorsResources.primaryColor,
+      size: 73,
+    ),
+  );
 
   @override
   void initState() {
@@ -285,22 +293,34 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
 
   void prepareSignalDetails(SignalsDataStructure signalsDataStructure) {
 
-    setState(() {
+    Future.delayed(const Duration(milliseconds: 333), () {
 
-      signalDetailsPlaceholder = ListView(
-        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.horizontal,
-        children: [
+      setState(() {
 
-          overviewDetailsView(signalsDataStructure),
+        signalDetailsPlaceholder = ListView(
+          padding: const EdgeInsets.fromLTRB(19, 113, 19, 37),
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          children: [
 
-          // technicalDetailsView(signalsDataStructure),
-          //
-          // shareDetailsView(signalsDataStructure)
+            overviewDetailsView(signalsDataStructure),
 
-        ],
-      );
+            const Divider(
+              height: 13,
+            ),
+
+            technicalDetailsView(signalsDataStructure),
+
+            const Divider(
+              height: 13,
+            ),
+
+            shareDetailsView(signalsDataStructure)
+
+          ],
+        );
+
+      });
 
     });
 
@@ -567,8 +587,8 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
     return Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: SizedBox(
-            height: 399,
-            width: 351,
+            height: 351,
+            width: 359,
             child: Stack(
                 children: [
                   Blur(
@@ -579,7 +599,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                       alignment: Alignment.center,
                       child: const SizedBox(
                         height: 399,
-                        width: 351,
+                        width: 359,
                       )
                   ),
                   Positioned(
@@ -611,7 +631,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                   ),
                   Container(
                       height: 399,
-                      width: 351,
+                      width: 359,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(19),
@@ -700,7 +720,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                                 ],
                               ),
                               Container(
-                                width: 351,
+                                width: 359,
                                 height: 113,
                                 padding: const EdgeInsets.fromLTRB(0, 31, 0, 0),
                                 alignment: Alignment.center,
@@ -780,8 +800,8 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
     return Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: SizedBox(
-            height: 399,
-            width: 351,
+            height: 351,
+            width: 359,
             child: Stack(
                 children: [
                   Blur(
@@ -792,13 +812,13 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                       alignment: Alignment.center,
                       child: const SizedBox(
                         height: 399,
-                        width: 351,
+                        width: 359,
                       )
                   ),
 
                   Container(
                       height: 399,
-                      width: 351,
+                      width: 359,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(19),
@@ -1231,7 +1251,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                     left: 13,
                     bottom: 27,
                     child: Container(
-                      width: 351,
+                      width: 359,
                       height: 39,
                       padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
                       alignment: Alignment.centerLeft,
@@ -1290,8 +1310,8 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
     return Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: SizedBox(
-            height: 399,
-            width: 351,
+            height: 351,
+            width: 359,
             child: Stack(
                 children: [
                   Blur(
@@ -1302,7 +1322,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                       alignment: Alignment.center,
                       child: const SizedBox(
                         height: 399,
-                        width: 351,
+                        width: 359,
                       )
                   ),
 
@@ -1333,7 +1353,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                         },
                         child: Container(
                             height: 399,
-                            width: 351,
+                            width: 359,
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(19),
