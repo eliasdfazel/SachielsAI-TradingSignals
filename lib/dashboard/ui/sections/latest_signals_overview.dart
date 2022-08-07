@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 5:41 AM
+ * Last modified 8/6/22, 11:35 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:sachiel/data/signals_data_structure.dart';
 import 'package:sachiel/history/ui/signals_history_interface.dart';
 import 'package:sachiel/resources/colors_resources.dart';
-import 'package:sachiel/signal_details/ui/SignalDetailsInterface.dart';
+import 'package:sachiel/signal_details/ui/signal_details_interface.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 
 class LatestSignalsOverview extends StatefulWidget {

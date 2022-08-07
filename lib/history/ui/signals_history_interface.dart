@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 10:56 PM
+ * Last modified 8/7/22, 12:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -168,22 +168,22 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                   children: [
 
                     /* Start - Back */
-                    InkWell(
-                        onTap: () {
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                            child: SizedBox(
+                                height: 59,
+                                width: 59,
+                                child: InkWell(
+                                  onTap: () {
 
-                          navigatePop(context);
+                                    navigatePop(context);
 
-                        },
-                        child: const Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                                padding: EdgeInsets.fromLTRB(19, 19, 0, 0),
-                                child: SizedBox(
-                                    height: 59,
-                                    width: 59,
-                                    child: Image(
-                                      image: AssetImage("back_icon.png"),
-                                    ),
+                                  },
+                                  child: const Image(
+                                    image: AssetImage("back_icon.png"),
+                                  ),
                                 )
                             )
                         )
@@ -191,80 +191,73 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                     /* End - Back */
 
                     /* Start - Title */
-                    InkWell(
-                        onTap: () {
-
-                          navigatePop(context);
-
-                        },
-                        child:  Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
-                                child: SizedBox(
-                                    height: 59,
-                                    width: 155,
-                                    child: Stack(
-                                      children: [
-                                        WidgetMask(
-                                          blendMode: BlendMode.srcATop,
-                                          childSaveLayer: true,
-                                          mask /* Original Image */: Container(
-                                            decoration: const BoxDecoration(
-                                                gradient: LinearGradient(
-                                                    colors: [
-                                                      ColorsResources.premiumDark,
-                                                      ColorsResources.black,
-                                                    ],
-                                                    transform: GradientRotation(45)
-                                                )
-                                            ),
-                                          ),
-                                          child: const Image(
-                                            image: AssetImage("rectircle_shape.png"),
-                                          ),
-                                        ),
-                                        Align(
-                                            alignment: Alignment.center,
-                                            child: Padding(
-                                                padding: const EdgeInsets.all(1.9),
-                                                child: WidgetMask(
-                                                    blendMode: BlendMode.srcATop,
-                                                    childSaveLayer: true,
-                                                    mask /* Original Image */: Container(
-                                                      decoration: const BoxDecoration(
-                                                          gradient: LinearGradient(
-                                                              colors: [
-                                                                ColorsResources.black,
-                                                                ColorsResources.premiumDark,
-                                                              ],
-                                                              transform: GradientRotation(45)
-                                                          )
-                                                      ),
-                                                    ),
-                                                    child: const Image(
-                                                      image: AssetImage("rectircle_shape.png"),
-                                                    )
-                                                )
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                            child: SizedBox(
+                                height: 59,
+                                width: 155,
+                                child: Stack(
+                                  children: [
+                                    WidgetMask(
+                                      blendMode: BlendMode.srcATop,
+                                      childSaveLayer: true,
+                                      mask /* Original Image */: Container(
+                                        decoration: const BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  ColorsResources.premiumDark,
+                                                  ColorsResources.black,
+                                                ],
+                                                transform: GradientRotation(45)
                                             )
                                         ),
-                                        Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Padding(
-                                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                                child: Text(
-                                                    StringsResources.historyTitle(),
-                                                    maxLines: 1,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    style: const TextStyle(
-                                                        color: ColorsResources.premiumLight,
-                                                        fontSize: 19
-                                                    )
+                                      ),
+                                      child: const Image(
+                                        image: AssetImage("rectircle_shape.png"),
+                                      ),
+                                    ),
+                                    Align(
+                                        alignment: Alignment.center,
+                                        child: Padding(
+                                            padding: const EdgeInsets.all(1.9),
+                                            child: WidgetMask(
+                                                blendMode: BlendMode.srcATop,
+                                                childSaveLayer: true,
+                                                mask /* Original Image */: Container(
+                                                  decoration: const BoxDecoration(
+                                                      gradient: LinearGradient(
+                                                          colors: [
+                                                            ColorsResources.black,
+                                                            ColorsResources.premiumDark,
+                                                          ],
+                                                          transform: GradientRotation(45)
+                                                      )
+                                                  ),
+                                                ),
+                                                child: const Image(
+                                                  image: AssetImage("rectircle_shape.png"),
                                                 )
                                             )
                                         )
-                                      ],
+                                    ),
+                                    Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                            child: Text(
+                                                StringsResources.historyTitle(),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    color: ColorsResources.premiumLight,
+                                                    fontSize: 19
+                                                )
+                                            )
+                                        )
                                     )
+                                  ],
                                 )
                             )
                         )
@@ -322,27 +315,31 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
     for (SignalsDataStructure signalDataStructureItem in signalsDataStructure) {
 
       signalHistoryItem.add(signalDataStructureItemView(signalDataStructureItem));
+      signalHistoryItem.add(signalDataStructureItemView(signalDataStructureItem));
+      signalHistoryItem.add(signalDataStructureItemView(signalDataStructureItem));
+      signalHistoryItem.add(signalDataStructureItemView(signalDataStructureItem));
+      signalHistoryItem.add(signalDataStructureItemView(signalDataStructureItem));
 
     }
 
     int gridColumnCount = (displayWidth(context) / 351).round();
 
-    // setState(() {
-    //
-    //   allSignalsHistory = GridView(
-    //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //       crossAxisCount: gridColumnCount,
-    //       childAspectRatio: 1,
-    //       crossAxisSpacing: 3.0,
-    //       mainAxisSpacing: 3.0,
-    //     ),
-    //     padding: const EdgeInsets.fromLTRB(19, 101, 19, 31),
-    //     physics: const BouncingScrollPhysics(),
-    //     scrollDirection: Axis.vertical,
-    //     children: signalHistoryItem,
-    //   );
-    //
-    // });
+    setState(() {
+
+      allSignalsHistory = GridView(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: gridColumnCount,
+          childAspectRatio: 1,
+          crossAxisSpacing: 3.0,
+          mainAxisSpacing: 3.0,
+        ),
+        padding: const EdgeInsets.fromLTRB(19, 101, 19, 31),
+        physics: const BouncingScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        children: signalHistoryItem,
+      );
+
+    });
 
   }
 
