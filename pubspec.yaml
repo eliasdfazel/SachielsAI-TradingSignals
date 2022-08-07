@@ -80,7 +80,8 @@ dependencies:
 
   ####### ####### #######
   liquid_swipe: ^3.0.0
-  loading_animation_widget: ^1.2.0+2
+  loading_animation_widget:
+    path: 'X:\Xlutter\Libraries\SachielProject\loading_animation_widget'
   local_auth: ^2.1.0
   lottie: ^1.4.0
   ####### ####### #######

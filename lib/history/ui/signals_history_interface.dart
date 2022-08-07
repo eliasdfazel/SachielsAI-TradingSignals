@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 5:25 AM
+ * Last modified 8/6/22, 10:30 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,8 +34,6 @@ class SignalsHistoryInterface extends StatefulWidget {
 class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
 
   Widget allSignalsHistory = Container(
-    height: 399,
-    width: 351,
     alignment: Alignment.center,
     child: LoadingAnimationWidget.staggeredDotsWave(
       color: ColorsResources.primaryColorLightest,
@@ -51,7 +49,6 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
     super.initState();
 
     changeColor(ColorsResources.black, ColorsResources.black);
-
 
   }
 
