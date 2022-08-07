@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 10:30 PM
+ * Last modified 8/6/22, 10:56 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,7 +36,8 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
   Widget allSignalsHistory = Container(
     alignment: Alignment.center,
     child: LoadingAnimationWidget.staggeredDotsWave(
-      color: ColorsResources.primaryColorLightest,
+      colorOne: ColorsResources.primaryColorLightest,
+      colorTwo: ColorsResources.primaryColor,
       size: 73,
     ),
   );
@@ -326,22 +327,22 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
 
     int gridColumnCount = (displayWidth(context) / 351).round();
 
-    setState(() {
-
-      allSignalsHistory = GridView(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: gridColumnCount,
-          childAspectRatio: 1,
-          crossAxisSpacing: 3.0,
-          mainAxisSpacing: 3.0,
-        ),
-        padding: const EdgeInsets.fromLTRB(19, 101, 19, 31),
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        children: signalHistoryItem,
-      );
-
-    });
+    // setState(() {
+    //
+    //   allSignalsHistory = GridView(
+    //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+    //       crossAxisCount: gridColumnCount,
+    //       childAspectRatio: 1,
+    //       crossAxisSpacing: 3.0,
+    //       mainAxisSpacing: 3.0,
+    //     ),
+    //     padding: const EdgeInsets.fromLTRB(19, 101, 19, 31),
+    //     physics: const BouncingScrollPhysics(),
+    //     scrollDirection: Axis.vertical,
+    //     children: signalHistoryItem,
+    //   );
+    //
+    // });
 
   }
 

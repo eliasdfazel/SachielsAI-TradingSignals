@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/5/22, 6:36 AM
+ * Last modified 8/6/22, 10:57 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -41,7 +41,8 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
     width: 351,
     alignment: Alignment.center,
     child: LoadingAnimationWidget.staggeredDotsWave(
-      color: ColorsResources.primaryColorLightest,
+      colorOne: ColorsResources.primaryColorLightest,
+      colorTwo: ColorsResources.primaryColor,
       size: 73,
     ),
   );
