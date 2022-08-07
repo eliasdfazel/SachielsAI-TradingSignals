@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/7/22, 12:03 AM
+ * Last modified 8/7/22, 12:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -295,9 +295,9 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
 
           overviewDetailsView(signalsDataStructure),
 
-          technicalDetailsView(signalsDataStructure),
-
-          shareDetailsView(signalsDataStructure)
+          // technicalDetailsView(signalsDataStructure),
+          //
+          // shareDetailsView(signalsDataStructure)
 
         ],
       );
@@ -565,7 +565,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
     } catch (exception) {}
 
     return Padding(
-        padding: const EdgeInsets.fromLTRB(0, 0, 37, 0),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: SizedBox(
             height: 399,
             width: 351,
@@ -778,7 +778,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
     } catch (exception) {}
 
     return Padding(
-        padding: const EdgeInsets.fromLTRB(0, 0, 37, 0),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: SizedBox(
             height: 399,
             width: 351,
@@ -1288,7 +1288,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
   Widget shareDetailsView(SignalsDataStructure signalsDataStructure) {
 
     return Padding(
-        padding: const EdgeInsets.fromLTRB(0, 0, 37, 0),
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: SizedBox(
             height: 399,
             width: 351,
