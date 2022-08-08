@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 7:57 AM
+ * Last modified 8/8/22, 8:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -57,20 +57,20 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
     FirebaseFirestore.instance
         .collection("SachielsAcademy")
         .limit(10)
-        .orderBy("articleTimestamp")
+        //.orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
-      List<ArticlesDataStructure> signalsDataStructure = [];
+          List<ArticlesDataStructure> articlesDataStructure = [];
 
-      for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+          for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-        signalsDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot));
+            articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot));
 
-      }
+          }
 
-      prepareAcademyArticles(signalsDataStructure);
+          prepareAcademyArticles(articlesDataStructure);
 
-    },
+        },
         onError: (e) => {
 
         });
@@ -83,6 +83,13 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
     for (var articlesDataStructureItem in articlesDataStructure) {
 
+      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
       aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
       aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
       aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
