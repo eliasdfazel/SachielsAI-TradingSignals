@@ -124,7 +124,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                 child: GridView(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: gridColumnCount,
-                    childAspectRatio: 1.3,
+                    childAspectRatio: 1.39,
                     crossAxisSpacing: 19.0,
                     mainAxisSpacing: 19.0,
                   ),

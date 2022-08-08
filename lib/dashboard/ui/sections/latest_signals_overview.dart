@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 7:16 AM
+ * Last modified 8/8/22, 7:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -47,7 +47,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
   Widget build(BuildContext context) {
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
       child: latestSignalsDetails
     );
   }
@@ -85,13 +85,6 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
     for (var signalDataStructureItem in signalsDataStructure) {
 
       aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
 
     }
 
@@ -104,7 +97,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                 height: 211,
                 width: double.infinity,
                 child: ListView(
-                  padding: const EdgeInsets.fromLTRB(19, 17, 19, 17),
+                  padding: const EdgeInsets.fromLTRB(13, 17, 0, 17),
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   controller: scrollController,
