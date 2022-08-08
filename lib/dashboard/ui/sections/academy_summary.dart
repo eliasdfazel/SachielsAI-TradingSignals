@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 7:43 AM
+ * Last modified 8/8/22, 7:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,9 +10,9 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sachiel/academy/data/articles_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
-import 'package:sachiel/signals/data/signals_data_structure.dart';
 import 'package:sachiel/utils/ui/display.dart';
 
 class AcademySummaryInterface extends StatefulWidget {
@@ -33,7 +33,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
   void initState() {
     super.initState();
 
-    retrieveLatestSignalDetails();
+    retrieveAcademyArticles();
 
   }
 
@@ -51,24 +51,24 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
     );
   }
 
-  void retrieveLatestSignalDetails() {
+  void retrieveAcademyArticles() {
     debugPrint("Retrieve Latest Signals Details");
 
     FirebaseFirestore.instance
-        .collection("SachielsSignals")
-        .limit(13)
-        .orderBy("tradeTimestamp")
+        .collection("SachielsAcademy")
+        .limit(10)
+        .orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
-      List<SignalsDataStructure> signalsDataStructure = [];
+      List<ArticlesDataStructure> signalsDataStructure = [];
 
       for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-        signalsDataStructure.add(SignalsDataStructure(queryDocumentSnapshot));
+        signalsDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot));
 
       }
 
-      prepareLatestSignalsDetails(signalsDataStructure);
+      prepareAcademyArticles(signalsDataStructure);
 
     },
         onError: (e) => {
@@ -77,16 +77,16 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
   }
 
-  void prepareLatestSignalsDetails(List<SignalsDataStructure> signalsDataStructure) {
+  void prepareAcademyArticles(List<ArticlesDataStructure> articlesDataStructure) {
 
     List<Widget> aLatestSignal = <Widget>[];
 
-    for (var signalDataStructureItem in signalsDataStructure) {
+    for (var articlesDataStructureItem in articlesDataStructure) {
 
-      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
 
     }
 
@@ -164,16 +164,9 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
   }
 
-  Widget signalDataStructureItemView(SignalsDataStructure signalsDataStructure) {
-    debugPrint("Latest Signals Details Data: ${signalsDataStructure.tradeCommand()} ${signalsDataStructure.tradeMarketPair()}");
+  Widget signalDataStructureItemView(ArticlesDataStructure articlesDataStructure) {
+    debugPrint("Academy Article: ${articlesDataStructure.articleTitle()}");
 
-    var tradeCommandColor = ColorsResources.sellColor;
-
-    if (signalsDataStructure.tradeCommand() == "Buy") {
-
-      tradeCommandColor = ColorsResources.buyColor;
-
-    }
 
     return Container(
         decoration: BoxDecoration(
