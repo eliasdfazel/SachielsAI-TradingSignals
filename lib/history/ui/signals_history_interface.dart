@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 6:30 AM
+ * Last modified 8/8/22, 7:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
-import 'package:sachiel/data/signals_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
@@ -22,6 +21,8 @@ import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 import 'package:widget_mask/widget_mask.dart';
+
+import '../../signals/data/signals_data_structure.dart';
 
 class SignalsHistoryInterface extends StatefulWidget {
 

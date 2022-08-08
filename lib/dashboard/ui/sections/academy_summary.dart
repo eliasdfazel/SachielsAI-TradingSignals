@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 7:22 AM
+ * Last modified 8/8/22, 7:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,9 +10,9 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sachiel/data/signals_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
+import 'package:sachiel/signals/data/signals_data_structure.dart';
 import 'package:sachiel/utils/ui/display.dart';
 
 class AcademySummaryInterface extends StatefulWidget {
