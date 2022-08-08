@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 6:30 AM
+ * Last modified 8/8/22, 6:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -169,29 +169,32 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                   ),
                   /* End - Gradient Background - Golden */
 
-                  ListView(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 37),
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    children: const [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                    child: ListView(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 37),
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      children: const [
 
-                      /* Start - Account Information Overview */
-                      AccountInformationOverview(),
-                      /* End - Account Information Overview */
+                        /* Start - Account Information Overview */
+                        AccountInformationOverview(),
+                        /* End - Account Information Overview */
 
-                      /* Start - The Last Signal Details */
-                      LastSignalDetails(),
-                      /* End - The Last Signal Details */
+                        /* Start - The Last Signal Details */
+                        LastSignalDetails(),
+                        /* End - The Last Signal Details */
 
-                      /* Start - The Latest Signals Overview */
-                      LatestSignalsOverview(),
-                      /* End - The Latest Signals Overview */
+                        /* Start - The Latest Signals Overview */
+                        LatestSignalsOverview(),
+                        /* End - The Latest Signals Overview */
 
-                      /* Start - Academy Summary */
-                      AcademySummaryInterface()
-                      /* End - Academy Summary */
+                        /* Start - Academy Summary */
+                        AcademySummaryInterface()
+                        /* End - Academy Summary */
 
-                    ],
+                      ],
+                    ),
                   ),
 
                   /* Start - Purchase Plan Picker */

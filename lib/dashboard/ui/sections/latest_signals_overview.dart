@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 11:35 PM
+ * Last modified 8/8/22, 7:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -47,7 +47,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
   Widget build(BuildContext context) {
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 13, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: latestSignalsDetails
     );
   }
@@ -85,6 +85,13 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
     for (var signalDataStructureItem in signalsDataStructure) {
 
       aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
+      aLatestSignal.add(signalDataStructureItemView(signalDataStructureItem));
 
     }
 
@@ -94,10 +101,10 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
           children: [
 
             SizedBox(
-                height: 173,
+                height: 211,
                 width: double.infinity,
                 child: ListView(
-                  padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                  padding: const EdgeInsets.fromLTRB(19, 17, 19, 17),
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   controller: scrollController,
@@ -141,128 +148,133 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
 
     }
 
-    return InkWell(
-      onTap: () {
+    return SizedBox(
+      height: 173,
+      width: 137,
+      child: InkWell(
+          onTap: () {
 
-        navigateTo(context, SignalsDetailsInterface(signalsDataStructure: signalsDataStructure));
+            navigateTo(context, SignalsDetailsInterface(signalsDataStructure: signalsDataStructure));
 
-      },
-      child: Container(
-          decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(17),
-                  topRight: Radius.circular(17),
-                  bottomLeft: Radius.circular(17),
-                  bottomRight: Radius.circular(17)
-              ),
-              border: const Border(
-                  top: BorderSide(
-                    color: ColorsResources.primaryColorDarker,
-                    width: 1.3,
+          },
+          child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 19, 0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(17),
+                          topRight: Radius.circular(17),
+                          bottomLeft: Radius.circular(17),
+                          bottomRight: Radius.circular(17)
+                      ),
+                      border: const Border(
+                          top: BorderSide(
+                            color: ColorsResources.primaryColorDarker,
+                            width: 1.3,
+                          ),
+                          bottom: BorderSide(
+                            color: ColorsResources.primaryColorDarker,
+                            width: 1.3,
+                          ),
+                          left: BorderSide(
+                            color: ColorsResources.primaryColorDarker,
+                            width: 1.3,
+                          ),
+                          right: BorderSide(
+                            color: ColorsResources.primaryColorDarker,
+                            width: 1.3,
+                          )
+                      ),
+                      color: ColorsResources.premiumDark,
+                      boxShadow: [
+                        BoxShadow(
+                            color: ColorsResources.primaryColorLightest.withOpacity(0.11),
+                            blurRadius: 19,
+                            offset: const Offset(0, 0)
+                        )
+                      ]
                   ),
-                  bottom: BorderSide(
-                    color: ColorsResources.primaryColorDarker,
-                    width: 1.3,
-                  ),
-                  left: BorderSide(
-                    color: ColorsResources.primaryColorDarker,
-                    width: 1.3,
-                  ),
-                  right: BorderSide(
-                    color: ColorsResources.primaryColorDarker,
-                    width: 1.3,
-                  )
-              ),
-              color: ColorsResources.premiumDark,
-              boxShadow: [
-                BoxShadow(
-                    color: ColorsResources.primaryColorLightest.withOpacity(0.11),
-                    blurRadius: 19,
-                    offset: const Offset(0, 0)
-                )
-              ]
-          ),
-          height: 173,
-          width: 119,
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
+                  child:Stack(
+                    fit: StackFit.expand,
+                    children: [
 
-              /* Start - Percentage */
-              Positioned(
-                  top: -140,
-                  left: -23,
-                  child: Text(
-                      "%",
-                      style: TextStyle(
-                          color: ColorsResources.black.withOpacity(0.07),
-                          fontSize: 351,
-                          fontFamily: "Handwriting"
-                      )
-                  )
-              ),
-              /* End - Percentage */
-
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-
-                  /* Start - Trade Command */
-                  Container(
-                      padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        signalsDataStructure.tradeCommand().toUpperCase(),
-                        style: TextStyle(
-                            fontSize: 43,
-                            fontWeight: FontWeight.bold,
-                            color: tradeCommandColor
-                        ),
-                      )
-                  ),
-                  /* End - Trade Command */
-
-                  /* Start - Trade Market Pair */
-                  Container(
-                      padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        signalsDataStructure.tradeMarketPair().toUpperCase(),
-                        style: const TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold,
-                            color: ColorsResources.light
-                        ),
-                      )
-                  ),
-                  /* End - Trade Market Pair */
-
-                  /* Start - Trade Accuracy */
-                  Container(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                      alignment: Alignment.center,
-                      child: Text(
-                        signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", ""),
-                        style: TextStyle(
-                            fontSize: 63,
-                            fontWeight: FontWeight.bold,
-                            color: ColorsResources.premiumLight,
-                            shadows: [
-                              Shadow(
-                                  color: ColorsResources.black.withOpacity(0.19),
-                                  blurRadius: 13,
-                                  offset: const Offset(0, 3)
+                      /* Start - Percentage */
+                      Positioned(
+                          top: -140,
+                          left: -23,
+                          child: Text(
+                              "%",
+                              style: TextStyle(
+                                  color: ColorsResources.black.withOpacity(0.07),
+                                  fontSize: 351,
+                                  fontFamily: "Handwriting"
                               )
-                            ]
-                        ),
-                      )
-                  ),
-                  /* End - Trade Accuracy */
+                          )
+                      ),
+                      /* End - Percentage */
 
-                ],
-              ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
 
-            ],
+                          /* Start - Trade Command */
+                          Container(
+                              padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                              alignment: Alignment.center,
+                              child: Text(
+                                signalsDataStructure.tradeCommand().toUpperCase(),
+                                style: TextStyle(
+                                    fontSize: 43,
+                                    fontWeight: FontWeight.bold,
+                                    color: tradeCommandColor
+                                ),
+                              )
+                          ),
+                          /* End - Trade Command */
+
+                          /* Start - Trade Market Pair */
+                          Container(
+                              padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                              alignment: Alignment.center,
+                              child: Text(
+                                signalsDataStructure.tradeMarketPair().toUpperCase(),
+                                style: const TextStyle(
+                                    fontSize: 23,
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorsResources.light
+                                ),
+                              )
+                          ),
+                          /* End - Trade Market Pair */
+
+                          /* Start - Trade Accuracy */
+                          Container(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                              alignment: Alignment.center,
+                              child: Text(
+                                signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", ""),
+                                style: TextStyle(
+                                    fontSize: 63,
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorsResources.premiumLight,
+                                    shadows: [
+                                      Shadow(
+                                          color: ColorsResources.black.withOpacity(0.19),
+                                          blurRadius: 13,
+                                          offset: const Offset(0, 3)
+                                      )
+                                    ]
+                                ),
+                              )
+                          ),
+                          /* End - Trade Accuracy */
+
+                        ],
+                      ),
+
+                    ],
+                  )
+              )
           )
       )
     );
