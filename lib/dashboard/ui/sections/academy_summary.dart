@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 7:18 AM
+ * Last modified 8/8/22, 7:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -119,21 +119,24 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                 )
             ),
 
-            SizedBox(
-                height: 513,
-                child: GridView(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: gridColumnCount,
-                    childAspectRatio: 1.39,
-                    crossAxisSpacing: 19.0,
-                    mainAxisSpacing: 19.0,
-                  ),
-                  padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  controller: scrollController,
-                  children: aLatestSignal,
-                )
+            Padding(
+              padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+              child: SizedBox(
+                  height: 513,
+                  child: GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: gridColumnCount,
+                      childAspectRatio: 1.39,
+                      crossAxisSpacing: 19.0,
+                      mainAxisSpacing: 19.0,
+                    ),
+                    padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    controller: scrollController,
+                    children: aLatestSignal,
+                  )
+              )
             ),
 
             Padding(
