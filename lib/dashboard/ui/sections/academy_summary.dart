@@ -167,7 +167,6 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
   Widget signalDataStructureItemView(ArticlesDataStructure articlesDataStructure) {
     debugPrint("Academy Article: ${articlesDataStructure.articleTitle()}");
 
-
     return Container(
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
