@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 6:06 AM
+ * Last modified 8/8/22, 6:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -315,10 +315,6 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
     for (SignalsDataStructure signalDataStructureItem in signalsDataStructure) {
 
       signalHistoryItem.add(signalDataStructureItemView(signalDataStructureItem));
-      signalHistoryItem.add(signalDataStructureItemView(signalDataStructureItem));
-      signalHistoryItem.add(signalDataStructureItemView(signalDataStructureItem));
-      signalHistoryItem.add(signalDataStructureItemView(signalDataStructureItem));
-      signalHistoryItem.add(signalDataStructureItemView(signalDataStructureItem));
 
     }
 
@@ -326,17 +322,20 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
 
     setState(() {
 
-      allSignalsHistory = GridView(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: gridColumnCount,
-          childAspectRatio: 1,
-          crossAxisSpacing: 19.0,
-          mainAxisSpacing: 19.0,
-        ),
-        padding: const EdgeInsets.fromLTRB(19, 101, 19, 31),
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        children: signalHistoryItem,
+      allSignalsHistory = Padding(
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+        child: GridView(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: gridColumnCount,
+            childAspectRatio: 1,
+            crossAxisSpacing: 19.0,
+            mainAxisSpacing: 19.0,
+          ),
+          padding: const EdgeInsets.fromLTRB(19, 101, 19, 31),
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          children: signalHistoryItem,
+        )
       );
 
     });

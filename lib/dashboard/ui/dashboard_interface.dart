@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/6/22, 5:15 AM
+ * Last modified 8/8/22, 6:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sachiel/dashboard/ui/sections/academy_summary.dart';
 import 'package:sachiel/dashboard/ui/sections/account_information_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
 import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
@@ -172,19 +173,23 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 73),
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.vertical,
-                    children: [
+                    children: const [
 
                       /* Start - Account Information Overview */
-                      const AccountInformationOverview(),
+                      AccountInformationOverview(),
                       /* End - Account Information Overview */
 
                       /* Start - The Last Signal Details */
-                      const LastSignalDetails(),
+                      LastSignalDetails(),
                       /* End - The Last Signal Details */
 
                       /* Start - The Latest Signals Overview */
-                      const LatestSignalsOverview(),
+                      LatestSignalsOverview(),
                       /* End - The Latest Signals Overview */
+
+                      /* Start - Academy Summary */
+                      AcademySummaryInterface()
+                      /* End - Academy Summary */
 
                     ],
                   ),
