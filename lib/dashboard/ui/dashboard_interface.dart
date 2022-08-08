@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 6:11 AM
+ * Last modified 8/8/22, 6:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -170,7 +170,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                   /* End - Gradient Background - Golden */
 
                   ListView(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 73),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 37),
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     children: const [
