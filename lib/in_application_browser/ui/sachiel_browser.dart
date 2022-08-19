@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/19/22, 6:14 AM
+ * Last modified 8/19/22, 6:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -37,6 +37,8 @@ class _SachielBrowserState extends State<DashboardInterface> {
     super.initState();
 
     changeColor(ColorsResources.black, ColorsResources.black);
+
+    widget.websiteAddress = "${widget.websiteAddress}?utm_source=sachielssignals&utm_medium=sachielssignals";
 
   }
 
