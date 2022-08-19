@@ -2,13 +2,14 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/19/22, 5:53 AM
+ * Last modified 8/19/22, 6:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:flutter/material.dart';
+import 'package:marquee/marquee.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -238,14 +239,28 @@ class _SachielBrowserState extends State<DashboardInterface> {
                                             alignment: Alignment.centerLeft,
                                             child: Padding(
                                                 padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                                child: Text(
-                                                    StringsResources.historyTitle(),
-                                                    maxLines: 1,
+                                                child: Marquee(
+                                                  text: widget.websiteAddress,
+                                                  style: const TextStyle(
+                                                    color: ColorsResources.premiumLight,
+                                                    fontSize: 19,
                                                     overflow: TextOverflow.ellipsis,
-                                                    style: const TextStyle(
-                                                        color: ColorsResources.premiumLight,
-                                                        fontSize: 19
-                                                    )
+                                                  ),
+                                                  scrollAxis: Axis.horizontal,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  blankSpace: 0.0,
+                                                  velocity: 19.0,
+                                                  fadingEdgeStartFraction: 0.13,
+                                                  fadingEdgeEndFraction: 0.13,
+                                                  startAfter: const Duration(milliseconds: 777),
+                                                  numberOfRounds: 3,
+                                                  pauseAfterRound: const Duration(milliseconds: 500),
+                                                  showFadingOnlyWhenScrolling: true,
+                                                  startPadding: 13.0,
+                                                  accelerationDuration: const Duration(milliseconds: 500),
+                                                  accelerationCurve: Curves.linear,
+                                                  decelerationDuration: const Duration(milliseconds: 500),
+                                                  decelerationCurve: Curves.easeOut,
                                                 )
                                             )
                                         )
