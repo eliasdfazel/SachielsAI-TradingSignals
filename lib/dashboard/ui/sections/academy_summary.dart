@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/19/22, 7:35 AM
+ * Last modified 8/19/22, 7:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -137,7 +137,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                       crossAxisSpacing: 19.0,
                       mainAxisSpacing: 19.0,
                     ),
-                    padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                    padding: const EdgeInsets.fromLTRB(19, 0, 19, 13),
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     controller: scrollController,
@@ -174,80 +174,84 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
   Widget signalDataStructureItemView(ArticlesDataStructure articlesDataStructure) {
     debugPrint("Academy Article: ${articlesDataStructure.articleTitle()}");
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(17),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(17),
-                topRight: Radius.circular(17),
-                bottomLeft: Radius.circular(17),
-                bottomRight: Radius.circular(17)
-            ),
-            gradient: const LinearGradient(
-              colors: [
-                ColorsResources.black,
-                ColorsResources.dark
-              ],
-              transform: GradientRotation(-45),
-            ),
-            boxShadow: [
-              BoxShadow(
-                  color: ColorsResources.primaryColorLightest.withOpacity(0.51),
-                  blurRadius: 7,
-                  offset: const Offset(0, 3)
-              )
-            ]
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-
-            /* Start - Article Cover */
-            SizedBox(
-              height: 100,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(17),
-                child: Image.network(
-                  articlesDataStructure.articleCover(),
-                  alignment: Alignment.center,
-                  fit: BoxFit.cover,
-                ),
-              )
-            ),
-            /* End - Article Cover */
-
-            /* Start - Article Text */
-            SizedBox(
-              height: 130,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(13, 0, 13, 13),
-                child: GradientText(
-                  articlesDataStructure.articleTitle(),
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 17,
-                    decoration: TextDecoration.none,
-                    shadows: [
-                      Shadow(
-                        color: ColorsResources.black.withOpacity(0.57),
-                        blurRadius: 7,
-                        offset: Offset(0.0, 3.0)
-                      )
-                    ]
-                  ),
-                  colors: const <Color> [
-                    ColorsResources.light,
-                    ColorsResources.premiumLight,
-                  ],
-                )
-              )
+    return Container(
+      decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                color: ColorsResources.primaryColorLightest.withOpacity(0.11),
+                blurRadius: 7,
+                offset: const Offset(0, 3)
             )
-            /* End - Article Text */
+          ]
+      ),
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(17),
+          child: Container(
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(17),
+                    topRight: Radius.circular(17),
+                    bottomLeft: Radius.circular(17),
+                    bottomRight: Radius.circular(17)
+                ),
+                gradient: LinearGradient(
+                  colors: [
+                    ColorsResources.dark,
+                    ColorsResources.black,
+                  ],
+                  transform: GradientRotation(-45),
+                ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
 
-          ],
-        ),
-      )
+                /* Start - Article Cover */
+                SizedBox(
+                    height: 100,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(17),
+                      child: Image.network(
+                        articlesDataStructure.articleCover(),
+                        alignment: Alignment.center,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                ),
+                /* End - Article Cover */
+
+                /* Start - Article Text */
+                SizedBox(
+                    height: 130,
+                    child: Padding(
+                        padding: const EdgeInsets.fromLTRB(13, 0, 13, 13),
+                        child: GradientText(
+                          articlesDataStructure.articleTitle(),
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontSize: 17,
+                              decoration: TextDecoration.none,
+                              shadows: [
+                                Shadow(
+                                    color: ColorsResources.black.withOpacity(0.57),
+                                    blurRadius: 7,
+                                    offset: Offset(0.0, 3.0)
+                                )
+                              ]
+                          ),
+                          colors: const <Color> [
+                            ColorsResources.light,
+                            ColorsResources.premiumLight,
+                          ],
+                        )
+                    )
+                )
+                /* End - Article Text */
+
+              ],
+            ),
+          )
+      ),
     );
   }
 
