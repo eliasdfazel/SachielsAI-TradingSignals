@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/19/22, 7:42 AM
+ * Last modified 8/19/22, 7:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -179,7 +179,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
     return InkWell(
       onTap: () {
 
-        navigateTo(context, SachielBrowser(websiteAddress: articlesDataStructure.articleLink()));
+        navigateTo(context, SachielBrowser(articlesDataStructure: articlesDataStructure));
 
       },
       child: Container(

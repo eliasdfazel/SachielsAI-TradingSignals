@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/19/22, 7:42 AM
+ * Last modified 8/19/22, 7:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
+import 'package:sachiel/academy/data/articles_data_structure.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -22,9 +23,9 @@ import 'package:widget_mask/widget_mask.dart';
 
 class SachielBrowser extends StatefulWidget {
 
-  String websiteAddress;
+  ArticlesDataStructure articlesDataStructure;
 
-  SachielBrowser({Key? key, required this.websiteAddress}) : super(key: key);
+  SachielBrowser({Key? key, required this.articlesDataStructure}) : super(key: key);
 
   @override
   State<SachielBrowser> createState() => _SachielBrowserState();
@@ -32,14 +33,15 @@ class SachielBrowser extends StatefulWidget {
 }
 class _SachielBrowserState extends State<SachielBrowser> {
 
+  String websiteAddress = "";
+
   @override
   void initState() {
     super.initState();
 
     changeColor(ColorsResources.black, ColorsResources.black);
 
-    widget.websiteAddress = "${widget.websiteAddress}?utm_source=sachielssignals&utm_medium=sachielssignals";
-
+    websiteAddress = "${widget.articlesDataStructure.articleLink()}?utm_source=sachielssignals&utm_medium=sachielssignals";
   }
 
   @override
@@ -153,7 +155,7 @@ class _SachielBrowserState extends State<SachielBrowser> {
 
                     /* Start - Browser */
                     WebView(
-                      initialUrl: widget.websiteAddress,
+                      initialUrl: websiteAddress,
                       javascriptMode: JavascriptMode.unrestricted,
                     ),
                     /* End - Browser */
@@ -242,7 +244,7 @@ class _SachielBrowserState extends State<SachielBrowser> {
                                             child: Padding(
                                                 padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                                 child: Marquee(
-                                                  text: widget.websiteAddress,
+                                                  text: widget.articlesDataStructure.articleTitle(),
                                                   style: const TextStyle(
                                                     color: ColorsResources.premiumLight,
                                                     fontSize: 19,
