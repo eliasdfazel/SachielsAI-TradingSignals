@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 8:12 AM
+ * Last modified 8/19/22, 7:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,7 @@ import 'package:sachiel/academy/data/articles_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/ui/display.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class AcademySummaryInterface extends StatefulWidget {
 
@@ -173,7 +174,9 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
   Widget signalDataStructureItemView(ArticlesDataStructure articlesDataStructure) {
     debugPrint("Academy Article: ${articlesDataStructure.articleTitle()}");
 
-    return Container(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(17),
+      child: Container(
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(17),
@@ -181,33 +184,70 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                 bottomLeft: Radius.circular(17),
                 bottomRight: Radius.circular(17)
             ),
-            border: const Border(
-                top: BorderSide(
-                  color: ColorsResources.primaryColorDarker,
-                  width: 1.3,
-                ),
-                bottom: BorderSide(
-                  color: ColorsResources.primaryColorDarker,
-                  width: 1.3,
-                ),
-                left: BorderSide(
-                  color: ColorsResources.primaryColorDarker,
-                  width: 1.3,
-                ),
-                right: BorderSide(
-                  color: ColorsResources.primaryColorDarker,
-                  width: 1.3,
-                )
+            gradient: const LinearGradient(
+              colors: [
+                ColorsResources.black,
+                ColorsResources.dark
+              ],
+              transform: GradientRotation(-45),
             ),
-            color: ColorsResources.blue,
             boxShadow: [
               BoxShadow(
-                  color: ColorsResources.primaryColorLightest.withOpacity(0.11),
-                  blurRadius: 19,
-                  offset: const Offset(0, 0)
+                  color: ColorsResources.primaryColorLightest.withOpacity(0.51),
+                  blurRadius: 7,
+                  offset: const Offset(0, 3)
               )
             ]
         ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+
+            /* Start - Article Cover */
+            SizedBox(
+              height: 100,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(17),
+                child: Image.network(
+                  articlesDataStructure.articleCover(),
+                  alignment: Alignment.center,
+                  fit: BoxFit.cover,
+                ),
+              )
+            ),
+            /* End - Article Cover */
+
+            /* Start - Article Text */
+            SizedBox(
+              height: 130,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(13, 0, 13, 13),
+                child: GradientText(
+                  articlesDataStructure.articleTitle(),
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 17,
+                    decoration: TextDecoration.none,
+                    shadows: [
+                      Shadow(
+                        color: ColorsResources.black.withOpacity(0.57),
+                        blurRadius: 7,
+                        offset: Offset(0.0, 3.0)
+                      )
+                    ]
+                  ),
+                  colors: const <Color> [
+                    ColorsResources.light,
+                    ColorsResources.premiumLight,
+                  ],
+                )
+              )
+            )
+            /* End - Article Text */
+
+          ],
+        ),
+      )
     );
   }
 
