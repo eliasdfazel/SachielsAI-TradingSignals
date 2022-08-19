@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/19/22, 6:22 AM
+ * Last modified 8/19/22, 7:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,17 +20,17 @@ import 'package:sachiel/utils/ui/system_bars.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:widget_mask/widget_mask.dart';
 
-class DashboardInterface extends StatefulWidget {
+class SachielBrowser extends StatefulWidget {
 
   String websiteAddress;
 
-  DashboardInterface({Key? key, required this.websiteAddress}) : super(key: key);
+  SachielBrowser({Key? key, required this.websiteAddress}) : super(key: key);
 
   @override
-  State<DashboardInterface> createState() => _SachielBrowserState();
+  State<SachielBrowser> createState() => _SachielBrowserState();
 
 }
-class _SachielBrowserState extends State<DashboardInterface> {
+class _SachielBrowserState extends State<SachielBrowser> {
 
   @override
   void initState() {
