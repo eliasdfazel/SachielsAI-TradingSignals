@@ -115,6 +115,7 @@ dependencies:
 
 
   ####### ####### #######
+  webview_flutter: ^3.0.4
   widget_mask: ^1.0.0+0
   ####### ####### #######
 
