@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 6:10 AM
+ * Last modified 8/21/22, 6:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -58,8 +58,8 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
     FirebaseFirestore.instance
         .collection("SachielsAcademy")
-        .limit(9)
-        //.orderBy("articleTimestamp")
+        .limit(13)
+        .orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
           List<ArticlesDataStructure> articlesDataStructure = [];
