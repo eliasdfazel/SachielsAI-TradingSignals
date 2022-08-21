@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 9:19 AM
+ * Last modified 8/21/22, 9:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -58,7 +58,6 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
     FirebaseFirestore.instance
         .collection("SachielsBrokers")
         .limit(7)
-        .orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
           List<BrokersDataStructure> brokersDataStructure = [];
