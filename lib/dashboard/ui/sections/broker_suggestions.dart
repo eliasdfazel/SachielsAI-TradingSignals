@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 6:53 AM
+ * Last modified 8/21/22, 6:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -125,10 +125,10 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
             Padding(
                 padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 child: SizedBox(
-                    height: 751,
+                    height: 301,
                     child: GridView(
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: 1,
                         childAspectRatio: 1.39,
                         crossAxisSpacing: 19.0,
                         mainAxisSpacing: 19.0,
