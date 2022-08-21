@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 8:39 AM
+ * Last modified 8/21/22, 9:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -46,6 +46,16 @@ class DashboardInterface extends StatefulWidget {
 
 }
 class _DashboardInterfaceState extends State<DashboardInterface> {
+
+  StatefulWidget accountInformationOverview = const AccountInformationOverview();
+
+  StatefulWidget lastSignalDetails = const LastSignalDetails();
+
+  StatefulWidget latestSignalsOverview = const LatestSignalsOverview();
+
+  StatefulWidget academySummaryInterface = const AcademySummaryInterface();
+
+  StatefulWidget brokerSuggestionsInterface = const BrokerSuggestionsInterface();
 
   String profileName = StringsResources.sachielAI();
   Widget profileImage = const Image(
@@ -176,26 +186,26 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 37),
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
-                      children: const [
+                      children: [
 
                         /* Start - Account Information Overview */
-                        AccountInformationOverview(),
+                        accountInformationOverview,
                         /* End - Account Information Overview */
 
                         /* Start - The Last Signal Details */
-                        LastSignalDetails(),
+                        lastSignalDetails,
                         /* End - The Last Signal Details */
 
                         /* Start - The Latest Signals Overview */
-                        LatestSignalsOverview(),
+                        latestSignalsOverview,
                         /* End - The Latest Signals Overview */
 
                         /* Start - Academy Summary */
-                        AcademySummaryInterface(),
+                        academySummaryInterface,
                         /* End - Academy Summary */
 
                         /* Start - Brokers Suggestions */
-                        BrokerSuggestionsInterface()
+                        brokerSuggestionsInterface,
                         /* End - Brokers Suggestions */
 
                       ],
