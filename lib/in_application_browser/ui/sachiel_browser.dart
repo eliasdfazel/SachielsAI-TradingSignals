@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 5:41 AM
+ * Last modified 8/21/22, 5:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -33,18 +33,9 @@ class SachielBrowser extends StatefulWidget {
 }
 class _SachielBrowserState extends State<SachielBrowser> {
 
-  String websiteAddress = "";
+  bool loadingAnimationVisibility = true;
 
-  Widget lastSignalDetails = Container(
-    height: 399,
-    width: 351,
-    alignment: Alignment.center,
-    child: LoadingAnimationWidget.staggeredDotsWave(
-      colorOne: ColorsResources.premiumLight,
-      colorTwo: ColorsResources.primaryColor,
-      size: 73,
-    ),
-  );
+  String websiteAddress = "";
 
   @override
   void initState() {
@@ -53,6 +44,7 @@ class _SachielBrowserState extends State<SachielBrowser> {
     changeColor(ColorsResources.black, ColorsResources.black);
 
     websiteAddress = "${widget.articlesDataStructure.articleLink()}?utm_source=sachielssignals&utm_medium=sachielssignals";
+
   }
 
   @override
@@ -172,10 +164,33 @@ class _SachielBrowserState extends State<SachielBrowser> {
                       backgroundColor: ColorsResources.black,
                       onPageFinished: (_) {
 
+                        setState(() {
+
+                          loadingAnimationVisibility = false;
+
+                        });
+
                       },
                     )
                 ),
                 /* End - Browser */
+
+                Align(
+                  alignment: Alignment.center,
+                  child: Visibility(
+                      visible: loadingAnimationVisibility,
+                      child: Container(
+                        height: 399,
+                        width: 351,
+                        alignment: Alignment.center,
+                        child: LoadingAnimationWidget.staggeredDotsWave(
+                          colorOne: ColorsResources.premiumLight,
+                          colorTwo: ColorsResources.primaryColor,
+                          size: 73,
+                        )
+                      )
+                  )
+                ),
 
                 /* Start - Back */
                 Row(
@@ -295,5 +310,7 @@ class _SachielBrowserState extends State<SachielBrowser> {
         )
     );
   }
+
+
 
 }
