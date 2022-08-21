@@ -2,13 +2,14 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 3:39 AM
+ * Last modified 8/21/22, 4:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:marquee/marquee.dart';
 import 'package:sachiel/academy/data/articles_data_structure.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
@@ -34,6 +35,17 @@ class SachielBrowser extends StatefulWidget {
 class _SachielBrowserState extends State<SachielBrowser> {
 
   String websiteAddress = "";
+
+  Widget lastSignalDetails = Container(
+    height: 399,
+    width: 351,
+    alignment: Alignment.center,
+    child: LoadingAnimationWidget.staggeredDotsWave(
+      colorOne: ColorsResources.premiumLight,
+      colorTwo: ColorsResources.primaryColor,
+      size: 73,
+    ),
+  );
 
   @override
   void initState() {
@@ -154,9 +166,16 @@ class _SachielBrowserState extends State<SachielBrowser> {
                     /* End - Gradient Background - Golden */
 
                     /* Start - Browser */
-                    WebView(
-                      initialUrl: websiteAddress,
-                      javascriptMode: JavascriptMode.unrestricted,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(17),
+                      child: WebView(
+                        initialUrl: websiteAddress,
+                        javascriptMode: JavascriptMode.unrestricted,
+                        backgroundColor: ColorsResources.black,
+                        onPageFinished: (_) {
+
+                        },
+                      )
                     ),
                     /* End - Browser */
 
@@ -240,11 +259,11 @@ class _SachielBrowserState extends State<SachielBrowser> {
                                             )
                                         ),
                                         Align(
-                                            alignment: Alignment.center,
+                                            alignment: Alignment.centerLeft,
                                             child: Padding(
                                                 padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                                 child: Marquee(
-                                                  text: widget.articlesDataStructure.articleTitle(),
+                                                  text: "widget.articlesDataStructure.articleTitle()",
                                                   style: const TextStyle(
                                                     color: ColorsResources.premiumLight,
                                                     fontSize: 19,
@@ -293,5 +312,7 @@ class _SachielBrowserState extends State<SachielBrowser> {
         )
     );
   }
+
+
 
 }

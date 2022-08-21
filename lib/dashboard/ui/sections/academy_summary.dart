@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 3:40 AM
+ * Last modified 8/21/22, 5:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,6 @@ import 'package:sachiel/in_application_browser/ui/sachiel_browser.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
-import 'package:sachiel/utils/ui/display.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class AcademySummaryInterface extends StatefulWidget {
@@ -59,7 +58,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
     FirebaseFirestore.instance
         .collection("SachielsAcademy")
-        .limit(10)
+        .limit(9)
         //.orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
@@ -95,11 +94,8 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
       aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
       aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
       aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
 
     }
-
-    int gridColumnCount = (displayWidth(context) / 173).round();
 
     setState(() {
 
@@ -131,10 +127,10 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
             Padding(
               padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
               child: SizedBox(
-                  height: 513,
+                  height: 751,
                   child: GridView(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: gridColumnCount,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
                       childAspectRatio: 1.39,
                       crossAxisSpacing: 19.0,
                       mainAxisSpacing: 19.0,
