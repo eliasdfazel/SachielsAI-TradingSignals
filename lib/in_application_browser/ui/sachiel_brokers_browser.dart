@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 8:35 AM
+ * Last modified 8/21/22, 8:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -276,7 +276,7 @@ class _SachielBrokersBrowserState extends State<SachielBrokersBrowser> {
                                         child: Padding(
                                             padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                             child: Text(
-                                                StringsResources.brokerSuggestionsTitle(),
+                                                StringsResources.brokersTitle(),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: const TextStyle(

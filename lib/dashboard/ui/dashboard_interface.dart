@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 6:33 AM
+ * Last modified 8/21/22, 8:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/dashboard/ui/sections/academy_summary.dart';
 import 'package:sachiel/dashboard/ui/sections/account_information_overview.dart';
+import 'package:sachiel/dashboard/ui/sections/broker_suggestions.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
 import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
@@ -190,8 +191,12 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                         /* End - The Latest Signals Overview */
 
                         /* Start - Academy Summary */
-                        AcademySummaryInterface()
+                        AcademySummaryInterface(),
                         /* End - Academy Summary */
+
+                        /* Start - Brokers Suggestions */
+                        BrokerSuggestionsInterface()
+                        /* End - Brokers Suggestions */
 
                       ],
                     ),

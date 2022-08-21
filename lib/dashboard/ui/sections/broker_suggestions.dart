@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 6:55 AM
+ * Last modified 8/21/22, 9:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,8 +14,7 @@ import 'package:sachiel/broker_suggestions/data/broker_data_structure.dart';
 import 'package:sachiel/in_application_browser/ui/sachiel_brokers_browser.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
-import 'package:sachiel/utils/navigations/navigation_commands.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:sachiel/utils/navigations/navigation_commandsple_gradient_text.dart';
 
 class BrokerSuggestionsInterface extends StatefulWidget {
 
@@ -62,36 +61,32 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
         .orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
-      List<BrokersDataStructure> brokersDataStructure = [];
+          print(">>>  ${querySnapshot.docs.length}");
 
-      for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+          List<BrokersDataStructure> brokersDataStructure = [];
 
-        brokersDataStructure.add(BrokersDataStructure(queryDocumentSnapshot));
+          for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-      }
+            brokersDataStructure.add(BrokersDataStructure(queryDocumentSnapshot));
 
-      prepareAcademyArticles(brokersDataStructure);
+          }
 
-    },
+          prepareBrokersSuggestions(brokersDataStructure);
+
+        },
         onError: (e) => {
 
         });
 
   }
 
-  void prepareAcademyArticles(List<BrokersDataStructure> brokersDataStructure) {
+  void prepareBrokersSuggestions(List<BrokersDataStructure> brokersDataStructure) {
 
-    List<Widget> aLatestSignal = <Widget>[];
+    List<Widget> aBrokersSuggestions = <Widget>[];
 
     for (var articlesDataStructureItem in brokersDataStructure) {
 
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
+      aBrokersSuggestions.add(brokersDataStructureItemView(articlesDataStructureItem));
 
     }
 
@@ -105,7 +100,7 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
                 child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      StringsResources.brokerSuggestionsTitle(),
+                      StringsResources.brokersTitle(),
                       style: TextStyle(
                           fontSize: 37,
                           letterSpacing: 1.7,
@@ -126,36 +121,12 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
                 padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 child: SizedBox(
                     height: 301,
-                    child: GridView(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1,
-                        childAspectRatio: 1.39,
-                        crossAxisSpacing: 19.0,
-                        mainAxisSpacing: 19.0,
-                      ),
+                    child: ListView(
                       padding: const EdgeInsets.fromLTRB(19, 0, 19, 13),
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       controller: scrollController,
-                      children: aLatestSignal,
-                    )
-                )
-            ),
-
-            Padding(
-                padding: const EdgeInsets.fromLTRB(0, 21, 19, 0),
-                child: Align(
-                    alignment: Alignment.centerRight,
-                    child: InkWell(
-                        onTap: () {
-
-                          // navigateTo(context, const SignalsHistoryInterface());
-
-                        },
-                        child: const Image(
-                          image: AssetImage("archive_icon.png"),
-                          width: 173,
-                        )
+                      children: aBrokersSuggestions,
                     )
                 )
             ),
@@ -167,7 +138,7 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
 
   }
 
-  Widget signalDataStructureItemView(BrokersDataStructure brokersDataStructure) {
+  Widget brokersDataStructureItemView(BrokersDataStructure brokersDataStructure) {
     debugPrint("Broker Suggestion: ${brokersDataStructure.brokerCompany()}");
 
     return InkWell(
@@ -177,7 +148,9 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
 
         },
         child: Container(
-          decoration: BoxDecoration(
+            height: 100,
+            width: 100,
+            decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
                     color: ColorsResources.primaryColorLightest.withOpacity(0.11),
@@ -186,74 +159,18 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
                 )
               ]
           ),
-          child: ClipRRect(
-              borderRadius: BorderRadius.circular(17),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(17),
-                      topRight: Radius.circular(17),
-                      bottomLeft: Radius.circular(17),
-                      bottomRight: Radius.circular(17)
-                  ),
-                  gradient: LinearGradient(
-                    colors: [
-                      ColorsResources.dark.withOpacity(0.73),
-                      ColorsResources.premiumDark,
-                    ],
-                    transform: const GradientRotation(-45),
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-
-                    /* Start - Article Cover */
-                    SizedBox(
-                        height: 100,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(17),
-                          child: Image.network(
-                            brokersDataStructure.brokerLogo(),
-                            alignment: Alignment.center,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                    ),
-                    /* End - Article Cover */
-
-                    /* Start - Article Text */
-                    SizedBox(
-                        height: 130,
-                        child: Padding(
-                            padding: const EdgeInsets.fromLTRB(13, 11, 13, 13),
-                            child: GradientText(
-                              brokersDataStructure.brokerCompany(),
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  decoration: TextDecoration.none,
-                                  shadows: [
-                                    Shadow(
-                                        color: ColorsResources.black.withOpacity(0.57),
-                                        blurRadius: 7,
-                                        offset: const Offset(0.0, 3.0)
-                                    )
-                                  ]
-                              ),
-                              colors: const <Color> [
-                                ColorsResources.premiumLight,
-                                ColorsResources.white,
-                              ],
-                            )
-                        )
-                    )
-                    /* End - Article Text */
-
-                  ],
+          child: SizedBox(
+              height: 100,
+              width: 100,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(17),
+                child: Image.network(
+                  brokersDataStructure.brokerLogo(),
+                  alignment: Alignment.center,
+                  fit: BoxFit.cover,
                 ),
               )
-          ),
+          )
         )
     );
   }

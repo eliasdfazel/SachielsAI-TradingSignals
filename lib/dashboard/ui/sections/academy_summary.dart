@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 6:37 AM
+ * Last modified 8/21/22, 8:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -81,19 +81,19 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
   void prepareAcademyArticles(List<ArticlesDataStructure> articlesDataStructure) {
 
-    List<Widget> aLatestSignal = <Widget>[];
+    List<Widget> aAcademyArticle = <Widget>[];
 
     for (var articlesDataStructureItem in articlesDataStructure) {
 
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
+      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
+      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
+      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
+      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
+      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
+      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
+      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
+      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
+      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
 
     }
 
@@ -139,7 +139,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     controller: scrollController,
-                    children: aLatestSignal,
+                    children: aAcademyArticle,
                   )
               )
             ),
