@@ -2,14 +2,14 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 6:37 AM
+ * Last modified 8/21/22, 8:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widgetta_structure.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/broker_suggestions/data/broker_data_structure.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/resources/colors_resources.dart';
