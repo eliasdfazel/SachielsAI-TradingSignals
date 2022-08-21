@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 9:16 AM
+ * Last modified 8/21/22, 9:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,7 +14,7 @@ import 'package:sachiel/broker_suggestions/data/broker_data_structure.dart';
 import 'package:sachiel/in_application_browser/ui/sachiel_brokers_browser.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
-import 'package:sachiel/utils/navigations/navigation_commandsple_gradient_text.dart';
+import 'package:sachiel/utils/navigations/navigation_commands.dart';
 
 class BrokerSuggestionsInterface extends StatefulWidget {
 
@@ -61,8 +61,6 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
         .orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
-          print(">>>  ${querySnapshot.docs.length}");
-
           List<BrokersDataStructure> brokersDataStructure = [];
 
           for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
@@ -71,7 +69,11 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
 
           }
 
-          prepareBrokersSuggestions(brokersDataStructure);
+          if (brokersDataStructure.isNotEmpty) {
+
+            prepareBrokersSuggestions(brokersDataStructure);
+
+          }
 
         },
         onError: (e) => {

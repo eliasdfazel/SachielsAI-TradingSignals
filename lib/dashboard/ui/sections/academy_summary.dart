@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 8:52 AM
+ * Last modified 8/21/22, 9:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -70,7 +70,11 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
           }
 
-          prepareAcademyArticles(articlesDataStructure);
+          if (articlesDataStructure.isNotEmpty) {
+
+            prepareAcademyArticles(articlesDataStructure);
+
+          }
 
         },
         onError: (e) => {
