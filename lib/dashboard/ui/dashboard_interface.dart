@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 9:39 AM
+ * Last modified 8/21/22, 9:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -47,15 +47,15 @@ class DashboardInterface extends StatefulWidget {
 }
 class _DashboardInterfaceState extends State<DashboardInterface> {
 
-  StatefulWidget accountInformationOverview = const AccountInformationOverview();
+  AccountInformationOverview accountInformationOverview = const AccountInformationOverview();
 
-  StatefulWidget lastSignalDetails = const LastSignalDetails();
+  LastSignalDetails lastSignalDetails = const LastSignalDetails();
 
-  StatefulWidget latestSignalsOverview = const LatestSignalsOverview();
+  LatestSignalsOverview latestSignalsOverview = const LatestSignalsOverview();
 
-  StatefulWidget academySummaryInterface = const AcademySummaryInterface();
+  AcademySummaryInterface academySummaryInterface = const AcademySummaryInterface();
 
-  StatefulWidget brokerSuggestionsInterface = const BrokerSuggestionsInterface();
+  BrokerSuggestionsInterface brokerSuggestionsInterface = const BrokerSuggestionsInterface();
 
   String profileName = StringsResources.sachielAI();
   Widget profileImage = const Image(
