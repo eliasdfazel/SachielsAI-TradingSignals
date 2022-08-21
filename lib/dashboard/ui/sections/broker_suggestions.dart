@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 6:37 AM
+ * Last modified 8/21/22, 6:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sachiel/broker_suggestions/data/broker_data_structure.dart';
 import 'package:sachiel/broker_suggestions/data/broker_data_structureademy_browser.dart';
 import 'package:sachiel/in_application_browser/ui/sachiel_brokers_browser.dart';
 import 'package:sachiel/resources/colors_resources.dart';
@@ -57,8 +58,8 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
     debugPrint("Retrieve Brokers Suggestions");
 
     FirebaseFirestore.instance
-        .collection("SachielsBrokersSuggestions")
-        .limit(13)
+        .collection("SachielsBrokers")
+        .limit(7)
         .orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
@@ -85,8 +86,6 @@ class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface>
 
     for (var articlesDataStructureItem in brokersDataStructure) {
 
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
-      aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
       aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
       aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
       aLatestSignal.add(signalDataStructureItemView(articlesDataStructureItem));
