@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 5:27 AM
+ * Last modified 8/21/22, 5:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,7 +10,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:marquee/marquee.dart';
 import 'package:sachiel/academy/data/articles_data_structure.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/resources/colors_resources.dart';
@@ -261,28 +260,14 @@ class _SachielBrowserState extends State<SachielBrowser> {
                                         alignment: Alignment.centerLeft,
                                         child: Padding(
                                             padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                            child: Marquee(
-                                              text: widget.articlesDataStructure.articleTitle(),
-                                              style: const TextStyle(
-                                                color: ColorsResources.premiumLight,
-                                                fontSize: 19,
+                                            child: Text(
+                                                StringsResources.academyTitle(),
+                                                maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
-                                              ),
-                                              scrollAxis: Axis.horizontal,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              blankSpace: 0.0,
-                                              velocity: 19.0,
-                                              fadingEdgeStartFraction: 0.13,
-                                              fadingEdgeEndFraction: 0.13,
-                                              startAfter: const Duration(milliseconds: 777),
-                                              numberOfRounds: 3,
-                                              pauseAfterRound: const Duration(milliseconds: 500),
-                                              showFadingOnlyWhenScrolling: true,
-                                              startPadding: 13.0,
-                                              accelerationDuration: const Duration(milliseconds: 500),
-                                              accelerationCurve: Curves.linear,
-                                              decelerationDuration: const Duration(milliseconds: 500),
-                                              decelerationCurve: Curves.easeOut,
+                                                style: const TextStyle(
+                                                    color: ColorsResources.premiumLight,
+                                                    fontSize: 19
+                                                )
                                             )
                                         )
                                     )
@@ -310,7 +295,5 @@ class _SachielBrowserState extends State<SachielBrowser> {
         )
     );
   }
-
-
 
 }
