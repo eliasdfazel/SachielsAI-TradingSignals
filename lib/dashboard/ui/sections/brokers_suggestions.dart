@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 9:46 AM
+ * Last modified 8/21/22, 10:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -142,35 +142,19 @@ class _BrokersSuggestionsInterfaceState extends State<BrokersSuggestionsInterfac
   Widget brokersDataStructureItemView(BrokersDataStructure brokersDataStructure) {
     debugPrint("Broker Suggestion: ${brokersDataStructure.brokerCompany()}");
 
-    return InkWell(
-        onTap: () {
+    return SizedBox(
+        height: 100,
+        width: 100,
+        child: InkWell(
+          onTap: () {
 
-          navigateTo(context, SachielBrokersBrowser(brokersDataStructure: brokersDataStructure));
+            navigateTo(context, SachielBrokersBrowser(brokersDataStructure: brokersDataStructure));
 
-        },
-        child: Container(
-            height: 100,
-            width: 100,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    color: ColorsResources.primaryColorLightest.withOpacity(0.11),
-                    blurRadius: 7,
-                    offset: const Offset(0, 3)
-                )
-              ]
-          ),
-          child: SizedBox(
-              height: 100,
-              width: 100,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(17),
-                child: Image.network(
-                  brokersDataStructure.brokerLogo(),
-                  alignment: Alignment.center,
-                  fit: BoxFit.cover,
-                ),
-              )
+          },
+          child: Image.network(
+            brokersDataStructure.brokerLogo(),
+            alignment: Alignment.center,
+            fit: BoxFit.cover,
           )
         )
     );
