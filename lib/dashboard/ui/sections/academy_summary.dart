@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 5:11 AM
+ * Last modified 8/21/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -191,8 +191,8 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
         child: ClipRRect(
             borderRadius: BorderRadius.circular(17),
             child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(17),
                     topRight: Radius.circular(17),
                     bottomLeft: Radius.circular(17),
@@ -200,10 +200,10 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                 ),
                 gradient: LinearGradient(
                   colors: [
-                    ColorsResources.dark,
-                    ColorsResources.black,
+                    ColorsResources.dark.withOpacity(0.73),
+                    ColorsResources.premiumDark,
                   ],
-                  transform: GradientRotation(-45),
+                  transform: const GradientRotation(-45),
                 ),
               ),
               child: Column(
@@ -228,7 +228,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                   SizedBox(
                       height: 130,
                       child: Padding(
-                          padding: const EdgeInsets.fromLTRB(13, 0, 13, 13),
+                          padding: const EdgeInsets.fromLTRB(13, 11, 13, 13),
                           child: GradientText(
                             articlesDataStructure.articleTitle(),
                             textAlign: TextAlign.start,
