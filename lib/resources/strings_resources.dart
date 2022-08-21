@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 6:40 AM
+ * Last modified 8/21/22, 6:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -73,6 +73,11 @@ class StringsResources {
   static String academyTitle() {
 
     return "Academy";
+  }
+
+  static String brokerSuggestionsTitle() {
+
+    return "Broker Suggestions";
   }
 
   /*

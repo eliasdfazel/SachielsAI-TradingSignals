@@ -2,15 +2,15 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 6:08 AM
+ * Last modified 8/21/22, 6:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:sachiel/academy/data/articles_data_structure.dart';
+import 'package:loading_animation_widget/loading_animation_widgetta_structure.dart';
+import 'package:sachiel/broker_suggestions/data/broker_data_structure.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -21,17 +21,17 @@ import 'package:sachiel/utils/ui/system_bars.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:widget_mask/widget_mask.dart';
 
-class SachielBrowser extends StatefulWidget {
+class SachielBrokersBrowser extends StatefulWidget {
 
-  ArticlesDataStructure articlesDataStructure;
+  BrokersDataStructure brokersDataStructure;
 
-  SachielBrowser({Key? key, required this.articlesDataStructure}) : super(key: key);
+  SachielBrokersBrowser({Key? key, required this.brokersDataStructure}) : super(key: key);
 
   @override
-  State<SachielBrowser> createState() => _SachielBrowserState();
+  State<SachielBrokersBrowser> createState() => _SachielBrokersBrowserState();
 
 }
-class _SachielBrowserState extends State<SachielBrowser> {
+class _SachielBrokersBrowserState extends State<SachielBrokersBrowser> {
 
   bool loadingAnimationVisibility = true;
 
@@ -43,7 +43,7 @@ class _SachielBrowserState extends State<SachielBrowser> {
 
     changeColor(ColorsResources.black, ColorsResources.black);
 
-    websiteAddress = "${widget.articlesDataStructure.articleLink()}?utm_source=sachielssignals&utm_medium=sachielssignals";
+    websiteAddress = "${widget.brokersDataStructure.brokerLink()}?utm_source=sachielssignals&utm_medium=sachielssignals";
 
   }
 
@@ -276,7 +276,7 @@ class _SachielBrowserState extends State<SachielBrowser> {
                                         child: Padding(
                                             padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                             child: Text(
-                                                StringsResources.academyTitle(),
+                                                StringsResources.brokerSuggestionsTitle(),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: const TextStyle(
