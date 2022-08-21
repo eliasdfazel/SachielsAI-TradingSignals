@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 9:24 AM
+ * Last modified 8/21/22, 9:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,15 +16,15 @@ import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 
-class BrokerSuggestionsInterface extends StatefulWidget {
+class BrokersSuggestionsInterface extends StatefulWidget {
 
-  const BrokerSuggestionsInterface({Key? key}) : super(key: key);
+  const BrokersSuggestionsInterface({Key? key}) : super(key: key);
 
   @override
-  State<BrokerSuggestionsInterface> createState() => _BrokerSuggestionsInterfaceState();
+  State<BrokersSuggestionsInterface> createState() => _BrokersSuggestionsInterfaceState();
 
 }
-class _BrokerSuggestionsInterfaceState extends State<BrokerSuggestionsInterface> {
+class _BrokersSuggestionsInterfaceState extends State<BrokersSuggestionsInterface> {
 
   ScrollController scrollController = ScrollController();
 

@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 9:45 AM
+ * Last modified 8/21/22, 9:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,7 +13,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/dashboard/ui/sections/academy_summary.dart';
 import 'package:sachiel/dashboard/ui/sections/account_information_overview.dart';
-import 'package:sachiel/dashboard/ui/sections/broker_suggestions.dart';
+import 'package:sachiel/dashboard/ui/sections/brokers_suggestions.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
 import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
@@ -55,7 +55,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   AcademySummaryInterface academySummaryInterface = const AcademySummaryInterface();
 
-  BrokerSuggestionsInterface brokerSuggestionsInterface = const BrokerSuggestionsInterface();
+  BrokersSuggestionsInterface brokersSuggestionsInterface = const BrokersSuggestionsInterface();
 
   String profileName = StringsResources.sachielAI();
   Widget profileImage = const Image(
@@ -205,7 +205,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                         /* End - Academy Summary */
 
                         /* Start - Brokers Suggestions */
-                        brokerSuggestionsInterface,
+                        brokersSuggestionsInterface,
                         /* End - Brokers Suggestions */
 
                       ],
