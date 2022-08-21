@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/19/22, 7:46 AM
+ * Last modified 8/21/22, 3:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -240,7 +240,7 @@ class _SachielBrowserState extends State<SachielBrowser> {
                                             )
                                         ),
                                         Align(
-                                            alignment: Alignment.centerLeft,
+                                            alignment: Alignment.center,
                                             child: Padding(
                                                 padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                                 child: Marquee(
