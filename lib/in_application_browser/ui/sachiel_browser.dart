@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/21/22, 5:53 AM
+ * Last modified 8/21/22, 6:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -161,7 +161,7 @@ class _SachielBrowserState extends State<SachielBrowser> {
                     child: WebView(
                       initialUrl: websiteAddress,
                       javascriptMode: JavascriptMode.unrestricted,
-                      backgroundColor: ColorsResources.black,
+                      backgroundColor: ColorsResources.dark,
                       onPageFinished: (_) {
 
                         setState(() {
