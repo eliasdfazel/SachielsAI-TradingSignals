@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/24/22, 9:48 AM
+ * Last modified 8/24/22, 9:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -255,7 +255,12 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                       SizedBox(
                           height: 100,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(17),
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(17),
+                              topRight: Radius.circular(17),
+                              bottomRight: Radius.circular(11),
+                              bottomLeft: Radius.circular(11),
+                            ),
                             child: Image.network(
                               articlesDataStructure.articleCover(),
                               alignment: Alignment.center,

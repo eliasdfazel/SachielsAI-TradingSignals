@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/24/22, 8:22 AM
+ * Last modified 8/24/22, 9:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -148,13 +148,13 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
             width: 351,
             child: Stack(
                 children: [
-                  Positioned(
+                  const Positioned(
                       top: -99,
                       right: 33,
                       child: Text(
                         "%",
                         style: TextStyle(
-                            color: ColorsResources.black.withOpacity(0.73),
+                            color: ColorsResources.black,
                             fontSize: 301,
                             fontFamily: "Handwriting"
                         ),
