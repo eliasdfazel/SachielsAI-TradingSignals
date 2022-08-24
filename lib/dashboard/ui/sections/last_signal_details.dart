@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 7:43 AM
+ * Last modified 8/24/22, 5:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -81,16 +81,15 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
         .limit(1)
         .orderBy("tradeTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
-          debugPrint("Last Signal Details Data: ${querySnapshot.docs.first.data()}");
+            debugPrint("Last Signal Details Data: ${querySnapshot.docs.first.data()}");
 
-          SignalsDataStructure signalsDataStructure = SignalsDataStructure(querySnapshot.docs.first);
+            SignalsDataStructure signalsDataStructure = SignalsDataStructure(querySnapshot.docs.first);
 
-          prepareLastSignalsDetails(signalsDataStructure);
+            prepareLastSignalsDetails(signalsDataStructure);
 
-        },
-        onError: (e) => {
-
-        });
+          },
+          onError: (e) => debugPrint("${e}"),
+        );
 
   }
 

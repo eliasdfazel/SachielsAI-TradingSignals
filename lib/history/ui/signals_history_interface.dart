@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 7:43 AM
+ * Last modified 8/24/22, 5:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -292,17 +292,17 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
         .orderBy("tradeTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
-      List<SignalsDataStructure> signalsDataStructure = [];
+          List<SignalsDataStructure> signalsDataStructure = [];
 
-      for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+          for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-        signalsDataStructure.add(SignalsDataStructure(queryDocumentSnapshot));
+            signalsDataStructure.add(SignalsDataStructure(queryDocumentSnapshot));
 
-      }
+          }
 
-      prepareSignalsHistoryItems(signalsDataStructure);
+          prepareSignalsHistoryItems(signalsDataStructure);
 
-    },
+        },
         onError: (e) => {
 
         });

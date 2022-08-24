@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/24/22, 5:00 AM
+ * Last modified 8/24/22, 5:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -57,29 +57,26 @@ class _BrokersSuggestionsInterfaceState extends State<BrokersSuggestionsInterfac
 
     FirebaseFirestore.instance
         .collection("SachielsBrokers")
-        .limit(7)
         .get().then((QuerySnapshot querySnapshot) {
 
-          print(">>> >> > ${querySnapshot.docs.first}");
 
-          List<BrokersDataStructure> brokersDataStructure = [];
+            List<BrokersDataStructure> brokersDataStructure = [];
 
-          for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+            for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-            brokersDataStructure.add(BrokersDataStructure(queryDocumentSnapshot));
+              brokersDataStructure.add(BrokersDataStructure(queryDocumentSnapshot));
 
-          }
+            }
 
-          if (brokersDataStructure.isNotEmpty) {
+            if (brokersDataStructure.isNotEmpty) {
 
-            prepareBrokersSuggestions(brokersDataStructure);
+              prepareBrokersSuggestions(brokersDataStructure);
 
-          }
+            }
 
-        },
-        onError: (e) => {
-
-        });
+          },
+          onError: (e) => debugPrint("$e"),
+        );
 
   }
 
