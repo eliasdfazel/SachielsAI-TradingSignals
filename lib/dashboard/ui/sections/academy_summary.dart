@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/24/22, 8:12 AM
+ * Last modified 8/24/22, 8:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -58,7 +58,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
     debugPrint("Retrieve Latest Signals Details");
 
     FirebaseFirestore.instance
-        .collection("Sachiels/Academy")
+        .collection("/Sachiels/Academy/Articles")
         .limit(13)
         .orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
