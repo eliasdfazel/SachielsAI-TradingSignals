@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/24/22, 6:23 AM
+ * Last modified 8/24/22, 8:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -121,8 +121,9 @@ class _BrokersSuggestionsInterfaceState extends State<BrokersSuggestionsInterfac
                 padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 child: SizedBox(
                     height: 301,
+                    width: double.infinity,
                     child: ListView(
-                      padding: const EdgeInsets.fromLTRB(19, 0, 19, 13),
+                      padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       controller: scrollController,
@@ -142,19 +143,25 @@ class _BrokersSuggestionsInterfaceState extends State<BrokersSuggestionsInterfac
     debugPrint("Broker Suggestion: ${brokersDataStructure.brokerCompany()}");
 
     return SizedBox(
-        height: 100,
-        width: 100,
+        height: 279,
+        width: 279,
         child: InkWell(
-          onTap: () {
+            onTap: () {
 
-            navigateTo(context, SachielBrokersBrowser(brokersDataStructure: brokersDataStructure));
+              navigateTo(context, SachielBrokersBrowser(brokersDataStructure: brokersDataStructure));
 
-          },
-          child: Image.network(
-            brokersDataStructure.brokerLogo(),
-            alignment: Alignment.center,
-            fit: BoxFit.cover,
-          )
+            },
+            child: Align(
+                alignment: Alignment.center,
+                child: Image.network(
+                  brokersDataStructure.brokerLogo(),
+                  height: 279,
+                  width: 279,
+                  alignment: Alignment.center,
+                  fit: BoxFit.cover,
+
+                )
+            )
         )
     );
   }
