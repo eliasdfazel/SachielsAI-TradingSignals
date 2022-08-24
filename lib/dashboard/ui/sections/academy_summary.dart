@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/24/22, 9:24 AM
+ * Last modified 8/24/22, 9:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -84,7 +84,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
                 for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-                  articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.articlePostType));
+                  articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.newsPostType));
 
                 }
 
@@ -96,7 +96,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
                       for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-                        articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.articlePostType));
+                        articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.tutorialPostType));
 
                       }
 
@@ -129,12 +129,6 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
     for (var articlesDataStructureItem in articlesDataStructure) {
 
-      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
-      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
-      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
-      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
-      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
-      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
       aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
       aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
       aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
@@ -250,88 +244,103 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                   transform: const GradientRotation(-45),
                 ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Stack(
                 children: [
 
-                  /* Start - Article Cover */
-                  SizedBox(
-                      height: 100,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(17),
-                        child: Stack(
-                          children: [
-                            Image.network(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+
+                      /* Start - Article Cover */
+                      SizedBox(
+                          height: 100,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(17),
+                            child: Image.network(
                               articlesDataStructure.articleCover(),
                               alignment: Alignment.center,
                               fit: BoxFit.cover,
                             ),
-                            Positioned(
-                              left: 0,
-                              bottom: 0,
-                              child: SizedBox(
-                                height: 19,
-                                width: 37,
-                                child: Blur(
-                                    blur: 3,
-                                    blurColor: ColorsResources.premiumLight,
-                                    borderRadius: BorderRadius.circular(19),
-                                    colorOpacity: 0.07,
-                                    alignment: Alignment.center,
-                                    child: const SizedBox(
-                                      height: 399,
-                                      width: 351,
-                                    )
+                          )
+                      ),
+                      /* End - Article Cover */
+
+                      /* Start - Article Text */
+                      SizedBox(
+                          height: 130,
+                          child: Padding(
+                              padding: const EdgeInsets.fromLTRB(13, 11, 13, 13),
+                              child: GradientText(
+                                articlesDataStructure.articleTitle(),
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    decoration: TextDecoration.none,
+                                    shadows: [
+                                      Shadow(
+                                          color: ColorsResources.black.withOpacity(0.57),
+                                          blurRadius: 7,
+                                          offset: const Offset(0.0, 3.0)
+                                      )
+                                    ]
                                 ),
-                              ),
-                            ),
-                            Positioned(
-                              left: 0,
-                              bottom: 0,
-                              child: SizedBox(
-                                height: 19,
-                                width: 37,
-                                child: Text(
-                                  articlesDataStructure.initialPostType
-                                )
+                                colors: const <Color> [
+                                  ColorsResources.premiumLight,
+                                  ColorsResources.white,
+                                ],
+                              )
+                          )
+                      )
+                      /* End - Article Text */
+
+                    ],
+                  ),
+
+                  const Positioned(
+                    left: 0,
+                    top: 0,
+                    child: SizedBox(
+                      height: 21,
+                      width: 73,
+                      child: Blur(
+                          blur: 3,
+                          blurColor: ColorsResources.premiumDark,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(17),
+                            topRight: Radius.circular(7),
+                            bottomRight: Radius.circular(17),
+                            bottomLeft: Radius.circular(7),
+                          ),
+                          colorOpacity: 0.07,
+                          alignment: Alignment.center,
+                          child: SizedBox(
+                            height: 21,
+                            width: 73,
+                          )
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                      left: 0,
+                      top: 0,
+                      child: SizedBox(
+                          height: 21,
+                          width: 73,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              articlesDataStructure.initialPostType,
+                              style: const TextStyle(
+                                fontSize: 13,
+                                color: ColorsResources.light
                               ),
                             )
-                          ]
-                        )
-                      )
-                  ),
-                  /* End - Article Cover */
-
-                  /* Start - Article Text */
-                  SizedBox(
-                      height: 130,
-                      child: Padding(
-                          padding: const EdgeInsets.fromLTRB(13, 11, 13, 13),
-                          child: GradientText(
-                            articlesDataStructure.articleTitle(),
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                                fontSize: 17,
-                                decoration: TextDecoration.none,
-                                shadows: [
-                                  Shadow(
-                                      color: ColorsResources.black.withOpacity(0.57),
-                                      blurRadius: 7,
-                                      offset: const Offset(0.0, 3.0)
-                                  )
-                                ]
-                            ),
-                            colors: const <Color> [
-                              ColorsResources.premiumLight,
-                              ColorsResources.white,
-                            ],
                           )
                       )
                   )
-                  /* End - Article Text */
 
-                ],
-              ),
+                ]
+              )
             )
         ),
       )
