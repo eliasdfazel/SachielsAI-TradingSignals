@@ -2,12 +2,13 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/24/22, 8:30 AM
+ * Last modified 8/24/22, 9:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/academy/archives/ui/academy_archives_interface.dart';
@@ -30,7 +31,11 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
   ScrollController scrollController = ScrollController();
 
-  Widget latestSignalsDetails = Container();
+  Widget articlesAcademy = Container();
+
+  Widget newsAcademy = Container();
+
+  Widget tutorialsAcademy = Container();
 
   @override
   void initState() {
@@ -50,7 +55,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
     return Padding(
         padding: const EdgeInsets.fromLTRB(0, 31, 0, 0),
-        child: latestSignalsDetails
+        child: articlesAcademy
     );
   }
 
@@ -59,7 +64,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
     FirebaseFirestore.instance
         .collection("/Sachiels/Academy/Articles")
-        .limit(13)
+        .limit(3)
         .orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
@@ -67,15 +72,49 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
           for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-            articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot));
+            articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.articlePostType));
 
           }
 
-          if (articlesDataStructure.isNotEmpty) {
+          FirebaseFirestore.instance
+              .collection("/Sachiels/Academy/News")
+              .limit(3)
+              .orderBy("articleTimestamp")
+              .get().then((QuerySnapshot querySnapshot) {
 
-            prepareAcademyArticles(articlesDataStructure);
+                for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-          }
+                  articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.articlePostType));
+
+                }
+
+                FirebaseFirestore.instance
+                    .collection("/Sachiels/Academy/Tutorials")
+                    .limit(3)
+                    .orderBy("articleTimestamp")
+                    .get().then((QuerySnapshot querySnapshot) {
+
+                      for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+
+                        articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.articlePostType));
+
+                      }
+
+                      if (articlesDataStructure.isNotEmpty) {
+
+                        prepareAcademyArticles(articlesDataStructure);
+
+                      }
+
+                    },
+                    onError: (e) => {
+
+                    });
+
+              },
+              onError: (e) => {
+
+              });
 
         },
         onError: (e) => {
@@ -104,7 +143,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
     setState(() {
 
-      latestSignalsDetails = Column(
+      articlesAcademy = Column(
           children: [
 
             Padding(
@@ -220,11 +259,45 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                       height: 100,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(17),
-                        child: Image.network(
-                          articlesDataStructure.articleCover(),
-                          alignment: Alignment.center,
-                          fit: BoxFit.cover,
-                        ),
+                        child: Stack(
+                          children: [
+                            Image.network(
+                              articlesDataStructure.articleCover(),
+                              alignment: Alignment.center,
+                              fit: BoxFit.cover,
+                            ),
+                            Positioned(
+                              left: 0,
+                              bottom: 0,
+                              child: SizedBox(
+                                height: 19,
+                                width: 37,
+                                child: Blur(
+                                    blur: 3,
+                                    blurColor: ColorsResources.premiumLight,
+                                    borderRadius: BorderRadius.circular(19),
+                                    colorOpacity: 0.07,
+                                    alignment: Alignment.center,
+                                    child: const SizedBox(
+                                      height: 399,
+                                      width: 351,
+                                    )
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 0,
+                              bottom: 0,
+                              child: SizedBox(
+                                height: 19,
+                                width: 37,
+                                child: Text(
+                                  articlesDataStructure.initialPostType
+                                )
+                              ),
+                            )
+                          ]
+                        )
                       )
                   ),
                   /* End - Article Cover */
@@ -244,7 +317,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                                   Shadow(
                                       color: ColorsResources.black.withOpacity(0.57),
                                       blurRadius: 7,
-                                      offset: Offset(0.0, 3.0)
+                                      offset: const Offset(0.0, 3.0)
                                   )
                                 ]
                             ),

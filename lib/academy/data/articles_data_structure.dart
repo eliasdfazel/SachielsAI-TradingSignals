@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/8/22, 7:57 AM
+ * Last modified 8/24/22, 9:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,11 +21,18 @@ class ArticlesDataStructure {
 
   static const String articleTimestampName = "articleTimestamp";
 
+  String initialPostType = "Article";
+  static const articlePostType = "Article";
+  static const newsPostType = "News";
+  static const tutorialPostType = "Tutorial";
+
   Map<String, dynamic> articlesDocumentData = <String, dynamic>{};
 
-  ArticlesDataStructure(DocumentSnapshot signalsDocument) {
+  ArticlesDataStructure(DocumentSnapshot signalsDocument, String postType) {
 
     articlesDocumentData = signalsDocument.data() as Map<String, dynamic>;
+
+    initialPostType = postType;
 
   }
 
