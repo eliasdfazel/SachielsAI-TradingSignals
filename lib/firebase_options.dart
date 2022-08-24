@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/9/22, 6:12 PM
+ * Last modified 8/24/22, 8:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -73,6 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '730794126051',
     projectId: 'sachiel-s-signals',
     storageBucket: 'sachiel-s-signals.appspot.com',
+    androidClientId: '730794126051-1krtbvboikgaq8g0dck413tpmkqjhl4n.apps.googleusercontent.com',
     iosClientId: '730794126051-i1djtkuqt12t2rci5b0lqiv3ttr9jv52.apps.googleusercontent.com',
     iosBundleId: 'co.geeksempire.sachiel.signals.sachiel',
   );

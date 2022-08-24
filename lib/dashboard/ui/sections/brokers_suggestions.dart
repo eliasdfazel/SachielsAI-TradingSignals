@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/24/22, 5:52 AM
+ * Last modified 8/24/22, 6:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -56,7 +56,7 @@ class _BrokersSuggestionsInterfaceState extends State<BrokersSuggestionsInterfac
     debugPrint("Retrieve Brokers Suggestions");
 
     FirebaseFirestore.instance
-        .collection("SachielsBrokers")
+        .collection("/Sachiels/Brokers/Recommendations")
         .get().then((QuerySnapshot querySnapshot) {
 
 

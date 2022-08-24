@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/24/22, 5:19 AM
+ * Last modified 8/24/22, 8:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -77,7 +77,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
     debugPrint("Retrieve Last Signal Details");
 
     FirebaseFirestore.instance
-        .collection("SachielsSignals")
+        .collection("/Sachiels/Signals/Palladium")
         .limit(1)
         .orderBy("tradeTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
