@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/29/22, 10:00 AM
+ * Last modified 8/29/22, 10:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -185,6 +185,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
   void retrieveAcademyArticles() {
     debugPrint("Retrieve Latest Signals Details");
 
+    /* Start - Academy Articles */
     FirebaseFirestore.instance
         .collection("/Sachiels/Academy/Articles")
         .limit(13)
@@ -199,11 +200,19 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
           }
 
+          if (articlesDataStructure.isNotEmpty) {
+
+            prepareAcademyArticles(articlesDataStructure);
+
+          }
+
         },
         onError: (e) => {
 
         });
+    /* End - Academy Articles */
 
+    /* Start - Academy News */
     FirebaseFirestore.instance
         .collection("/Sachiels/Academy/News")
         .limit(13)
@@ -218,11 +227,19 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
           }
 
+          if (articlesDataStructure.isNotEmpty) {
+
+
+
+          }
+
         },
         onError: (e) => {
 
         });
+    /* End - Academy News */
 
+    /* Start - Academy Tutorials */
     FirebaseFirestore.instance
         .collection("/Sachiels/Academy/Tutorials")
         .limit(13)
@@ -239,7 +256,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
           if (articlesDataStructure.isNotEmpty) {
 
-            prepareAcademyArticles(articlesDataStructure);
+
 
           }
 
@@ -247,6 +264,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
         onError: (e) => {
 
         });
+    /* End - Academy Tutorials */
 
   }
 
@@ -256,7 +274,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     for (var articlesDataStructureItem in articlesDataStructure) {
 
-      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
 
     }
 
@@ -317,7 +335,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
   }
 
-  Widget signalDataStructureItemView(ArticlesDataStructure articlesDataStructure) {
+  Widget academyArticlesItem(ArticlesDataStructure articlesDataStructure) {
     debugPrint("Academy Article: ${articlesDataStructure.articleTitle()}");
 
     return InkWell(
