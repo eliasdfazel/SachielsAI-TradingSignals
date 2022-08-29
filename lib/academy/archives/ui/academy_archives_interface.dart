@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/29/22, 9:38 AM
+ * Last modified 8/29/22, 10:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -41,6 +41,8 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
     super.initState();
 
     changeColor(ColorsResources.black, ColorsResources.black);
+
+    retrieveAcademyArticles();
 
   }
 
@@ -154,7 +156,16 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                  child: articlesAcademy
+                  child: ListView(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 37),
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      children: [
+
+
+
+                      ]
+                  )
                 ),
 
                 /* Start - Purchase Plan Picker */
@@ -176,35 +187,49 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     FirebaseFirestore.instance
         .collection("/Sachiels/Academy/Articles")
-        .limit(3)
+        .limit(13)
         .orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
-      List<ArticlesDataStructure> articlesDataStructure = [];
+          List<ArticlesDataStructure> articlesDataStructure = [];
 
-      for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+          for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-        articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.articlePostType));
+            articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.articlePostType));
 
-      }
+          }
 
-      FirebaseFirestore.instance
-          .collection("/Sachiels/Academy/News")
-          .limit(3)
-          .orderBy("articleTimestamp")
-          .get().then((QuerySnapshot querySnapshot) {
+        },
+        onError: (e) => {
 
-        for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+        });
 
-          articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.newsPostType));
+    FirebaseFirestore.instance
+        .collection("/Sachiels/Academy/News")
+        .limit(13)
+        .orderBy("articleTimestamp")
+        .get().then((QuerySnapshot querySnapshot) {
 
-        }
+          List<ArticlesDataStructure> articlesDataStructure = [];
 
-        FirebaseFirestore.instance
-            .collection("/Sachiels/Academy/Tutorials")
-            .limit(3)
-            .orderBy("articleTimestamp")
-            .get().then((QuerySnapshot querySnapshot) {
+          for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+
+            articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.newsPostType));
+
+          }
+
+        },
+        onError: (e) => {
+
+        });
+
+    FirebaseFirestore.instance
+        .collection("/Sachiels/Academy/Tutorials")
+        .limit(13)
+        .orderBy("articleTimestamp")
+        .get().then((QuerySnapshot querySnapshot) {
+
+          List<ArticlesDataStructure> articlesDataStructure = [];
 
           for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
@@ -219,16 +244,6 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
           }
 
         },
-            onError: (e) => {
-
-            });
-
-      },
-          onError: (e) => {
-
-          });
-
-    },
         onError: (e) => {
 
         });
