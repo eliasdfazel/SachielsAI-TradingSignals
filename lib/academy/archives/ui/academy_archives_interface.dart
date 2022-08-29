@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/29/22, 10:05 AM
+ * Last modified 8/29/22, 10:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -185,6 +185,33 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
   void retrieveAcademyArticles() {
     debugPrint("Retrieve Latest Signals Details");
 
+    /* Start - Academy Tutorials */
+    FirebaseFirestore.instance
+        .collection("/Sachiels/Academy/Tutorials")
+        .limit(13)
+        .orderBy("articleTimestamp")
+        .get().then((QuerySnapshot querySnapshot) {
+
+      List<ArticlesDataStructure> articlesDataStructure = [];
+
+      for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+
+        articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.tutorialPostType));
+
+      }
+
+      if (articlesDataStructure.isNotEmpty) {
+
+
+
+      }
+
+    },
+        onError: (e) => {
+
+        });
+    /* End - Academy Tutorials */
+
     /* Start - Academy Articles */
     FirebaseFirestore.instance
         .collection("/Sachiels/Academy/Articles")
@@ -238,33 +265,6 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
         });
     /* End - Academy News */
-
-    /* Start - Academy Tutorials */
-    FirebaseFirestore.instance
-        .collection("/Sachiels/Academy/Tutorials")
-        .limit(13)
-        .orderBy("articleTimestamp")
-        .get().then((QuerySnapshot querySnapshot) {
-
-          List<ArticlesDataStructure> articlesDataStructure = [];
-
-          for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
-
-            articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.tutorialPostType));
-
-          }
-
-          if (articlesDataStructure.isNotEmpty) {
-
-
-
-          }
-
-        },
-        onError: (e) => {
-
-        });
-    /* End - Academy Tutorials */
 
   }
 
