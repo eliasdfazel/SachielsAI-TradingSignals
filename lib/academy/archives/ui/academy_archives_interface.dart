@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/29/22, 10:07 AM
+ * Last modified 8/29/22, 10:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/academy/data/articles_data_structure.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/in_application_browser/ui/sachiel_academy_browser.dart';
@@ -21,6 +22,7 @@ import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:widget_mask/widget_mask.dart';
 
 class AcademyArchivesInterface extends StatefulWidget {
 
@@ -34,7 +36,18 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
   ScrollController scrollController = ScrollController();
 
+  Widget tutorialsAcademy = Container(
+    alignment: Alignment.center,
+    child: LoadingAnimationWidget.staggeredDotsWave(
+      colorOne: ColorsResources.premiumLight,
+      colorTwo: ColorsResources.primaryColor,
+      size: 73,
+    ),
+  );
+
   Widget articlesAcademy = Container();
+
+  Widget newsAcademy = Container();
 
   @override
   void initState() {
@@ -42,7 +55,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     changeColor(ColorsResources.black, ColorsResources.black);
 
-    retrieveAcademyArticles();
+    retrieveAcademyTutorials();
 
   }
 
@@ -157,16 +170,121 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
                   child: ListView(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 37),
+                      padding: const EdgeInsets.fromLTRB(0, 103, 0, 37),
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       children: [
 
-
+                        articlesAcademy,
 
                       ]
                   )
                 ),
+
+                /* Start - Back */
+                Row(
+                  children: [
+
+                    /* Start - Back */
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                            child: SizedBox(
+                                height: 59,
+                                width: 59,
+                                child: InkWell(
+                                  onTap: () {
+
+                                    navigatePop(context);
+
+                                  },
+                                  child: const Image(
+                                    image: AssetImage("back_icon.png"),
+                                  ),
+                                )
+                            )
+                        )
+                    ),
+                    /* End - Back */
+
+                    /* Start - Title */
+                    Align(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                            child: SizedBox(
+                                height: 59,
+                                width: 155,
+                                child: Stack(
+                                  children: [
+                                    WidgetMask(
+                                      blendMode: BlendMode.srcATop,
+                                      childSaveLayer: true,
+                                      mask /* Original Image */: Container(
+                                        decoration: const BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  ColorsResources.premiumDark,
+                                                  ColorsResources.black,
+                                                ],
+                                                transform: GradientRotation(45)
+                                            )
+                                        ),
+                                      ),
+                                      child: const Image(
+                                        image: AssetImage("rectircle_shape.png"),
+                                      ),
+                                    ),
+                                    Align(
+                                        alignment: Alignment.center,
+                                        child: Padding(
+                                            padding: const EdgeInsets.all(1.9),
+                                            child: WidgetMask(
+                                                blendMode: BlendMode.srcATop,
+                                                childSaveLayer: true,
+                                                mask /* Original Image */: Container(
+                                                  decoration: const BoxDecoration(
+                                                      gradient: LinearGradient(
+                                                          colors: [
+                                                            ColorsResources.black,
+                                                            ColorsResources.premiumDark,
+                                                          ],
+                                                          transform: GradientRotation(45)
+                                                      )
+                                                  ),
+                                                ),
+                                                child: const Image(
+                                                  image: AssetImage("rectircle_shape.png"),
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                            child: Text(
+                                                StringsResources.academyTitle(),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    color: ColorsResources.premiumLight,
+                                                    fontSize: 19
+                                                )
+                                            )
+                                        )
+                                    )
+                                  ],
+                                )
+                            )
+                        )
+                    ),
+                    /* End - Title */
+
+                  ],
+                ),
+                /* End - Back */
 
                 /* Start - Purchase Plan Picker */
                 const Positioned(
@@ -182,7 +300,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
     );
   }
 
-  void retrieveAcademyArticles() {
+  void retrieveAcademyTutorials() {
     debugPrint("Retrieve Latest Signals Details");
 
     /* Start - Academy Tutorials */
@@ -206,11 +324,18 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
       }
 
+      retrieveAcademyArticles();
+
     },
         onError: (e) => {
 
         });
     /* End - Academy Tutorials */
+
+  }
+
+  void retrieveAcademyArticles() {
+    debugPrint("Retrieve Latest Signals Details");
 
     /* Start - Academy Articles */
     FirebaseFirestore.instance
@@ -233,11 +358,18 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
           }
 
+          retrieveAcademyNews();
+
         },
         onError: (e) => {
 
         });
     /* End - Academy Articles */
+
+  }
+
+  void retrieveAcademyNews() {
+    debugPrint("Retrieve Latest Signals Details");
 
     /* Start - Academy News */
     FirebaseFirestore.instance
@@ -246,21 +378,21 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
         .orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
-          List<ArticlesDataStructure> articlesDataStructure = [];
+      List<ArticlesDataStructure> articlesDataStructure = [];
 
-          for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+      for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-            articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.newsPostType));
+        articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.newsPostType));
 
-          }
+      }
 
-          if (articlesDataStructure.isNotEmpty) {
+      if (articlesDataStructure.isNotEmpty) {
 
 
 
-          }
+      }
 
-        },
+    },
         onError: (e) => {
 
         });
@@ -275,15 +407,16 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
     for (var articlesDataStructureItem in articlesDataStructure) {
 
       aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
 
     }
 
     setState(() {
 
-      articlesAcademy = ListView(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 37),
-          physics: const BouncingScrollPhysics(),
-          scrollDirection: Axis.vertical,
+      articlesAcademy = Column(
           children: [
 
             Padding(
@@ -291,7 +424,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                 child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      StringsResources.academyTitle(),
+                      StringsResources.academyArticlesTitle(),
                       style: TextStyle(
                           fontSize: 37,
                           letterSpacing: 1.7,
@@ -314,7 +447,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                     height: 751,
                     child: GridView(
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
+                        crossAxisCount: 2,
                         childAspectRatio: 1.39,
                         crossAxisSpacing: 19.0,
                         mainAxisSpacing: 19.0,
