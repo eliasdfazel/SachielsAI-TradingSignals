@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/30/22, 9:02 AM
+ * Last modified 8/30/22, 9:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -179,6 +179,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
                         const Divider(
                           height: 51,
+                          color: Colors.transparent,
                         ),
 
                         articlesAcademy,
@@ -385,16 +386,10 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
             Padding(
                 padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 child: SizedBox(
-                    height: 751,
-                    child: GridView(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.39,
-                        crossAxisSpacing: 19.0,
-                        mainAxisSpacing: 19.0,
-                      ),
-                      padding: const EdgeInsets.fromLTRB(19, 0, 19, 13),
-                      physics: const BouncingScrollPhysics(),
+                    height: 303,
+                    child: ListView(
+                      padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                      physics: const PageScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       controller: scrollController,
                       children: aAcademyArticle,
@@ -418,138 +413,115 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
           navigateTo(context, SachielAcademyBrowser(articlesDataStructure: articlesDataStructure));
 
         },
-        child: Container(
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    color: ColorsResources.primaryColorLightest.withOpacity(0.09),
-                    blurRadius: 11,
-                    offset: const Offset(0, 3)
-                )
-              ]
-          ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 19, 0),
           child: ClipRRect(
-              borderRadius: BorderRadius.circular(17),
-              child: Container(
+            borderRadius: BorderRadius.circular(17),
+            child: Blur(
+              blur: 7,
+              blurColor: ColorsResources.dark,
+              colorOpacity: 0.1,
+              overlay: Container(
+                  height: 301,
+                  width: 337,
                   decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 0.7,
+                      color: ColorsResources.dark.withOpacity(0.73),
+                    ),
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(17),
                         topRight: Radius.circular(17),
                         bottomLeft: Radius.circular(17),
                         bottomRight: Radius.circular(17)
                     ),
-                    gradient: LinearGradient(
-                      colors: [
-                        ColorsResources.dark.withOpacity(0.73),
-                        ColorsResources.premiumDark,
-                      ],
-                      transform: const GradientRotation(-45),
-                    ),
                   ),
                   child: Stack(
                       children: [
 
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
+                        /* Start - Article Cover */
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Container(
+                              height: 199,
+                              width: 313,
+                              padding: const EdgeInsets.fromLTRB(0, 19, 0, 0),
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(17),
+                                  topRight: Radius.circular(17),
+                                  bottomRight: Radius.circular(11),
+                                  bottomLeft: Radius.circular(11),
+                                ),
+                                child: Image.network(
+                                  articlesDataStructure.articleCover(),
+                                  alignment: Alignment.center,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                          )
+                        ),
+                        /* End - Article Cover */
 
-                            /* Start - Article Cover */
-                            SizedBox(
-                                height: 100,
-                                child: ClipRRect(
+                        /* Start - Article Text */
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 19),
+                            child: Container(
+                                height: 119,
+                                width: 279,
+                                decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(17),
                                     topRight: Radius.circular(17),
-                                    bottomRight: Radius.circular(11),
-                                    bottomLeft: Radius.circular(11),
+                                    bottomRight: Radius.circular(17),
+                                    bottomLeft: Radius.circular(17),
                                   ),
-                                  child: Image.network(
-                                    articlesDataStructure.articleCover(),
-                                    alignment: Alignment.center,
-                                    fit: BoxFit.cover,
-                                  ),
-                                )
-                            ),
-                            /* End - Article Cover */
-
-                            /* Start - Article Text */
-                            SizedBox(
-                                height: 130,
-                                child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(13, 11, 13, 13),
-                                    child: GradientText(
-                                      articlesDataStructure.articleTitle(),
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                          fontSize: 17,
-                                          decoration: TextDecoration.none,
-                                          shadows: [
-                                            Shadow(
-                                                color: ColorsResources.black.withOpacity(0.57),
-                                                blurRadius: 7,
-                                                offset: const Offset(0.0, 3.0)
-                                            )
-                                          ]
-                                      ),
-                                      colors: const <Color> [
-                                        ColorsResources.premiumLight,
-                                        ColorsResources.white,
-                                      ],
+                                  color: ColorsResources.dark,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: ColorsResources.premiumDark.withOpacity(0.37),
+                                        blurRadius: 13,
+                                        offset: const Offset(0, 3)
                                     )
-                                )
-                            )
-                            /* End - Article Text */
-
-                          ],
-                        ),
-
-                        const Positioned(
-                          left: 0,
-                          top: 0,
-                          child: SizedBox(
-                            height: 21,
-                            width: 73,
-                            child: Blur(
-                                blur: 3,
-                                blurColor: ColorsResources.premiumDark,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(17),
-                                  topRight: Radius.circular(7),
-                                  bottomRight: Radius.circular(17),
-                                  bottomLeft: Radius.circular(7),
+                                  ]
                                 ),
-                                colorOpacity: 0.07,
-                                alignment: Alignment.center,
-                                child: SizedBox(
-                                  height: 21,
-                                  width: 73,
-                                )
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                            left: 0,
-                            top: 0,
-                            child: SizedBox(
-                                height: 21,
-                                width: 73,
-                                child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      articlesDataStructure.initialPostType,
-                                      style: const TextStyle(
-                                          fontSize: 13,
-                                          color: ColorsResources.light
-                                      ),
-                                    )
+                                padding: const EdgeInsets.fromLTRB(19, 13, 19, 13),
+                                child: GradientText(
+                                  articlesDataStructure.articleTitle(),
+                                  textAlign: TextAlign.start,
+                                  overflow: TextOverflow.fade,
+                                  style: TextStyle(
+                                      fontSize: 19,
+                                      decoration: TextDecoration.none,
+                                      shadows: [
+                                        Shadow(
+                                            color: ColorsResources.black.withOpacity(0.57),
+                                            blurRadius: 7,
+                                            offset: const Offset(0.0, 3.0)
+                                        )
+                                      ]
+                                  ),
+                                  colors: const <Color> [
+                                    ColorsResources.premiumLight,
+                                    ColorsResources.white,
+                                  ],
                                 )
                             )
+                          )
                         )
+                        /* End - Article Text */
 
                       ]
                   )
-              )
-          ),
+              ),
+              child: const SizedBox(
+                height: 301,
+                width: 337,
+              ),
+            ),
+          )
         )
     );
   }
