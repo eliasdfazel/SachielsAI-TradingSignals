@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/30/22, 8:57 AM
+ * Last modified 8/30/22, 9:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -347,11 +347,11 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     for (var articlesDataStructureItem in articlesDataStructure) {
 
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyTutorialsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyTutorialsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyTutorialsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyTutorialsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyTutorialsItem(articlesDataStructureItem));
 
     }
 
@@ -409,7 +409,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
   }
 
-  Widget academyNewsItem(ArticlesDataStructure articlesDataStructure) {
+  Widget academyTutorialsItem(ArticlesDataStructure articlesDataStructure) {
     debugPrint("Academy Article: ${articlesDataStructure.articleTitle()}");
 
     return InkWell(
@@ -562,7 +562,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
     /* Start - Academy Articles */
     FirebaseFirestore.instance
         .collection("/Sachiels/Academy/Articles")
-        .limit(13)
+        .limit(7)
         .orderBy("articleTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
 
@@ -596,6 +596,8 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     for (var articlesDataStructureItem in articlesDataStructure) {
 
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
       aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
       aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
       aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
@@ -636,7 +638,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
             Padding(
                 padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 child: SizedBox(
-                  height: 919,
+                  height: 1237,
                   width: double.infinity,
                   child: GridView(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
