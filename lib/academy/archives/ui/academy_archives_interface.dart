@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/29/22, 10:23 AM
+ * Last modified 8/30/22, 8:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -175,6 +175,12 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                       scrollDirection: Axis.vertical,
                       children: [
 
+                        tutorialsAcademy,
+
+                        const Divider(
+                          height: 51,
+                        ),
+
                         articlesAcademy,
 
                       ]
@@ -300,6 +306,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
     );
   }
 
+  /* Start - Tutorials */
   void retrieveAcademyTutorials() {
     debugPrint("Retrieve Latest Signals Details");
 
@@ -320,7 +327,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
       if (articlesDataStructure.isNotEmpty) {
 
-
+        prepareAcademyTutorials(articlesDataStructure);
 
       }
 
@@ -334,89 +341,23 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
   }
 
-  void retrieveAcademyArticles() {
-    debugPrint("Retrieve Latest Signals Details");
-
-    /* Start - Academy Articles */
-    FirebaseFirestore.instance
-        .collection("/Sachiels/Academy/Articles")
-        .limit(13)
-        .orderBy("articleTimestamp")
-        .get().then((QuerySnapshot querySnapshot) {
-
-          List<ArticlesDataStructure> articlesDataStructure = [];
-
-          for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
-
-            articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.articlePostType));
-
-          }
-
-          if (articlesDataStructure.isNotEmpty) {
-
-            prepareAcademyArticles(articlesDataStructure);
-
-          }
-
-          retrieveAcademyNews();
-
-        },
-        onError: (e) => {
-
-        });
-    /* End - Academy Articles */
-
-  }
-
-  void retrieveAcademyNews() {
-    debugPrint("Retrieve Latest Signals Details");
-
-    /* Start - Academy News */
-    FirebaseFirestore.instance
-        .collection("/Sachiels/Academy/News")
-        .limit(13)
-        .orderBy("articleTimestamp")
-        .get().then((QuerySnapshot querySnapshot) {
-
-      List<ArticlesDataStructure> articlesDataStructure = [];
-
-      for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
-
-        articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.newsPostType));
-
-      }
-
-      if (articlesDataStructure.isNotEmpty) {
-
-
-
-      }
-
-    },
-        onError: (e) => {
-
-        });
-    /* End - Academy News */
-
-  }
-
-  void prepareAcademyArticles(List<ArticlesDataStructure> articlesDataStructure) {
+  void prepareAcademyTutorials(List<ArticlesDataStructure> articlesDataStructure) {
 
     List<Widget> aAcademyArticle = <Widget>[];
 
     for (var articlesDataStructureItem in articlesDataStructure) {
 
-      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
 
     }
 
     setState(() {
 
-      articlesAcademy = Column(
+      tutorialsAcademy = Column(
           children: [
 
             Padding(
@@ -424,7 +365,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                 child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      StringsResources.academyArticlesTitle(),
+                      StringsResources.academyTutorialsTitle(),
                       style: TextStyle(
                           fontSize: 37,
                           letterSpacing: 1.7,
@@ -468,7 +409,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
   }
 
-  Widget academyArticlesItem(ArticlesDataStructure articlesDataStructure) {
+  Widget academyNewsItem(ArticlesDataStructure articlesDataStructure) {
     debugPrint("Academy Article: ${articlesDataStructure.articleTitle()}");
 
     return InkWell(
@@ -612,5 +553,320 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
         )
     );
   }
+  /* End - Tutorials */
+
+  /* Start - Articles */
+  void retrieveAcademyArticles() {
+    debugPrint("Retrieve Latest Signals Details");
+
+    /* Start - Academy Articles */
+    FirebaseFirestore.instance
+        .collection("/Sachiels/Academy/Articles")
+        .limit(13)
+        .orderBy("articleTimestamp")
+        .get().then((QuerySnapshot querySnapshot) {
+
+          List<ArticlesDataStructure> articlesDataStructure = [];
+
+          for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+
+            articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.articlePostType));
+
+          }
+
+          if (articlesDataStructure.isNotEmpty) {
+
+            prepareAcademyArticles(articlesDataStructure);
+
+          }
+
+          retrieveAcademyNews();
+
+        },
+        onError: (e) => {
+
+        });
+    /* End - Academy Articles */
+
+  }
+
+  void prepareAcademyArticles(List<ArticlesDataStructure> articlesDataStructure) {
+
+    List<Widget> aAcademyArticle = <Widget>[];
+
+    for (var articlesDataStructureItem in articlesDataStructure) {
+
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
+
+    }
+
+    int gridColumnCount = (displayWidth(context) / 199).round();
+
+    setState(() {
+
+      articlesAcademy = Column(
+          children: [
+
+            Padding(
+                padding: const EdgeInsets.fromLTRB(19, 0, 0, 17),
+                child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      StringsResources.academyArticlesTitle(),
+                      style: TextStyle(
+                          fontSize: 37,
+                          letterSpacing: 1.7,
+                          color: ColorsResources.premiumLight,
+                          shadows: [
+                            Shadow(
+                                color: ColorsResources.black.withOpacity(0.13),
+                                blurRadius: 13,
+                                offset: const Offset(0, 7)
+                            )
+                          ]
+                      ),
+                    )
+                )
+            ),
+
+            Padding(
+                padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                child: SizedBox(
+                  height: 919,
+                  width: double.infinity,
+                  child: GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: gridColumnCount,
+                      childAspectRatio: 0.61,
+                      mainAxisSpacing: 37.0,
+                      crossAxisSpacing: 19.0,
+                    ),
+                    padding: const EdgeInsets.fromLTRB(19, 0, 19, 13),
+                    physics: const NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    controller: scrollController,
+                    children: aAcademyArticle,
+                  )
+                )
+            ),
+
+          ]
+      );
+
+    });
+
+  }
+
+  Widget academyArticlesItem(ArticlesDataStructure articlesDataStructure) {
+    debugPrint("Academy Article: ${articlesDataStructure.articleTitle()}");
+
+    return InkWell(
+        onTap: () {
+
+          navigateTo(context, SachielAcademyBrowser(articlesDataStructure: articlesDataStructure));
+
+        },
+        child: Container(
+          width: 199,
+          decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                    color: ColorsResources.primaryColorLightest.withOpacity(0.09),
+                    blurRadius: 11,
+                    offset: const Offset(0, 3)
+                )
+              ]
+          ),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(17),
+              child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(17),
+                        topRight: Radius.circular(17),
+                        bottomLeft: Radius.circular(17),
+                        bottomRight: Radius.circular(17)
+                    ),
+                    gradient: LinearGradient(
+                      colors: [
+                        ColorsResources.dark.withOpacity(0.73),
+                        ColorsResources.premiumDark,
+                      ],
+                      transform: const GradientRotation(-45),
+                    ),
+                  ),
+                  child: Stack(
+                      children: [
+
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+
+                            /* Start - Article Cover */
+                            SizedBox(
+                                height: 101,
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(17),
+                                    topRight: Radius.circular(17),
+                                    bottomRight: Radius.circular(11),
+                                    bottomLeft: Radius.circular(11),
+                                  ),
+                                  child: Image.network(
+                                    articlesDataStructure.articleCover(),
+                                    alignment: Alignment.center,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                            ),
+                            /* End - Article Cover */
+
+                            /* Start - Article Text */
+                            SizedBox(
+                                height: 79,
+                                child: Container(
+                                  color: Colors.transparent,
+                                  child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(13, 11, 13, 3),
+                                      child: GradientText(
+                                        articlesDataStructure.articleTitle(),
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            decoration: TextDecoration.none,
+                                            shadows: [
+                                              Shadow(
+                                                  color: ColorsResources.black.withOpacity(0.57),
+                                                  blurRadius: 7,
+                                                  offset: const Offset(0.0, 3.0)
+                                              )
+                                            ]
+                                        ),
+                                        colors: const <Color> [
+                                          ColorsResources.premiumLight,
+                                          ColorsResources.white,
+                                        ],
+                                      )
+                                  )
+                                )
+                            ),
+                            /* End - Article Text */
+
+                            /* Start - Summary Text */
+                            SizedBox(
+                                height: 87,
+                                child: Container(
+                                  color: Colors.transparent,
+                                  child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(13, 3, 13, 7),
+                                      child: Text(
+                                        articlesDataStructure.articleSummary(),
+                                        textAlign: TextAlign.start,
+                                        maxLines: 6,
+                                        overflow: TextOverflow.fade,
+                                        style: const TextStyle(
+                                          color: ColorsResources.premiumLightTransparent,
+                                          fontSize: 11,
+                                          decoration: TextDecoration.none,
+                                          wordSpacing: 1.3
+                                        ),
+                                      )
+                                  )
+                                )
+                            )
+                            /* End - Summary Text */
+
+                          ],
+                        ),
+
+                        const Positioned(
+                          left: 0,
+                          top: 0,
+                          child: SizedBox(
+                            height: 21,
+                            width: 73,
+                            child: Blur(
+                                blur: 3,
+                                blurColor: ColorsResources.premiumDark,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(17),
+                                  topRight: Radius.circular(7),
+                                  bottomRight: Radius.circular(17),
+                                  bottomLeft: Radius.circular(7),
+                                ),
+                                colorOpacity: 0.07,
+                                alignment: Alignment.center,
+                                child: SizedBox(
+                                  height: 21,
+                                  width: 73,
+                                )
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                            left: 0,
+                            top: 0,
+                            child: SizedBox(
+                                height: 21,
+                                width: 73,
+                                child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      articlesDataStructure.articleCategory(),
+                                      style: const TextStyle(
+                                          fontSize: 13,
+                                          color: ColorsResources.light
+                                      ),
+                                    )
+                                )
+                            )
+                        )
+
+                      ]
+                  )
+              )
+          ),
+        )
+    );
+  }
+  /* End - Articles */
+
+  /* Start - News */
+  void retrieveAcademyNews() {
+    debugPrint("Retrieve Latest Signals Details");
+
+    /* Start - Academy News */
+    FirebaseFirestore.instance
+        .collection("/Sachiels/Academy/News")
+        .limit(13)
+        .orderBy("articleTimestamp")
+        .get().then((QuerySnapshot querySnapshot) {
+
+      List<ArticlesDataStructure> articlesDataStructure = [];
+
+      for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+
+        articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.newsPostType));
+
+      }
+
+      if (articlesDataStructure.isNotEmpty) {
+
+
+
+      }
+
+    },
+        onError: (e) => {
+
+        });
+    /* End - Academy News */
+
+  }
+  /* End - News */
 
 }

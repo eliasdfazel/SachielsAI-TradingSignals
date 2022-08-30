@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/24/22, 10:25 AM
+ * Last modified 8/30/22, 8:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -573,7 +573,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                       child: InkWell(
                           onTap: () {
 
-                            scrollController.jumpTo(387);
+                            scrollController.animateTo(387, duration: const Duration(milliseconds: 313), curve: Curves.easeOut);
 
                           },
                           child: const Image(
@@ -1122,7 +1122,8 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                       child: InkWell(
                           onTap: () {
 
-                            scrollController.jumpTo(775);
+                            scrollController.animateTo(775, duration: const Duration(milliseconds: 313), curve: Curves.easeOut);
+
 
                           },
                           child: const Image(

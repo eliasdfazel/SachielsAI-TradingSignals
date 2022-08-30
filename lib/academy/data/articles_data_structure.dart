@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/24/22, 9:13 AM
+ * Last modified 8/30/22, 7:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,11 +17,14 @@ class ArticlesDataStructure {
   static const String articleTitleName = "articleTitle";
   static const String articleSummaryName = "articleSummary";
 
+  static const String articleCategoryName = "articleCategory";
+
   static const String articleCoverName = "articleCover";
 
   static const String articleTimestampName = "articleTimestamp";
 
   String initialPostType = "Article";
+
   static const articlePostType = "Article";
   static const newsPostType = "News";
   static const tutorialPostType = "Tutorial";
@@ -49,6 +52,11 @@ class ArticlesDataStructure {
   String articleSummary() {
 
     return articlesDocumentData[ArticlesDataStructure.articleSummaryName];
+  }
+
+  String articleCategory() {
+
+    return articlesDocumentData[ArticlesDataStructure.articleCategoryName];
   }
 
   String articleCover() {
