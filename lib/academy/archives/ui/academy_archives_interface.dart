@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/30/22, 9:46 AM
+ * Last modified 8/31/22, 7:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -170,7 +170,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
                   child: ListView(
-                      padding: const EdgeInsets.fromLTRB(0, 103, 0, 37),
+                      padding: const EdgeInsets.fromLTRB(0, 103, 0, 13),
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       children: [
@@ -183,6 +183,13 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                         ),
 
                         articlesAcademy,
+
+                        const Divider(
+                          height: 51,
+                          color: Colors.transparent,
+                        ),
+
+                        newsAcademy
 
                       ]
                   )
@@ -478,7 +485,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                                     bottomRight: Radius.circular(17),
                                     bottomLeft: Radius.circular(17),
                                   ),
-                                  color: ColorsResources.dark,
+                                  color: ColorsResources.dark.withOpacity(0.91),
                                   boxShadow: [
                                     BoxShadow(
                                         color: ColorsResources.premiumDark.withOpacity(0.37),
@@ -855,6 +862,12 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
       aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
       aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
       aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
+      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
 
     }
 
@@ -862,7 +875,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     setState(() {
 
-      articlesAcademy = Column(
+      newsAcademy = Column(
           children: [
 
             Padding(
@@ -870,7 +883,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                 child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      StringsResources.academyArticlesTitle(),
+                      StringsResources.academyNewsTitle(),
                       style: TextStyle(
                           fontSize: 37,
                           letterSpacing: 1.7,
@@ -890,12 +903,12 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
             Padding(
                 padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 child: SizedBox(
-                    height: 1237,
+                    height: 1937,
                     width: double.infinity,
                     child: GridView(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: gridColumnCount,
-                        childAspectRatio: 0.61,
+                        childAspectRatio: 0.73,
                         mainAxisSpacing: 37.0,
                         crossAxisSpacing: 19.0,
                       ),
@@ -956,129 +969,114 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                   child: Stack(
                       children: [
 
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-
-                            /* Start - Article Cover */
-                            SizedBox(
-                                height: 101,
-                                child: ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(17),
-                                    topRight: Radius.circular(17),
-                                    bottomRight: Radius.circular(11),
-                                    bottomLeft: Radius.circular(11),
-                                  ),
-                                  child: Image.network(
-                                    articlesDataStructure.articleCover(),
-                                    alignment: Alignment.center,
-                                    fit: BoxFit.cover,
-                                  ),
-                                )
+                        /* Start - Article Cover */
+                        SizedBox(
+                          height: 251,
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(17),
+                              topRight: Radius.circular(17),
+                              bottomRight: Radius.circular(17),
+                              bottomLeft: Radius.circular(17),
                             ),
-                            /* End - Article Cover */
-
-                            /* Start - Article Text */
-                            SizedBox(
-                                height: 79,
-                                child: Container(
-                                    color: Colors.transparent,
-                                    child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(13, 11, 13, 3),
-                                        child: GradientText(
-                                          articlesDataStructure.articleTitle(),
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              decoration: TextDecoration.none,
-                                              shadows: [
-                                                Shadow(
-                                                    color: ColorsResources.black.withOpacity(0.57),
-                                                    blurRadius: 7,
-                                                    offset: const Offset(0.0, 3.0)
-                                                )
-                                              ]
-                                          ),
-                                          colors: const <Color> [
-                                            ColorsResources.premiumLight,
-                                            ColorsResources.white,
-                                          ],
-                                        )
-                                    )
-                                )
+                            child: Image.network(
+                              articlesDataStructure.articleCover(),
+                              alignment: Alignment.center,
+                              fit: BoxFit.cover,
                             ),
-                            /* End - Article Text */
-
-                            /* Start - Summary Text */
-                            SizedBox(
-                                height: 87,
-                                child: Container(
-                                    color: Colors.transparent,
-                                    child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(13, 3, 13, 7),
-                                        child: Text(
-                                          articlesDataStructure.articleSummary(),
-                                          textAlign: TextAlign.start,
-                                          maxLines: 6,
-                                          overflow: TextOverflow.fade,
-                                          style: const TextStyle(
-                                              color: ColorsResources.premiumLightTransparent,
-                                              fontSize: 11,
-                                              decoration: TextDecoration.none,
-                                              wordSpacing: 1.3
-                                          ),
-                                        )
-                                    )
-                                )
-                            )
-                            /* End - Summary Text */
-
-                          ],
+                          )
                         ),
+                        /* End - Article Cover */
 
-                        const Positioned(
-                          left: 0,
-                          top: 0,
+                        /* Start - Article Text */
+                        Positioned(
+                          bottom: 7,
+                          left: 7,
+                          right: 7,
+                          child: Blur(
+                            blur: 3,
+                            blurColor: ColorsResources.premiumDark,
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(17),
+                                topRight: Radius.circular(17),
+                                bottomRight: Radius.circular(17),
+                                bottomLeft: Radius.circular(17),
+                              ),
+                            colorOpacity: 0.07,
+                            alignment: Alignment.center,
+                            overlay: Container(
+                                color: Colors.transparent,
+                                child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                    child: Text(
+                                      articlesDataStructure.articleTitle(),
+                                      textAlign: TextAlign.start,
+                                      overflow: TextOverflow.fade,
+                                      maxLines: 3,
+                                      style: TextStyle(
+                                          color: ColorsResources.light,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          decoration: TextDecoration.none,
+                                          shadows: [
+                                            Shadow(
+                                                color: ColorsResources.black.withOpacity(0.37),
+                                                blurRadius: 7,
+                                                offset: const Offset(0.0, 3.0)
+                                            )
+                                          ]
+                                      ),
+                                    )
+                                )
+                            ),
+                            child: const SizedBox(
+                              height: 79,
+                              width: double.infinity,
+                            )
+                          )
+                        ),
+                        /* End - Article Text */
+
+                        /* Start - Article Category */
+                        Positioned(
+                          left: 7,
+                          top: 7,
                           child: SizedBox(
                             height: 21,
                             width: 73,
                             child: Blur(
                                 blur: 3,
                                 blurColor: ColorsResources.premiumDark,
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(17),
-                                  topRight: Radius.circular(7),
+                                  topRight: Radius.circular(17),
                                   bottomRight: Radius.circular(17),
-                                  bottomLeft: Radius.circular(7),
+                                  bottomLeft: Radius.circular(17),
                                 ),
                                 colorOpacity: 0.07,
                                 alignment: Alignment.center,
-                                child: SizedBox(
+                                overlay: SizedBox(
+                                    height: 21,
+                                    width: 73,
+                                    child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          articlesDataStructure.articleCategory(),
+                                          style: const TextStyle(
+                                            color: ColorsResources.light,
+                                            fontSize: 13,
+                                          ),
+                                        )
+                                    )
+                                ),
+                                child: const SizedBox(
                                   height: 21,
                                   width: 73,
                                 )
                             ),
                           ),
                         ),
-                        Positioned(
-                            left: 0,
-                            top: 0,
-                            child: SizedBox(
-                                height: 21,
-                                width: 73,
-                                child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      articlesDataStructure.articleCategory(),
-                                      style: const TextStyle(
-                                          fontSize: 13,
-                                          color: ColorsResources.light
-                                      ),
-                                    )
-                                )
-                            )
-                        )
+                        /* End - Article Category */
 
                       ]
                   )
