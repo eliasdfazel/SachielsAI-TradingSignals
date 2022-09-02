@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/30/22, 8:51 AM
+ * Last modified 9/2/22, 8:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -67,7 +67,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
       height: 399,
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 37, 0, 13),
+        padding: const EdgeInsets.fromLTRB(7, 37, 7, 13),
         child: lastSignalDetails
       )
     );

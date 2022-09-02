@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/2/22, 6:16 AM
+ * Last modified 9/2/22, 8:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,7 +11,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/in_application_store/data/plans_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -19,6 +18,7 @@ import 'package:sachiel/utils/data/numbers.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
 class SachielsDigitalStore extends StatefulWidget {
@@ -245,7 +245,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                                         child: Padding(
                                             padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                             child: Text(
-                                                StringsResources.historyTitle(),
+                                                StringsResources.storeTitle(),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: const TextStyle(
@@ -267,10 +267,35 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                 /* End - Back */
 
                 /* Start - Purchase Plan Picker */
-                const Positioned(
+                Positioned(
                     right: 19,
                     top: 19,
-                    child: PurchasePlanPicker()
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: ColorsResources.primaryColorLighter,
+                                blurRadius: 51,
+                                spreadRadius: 0,
+                                offset: Offset(0, 0)
+                            )
+                          ]
+                      ),
+                      child: SizedBox(
+                          height: 59,
+                          width: 59,
+                          child: InkWell(
+                              onTap: () async {
+
+                                launchUrl(Uri.parse("https://GeeksEmpire.co/Sachiels/PurchasingPlans"));
+
+                              },
+                              child: const Image(
+                                image: AssetImage("golden_information_icon.png"),
+                              )
+                          )
+                      ),
+                    )
                 ),
                 /* End - Purchase Plan Picker */
 
@@ -319,24 +344,16 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
     }
 
-    int gridColumnCount = (displayWidth(context) / 359).round();
-
     setState(() {
 
       allPurchasingPlans = Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-          child: GridView(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: gridColumnCount,
-              childAspectRatio: 1,
-              crossAxisSpacing: 19.0,
-              mainAxisSpacing: 19.0,
-            ),
-            padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            children: signalHistoryItem,
-          )
+        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          children: signalHistoryItem,
+        )
       );
 
     });
@@ -346,23 +363,42 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
   Widget plansDataStructureItemView(PlansDataStructure plansDataStructure) {
     debugPrint("Plan Details: ${plansDataStructure.plansDocumentData}");
 
-    /*
-     * Get Download Link Of Firebase Storage
-     */
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 37, 31, 0),
+      child: SizedBox(
+        height: 593,
+        width: 373,
+        child: InkWell(
+            onTap: () {
 
-    return SizedBox(
-      height: 573,
-      width: 373,
-      child: InkWell(
-        onTap: () {
 
-          /*
-           *  Query Product Details By Product Id
-           */
 
-        },
-        child: Container(),
-      ),
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(17),
+                  child: Image.network(
+                    plansDataStructure.purchasingPlanSnapshot(),
+                    height: 373,
+                    width: 373,
+                    fit: BoxFit.contain,
+                  )
+                ),
+
+                const Image(
+                  image: AssetImage("purchasing_icon.png"),
+                  height: 73,
+                  width: 373,
+                  fit: BoxFit.contain,
+                )
+
+              ],
+            )
+        ),
+      )
     );
   }
 
