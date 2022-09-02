@@ -73,6 +73,7 @@ dependencies:
 
 
   ####### ####### #######
+  in_app_purchase: ^3.0.7
   intl: ^0.17.0
   ####### ####### #######
 
@@ -150,12 +151,15 @@ flutter:
     - entry_background.jpg
     - entrance_next.png
 
+    - golden_information_icon.png
+
     - next_icon.png
     - next_arrow_icon.png
 
     - oval_circle_shape.png
 
     - point_icon.png
+    - purchasing_icon.png
 
     - rectircle_shape.png
 

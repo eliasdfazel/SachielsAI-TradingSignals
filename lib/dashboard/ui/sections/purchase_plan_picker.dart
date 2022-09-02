@@ -2,14 +2,16 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/3/22, 3:06 AM
+ * Last modified 9/2/22, 5:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:flutter/material.dart';
+import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/resources/colors_resources.dart';
+import 'package:sachiel/utils/navigations/navigation_commands.dart';
 
 class PurchasePlanPicker extends StatefulWidget {
 
@@ -51,7 +53,7 @@ class PurchasePlanPickerStates extends State<PurchasePlanPicker> {
           child: InkWell(
               onTap: () {
 
-
+                navigateTo(context, const SachielsDigitalStore());
 
               },
               child: const Image(
