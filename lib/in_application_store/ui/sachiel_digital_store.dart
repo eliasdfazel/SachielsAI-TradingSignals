@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/2/22, 5:56 AM
+ * Last modified 9/2/22, 6:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -296,7 +296,11 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
           }
 
-          prepareSignalsHistoryItems(plansDataStructure);
+          if (plansDataStructure.isNotEmpty) {
+
+            prepareSignalsHistoryItems(plansDataStructure);
+
+          }
 
         },
         onError: (e) => {
@@ -328,9 +332,9 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
               crossAxisSpacing: 19.0,
               mainAxisSpacing: 19.0,
             ),
-            padding: const EdgeInsets.fromLTRB(19, 101, 19, 37),
+            padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
             physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.vertical,
+            scrollDirection: Axis.horizontal,
             children: signalHistoryItem,
           )
       );
@@ -341,6 +345,10 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
   Widget plansDataStructureItemView(PlansDataStructure plansDataStructure) {
     debugPrint("Plan Details: ${plansDataStructure.plansDocumentData}");
+
+    /*
+     * Get Download Link Of Firebase Storage
+     */
 
     return SizedBox(
       height: 573,
