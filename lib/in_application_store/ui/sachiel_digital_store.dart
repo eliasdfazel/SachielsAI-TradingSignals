@@ -2,14 +2,17 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/2/22, 8:46 AM
+ * Last modified 9/2/22, 9:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/in_application_store/data/plans_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
@@ -31,6 +34,8 @@ class SachielsDigitalStore extends StatefulWidget {
 }
 class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
+  StreamSubscription<List<PurchaseDetails>>? sachielSubscription;
+
   Widget allPurchasingPlans = Container(
     alignment: Alignment.center,
     child: LoadingAnimationWidget.staggeredDotsWave(
@@ -43,6 +48,22 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
   @override
   void initState() {
 
+    final Stream purchaseUpdated = InAppPurchase.instance.purchaseStream;
+
+    sachielSubscription = purchaseUpdated.listen((purchaseDetailsList) {
+
+      purchaseUpdatedListener(purchaseDetailsList);
+
+    }, onDone: () {
+
+      sachielSubscription?.cancel();
+
+    }, onError: (error) {
+
+
+
+    }) as StreamSubscription<List<PurchaseDetails>>?;
+
     retrievePurchasingPlans();
 
     super.initState();
@@ -53,6 +74,9 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
   @override
   void dispose() {
+
+    sachielSubscription?.cancel();
+
     super.dispose();
   }
 
@@ -400,6 +424,38 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
         )
       )
     );
+  }
+
+  void purchaseUpdatedListener(List<PurchaseDetails> purchaseDetailsList) {
+
+    for (var purchaseDetails in purchaseDetailsList) {
+
+      if (purchaseDetails.status == PurchaseStatus.pending) {
+
+
+      } else {
+
+        if (purchaseDetails.status == PurchaseStatus.error) {
+
+
+
+        } else if (purchaseDetails.status == PurchaseStatus.purchased
+            || purchaseDetails.status == PurchaseStatus.restored) {
+
+
+
+        }
+
+        if (purchaseDetails.pendingCompletePurchase) {
+
+          InAppPurchase.instance.completePurchase(purchaseDetails);
+
+        }
+
+      }
+
+    }
+
   }
 
 }
