@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/2/22, 5:54 AM
+ * Last modified 9/2/22, 5:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -340,14 +340,21 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
   }
 
   Widget plansDataStructureItemView(PlansDataStructure plansDataStructure) {
-
     debugPrint("Plan Details: ${plansDataStructure.plansDocumentData}");
 
-
-
     return SizedBox(
-        height: 573,
-        width: 373,
+      height: 573,
+      width: 373,
+      child: InkWell(
+        onTap: () {
+
+          /*
+           *  Query Product Details By Product Id
+           */
+
+        },
+        child: Container(),
+      ),
     );
   }
 
