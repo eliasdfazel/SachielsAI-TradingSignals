@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/5/22, 1:43 AM
+ * Last modified 9/5/22, 2:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -58,6 +58,11 @@ class StringsResources {
   static String entryPriceText() {
 
     return "Entry Price";
+  }
+
+  static String profileTitle() {
+
+    return "Profile";
   }
 
   static String historyTitle() {

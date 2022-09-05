@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/5/22, 2:26 AM
+ * Last modified 9/5/22, 2:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -56,12 +56,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
   AcademySummaryInterface academySummaryInterface = const AcademySummaryInterface();
 
   BrokersSuggestionsInterface brokersSuggestionsInterface = const BrokersSuggestionsInterface();
-
-  String profileName = StringsResources.sachielAI();
-  Widget profileImage = const Image(
-    image: AssetImage("cyborg_girl.jpg"),
-    fit: BoxFit.cover,
-  );
 
   @override
   void initState() {
