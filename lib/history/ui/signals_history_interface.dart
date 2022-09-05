@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/2/22, 5:25 AM
+ * Last modified 9/5/22, 2:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -123,13 +123,16 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                 /* End - Gradient Background - Dark */
 
                 /* Start - Branding Transparent */
-                const Align(
+                Align(
                   alignment: Alignment.center,
                   child: Opacity(
-                    opacity: 0.1,
-                    child: Image(
-                      image: AssetImage("logo.png"),
-                    ),
+                      opacity: 0.1,
+                      child: Transform.scale(
+                          scale: 1.7,
+                          child: const Image(
+                            image: AssetImage("logo.png"),
+                          )
+                      )
                   ),
                 ),
                 /* End - Branding Transparent */

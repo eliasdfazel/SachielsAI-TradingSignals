@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/31/22, 7:57 AM
+ * Last modified 9/5/22, 2:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:marquee/marquee.dart';
 import 'package:sachiel/academy/data/articles_data_structure.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/in_application_browser/ui/sachiel_academy_browser.dart';
@@ -22,6 +23,7 @@ import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
 class AcademyArchivesInterface extends StatefulWidget {
@@ -128,13 +130,16 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                 /* End - Gradient Background - Dark */
 
                 /* Start - Branding Transparent */
-                const Align(
+                Align(
                   alignment: Alignment.center,
                   child: Opacity(
                     opacity: 0.1,
-                    child: Image(
-                      image: AssetImage("logo.png"),
-                    ),
+                    child: Transform.scale(
+                      scale: 1.7,
+                      child: const Image(
+                        image: AssetImage("logo.png"),
+                      )
+                    )
                   ),
                 ),
                 /* End - Branding Transparent */
@@ -170,7 +175,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
                   child: ListView(
-                      padding: const EdgeInsets.fromLTRB(0, 103, 0, 13),
+                      padding: const EdgeInsets.fromLTRB(0, 103, 0, 37),
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       children: [
@@ -307,6 +312,95 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                     child: PurchasePlanPicker()
                 ),
                 /* End - Purchase Plan Picker */
+
+                /* Start - Reserve Appointment for Online Course*/
+                Positioned(
+                  bottom: 37,
+                  left: 19,
+                  right: 19,
+                  child: Align(
+                      alignment: Alignment.topLeft,
+                      child: InkWell(
+                          onTap: () {
+
+                            launchUrl(Uri.parse("https://GeeksEmpire.co/Sachiels/OnlineCourses"));
+
+                          },
+                          child: SizedBox(
+                              height: 59,
+                              width: 155,
+                              child: Stack(
+                                children: [
+                                  WidgetMask(
+                                    blendMode: BlendMode.srcATop,
+                                    childSaveLayer: true,
+                                    mask /* Original Image */: Container(
+                                      decoration: const BoxDecoration(
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                ColorsResources.premiumDark,
+                                                ColorsResources.black,
+                                              ],
+                                              transform: GradientRotation(45)
+                                          )
+                                      ),
+                                    ),
+                                    child: const Image(
+                                      image: AssetImage("rectircle_shape.png"),
+                                    ),
+                                  ),
+                                  Align(
+                                      alignment: Alignment.center,
+                                      child: Padding(
+                                          padding: const EdgeInsets.all(1.9),
+                                          child: WidgetMask(
+                                              blendMode: BlendMode.srcATop,
+                                              childSaveLayer: true,
+                                              mask /* Original Image */: Container(
+                                                decoration: const BoxDecoration(
+                                                    gradient: LinearGradient(
+                                                        colors: [
+                                                          ColorsResources.black,
+                                                          ColorsResources.premiumDark,
+                                                        ],
+                                                        transform: GradientRotation(45)
+                                                    )
+                                                ),
+                                              ),
+                                              child: const Image(
+                                                image: AssetImage("rectircle_shape.png"),
+                                              )
+                                          )
+                                      )
+                                  ),
+                                  Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                          child: Marquee(
+                                              text: StringsResources.onlineCoursesTitle(),
+                                              accelerationDuration: const Duration(seconds: 3),
+                                              startAfter: const Duration(milliseconds: 777),
+                                              pauseAfterRound: const Duration(milliseconds: 777),
+                                              accelerationCurve: Curves.easeInOutCirc,
+                                              numberOfRounds: 7,
+                                              blankSpace: 37,
+                                              fadingEdgeStartFraction: 0.19,
+                                              fadingEdgeEndFraction: 0.19,
+                                              style: const TextStyle(
+                                                  color: ColorsResources.premiumLight,
+                                                  fontSize: 19
+                                              )
+                                          )
+                                      )
+                                  )
+                                ],
+                              )
+                          )
+                      )
+                  ),
+                )
+                /* End - Reserve Appointment for Online Course*/
 
               ],
             )

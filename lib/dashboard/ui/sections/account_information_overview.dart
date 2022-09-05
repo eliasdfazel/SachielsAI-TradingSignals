@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/3/22, 3:06 AM
+ * Last modified 9/5/22, 2:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,7 +10,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sachiel/profile/account_information_details.dart';
+import 'package:sachiel/profile/ui/account_information_details.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';

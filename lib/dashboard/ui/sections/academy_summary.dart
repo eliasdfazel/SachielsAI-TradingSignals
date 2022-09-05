@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/29/22, 9:35 AM
+ * Last modified 9/5/22, 1:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -125,8 +125,6 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
     for (var articlesDataStructureItem in articlesDataStructure) {
 
-      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
-      aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
       aAcademyArticle.add(signalDataStructureItemView(articlesDataStructureItem));
 
     }
