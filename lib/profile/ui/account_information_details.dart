@@ -2,15 +2,17 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/6/22, 4:47 AM
+ * Last modified 9/6/22, 5:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
+import 'package:sachiel/profile/data/profiles_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
@@ -613,7 +615,36 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
 
   void updateProfileInformation() async {
 
+    if(firebaseUser != null) {
 
+      ProfilesDataStructure profilesDataStructure = ProfilesDataStructure(
+        firebaseUser!.uid,
+
+        firebaseUser!.displayName!,
+        firebaseUser!.photoURL!,
+
+        firebaseUser!.email!,
+        firebaseUser!.phoneNumber!,
+
+        twitterInputController.text,
+        facebookInputController.text,
+        instagramInputController.text,
+      );
+
+      FirebaseFirestore.instance
+        .doc("Sachiels/Profiles/${firebaseUser!.uid}/Information")
+        .update(profilesDataStructure.profilesDocumentData)
+        .then((value) => {
+
+
+
+        }).onError((error, stackTrace) => {
+
+
+
+        });
+
+    }
 
   }
 
