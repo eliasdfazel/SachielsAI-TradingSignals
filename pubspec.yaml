@@ -103,7 +103,6 @@ dependencies:
 
   ####### ####### #######
   screenshot: ^1.2.3
-  simple_gradient_text: ^1.2.3
   share_plus: ^4.0.10
   status_bar_control: ^3.2.1
   ####### ####### #######
@@ -143,6 +142,10 @@ flutter:
     - continue_icon.png
     - cyborg_girl.jpg
 
+    - facebook_input.png
+
+    - instagram_input.png
+
     - logo.png
     - logo_background.png
     - logo_android.png
@@ -168,6 +171,9 @@ flutter:
 
     - squircle_logo.png
     - squircle_shape.png
+
+    - twitter_input.png
+
 
   fonts:
     - family: Ubuntu

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/5/22, 1:51 AM
+ * Last modified 9/6/22, 3:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,7 +17,7 @@ import 'package:sachiel/in_application_browser/ui/sachiel_academy_browser.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:sachiel/utils/widgets/gradient_text/gradient.dart';
 
 class AcademySummaryInterface extends StatefulWidget {
 
