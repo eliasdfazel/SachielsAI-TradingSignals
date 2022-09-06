@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/6/22, 4:01 AM
+ * Last modified 9/6/22, 4:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -224,7 +224,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                       child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: GradientText(
-                                          firebaseUser!.displayName!.replaceFirst(" ", "\n"),
+                                          profileName.replaceFirst(" ", "\n"),
                                           overflow: TextOverflow.fade,
                                           style: const TextStyle(
                                               fontSize: 59
