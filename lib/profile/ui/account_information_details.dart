@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/6/22, 4:02 AM
+ * Last modified 9/6/22, 4:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -39,6 +39,12 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
     height: 373,
     width: 373,
   );
+
+  TextEditingController twitterInputController = TextEditingController();
+
+  TextEditingController facebookInputController = TextEditingController();
+
+  TextEditingController instagramInputController = TextEditingController();
 
   @override
   void initState() {
@@ -159,94 +165,280 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                 ),
                 /* End - Gradient Background - Golden */
 
-                ListView(
-                  padding: const EdgeInsets.fromLTRB(0, 137, 0, 37),
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                  child: ListView(
+                    padding: const EdgeInsets.fromLTRB(0, 137, 0, 37),
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    children: [
 
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
+                      /* Start - Profile Image/Name */
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
 
-                            Expanded(
-                              flex: 1,
-                              child: SizedBox(
-                                  height: 201,
-                                  width: 201,
-                                  child: Stack(
-                                    children: [
-                                      WidgetMask(
-                                        blendMode: BlendMode.srcATop,
-                                        childSaveLayer: true,
-                                        mask /* Original Image */: Container(
-                                          decoration: const BoxDecoration(
-                                              gradient: LinearGradient(
-                                                  colors: [
-                                                    ColorsResources.white,
-                                                    ColorsResources.primaryColorLighter,
-                                                  ],
-                                                  transform: GradientRotation(45)
+                                  /* Start - Profile Image */
+                                  Expanded(
+                                      flex: 1,
+                                      child: SizedBox(
+                                          height: 201,
+                                          width: 201,
+                                          child: Stack(
+                                            children: [
+                                              WidgetMask(
+                                                blendMode: BlendMode.srcATop,
+                                                childSaveLayer: true,
+                                                mask /* Original Image */: Container(
+                                                  decoration: const BoxDecoration(
+                                                      gradient: LinearGradient(
+                                                          colors: [
+                                                            ColorsResources.white,
+                                                            ColorsResources.primaryColorLighter,
+                                                          ],
+                                                          transform: GradientRotation(45)
+                                                      )
+                                                  ),
+                                                ),
+                                                child: const Image(
+                                                  image: AssetImage("squircle_shape.png"),
+                                                ),
+                                              ),
+                                              Padding(
+                                                  padding: const EdgeInsets.all(1.7),
+                                                  child: WidgetMask(
+                                                    blendMode: BlendMode.srcATop,
+                                                    childSaveLayer: true,
+                                                    mask /* Original Image */: profileImage,
+                                                    child: const Image(
+                                                      image: AssetImage("squircle_shape.png"),
+                                                    ),
+                                                  )
                                               )
-                                          ),
-                                        ),
-                                        child: const Image(
-                                          image: AssetImage("squircle_shape.png"),
-                                        ),
-                                      ),
-                                      Padding(
-                                          padding: const EdgeInsets.all(1.7),
-                                          child: WidgetMask(
-                                            blendMode: BlendMode.srcATop,
-                                            childSaveLayer: true,
-                                            mask /* Original Image */: profileImage,
-                                            child: const Image(
-                                              image: AssetImage("squircle_shape.png"),
-                                            ),
+                                            ],
                                           )
                                       )
-                                    ],
+                                  ),
+                                  /* End - Profile Image */
+
+                                  /* Start - Profile Name */
+                                  Expanded(
+                                      flex: 1,
+                                      child: SizedBox(
+                                          height: 201,
+                                          width: 201,
+                                          child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: GradientText(
+                                                  profileName.replaceFirst(" ", "\n"),
+                                                  overflow: TextOverflow.fade,
+                                                  style: const TextStyle(
+                                                      fontSize: 59
+                                                  ),
+                                                  gradientDirection: GradientDirection.tltbr,
+                                                  maxLinesNumber: 2,
+                                                  colors: const [
+                                                    ColorsResources.primaryColorLighter,
+                                                    ColorsResources.white
+                                                  ],
+                                                ),
+                                              )
+                                          )
+                                      )
                                   )
+                                  /* End - Profile Name */
+
+                                ],
                               )
+                          )
+                      ),
+                      /* End - Profile Image/Name */
+
+                      const Divider(
+                        height: 31,
+                        color: Colors.transparent,
+                      ),
+
+                      /* Start - Twitter */
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                        child: Stack(
+                          children: [
+
+                            const SizedBox(
+                              height: 113,
+                              width: double.infinity,
+                              child: Image(
+                                image: AssetImage("twitter_input.png"),
+                              ),
                             ),
 
-                            Expanded(
-                                flex: 1,
-                                child: SizedBox(
-                                    height: 201,
-                                    width: 201,
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: GradientText(
-                                          profileName.replaceFirst(" ", "\n"),
-                                          overflow: TextOverflow.fade,
-                                          style: const TextStyle(
-                                              fontSize: 59
-                                          ),
-                                          gradientDirection: GradientDirection.tltbr,
-                                          maxLinesNumber: 2,
-                                          colors: const [
-                                            ColorsResources.primaryColorLighter,
-                                            ColorsResources.white
-                                          ],
+                            SizedBox(
+                              height: 113,
+                              width: double.infinity,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: TextField(
+                                        controller: twitterInputController,
+                                        maxLines: 1,
+                                        cursorColor: ColorsResources.primaryColorLighter,
+                                        decoration: const InputDecoration(
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 0
+                                                )
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 0
+                                                )
+                                            )
+                                        ),
+                                        style: const TextStyle(
+                                            fontSize: 31,
+                                            color: ColorsResources.dark,
+                                            decoration: TextDecoration.none
                                         ),
                                       )
-                                    )
-                                )
+                                  )
+                              ),
                             )
 
                           ],
-                        )
-                      )
-                    )
+                        ),
+                      ),
+                      /* End - Twitter */
 
-                  ],
+                      const Divider(
+                        height: 7,
+                        color: Colors.transparent,
+                      ),
+
+                      /* Start - Facebook */
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                        child: Stack(
+                          children: [
+
+                            const SizedBox(
+                              height: 113,
+                              width: double.infinity,
+                              child: Image(
+                                image: AssetImage("facebook_input.png"),
+                              ),
+                            ),
+
+                            SizedBox(
+                              height: 113,
+                              width: double.infinity,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: TextField(
+                                        controller: facebookInputController,
+                                        maxLines: 1,
+                                        cursorColor: ColorsResources.primaryColorLighter,
+                                        decoration: const InputDecoration(
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 0
+                                                )
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 0
+                                                )
+                                            )
+                                        ),
+                                        style: const TextStyle(
+                                            fontSize: 31,
+                                            color: ColorsResources.dark,
+                                            decoration: TextDecoration.none
+                                        ),
+                                      )
+                                  )
+                              ),
+                            )
+
+                          ],
+                        ),
+                      ),
+                      /* End - Facebook */
+
+                      const Divider(
+                        height: 7,
+                        color: Colors.transparent,
+                      ),
+
+                      /* Start - Facebook */
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                        child: Stack(
+                          children: [
+
+                            const SizedBox(
+                              height: 113,
+                              width: double.infinity,
+                              child: Image(
+                                image: AssetImage("instagram_input.png"),
+                              ),
+                            ),
+
+                            SizedBox(
+                              height: 113,
+                              width: double.infinity,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: TextField(
+                                        controller: instagramInputController,
+                                        maxLines: 1,
+                                        cursorColor: ColorsResources.primaryColorLighter,
+                                        decoration: const InputDecoration(
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 0
+                                                )
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 0
+                                                )
+                                            )
+                                        ),
+                                        style: const TextStyle(
+                                            fontSize: 31,
+                                            color: ColorsResources.dark,
+                                            decoration: TextDecoration.none
+                                        ),
+                                      )
+                                  )
+                              ),
+                            )
+
+                          ],
+                        ),
+                      )
+                      /* End - Facebook */
+
+                    ],
+                  )
                 ),
 
                 /* Start - Back */
