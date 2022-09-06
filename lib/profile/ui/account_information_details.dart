@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/6/22, 4:00 AM
+ * Last modified 9/6/22, 4:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -372,22 +372,22 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
 
     if (firebaseUser != null) {
 
-      // profileName = firebaseUser!.displayName!;
-      //
-      // profileImage = Image.network(
-      //   firebaseUser!.photoURL.toString(),
-      //   fit: BoxFit.cover,
-      //   height: 301,
-      //   width: 301,
-      // );
-      //
-      // setState(() {
-      //
-      //   profileName;
-      //
-      //   profileImage;
-      //
-      // });
+      profileName = firebaseUser!.displayName!;
+
+      profileImage = Image.network(
+        firebaseUser!.photoURL.toString(),
+        fit: BoxFit.cover,
+        height: 301,
+        width: 301,
+      );
+
+      setState(() {
+
+        profileName;
+
+        profileImage;
+
+      });
 
     }
 
