@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/6/22, 4:25 AM
+ * Last modified 9/6/22, 4:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -320,7 +320,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                       /* End - Twitter */
 
                       const Divider(
-                        height: 7,
+                        height: 3,
                         color: Colors.transparent,
                       ),
 
@@ -379,7 +379,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                       /* End - Facebook */
 
                       const Divider(
-                        height: 7,
+                        height: 3,
                         color: Colors.transparent,
                       ),
 
@@ -434,8 +434,34 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
 
                           ],
                         ),
-                      )
+                      ),
                       /* End - Facebook */
+
+                      const Divider(
+                        height: 7,
+                        color: Colors.transparent,
+                      ),
+
+                      /* Start - Submit Button */
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: InkWell(
+                            onTap: () {
+
+                              updateProfileInformation();
+
+                            },
+                            child: const Image(
+                              image: AssetImage("submit_icon.png"),
+                              fit: BoxFit.contain,
+                              width: 173,
+                            ),
+                          )
+                        ),
+                      ),
+                      /* End - Submit Button */
 
                     ],
                   )
@@ -582,6 +608,12 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
       });
 
     }
+
+  }
+
+  void updateProfileInformation() async {
+
+
 
   }
 
