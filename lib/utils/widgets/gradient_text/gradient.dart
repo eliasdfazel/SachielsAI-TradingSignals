@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/6/22, 3:55 AM
+ * Last modified 9/6/22, 4:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,6 +29,8 @@ class GradientText extends StatelessWidget {
   /// of the paint box.
   final double radius;
 
+  final int maxLinesNumber;
+
   /// If non-null, the style to use for this text.
   final TextStyle? style;
 
@@ -46,6 +48,7 @@ class GradientText extends StatelessWidget {
     Key? key,
     this.overflow,
     this.radius = 1.0,
+    this.maxLinesNumber = 1,
     this.style,
     this.textAlign,
   })  : assert(
@@ -97,6 +100,7 @@ class GradientText extends StatelessWidget {
       },
       child: Text(
         text,
+        maxLines: maxLinesNumber,
         overflow: overflow,
         style: style != null
             ? style?.copyWith(color: Colors.white)

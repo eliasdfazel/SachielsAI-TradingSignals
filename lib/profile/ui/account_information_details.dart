@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/6/22, 3:55 AM
+ * Last modified 9/6/22, 4:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -230,6 +230,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                               fontSize: 59
                                           ),
                                           gradientDirection: GradientDirection.tltbr,
+                                          maxLinesNumber: 2,
                                           colors: const [
                                             ColorsResources.primaryColorLighter,
                                             ColorsResources.white
