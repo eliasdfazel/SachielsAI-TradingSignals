@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 6:29 AM
+ * Last modified 9/10/22, 7:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -375,7 +375,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
       } else {
         debugPrint("Authentication With Phone Number Completed");
 
-        navigateTo(context, IntroductionSlides(firebaseRemoteConfig: firebaseRemoteConfig));
+        navigateTo(context, IntroductionSlides());
 
       }
 

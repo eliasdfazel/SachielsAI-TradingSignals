@@ -2,17 +2,19 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 7:01 AM
+ * Last modified 9/10/22, 7:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:blur/blur.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:sachiel/firebase_options.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -22,6 +24,10 @@ import 'package:sachiel/utils/ui/display.dart';
 void main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  var firebaseInitialized = await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(
       MaterialApp(
@@ -45,11 +51,21 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
   LiquidController liquidController = LiquidController();
 
+  Widget allContent = Container();
+
   @override
   void initState() {
     super.initState();
 
-    widget.firebaseRemoteConfig?.activate();
+    if (widget.firebaseRemoteConfig == null) {
+
+      retrieveRemoteConfigurations();
+
+    } else {
+
+
+
+    }
 
   }
 
@@ -145,56 +161,125 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                     ),
                     /* End - Gradient Background - Golden */
 
-                    /* Start - Introduction Liquid Slide */
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(17),
-                      child: LiquidSwipe(
-                        liquidController: liquidController,
-                        onPageChangeCallback: (position) {
-
-                        },
-                        currentUpdateTypeCallback: (updateType) {
-
-                        },
-                        fullTransitionValue: 777,
-                        enableSideReveal: true,
-                        enableLoop: true,
-                        ignoreUserGestureWhileAnimating: true,
-                        slideIconWidget: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                          child: Icon(
-                            Icons.arrow_back_ios_rounded,
-                            size: 27,
-                            color: ColorsResources.light,
-                            shadows: [
-                              Shadow(
-                                color: ColorsResources.light.withOpacity(0.37),
-                                blurRadius: 7,
-                                offset: const Offset(3, 0)
-                              )
-                            ],
-                          ),
-                        ),
-                        positionSlideIcon: 0.5,
-                        waveType: WaveType.liquidReveal,
-                        pages: [
-
-                          firstSlideIntroduction(),
-
-                          secondSlideIntroduction(),
-
-                          thirdSlideIntroduction(),
-
-                        ],
-                      ),
-                    ),
-                    /* End - Introduction Liquid Slide */
+                    allContent
 
                   ],
                 )
             )
         )
     );
+  }
+
+  void retrieveRemoteConfigurations() {
+
+    if (widget.firebaseRemoteConfig != null) {
+
+      /* Start - Introduction Liquid Slide */
+      setState(() {
+
+        allContent = ClipRRect(
+          borderRadius: BorderRadius.circular(17),
+          child: LiquidSwipe(
+            liquidController: liquidController,
+            onPageChangeCallback: (position) {
+
+            },
+            currentUpdateTypeCallback: (updateType) {
+
+            },
+            fullTransitionValue: 777,
+            enableSideReveal: true,
+            enableLoop: true,
+            ignoreUserGestureWhileAnimating: true,
+            slideIconWidget: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+              child: Icon(
+                Icons.arrow_back_ios_rounded,
+                size: 27,
+                color: ColorsResources.light,
+                shadows: [
+                  Shadow(
+                      color: ColorsResources.light.withOpacity(0.37),
+                      blurRadius: 7,
+                      offset: const Offset(3, 0)
+                  )
+                ],
+              ),
+            ),
+            positionSlideIcon: 0.5,
+            waveType: WaveType.liquidReveal,
+            pages: [
+
+              firstSlideIntroduction(),
+
+              secondSlideIntroduction(),
+
+              thirdSlideIntroduction(),
+
+            ],
+          ),
+        );
+
+      });
+      /* End - Introduction Liquid Slide */
+
+    } else {
+
+      widget.firebaseRemoteConfig = FirebaseRemoteConfig.instance;
+
+      widget.firebaseRemoteConfig?.fetchAndActivate().then((value) {
+
+        setState(() {
+
+          allContent = ClipRRect(
+            borderRadius: BorderRadius.circular(17),
+            child: LiquidSwipe(
+              liquidController: liquidController,
+              onPageChangeCallback: (position) {
+
+              },
+              currentUpdateTypeCallback: (updateType) {
+
+              },
+              fullTransitionValue: 777,
+              enableSideReveal: true,
+              enableLoop: true,
+              ignoreUserGestureWhileAnimating: true,
+              slideIconWidget: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                child: Icon(
+                  Icons.arrow_back_ios_rounded,
+                  size: 27,
+                  color: ColorsResources.light,
+                  shadows: [
+                    Shadow(
+                        color: ColorsResources.light.withOpacity(0.37),
+                        blurRadius: 7,
+                        offset: const Offset(3, 0)
+                    )
+                  ],
+                ),
+              ),
+              positionSlideIcon: 0.5,
+              waveType: WaveType.liquidReveal,
+              pages: [
+
+                firstSlideIntroduction(),
+
+                secondSlideIntroduction(),
+
+                thirdSlideIntroduction(),
+
+              ],
+            ),
+          );
+
+        });
+
+      });
+
+    }
+
   }
 
   Widget firstSlideIntroduction() {
