@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/31/22, 10:40 PM
+ * Last modified 9/10/22, 7:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,6 +35,28 @@ Future<File> createFileOfBytes(String fileName, String fileFormat, Uint8List con
   String filePath = '$appDocumentsPath/${fileName}.${fileFormat}';
 
   return File(filePath).writeAsBytes(contentBytes);
+}
+
+Future<File> createFileOfTexts(String fileName, String fileFormat, String contentBytes) async {
+
+  Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+  String appDocumentsPath = appDocumentsDirectory.path;
+
+  String filePath = '$appDocumentsPath/${fileName}.${fileFormat}';
+
+  return File(filePath).writeAsString(contentBytes);
+}
+
+Future<String> readFileOfTexts(String fileName, String fileFormat) async {
+
+  Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+  String appDocumentsPath = appDocumentsDirectory.path;
+
+  String filePath = '$appDocumentsPath/${fileName}.${fileFormat}';
+
+  return File(filePath).readAsString();
 }
 
 void deletePrivateFile(String fileName) async {

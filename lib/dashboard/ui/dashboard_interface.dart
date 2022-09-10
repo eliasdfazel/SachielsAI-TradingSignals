@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/5/22, 2:45 AM
+ * Last modified 9/10/22, 8:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,9 +17,11 @@ import 'package:sachiel/dashboard/ui/sections/brokers_suggestions.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
 import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
+import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
+import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 
@@ -47,6 +49,8 @@ class DashboardInterface extends StatefulWidget {
 }
 class _DashboardInterfaceState extends State<DashboardInterface> {
 
+  RemoteConfigurations remoteConfigurations = RemoteConfigurations();
+
   AccountInformationOverview accountInformationOverview = const AccountInformationOverview();
 
   LastSignalDetails lastSignalDetails = const LastSignalDetails();
@@ -56,6 +60,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
   AcademySummaryInterface academySummaryInterface = const AcademySummaryInterface();
 
   BrokersSuggestionsInterface brokersSuggestionsInterface = const BrokersSuggestionsInterface();
+
+  Widget sliderInvocation = Container();
 
   @override
   void initState() {
@@ -217,11 +223,43 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                   ),
                   /* End - Purchase Plan Picker */
 
+                  sliderInvocation
+
                 ],
               )
           )
       )
     );
+  }
+
+  void sliderCheckpoint() {
+
+    remoteConfigurations.initialize().then((firebaseRemoteConfigurations) {
+
+      firebaseRemoteConfigurations.activate().then((value) async {
+
+        int oldSliderTime = int.parse(await readFileOfTexts("SliderTime", ".TXT"));
+
+        int newSliderTime = firebaseRemoteConfigurations.getInt(RemoteConfigurations.sliderTime);
+
+        if (newSliderTime > oldSliderTime) {
+
+          sliderInvocation = Positioned(
+            left: 19,
+            bottom: 31,
+            child: SizedBox(
+              height: 51,
+              width: 51,
+              child: C,
+            ),
+          );
+
+        }
+
+      });
+
+    });
+
   }
 
 }

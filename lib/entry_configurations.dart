@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 7:07 AM
+ * Last modified 9/10/22, 8:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
-import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/authentication/authentication_process.dart';
@@ -31,8 +30,6 @@ class EntryConfigurations extends StatefulWidget {
   State<EntryConfigurations> createState() => _EntryConfigurationsState();
 }
 class _EntryConfigurationsState extends State<EntryConfigurations> with AuthenticationsCallback {
-
-  RemoteConfigurations remoteConfigurations = RemoteConfigurations();
 
   FirebaseRemoteConfig? firebaseRemoteConfig;
 
@@ -53,12 +50,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
     firebaseAuthentication.currentUser?.reload();
 
     changeColor(ColorsResources.black, ColorsResources.black);
-
-    remoteConfigurations.initialize().then((firebaseRemoteConfigurations) => {
-
-      firebaseRemoteConfigurations.activate()
-
-    });
 
   }
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 7:31 AM
+ * Last modified 9/10/22, 7:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,6 +19,7 @@ import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
+import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:widget_mask/widget_mask.dart';
@@ -59,15 +60,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
   void initState() {
     super.initState();
 
-    if (widget.firebaseRemoteConfig == null) {
-
-      retrieveRemoteConfigurations();
-
-    } else {
-
-
-
-    }
+    retrieveRemoteConfigurations();
 
   }
 
@@ -281,6 +274,8 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
     if (widget.firebaseRemoteConfig != null) {
 
+      createFileOfTexts("SliderTime", ".TXT", widget.firebaseRemoteConfig!.getString(RemoteConfigurations.sliderTime));
+
       /* Start - Introduction Liquid Slide */
       setState(() {
 
@@ -295,11 +290,15 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
       widget.firebaseRemoteConfig?.fetchAndActivate().then((value) {
 
+        createFileOfTexts("SliderTime", ".TXT", widget.firebaseRemoteConfig!.getString(RemoteConfigurations.sliderTime));
+
+        /* Start - Introduction Liquid Slide */
         setState(() {
 
           allContent = setupSlider();
 
         });
+        /* End - Introduction Liquid Slide */
 
       });
 
