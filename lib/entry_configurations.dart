@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/3/22, 3:17 AM
+ * Last modified 9/10/22, 5:06 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,11 +10,13 @@
 
 import 'package:blur/blur.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
+import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/authentication/authentication_process.dart';
@@ -29,6 +31,10 @@ class EntryConfigurations extends StatefulWidget {
   State<EntryConfigurations> createState() => _EntryConfigurationsState();
 }
 class _EntryConfigurationsState extends State<EntryConfigurations> with AuthenticationsCallback {
+
+  RemoteConfigurations remoteConfigurations = RemoteConfigurations();
+
+  FirebaseRemoteConfig? firebaseRemoteConfig;
 
   AuthenticationsProcess authenticationsProcess = AuthenticationsProcess();
 
@@ -47,6 +53,12 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
     firebaseAuthentication.currentUser?.reload();
 
     changeColor(ColorsResources.black, ColorsResources.black);
+
+    remoteConfigurations.initialize().then((firebaseRemoteConfigurations) => {
+
+      firebaseRemoteConfigurations.fetch()
+
+    });
 
   }
 
@@ -363,7 +375,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
       } else {
         debugPrint("Authentication With Phone Number Completed");
 
-        navigateTo(context, const IntroductionSlides());
+        navigateTo(context, IntroductionSlides(firebaseRemoteConfig: firebaseRemoteConfig));
 
       }
 

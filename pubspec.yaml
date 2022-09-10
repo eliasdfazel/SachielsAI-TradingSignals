@@ -54,6 +54,8 @@ dependencies:
   firebase_dynamic_links: ^4.3.3
 
   flutter_app_name: ^0.1.1
+  flutter_html:
+    path: 'X:\Xlutter\Libraries\SachielProject\flutter_html'
   flutter_launcher_icons:
     path: 'X:\Xlutter\Libraries\SachielProject\flutter_launcher_icons'
   flutter_native_splash: ^2.1.6

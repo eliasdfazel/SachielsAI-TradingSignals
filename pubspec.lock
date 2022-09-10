@@ -141,6 +141,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
+  csslib:
+    dependency: transitive
+    description:
+      name: csslib
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.2"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -356,6 +363,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.0"
+  flutter_html:
+    dependency: "direct main"
+    description:
+      path: "X:\\Xlutter\\Libraries\\SachielProject\\flutter_html"
+      relative: false
+    source: path
+    version: "3.0.0-alpha.5"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
@@ -450,6 +464,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.2"
+  html:
+    dependency: transitive
+    description:
+      name: html
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.15.0"
   http:
     dependency: transitive
     description:
@@ -632,6 +653,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  numerus:
+    dependency: transitive
+    description:
+      name: numerus
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   octo_image:
     dependency: transitive
     description:

@@ -2,12 +2,13 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 8/5/22, 1:32 AM
+ * Last modified 9/10/22, 5:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
@@ -22,7 +23,7 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
-      const MaterialApp(
+      MaterialApp(
           home: IntroductionSlides()
       )
   );
@@ -31,7 +32,9 @@ void main() async {
 
 class IntroductionSlides extends StatefulWidget {
 
-  const IntroductionSlides({Key? key}) : super(key: key);
+  FirebaseRemoteConfig? firebaseRemoteConfig;
+
+  IntroductionSlides({Key? key, firebaseRemoteConfig}) : super(key: key);
 
   @override
   State<IntroductionSlides> createState() => IntroductionSlidesState();
@@ -188,6 +191,8 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
   }
 
   Widget firstSlideIntroduction() {
+
+
 
     return Container(
       color: ColorsResources.dark,
