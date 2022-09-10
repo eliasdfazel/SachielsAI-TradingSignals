@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 8:02 AM
+ * Last modified 9/10/22, 8:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,13 +17,15 @@ import 'package:sachiel/dashboard/ui/sections/brokers_suggestions.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
 import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
+import 'package:sachiel/introductions/introduction_slides.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
 import 'package:sachiel/utils/io/file_io.dart';
+import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
-import 'package:sachiel/utils/ui/system_bars.dart';
+import 'package:sachiel/utils/ui/system_barskage:widget_mask/widget_mask.dart';
 
 void main() async {
 
@@ -248,9 +250,18 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
             left: 19,
             bottom: 31,
             child: SizedBox(
-              height: 51,
-              width: 51,
-              child: C,
+              height: 59,
+              width: 59,
+              child: InkWell(
+                  onTap: () async {
+
+                    navigateTo(context, IntroductionSlides(firebaseRemoteConfig: firebaseRemoteConfigurations));
+
+                  },
+                  child: const Image(
+                    image: AssetImage("golden_information_icon.png"),
+                  )
+              )
             ),
           );
 

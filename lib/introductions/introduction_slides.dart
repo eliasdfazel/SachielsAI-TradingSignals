@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 7:58 AM
+ * Last modified 9/10/22, 8:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -83,7 +83,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
             ),
             home: Scaffold(
                 backgroundColor: ColorsResources.black,
-                body:Stack(
+                body: Stack(
                   children: [
 
                     /* Start - Gradient Background - Dark */
