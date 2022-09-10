@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/5/22, 2:27 AM
+ * Last modified 9/10/22, 8:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -396,9 +397,9 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
         height: 593,
         width: 373,
         child: InkWell(
-            onTap: () {
+            onTap: () async {
 
-
+              await FirebaseMessaging.instance.subscribeToTopic(PlansDataStructure.purchasingPlanName.replaceAll(" ", ""));
 
             },
             child: Column(
