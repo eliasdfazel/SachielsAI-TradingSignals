@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 7:17 AM
+ * Last modified 9/10/22, 7:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,7 +19,9 @@ import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
+import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
+import 'package:widget_mask/widget_mask.dart';
 
 void main() async {
 
@@ -161,7 +163,112 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                     ),
                     /* End - Gradient Background - Golden */
 
-                    allContent
+                    allContent,
+
+                    /* Start - Back */
+                    Row(
+                      children: [
+
+                        /* Start - Back */
+                        Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                                child: SizedBox(
+                                    height: 59,
+                                    width: 59,
+                                    child: InkWell(
+                                      onTap: () {
+
+                                        navigatePop(context);
+
+                                      },
+                                      child: const Image(
+                                        image: AssetImage("back_icon.png"),
+                                      ),
+                                    )
+                                )
+                            )
+                        ),
+                        /* End - Back */
+
+                        /* Start - Title */
+                        Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                                child: SizedBox(
+                                    height: 59,
+                                    width: 155,
+                                    child: Stack(
+                                      children: [
+                                        WidgetMask(
+                                          blendMode: BlendMode.srcATop,
+                                          childSaveLayer: true,
+                                          mask /* Original Image */: Container(
+                                            decoration: const BoxDecoration(
+                                                gradient: LinearGradient(
+                                                    colors: [
+                                                      ColorsResources.premiumDark,
+                                                      ColorsResources.black,
+                                                    ],
+                                                    transform: GradientRotation(45)
+                                                )
+                                            ),
+                                          ),
+                                          child: const Image(
+                                            image: AssetImage("rectircle_shape.png"),
+                                          ),
+                                        ),
+                                        Align(
+                                            alignment: Alignment.center,
+                                            child: Padding(
+                                                padding: const EdgeInsets.all(1.9),
+                                                child: WidgetMask(
+                                                    blendMode: BlendMode.srcATop,
+                                                    childSaveLayer: true,
+                                                    mask /* Original Image */: Container(
+                                                      decoration: const BoxDecoration(
+                                                          gradient: LinearGradient(
+                                                              colors: [
+                                                                ColorsResources.black,
+                                                                ColorsResources.premiumDark,
+                                                              ],
+                                                              transform: GradientRotation(45)
+                                                          )
+                                                      ),
+                                                    ),
+                                                    child: const Image(
+                                                      image: AssetImage("rectircle_shape.png"),
+                                                    )
+                                                )
+                                            )
+                                        ),
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                                child: Text(
+                                                    StringsResources.academyInformation(),
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: const TextStyle(
+                                                        color: ColorsResources.premiumLight,
+                                                        fontSize: 19
+                                                    )
+                                                )
+                                            )
+                                        )
+                                      ],
+                                    )
+                                )
+                            )
+                        ),
+                        /* End - Title */
+
+                      ],
+                    ),
+                    /* End - Back */
 
                   ],
                 )
@@ -177,48 +284,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
       /* Start - Introduction Liquid Slide */
       setState(() {
 
-        allContent = ClipRRect(
-          borderRadius: BorderRadius.circular(17),
-          child: LiquidSwipe(
-            liquidController: liquidController,
-            onPageChangeCallback: (position) {
-
-            },
-            currentUpdateTypeCallback: (updateType) {
-
-            },
-            fullTransitionValue: 777,
-            enableSideReveal: true,
-            enableLoop: true,
-            ignoreUserGestureWhileAnimating: true,
-            slideIconWidget: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-              child: Icon(
-                Icons.arrow_back_ios_rounded,
-                size: 27,
-                color: ColorsResources.light,
-                shadows: [
-                  Shadow(
-                      color: ColorsResources.light.withOpacity(0.37),
-                      blurRadius: 7,
-                      offset: const Offset(3, 0)
-                  )
-                ],
-              ),
-            ),
-            positionSlideIcon: 0.5,
-            waveType: WaveType.liquidReveal,
-            pages: [
-
-              firstSlideIntroduction(),
-
-              secondSlideIntroduction(),
-
-              thirdSlideIntroduction(),
-
-            ],
-          ),
-        );
+        allContent = setupSlider();
 
       });
       /* End - Introduction Liquid Slide */
@@ -231,48 +297,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
         setState(() {
 
-          allContent = ClipRRect(
-            borderRadius: BorderRadius.circular(17),
-            child: LiquidSwipe(
-              liquidController: liquidController,
-              onPageChangeCallback: (position) {
-
-              },
-              currentUpdateTypeCallback: (updateType) {
-
-              },
-              fullTransitionValue: 777,
-              enableSideReveal: true,
-              enableLoop: true,
-              ignoreUserGestureWhileAnimating: true,
-              slideIconWidget: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                child: Icon(
-                  Icons.arrow_back_ios_rounded,
-                  size: 27,
-                  color: ColorsResources.light,
-                  shadows: [
-                    Shadow(
-                        color: ColorsResources.light.withOpacity(0.37),
-                        blurRadius: 7,
-                        offset: const Offset(3, 0)
-                    )
-                  ],
-                ),
-              ),
-              positionSlideIcon: 0.5,
-              waveType: WaveType.liquidReveal,
-              pages: [
-
-                firstSlideIntroduction(),
-
-                secondSlideIntroduction(),
-
-                thirdSlideIntroduction(),
-
-              ],
-            ),
-          );
+          allContent = setupSlider();
 
         });
 
@@ -280,6 +305,52 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
     }
 
+  }
+
+  Widget setupSlider() {
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(17),
+      child: LiquidSwipe(
+        liquidController: liquidController,
+        onPageChangeCallback: (position) {
+
+        },
+        currentUpdateTypeCallback: (updateType) {
+
+        },
+        fullTransitionValue: 999,
+        enableSideReveal: true,
+        enableLoop: true,
+        ignoreUserGestureWhileAnimating: true,
+        slideIconWidget: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+            size: 27,
+            color: ColorsResources.light,
+            shadows: [
+              Shadow(
+                  color: ColorsResources.light.withOpacity(0.37),
+                  blurRadius: 7,
+                  offset: const Offset(3, 0)
+              )
+            ],
+          ),
+        ),
+        positionSlideIcon: 0.91,
+        waveType: WaveType.liquidReveal,
+        pages: [
+
+          firstSlideIntroduction(),
+
+          secondSlideIntroduction(),
+
+          thirdSlideIntroduction(),
+
+        ],
+      ),
+    );
   }
 
   Widget firstSlideIntroduction() {
@@ -293,66 +364,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
     }
 
     return Container(
-      color: ColorsResources.dark,
-      child: Stack(
-        children: [
-
-          /* Start - Branding Transparent */
-          const Align(
-            alignment: Alignment.center,
-            child: Opacity(
-              opacity: 0.13,
-              child: Image(
-                image: AssetImage("logo.png"),
-              ),
-            ),
-          ),
-          /* End - Branding Transparent */
-
-          /* Start - Browser */
-          Padding(
-            padding: const EdgeInsets.fromLTRB(13, 0, 73, 0),
-            child: Align(
-              alignment: Alignment.center,
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(17),
-                  child: Blur(
-                    blur: 13,
-                    blurColor: ColorsResources.white,
-                    colorOpacity: 0.13,
-                    overlay: Padding(
-                      padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
-                      child: Html(
-                          data: htmlContent
-                      ),
-                    ),
-                    child: SizedBox(
-                      height: calculatePercentage(70, displayHeight(context)),
-                      width: calculatePercentage(70, displayWidth(context)),
-                    ),
-                  )
-              ),
-            ),
-          )
-          /* End - Browser */
-
-        ],
-      )
-    );
-  }
-
-  Widget secondSlideIntroduction() {
-
-    String htmlContent = ".<b>.</b><big>.</big>";
-
-    if (widget.firebaseRemoteConfig != null) {
-
-      htmlContent = widget.firebaseRemoteConfig!.getString(RemoteConfigurations.slideOneContent);
-
-    }
-
-    return Container(
-      color: ColorsResources.premiumDark,
+        color: ColorsResources.dark,
         child: Stack(
           children: [
 
@@ -372,25 +384,85 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
             Padding(
               padding: const EdgeInsets.fromLTRB(13, 0, 73, 0),
               child: Align(
-                alignment: Alignment.center,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(17),
-                    child: Blur(
-                      blur: 13,
-                      blurColor: ColorsResources.white,
-                      colorOpacity: 0.13,
-                      overlay: Padding(
-                        padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
-                        child: Html(
-                            data: htmlContent
+                  alignment: Alignment.center,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(17),
+                      child: Blur(
+                        blur: 13,
+                        blurColor: ColorsResources.light,
+                        colorOpacity: 0.07,
+                        overlay: Padding(
+                          padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
+
+                          child: Html(
+                              data: htmlContent
+                          ),
                         ),
-                      ),
-                      child: SizedBox(
-                        height: calculatePercentage(70, displayHeight(context)),
-                        width: calculatePercentage(70, displayWidth(context)),
-                      ),
-                    )
+                        child: SizedBox(
+                          height: calculatePercentage(70, displayHeight(context)),
+                          width: calculatePercentage(70, displayWidth(context)),
+                        ),
+                      )
+                  )
+              ),
+            )
+            /* End - Browser */
+
+          ],
+        )
+    );
+  }
+
+  Widget secondSlideIntroduction() {
+
+    String htmlContent = ".<b>.</b><big>.</big>";
+
+    if (widget.firebaseRemoteConfig != null) {
+
+      htmlContent = widget.firebaseRemoteConfig!.getString(RemoteConfigurations.slideOneContent);
+
+    }
+
+    return Container(
+        color: ColorsResources.premiumDark,
+        child: Stack(
+          children: [
+
+            /* Start - Branding Transparent */
+            const Align(
+              alignment: Alignment.center,
+              child: Opacity(
+                opacity: 0.13,
+                child: Image(
+                  image: AssetImage("logo.png"),
                 ),
+              ),
+            ),
+            /* End - Branding Transparent */
+
+            /* Start - Browser */
+            Padding(
+              padding: const EdgeInsets.fromLTRB(13, 0, 73, 0),
+              child: Align(
+                  alignment: Alignment.center,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(17),
+                      child: Blur(
+                        blur: 13,
+                        blurColor: ColorsResources.white,
+                        colorOpacity: 0.07,
+                        overlay: Padding(
+                          padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
+                          child: Html(
+                              data: htmlContent
+                          ),
+                        ),
+                        child: SizedBox(
+                          height: calculatePercentage(70, displayHeight(context)),
+                          width: calculatePercentage(70, displayWidth(context)),
+                        ),
+                      )
+                  )
               ),
             )
             /* End - Browser */
@@ -411,7 +483,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
     }
 
     return Container(
-      color: ColorsResources.primaryColor,
+        color: ColorsResources.primaryColor,
         child: Stack(
           children: [
 
@@ -431,25 +503,25 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
             Padding(
               padding: const EdgeInsets.fromLTRB(13, 0, 73, 0),
               child: Align(
-                alignment: Alignment.center,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(17),
-                    child: Blur(
-                      blur: 13,
-                      blurColor: ColorsResources.white,
-                      colorOpacity: 0.13,
-                      overlay: Padding(
-                        padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
-                        child: Html(
-                            data: htmlContent
+                  alignment: Alignment.center,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(17),
+                      child: Blur(
+                        blur: 13,
+                        blurColor: ColorsResources.dark,
+                        colorOpacity: 0.07,
+                        overlay: Padding(
+                          padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
+                          child: Html(
+                              data: htmlContent
+                          ),
                         ),
-                      ),
-                      child: SizedBox(
-                        height: calculatePercentage(70, displayHeight(context)),
-                        width: calculatePercentage(70, displayWidth(context)),
-                      ),
-                    )
-                ),
+                        child: SizedBox(
+                          height: calculatePercentage(70, displayHeight(context)),
+                          width: calculatePercentage(70, displayWidth(context)),
+                        ),
+                      )
+                  )
               ),
             )
             /* End - Browser */

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/5/22, 2:45 AM
+ * Last modified 9/10/22, 7:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -78,6 +78,11 @@ class StringsResources {
   static String detailsTitle() {
 
     return "Details";
+  }
+
+  static String academyInformation() {
+
+    return "Information";
   }
 
   static String academyTitle() {
