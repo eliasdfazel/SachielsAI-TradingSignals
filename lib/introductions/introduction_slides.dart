@@ -2,20 +2,21 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 5:09 AM
+ * Last modified 9/10/22, 7:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:blur/blur.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
+import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
-import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 
 void main() async {
@@ -47,6 +48,9 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
   @override
   void initState() {
     super.initState();
+
+    widget.firebaseRemoteConfig?.activate();
+
   }
 
   @override
@@ -149,6 +153,9 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                         onPageChangeCallback: (position) {
 
                         },
+                        currentUpdateTypeCallback: (updateType) {
+
+                        },
                         fullTransitionValue: 777,
                         enableSideReveal: true,
                         enableLoop: true,
@@ -192,7 +199,13 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
   Widget firstSlideIntroduction() {
 
+    String htmlContent = ".<b>.</b><big>.</big>";
 
+    if (widget.firebaseRemoteConfig != null) {
+
+      htmlContent = widget.firebaseRemoteConfig!.getString(RemoteConfigurations.slideTwoContent);
+
+    }
 
     return Container(
       color: ColorsResources.dark,
@@ -211,12 +224,47 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
           ),
           /* End - Branding Transparent */
 
+          /* Start - Browser */
+          Padding(
+            padding: const EdgeInsets.fromLTRB(13, 0, 73, 0),
+            child: Align(
+              alignment: Alignment.center,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(17),
+                  child: Blur(
+                    blur: 13,
+                    blurColor: ColorsResources.white,
+                    colorOpacity: 0.13,
+                    overlay: Padding(
+                      padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
+                      child: Html(
+                          data: htmlContent
+                      ),
+                    ),
+                    child: SizedBox(
+                      height: calculatePercentage(70, displayHeight(context)),
+                      width: calculatePercentage(70, displayWidth(context)),
+                    ),
+                  )
+              ),
+            ),
+          )
+          /* End - Browser */
+
         ],
       )
     );
   }
 
   Widget secondSlideIntroduction() {
+
+    String htmlContent = ".<b>.</b><big>.</big>";
+
+    if (widget.firebaseRemoteConfig != null) {
+
+      htmlContent = widget.firebaseRemoteConfig!.getString(RemoteConfigurations.slideOneContent);
+
+    }
 
     return Container(
       color: ColorsResources.premiumDark,
@@ -227,7 +275,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
             const Align(
               alignment: Alignment.center,
               child: Opacity(
-                opacity: 0.1,
+                opacity: 0.13,
                 child: Image(
                   image: AssetImage("logo.png"),
                 ),
@@ -235,12 +283,47 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
             ),
             /* End - Branding Transparent */
 
+            /* Start - Browser */
+            Padding(
+              padding: const EdgeInsets.fromLTRB(13, 0, 73, 0),
+              child: Align(
+                alignment: Alignment.center,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(17),
+                    child: Blur(
+                      blur: 13,
+                      blurColor: ColorsResources.white,
+                      colorOpacity: 0.13,
+                      overlay: Padding(
+                        padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
+                        child: Html(
+                            data: htmlContent
+                        ),
+                      ),
+                      child: SizedBox(
+                        height: calculatePercentage(70, displayHeight(context)),
+                        width: calculatePercentage(70, displayWidth(context)),
+                      ),
+                    )
+                ),
+              ),
+            )
+            /* End - Browser */
+
           ],
         )
     );
   }
 
   Widget thirdSlideIntroduction() {
+
+    String htmlContent = ".<b>.</b><big>.</big>";
+
+    if (widget.firebaseRemoteConfig != null) {
+
+      htmlContent = widget.firebaseRemoteConfig!.getString(RemoteConfigurations.slideThreeContent);
+
+    }
 
     return Container(
       color: ColorsResources.primaryColor,
@@ -251,7 +334,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
             const Align(
               alignment: Alignment.center,
               child: Opacity(
-                opacity: 0.1,
+                opacity: 0.13,
                 child: Image(
                   image: AssetImage("logo.png"),
                 ),
@@ -259,26 +342,32 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
             ),
             /* End - Branding Transparent */
 
-            /* Start - Introduction Skip */
-            Positioned(
-              bottom: 19,
-              right: 31,
-              child: InkWell(
-                  onTap: () {
-
-                    navigateTo(context, const DashboardInterface());
-
-                  },
-                  child: SizedBox(
-                    width: 199,
-                    child: Image(
-                      image: AssetImage("continue_icon.png"),
-                      fit: BoxFit.cover,
-                    ),
-                  )
+            /* Start - Browser */
+            Padding(
+              padding: const EdgeInsets.fromLTRB(13, 0, 73, 0),
+              child: Align(
+                alignment: Alignment.center,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(17),
+                    child: Blur(
+                      blur: 13,
+                      blurColor: ColorsResources.white,
+                      colorOpacity: 0.13,
+                      overlay: Padding(
+                        padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
+                        child: Html(
+                            data: htmlContent
+                        ),
+                      ),
+                      child: SizedBox(
+                        height: calculatePercentage(70, displayHeight(context)),
+                        width: calculatePercentage(70, displayWidth(context)),
+                      ),
+                    )
+                ),
               ),
             )
-            /* End - Introduction Skip */
+            /* End - Browser */
 
           ],
         )
