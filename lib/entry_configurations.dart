@@ -2,14 +2,17 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 8:02 AM
+ * Last modified 9/15/22, 9:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:io';
+
 import 'package:blur/blur.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -369,6 +372,29 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
         navigateTo(context, IntroductionSlides());
 
       }
+
+  }
+
+
+  void requestNotificationPermission() async {
+
+    if (Platform.isIOS) {
+
+      FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+
+      NotificationSettings notificationSettings = await firebaseMessaging.requestPermission(
+        alert: true,
+        announcement: false,
+        badge: true,
+        carPlay: false,
+        criticalAlert: false,
+        provisional: false,
+        sound: true,
+      );
+
+      debugPrint("Notification Permission: ${notificationSettings.authorizationStatus}");
+
+    }
 
   }
 
