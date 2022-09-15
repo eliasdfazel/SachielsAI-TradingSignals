@@ -17,38 +17,118 @@ exports.platinumListener = functions.firestore
     .document('Sachiels/Signals/Platinum/{tradeTimestamp}')
     .onCreate((documentSnapshot, context) => {
 
-      const documentData = documentSnapshot.data();
+        const documentData = documentSnapshot.data();
 
-      const tradeCommand = documentData.tradeCommand;
+        var signalData = {
 
-//var message = {
-//
-//        android: {
-//            ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
-//
-//            priority: 'high',
-//        },
-//
-//        data: {
-//            "selfDisplayName": selfDisplayName,
-//            "selfUid": selfUid,
-//            "publicCommunityAction": publicCommunityAction,
-//            "nameOfCountry": nameOfCountry,
-//            "vicinityLatitude": vicinityLatitude,
-//            "vicinityLongitude": vicinityLongitude,
-//            "publicCommunityName": publicCommunityName,
-//            "notificationLargeIcon": notificationLargeIcon,
-//            "messageContent": messageContent,
-//            "imageMessage": '' + imageMessage
-//        },
-//
-//        topic: notificationTopic
-//    };
-//
-//    return admin.messaging().send(message).then((response) => {
-//        console.log('Successfully Sent ::: ', response);
-//    }).catch((error) => {
-//        console.log('Error Sending Message ::: ', error);
-//    });
+            android: {
+                ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
 
-});
+                priority: 'high',
+            },
+
+            data: {
+                "tradeCommand": documentData.tradeCommand,
+                "tradeAccuracyPercentage": documentData.tradeAccuracyPercentage,
+                "tradeEntryPrice": documentData.tradeEntryPrice,
+                "tradeLotSize": documentData.tradeLotSize,
+                "tradeMarketPair": documentData.tradeMarketPair,
+                "tradeProfitAmount": documentData.tradeProfitAmount,
+                "tradeStopLoss": documentData.tradeStopLoss,
+                "tradeTakeProfit": documentData.tradeTakeProfit,
+                "tradeTimeframe": documentData.tradeTimeframe,
+                "tradeTimestamp": documentData.tradeTimestamp,
+            },
+
+            topic: "Platinum"
+        };
+
+        return admin.messaging().send(signalData).then((response) => {
+            console.log('Successfully Sent ::: ', response);
+
+        }).catch((error) => {
+            console.log('Error Sending ::: ', error);
+
+        });
+
+    });
+
+exports.goldListener = functions.firestore
+    .document('Sachiels/Signals/Platinum/{tradeTimestamp}')
+    .onCreate((documentSnapshot, context) => {
+
+        const documentData = documentSnapshot.data();
+
+        var signalData = {
+
+            android: {
+                ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
+
+                priority: 'high',
+            },
+
+            data: {
+                "tradeCommand": documentData.tradeCommand,
+                "tradeAccuracyPercentage": documentData.tradeAccuracyPercentage,
+                "tradeEntryPrice": documentData.tradeEntryPrice,
+                "tradeLotSize": documentData.tradeLotSize,
+                "tradeMarketPair": documentData.tradeMarketPair,
+                "tradeProfitAmount": documentData.tradeProfitAmount,
+                "tradeStopLoss": documentData.tradeStopLoss,
+                "tradeTakeProfit": documentData.tradeTakeProfit,
+                "tradeTimeframe": documentData.tradeTimeframe,
+                "tradeTimestamp": documentData.tradeTimestamp,
+            },
+
+            topic: "Gold"
+        };
+
+        return admin.messaging().send(signalData).then((response) => {
+            console.log('Successfully Sent ::: ', response);
+
+        }).catch((error) => {
+            console.log('Error Sending ::: ', error);
+
+        });
+
+    });
+
+exports.palladiumListener = functions.firestore
+    .document('Sachiels/Signals/Platinum/{tradeTimestamp}')
+    .onCreate((documentSnapshot, context) => {
+
+        const documentData = documentSnapshot.data();
+
+        var signalData = {
+
+            android: {
+                ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
+
+                priority: 'high',
+            },
+
+            data: {
+                "tradeCommand": documentData.tradeCommand,
+                "tradeAccuracyPercentage": documentData.tradeAccuracyPercentage,
+                "tradeEntryPrice": documentData.tradeEntryPrice,
+                "tradeLotSize": documentData.tradeLotSize,
+                "tradeMarketPair": documentData.tradeMarketPair,
+                "tradeProfitAmount": documentData.tradeProfitAmount,
+                "tradeStopLoss": documentData.tradeStopLoss,
+                "tradeTakeProfit": documentData.tradeTakeProfit,
+                "tradeTimeframe": documentData.tradeTimeframe,
+                "tradeTimestamp": documentData.tradeTimestamp,
+            },
+
+            topic: "Palladium"
+        };
+
+        return admin.messaging().send(signalData).then((response) => {
+            console.log('Successfully Sent ::: ', response);
+
+        }).catch((error) => {
+            console.log('Error Sending ::: ', error);
+
+        });
+
+    });
