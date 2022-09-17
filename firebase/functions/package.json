@@ -15,7 +15,7 @@
   "dependencies": {
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.18.0",
-    "xmlhttprequest": "^1.8.0"
+    "xhr2": "^0.2.1"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.2.0"

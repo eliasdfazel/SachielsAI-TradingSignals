@@ -7,7 +7,7 @@ admin.initializeApp({
 
 const firestore = admin.firestore();
 
-const xmlHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+const XMLHttpRequest = require("xhr2").XMLHttpRequest;
 
 const runtimeOptions = {
     timeoutSeconds: 512,
@@ -132,3 +132,93 @@ exports.palladiumListener = functions.firestore
         });
 
     });
+
+exports.transferAcademyContents = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
+
+    var numberOfPage = req.query.numberOfPage;
+
+    if (numberOfPage == null) {
+        numberOfPage = 1;
+    }
+
+    var applicationsEndpoint = 'https://geeksempire.co/wp-json/wp/v2/posts?'
+        + '&page=' + numberOfPage
+        + '&per_page=99'
+        + '&categories=4445'
+        + '&orderby=date'
+        + '&order=asc';
+
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.open('GET', applicationsEndpoint, true);
+    xmlHttpRequest.setRequestHeader('accept', 'application/json');
+    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+    xmlHttpRequest.onreadystatechange = function () {
+        if (this.readyState == 4) {
+
+        } else {
+
+        }
+    };
+    xmlHttpRequest.onprogress = function () {
+
+    };
+    xmlHttpRequest.onload = function () {
+
+        var jsonArrayParserResponse = JSON.parse(xmlHttpRequest.responseText);
+
+        jsonArrayParserResponse.forEach((jsonObject) => {
+
+            setPostsData(jsonObject);
+
+        });
+
+    };
+    xmlHttpRequest.send();
+
+});
+
+async function setPostsData(jsonObject) {
+
+    const idKey = "id";
+    const linkKey = "link";
+
+    const titleKey = "title";
+    const excerptKey = "excerpt";
+
+    const categoriesKey = "categories";
+    const tagsKey = "tags";
+
+    const imageKey = "jetpack_featured_media_url";
+
+    var postId = jsonObject[idKey];
+    var postLink = jsonObject[linkKey];
+
+    var postTitle = jsonObject[titleKey]["rendered"];
+    var postSummary = jsonObject[excerptKey]["rendered"];
+
+    var postImage = jsonObject[imageKey];
+
+    var productCategory = jsonObject[categoriesKey][0];
+
+    /* Start - Document * With Even Directory */
+    var firestoreDirectory = '/' + 'Sachiels'
+        + '/' + 'Academy'
+        + '/' + 'Articles'
+        + '/' + postId;
+
+    await firestore.doc(firestoreDirectory).set({
+        articleCategory: productCategory,
+        articleCover: postImage,
+        articleLink: postLink,
+        articleSummary: postSummary,
+        articleTimestamp: Date.now().toString(),
+        articleTitle: postTitle,
+    }).then(result => {
+
+
+    }).catch(error => {
+        console.log(error);
+    });
+    /* End - Document * With Even Directory */
+
+}
