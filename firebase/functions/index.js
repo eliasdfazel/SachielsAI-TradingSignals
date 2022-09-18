@@ -179,6 +179,17 @@ exports.transferAcademyContents = functions.runWith(runtimeOptions).https.onRequ
 
 async function setPostsData(jsonObject) {
 
+    const categoriesMap = new Map();
+
+    categoriesMap.set("4562", "Articles");
+    categoriesMap.set("1857", "News");
+    categoriesMap.set("4563", "Tutorials");
+
+    categoriesMap.set("4445", "Financial");
+    categoriesMap.set("4508", "Investment");
+    categoriesMap.set("4444", "Make Money Online");
+    categoriesMap.set("4393", "Trading");
+
     const idKey = "id";
     const linkKey = "link";
 
@@ -198,12 +209,39 @@ async function setPostsData(jsonObject) {
 
     var postImage = jsonObject[imageKey];
 
-    var productCategory = jsonObject[categoriesKey][0];
+    var productCategories = jsonObject[categoriesKey].toString();
+    var productCategory = "Financial";
+    try {
+        productCategory = categoriesMap.get(jsonObject[categoriesKey][0].toString());
+    } catch(err) {
+        console.log(err.toString());
+    }
+
+
+    /* Articles - News - Tutorials */
+    var postType = "4562";
+
+    if (productCategories.includes("4562")) {
+
+        postType = "Articles";
+
+    } else if (productCategories.includes("1857")) {
+
+        postType = "News";
+
+    } else if (productCategories.includes("4563")) {
+
+        postType = "Tutorials";
+
+    }
+    
+    console.log(jsonObject[categoriesKey][0].toString());
+    console.log(postId + " Added To " + postType + " | " + productCategory);
 
     /* Start - Document * With Even Directory */
     var firestoreDirectory = '/' + 'Sachiels'
         + '/' + 'Academy'
-        + '/' + 'Articles'
+        + '/' + postType
         + '/' + postId;
 
     await firestore.doc(firestoreDirectory).set({
@@ -214,10 +252,10 @@ async function setPostsData(jsonObject) {
         articleTimestamp: Date.now().toString(),
         articleTitle: postTitle,
     }).then(result => {
-
+        console.log("Successfully Added.");
 
     }).catch(error => {
-        console.log(error);
+        console.log("Error: " + error);
     });
     /* End - Document * With Even Directory */
 
