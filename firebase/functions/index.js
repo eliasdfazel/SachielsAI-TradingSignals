@@ -13,7 +13,7 @@ const runtimeOptions = {
     timeoutSeconds: 512,
 }
 
-exports.platinumListener = functions.https.onCall(async (data, context) => {
+exports.platinumTier = functions.https.onCall(async (data, context) => {
 
     var documentSnapshot = await firestore.document('Sachiels/Signals/Platinum/' + data.tradeTimestamp).get();
 
@@ -53,7 +53,7 @@ exports.platinumListener = functions.https.onCall(async (data, context) => {
 
 });
 
-exports.goldListener = functions.https.onCall(async (data, context) => {
+exports.goldTier = functions.https.onCall(async (data, context) => {
 
     var documentSnapshot = await firestore.document('Sachiels/Signals/Gold/' + data.tradeTimestamp).get();
 
@@ -93,7 +93,7 @@ exports.goldListener = functions.https.onCall(async (data, context) => {
 
 });
 
-exports.palladiumListener = functions.https.onCall(async (data, context) => {
+exports.palladiumTier = functions.https.onCall(async (data, context) => {
 
     var documentSnapshot = await firestore.document('Sachiels/Signals/Palladium/' + data.tradeTimestamp).get();
 
