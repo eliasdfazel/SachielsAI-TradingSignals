@@ -3,13 +3,12 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 8:08 AM
+ * Last modified 11/5/22, 7:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/dashboard/ui/sections/academy_summary.dart';
 import 'package:sachiel/dashboard/ui/sections/account_information_overview.dart';
@@ -26,20 +25,6 @@ import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
-
-void main() async {
-
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp();
-
-  runApp(
-      const MaterialApp(
-          home: DashboardInterface()
-      )
-  );
-
-}
 
 class DashboardInterface extends StatefulWidget {
 

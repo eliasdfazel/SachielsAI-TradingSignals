@@ -2,19 +2,17 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 8:03 AM
+ * Last modified 11/5/22, 7:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:blur/blur.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:sachiel/firebase_options.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -23,22 +21,6 @@ import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:widget_mask/widget_mask.dart';
-
-void main() async {
-
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-
-  var firebaseInitialized = await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  runApp(
-      MaterialApp(
-          home: IntroductionSlides()
-      )
-  );
-
-}
 
 class IntroductionSlides extends StatefulWidget {
 
