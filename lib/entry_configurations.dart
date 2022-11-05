@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/15/22, 9:34 AM
+ * Last modified 11/5/22, 7:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -374,7 +374,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
       }
 
   }
-
 
   void requestNotificationPermission() async {
 
