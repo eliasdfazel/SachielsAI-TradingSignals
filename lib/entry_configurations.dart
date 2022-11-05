@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/5/22, 7:57 AM
+ * Last modified 11/5/22, 8:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,6 +18,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -188,7 +189,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
     Future.delayed(const Duration(milliseconds: 379), () {
       debugPrint("Authentication With Phone Number Completed");
 
-      // navigateTo(context, const DashboardInterface());
+      navigateTo(context, const DashboardInterface());
 
     });
 
