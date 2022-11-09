@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/5/22, 7:45 AM
+ * Last modified 11/9/22, 8:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -268,21 +268,13 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
     } else {
 
-      widget.firebaseRemoteConfig = FirebaseRemoteConfig.instance;
+      /* Start - Introduction Liquid Slide */
+      setState(() {
 
-      widget.firebaseRemoteConfig?.fetchAndActivate().then((value) {
-
-        createFileOfTexts("SliderTime", ".TXT", widget.firebaseRemoteConfig!.getString(RemoteConfigurations.sliderTime));
-
-        /* Start - Introduction Liquid Slide */
-        setState(() {
-
-          allContent = setupSlider();
-
-        });
-        /* End - Introduction Liquid Slide */
+        allContent = setupSlider();
 
       });
+      /* End - Introduction Liquid Slide */
 
     }
 
@@ -341,6 +333,10 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
     if (widget.firebaseRemoteConfig != null) {
 
       htmlContent = widget.firebaseRemoteConfig!.getString(RemoteConfigurations.slideTwoContent);
+
+    } else {
+
+      htmlContent = StringsResources.sliderOneContent();
 
     }
 
@@ -402,6 +398,10 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
       htmlContent = widget.firebaseRemoteConfig!.getString(RemoteConfigurations.slideOneContent);
 
+    } else {
+
+      htmlContent = StringsResources.sliderTwoContent();
+
     }
 
     return Container(
@@ -460,6 +460,10 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
     if (widget.firebaseRemoteConfig != null) {
 
       htmlContent = widget.firebaseRemoteConfig!.getString(RemoteConfigurations.slideThreeContent);
+
+    } else {
+
+      htmlContent = StringsResources.sliderThreeContent()
 
     }
 

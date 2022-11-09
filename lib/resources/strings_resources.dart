@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 7:31 AM
+ * Last modified 11/9/22, 8:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -130,5 +130,20 @@ class StringsResources {
   /*
    * End - Authentications
    */
+
+  static String sliderOneContent() {
+
+    return "";
+  }
+
+  static String sliderTwoContent() {
+
+    return "";
+  }
+
+  static String sliderThreeContent() {
+
+    return "";
+  }
 
 }
