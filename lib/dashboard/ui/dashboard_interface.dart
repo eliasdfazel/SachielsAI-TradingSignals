@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/5/22, 7:45 AM
+ * Last modified 11/15/22, 8:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,7 @@ import 'package:sachiel/dashboard/ui/sections/brokers_suggestions.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
 import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
+import 'package:sachiel/dashboard/ui/sections/social_media.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
@@ -209,6 +210,15 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       child: PurchasePlanPicker()
                   ),
                   /* End - Purchase Plan Picker */
+
+                  /* Start - Social Media */
+                  const Positioned(
+                      bottom: 37,
+                      right: 19,
+                      left: 19,
+                      child: SocialMedia()
+                  ),
+                  /* End - Social Media */
 
                   sliderInvocation
 

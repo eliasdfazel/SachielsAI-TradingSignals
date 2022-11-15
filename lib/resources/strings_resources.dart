@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/9/22, 9:19 AM
+ * Last modified 11/15/22, 8:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,16 @@ class StringsResources {
   static String applicationName() {
 
     return "Sachiel's Signals";
+  }
+
+  static String applicationSummary() {
+
+    return "Trading Signals With Up to 99% Accuracy from Advanced AI & Teams Of 6 Figures Traders.";
+  }
+
+  static String applicationLink() {
+
+    return "https://play.google.com/store/apps/details?id=co.geeksempire.sachiel.signals.sachiel";
   }
 
   static String sachielAI() {
