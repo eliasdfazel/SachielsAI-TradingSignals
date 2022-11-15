@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/15/22, 8:45 AM
+ * Last modified 11/15/22, 8:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import 'package:sachiel/profile/ui/account_information_details.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SocialMedia extends StatefulWidget {
 
@@ -89,7 +90,7 @@ class SocialMediaStates extends State<SocialMedia> {
                   child: InkWell(
                       onTap: () {
 
-
+                        launchUrl(Uri.parse(StringsResources.twitterLink()));
 
                       },
                       child: SizedBox(
@@ -110,7 +111,7 @@ class SocialMediaStates extends State<SocialMedia> {
                   child: InkWell(
                       onTap: () {
 
-
+                        launchUrl(Uri.parse(StringsResources.facebookLink()));
 
                       },
                       child: SizedBox(
@@ -131,7 +132,7 @@ class SocialMediaStates extends State<SocialMedia> {
                   child: InkWell(
                       onTap: () {
 
-
+                        launchUrl(Uri.parse(StringsResources.instagramLink()));
 
                       },
                       child: SizedBox(
