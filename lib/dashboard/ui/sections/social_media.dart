@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/15/22, 8:19 AM
+ * Last modified 11/15/22, 8:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -51,38 +51,101 @@ class SocialMediaStates extends State<SocialMedia> {
   @override
   Widget build(BuildContext context) {
 
-    return Row(
-      children: [
+    return SizedBox(
+      height: 59,
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
 
-        /* Start - Profile Image */
-        Expanded(
-          flex: 1,
-          child: InkWell(
-              onTap: () {
+          /* Start - Share */
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: InkWell(
+                      onTap: () {
 
-                Share.share("${StringsResources.applicationName()}\n"
-                    "${StringsResources.applicationSummary()}\n"
-                    "${StringsResources.applicationLink()}");
+                        Share.share("${StringsResources.applicationName()}\n"
+                            "${StringsResources.applicationSummary()}\n"
+                            "${StringsResources.applicationLink()}");
 
-              },
-              child: const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      },
                       child: SizedBox(
                           height: 59,
                           width: 59,
-                          child: Image(
-                            image: AssetImage("share_icon_small.png"),
-                          )
+                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Fshare_icon_small.png?alt=media")
                       )
                   )
               )
           ),
-        )
-        /* End - Profile Image */
+          /* End - Share */
 
-      ],
+          /* Start - Twitter */
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: InkWell(
+                      onTap: () {
+
+
+
+                      },
+                      child: SizedBox(
+                          height: 59,
+                          width: 59,
+                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Ftwitter_icon.png?alt=media")
+                      )
+                  )
+              )
+          ),
+          /* End - Twitter */
+
+          /* Start - Facebook */
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: InkWell(
+                      onTap: () {
+
+
+
+                      },
+                      child: SizedBox(
+                          height: 59,
+                          width: 59,
+                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Ffacebook_icon.png?alt=media")
+                      )
+                  )
+              )
+          ),
+          /* End - Facebook */
+
+          /* Start - Instagram */
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: InkWell(
+                      onTap: () {
+
+
+
+                      },
+                      child: SizedBox(
+                          height: 59,
+                          width: 59,
+                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Finstagram_icon.png?alt=media")
+                      )
+                  )
+              )
+          )
+          /* End - Instagram */
+
+        ],
+      ),
     );
   }
 
