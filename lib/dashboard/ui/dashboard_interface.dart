@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/15/22, 8:19 AM
+ * Last modified 11/15/22, 9:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -199,6 +199,13 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                         brokersSuggestionsInterface,
                         /* End - Brokers Suggestions */
 
+                        /* Start - Social Media */
+                        const Padding(
+                          padding: EdgeInsets.fromLTRB(0, 37, 0, 0),
+                          child: SocialMedia(),
+                        )
+                        /* End - Social Media */
+
                       ],
                     ),
                   ),
@@ -210,15 +217,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       child: PurchasePlanPicker()
                   ),
                   /* End - Purchase Plan Picker */
-
-                  /* Start - Social Media */
-                  const Positioned(
-                      bottom: 37,
-                      right: 19,
-                      left: 19,
-                      child: SocialMedia()
-                  ),
-                  /* End - Social Media */
 
                   sliderInvocation
 
