@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 8:19 AM
+ * Last modified 11/16/22, 8:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,6 +23,7 @@ import 'package:sachiel/introductions/introduction_slides.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/authentication/authentication_process.dart';
+import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 
@@ -370,22 +371,19 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
       } else {
         debugPrint("Authentication With Phone Number Completed");
 
-        // fileExist("SliderTime.TXT").then((sliderShown) => {
-        //
-        //   if (sliderShown) {
-        //
-        //     navigateTo(context, IntroductionSlides())
-        //
-        //   } else {
-        //
-        //     navigateTo(context, const DashboardInterface())
-        //
-        //   }
-        //
-        // });
+        fileExist("SliderTime.TXT").then((sliderShown) => {
 
-        navigateTo(context, IntroductionSlides());
+          if (sliderShown) {
 
+            navigateTo(context, IntroductionSlides())
+
+          } else {
+
+            navigateTo(context, const DashboardInterface())
+
+          }
+
+        });
 
       }
 

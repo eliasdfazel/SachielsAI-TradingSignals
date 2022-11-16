@@ -2,18 +2,19 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 8:19 AM
+ * Last modified 11/16/22, 8:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
+import 'package:sachiel/dashboard/ui/dashboardi/signals_history_interface.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -42,9 +43,26 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
   double contentHeight = double.infinity;
   double contentWidth = double.infinity;
 
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    navigatePop(context);
+
+    return true;
+  }
+
+  @override
+  void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
+
+    BackButtonInterceptor.add(aInterceptor);
 
     retrieveRemoteConfigurations();
 

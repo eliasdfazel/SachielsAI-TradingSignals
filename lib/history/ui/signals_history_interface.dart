@@ -2,12 +2,13 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 6:49 AM
+ * Last modified 11/16/22, 8:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -43,20 +44,31 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
     ),
   );
 
-  @override
-  void initState() {
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
-    retrieveSignalsHistory();
+    navigatePop(context);
 
-    super.initState();
-
-    changeColor(ColorsResources.black, ColorsResources.black);
-
+    return true;
   }
 
   @override
   void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    retrieveSignalsHistory();
+
+    changeColor(ColorsResources.black, ColorsResources.black);
+
+    BackButtonInterceptor.add(aInterceptor);
+
   }
 
   @override
