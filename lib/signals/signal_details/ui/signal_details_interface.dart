@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 9:58 AM
+ * Last modified 11/16/22, 9:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1486,7 +1486,8 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
       child: InkWell(
         onTap: () {
 
-          launchUrl(Uri.parse(StringsResources.marketChartLink(widget.signalsDataStructure.tradeMarketPair())));
+          launchUrl(Uri.parse(StringsResources.marketChartLink(widget.signalsDataStructure.tradeMarketPair())),
+              mode: LaunchMode.externalApplication);
 
         },
         child: const Image(
