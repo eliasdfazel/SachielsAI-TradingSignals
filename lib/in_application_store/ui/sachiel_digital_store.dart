@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 8:14 AM
+ * Last modified 11/16/22, 6:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -180,8 +180,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                           )
                       ),
                       child: SizedBox(
-                        height: calculatePercentage(99, displayHeight(context)),
-                        width: calculatePercentage(99, displayWidth(context)),
+                        height: calculatePercentage(99, displayHeight()),
+                        width: calculatePercentage(99, displayWidth()),
                       ),
                     )
                 ),

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 6:44 AM
+ * Last modified 11/16/22, 7:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,8 +38,8 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
   Widget allContent = Container();
 
-  double contentHeight = 379;
-  double contentWidth = 179;
+  double contentHeight = double.infinity;
+  double contentWidth = double.infinity;
 
   @override
   void initState() {
@@ -51,9 +51,6 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
   @override
   Widget build(BuildContext context) {
-
-    contentHeight = calculatePercentage(91, displayHeight(context));
-    contentWidth = calculatePercentage(91, displayWidth(context)) * 2;
 
     return SafeArea(
         child: MaterialApp(
@@ -137,8 +134,8 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                               )
                           ),
                           child: SizedBox(
-                            height: calculatePercentage(79, displayHeight(context)),
-                            width: calculatePercentage(79, displayWidth(context)),
+                            height: calculatePercentage(79, displayHeight()),
+                            width: calculatePercentage(79, displayWidth()),
                           ),
                         )
                     ),
@@ -365,15 +362,15 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
             /* Start - Browser */
             Padding(
-              padding: const EdgeInsets.fromLTRB(13, 0, 73, 0),
+              padding: const EdgeInsets.fromLTRB(19, 113, 73, 113),
               child: Align(
                   alignment: Alignment.center,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(17),
                       child: Blur(
-                        blur: 13,
+                        blur: 7,
                         blurColor: ColorsResources.light,
-                        colorOpacity: 0.07,
+                        colorOpacity: 0.13,
                         overlay: Padding(
                           padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
 
@@ -388,7 +385,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                         ),
                         child: SizedBox(
                           height: contentHeight,
-                          width: contentWidth * 2,
+                          width: contentWidth,
                         ),
                       )
                   )
@@ -434,15 +431,15 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
             /* Start - Browser */
             Padding(
-              padding: const EdgeInsets.fromLTRB(13, 0, 73, 0),
+              padding: const EdgeInsets.fromLTRB(19, 113, 73, 113),
               child: Align(
                   alignment: Alignment.center,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(17),
                       child: Blur(
-                        blur: 13,
+                        blur: 7,
                         blurColor: ColorsResources.light,
-                        colorOpacity: 0.07,
+                        colorOpacity: 0.13,
                         overlay: Padding(
                           padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
                           child: Html(
@@ -502,15 +499,15 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
             /* Start - Browser */
             Padding(
-              padding: const EdgeInsets.fromLTRB(13, 0, 73, 0),
+              padding: const EdgeInsets.fromLTRB(19, 113, 73, 113),
               child: Align(
                   alignment: Alignment.center,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(17),
                       child: Blur(
-                        blur: 13,
+                        blur: 7,
                         blurColor: ColorsResources.light,
-                        colorOpacity: 0.07,
+                        colorOpacity: 0.13,
                         overlay: Padding(
                           padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
                           child: Html(

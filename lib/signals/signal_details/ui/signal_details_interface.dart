@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/5/22, 2:29 AM
+ * Last modified 11/16/22, 6:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -164,8 +164,8 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                           )
                       ),
                       child: SizedBox(
-                        height: calculatePercentage(99, displayHeight(context)),
-                        width: calculatePercentage(99, displayWidth(context)),
+                        height: calculatePercentage(99, displayHeight()),
+                        width: calculatePercentage(99, displayWidth()),
                       ),
                     )
                 ),

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/6/22, 3:55 AM
+ * Last modified 11/16/22, 6:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -165,8 +165,8 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                           )
                       ),
                       child: SizedBox(
-                        height: calculatePercentage(99, displayHeight(context)),
-                        width: calculatePercentage(99, displayWidth(context)),
+                        height: calculatePercentage(99, displayHeight()),
+                        width: calculatePercentage(99, displayWidth()),
                       ),
                     )
                 ),
@@ -679,7 +679,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     }
 
-    int gridColumnCount = (displayWidth(context) / 199).round();
+    int gridColumnCount = (displayWidth() / 199).round();
 
     setState(() {
 
@@ -965,7 +965,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     }
 
-    int gridColumnCount = (displayWidth(context) / 199).round();
+    int gridColumnCount = (displayWidth() / 199).round();
 
     setState(() {
 
