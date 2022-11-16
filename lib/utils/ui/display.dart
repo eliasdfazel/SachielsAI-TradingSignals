@@ -2,22 +2,24 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 7/9/22, 6:12 PM
+ * Last modified 11/16/22, 5:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 double displayWidth(BuildContext context) {
 
-  return  MediaQuery.of(context).size.width;
+  return  window.physicalSize.width;
 }
 
 double displayHeight(BuildContext context) {
 
-  return MediaQuery.of(context).size.height;
+  return window.physicalSize.height;
 }
 
 double safeAreaHeight(BuildContext context) {

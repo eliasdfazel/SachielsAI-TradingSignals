@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/9/22, 8:22 AM
+ * Last modified 11/16/22, 6:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,6 +38,9 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
   Widget allContent = Container();
 
+  double contentHeight = 379;
+  double contentWidth = 179;
+
   @override
   void initState() {
     super.initState();
@@ -48,6 +51,9 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
   @override
   Widget build(BuildContext context) {
+
+    contentHeight = calculatePercentage(91, displayHeight(context));
+    contentWidth = calculatePercentage(91, displayWidth(context));
 
     return SafeArea(
         child: MaterialApp(
@@ -372,12 +378,17 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                           padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
 
                           child: Html(
-                              data: htmlContent
-                          ),
+                              data: htmlContent,
+                              style: {
+                                'p': Style(
+                                    color: ColorsResources.light
+                                )
+                              }
+                          )
                         ),
                         child: SizedBox(
-                          height: calculatePercentage(70, displayHeight(context)),
-                          width: calculatePercentage(70, displayWidth(context)),
+                          height: contentHeight,
+                          width: contentWidth,
                         ),
                       )
                   )
@@ -430,17 +441,22 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                       borderRadius: BorderRadius.circular(17),
                       child: Blur(
                         blur: 13,
-                        blurColor: ColorsResources.white,
+                        blurColor: ColorsResources.light,
                         colorOpacity: 0.07,
                         overlay: Padding(
                           padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
                           child: Html(
-                              data: htmlContent
+                              data: htmlContent,
+                              style: {
+                                'p': Style(
+                                    color: ColorsResources.light
+                                )
+                              }
                           ),
                         ),
                         child: SizedBox(
-                          height: calculatePercentage(70, displayHeight(context)),
-                          width: calculatePercentage(70, displayWidth(context)),
+                          height: contentHeight,
+                          width: contentWidth,
                         ),
                       )
                   )
@@ -493,17 +509,22 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                       borderRadius: BorderRadius.circular(17),
                       child: Blur(
                         blur: 13,
-                        blurColor: ColorsResources.dark,
+                        blurColor: ColorsResources.light,
                         colorOpacity: 0.07,
                         overlay: Padding(
                           padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
                           child: Html(
-                              data: htmlContent
+                              data: htmlContent,
+                              style: {
+                                'p': Style(
+                                    color: ColorsResources.dark
+                                )
+                              }
                           ),
                         ),
                         child: SizedBox(
-                          height: calculatePercentage(70, displayHeight(context)),
-                          width: calculatePercentage(70, displayWidth(context)),
+                          height: contentHeight,
+                          width: contentWidth,
                         ),
                       )
                   )

@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/15/22, 9:27 AM
+ * Last modified 11/16/22, 5:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -66,6 +66,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   @override
   Widget build(BuildContext context) {
+
+    sliderCheckpoint();
 
     return SafeArea(
       child: MaterialApp(

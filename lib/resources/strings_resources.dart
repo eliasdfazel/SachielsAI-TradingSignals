@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/15/22, 8:56 AM
+ * Last modified 11/16/22, 5:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -158,19 +158,17 @@ class StringsResources {
 
   static String sliderOneContent() {
 
-    return "The Biggest Risk Is<br/>Not To Take <b>Any Risks</b>. "
-        "<br/><br/><br/> "
-        "Money Grows On The Tree Of <b>Persistence</b>.";
+    return "<p>The Biggest Risk Is<br/>Not To Take <b>Any Risks</b>.<br/><br/><br/> Money Grows On The Tree Of <b>Persistence</b>.</p>";
   }
 
   static String sliderTwoContent() {
 
-    return "The Only Thing You Can Buy For Free Is... <br/> <b>Misery</b>. <br/><br/> <b>Make More Money To Change Your Life</b>.";
+    return "<p>The Only Thing You Can Buy For Free Is... <br/> <b>Misery</b>. <br/><br/> <b>Make More Money To Change Your Life</b>.</p>";
   }
 
   static String sliderThreeContent() {
 
-    return "Wealth Is Your Dreams. <br/><br/>🟡 Modern Life <br/>🟡 Modern Work <br/>🟡 Modern Hopes";
+    return "<p>Wealth Is Your Dreams. <br/><br/>🟡 Modern Life <br/>🟡 Modern Work <br/>🟡 Modern Hopes</p>";
   }
 
 }
