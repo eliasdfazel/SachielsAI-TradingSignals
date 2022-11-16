@@ -2,12 +2,13 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 6:49 AM
+ * Last modified 11/16/22, 8:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -51,19 +52,31 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
   Widget newsAcademy = Container();
 
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    navigatePop(context);
+
+    return true;
+  }
+
+  @override
+  void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
+
+    BackButtonInterceptor.add(aInterceptor);
 
     changeColor(ColorsResources.black, ColorsResources.black);
 
     retrieveAcademyTutorials();
 
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override

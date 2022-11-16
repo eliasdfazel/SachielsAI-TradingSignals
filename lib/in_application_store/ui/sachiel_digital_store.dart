@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 6:49 AM
+ * Last modified 11/16/22, 8:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 import 'dart:async';
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -46,8 +47,27 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
     ),
   );
 
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    navigatePop(context);
+
+    return true;
+  }
+
+  @override
+  void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
+    sachielSubscription?.cancel();
+
+    super.dispose();
+  }
+
   @override
   void initState() {
+
+    BackButtonInterceptor.add(aInterceptor);
 
     final Stream purchaseUpdated = InAppPurchase.instance.purchaseStream;
 
@@ -71,14 +91,6 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
     changeColor(ColorsResources.black, ColorsResources.black);
 
-  }
-
-  @override
-  void dispose() {
-
-    sachielSubscription?.cancel();
-
-    super.dispose();
   }
 
   @override

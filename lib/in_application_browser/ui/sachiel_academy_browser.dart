@@ -2,12 +2,13 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 6:49 AM
+ * Last modified 11/16/22, 8:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/academy/data/articles_data_structure.dart';
@@ -37,19 +38,31 @@ class _SachielAcademyBrowserState extends State<SachielAcademyBrowser> {
 
   String websiteAddress = "";
 
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    navigatePop(context);
+
+    return true;
+  }
+
+  @override
+  void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
+
+    BackButtonInterceptor.add(aInterceptor);
 
     changeColor(ColorsResources.black, ColorsResources.black);
 
     websiteAddress = "${widget.articlesDataStructure.articleLink()}?utm_source=sachielssignals&utm_medium=sachielssignals";
 
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override

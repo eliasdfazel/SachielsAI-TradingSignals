@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 6:49 AM
+ * Last modified 11/16/22, 8:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -49,20 +50,31 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
     ),
   );
 
-  @override
-  void initState() {
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
-    super.initState();
+    navigatePop(context);
 
-    changeColor(ColorsResources.black, ColorsResources.black);
-
-    prepareSignalDetails(widget.signalsDataStructure);
-
+    return true;
   }
 
   @override
   void dispose() {
     super.dispose();
+
+    BackButtonInterceptor.remove(aInterceptor);
+
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    BackButtonInterceptor.add(aInterceptor);
+
+    changeColor(ColorsResources.black, ColorsResources.black);
+
+    prepareSignalDetails(widget.signalsDataStructure);
+
   }
 
   @override
