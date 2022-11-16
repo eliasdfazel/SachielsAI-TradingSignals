@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 5:59 AM
+ * Last modified 11/16/22, 9:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -169,6 +169,11 @@ class StringsResources {
   static String sliderThreeContent() {
 
     return "<p>Wealth Is Your Dreams. <br/><br/>🟡 Modern Life <br/>🟡 Modern Work <br/>🟡 Modern Hopes</p>";
+  }
+
+  static String marketChartLink(String marketPair) {
+
+    return "https://www.tradingview.com/chart/?symbol=${marketPair}";
   }
 
 }
