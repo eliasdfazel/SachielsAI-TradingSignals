@@ -15,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
-import 'package:sachiel/dashboard/ui/dashboardi/signals_history_interface.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
