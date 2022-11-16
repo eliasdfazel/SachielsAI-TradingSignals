@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 6:41 AM
+ * Last modified 11/16/22, 6:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -53,7 +53,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
   Widget build(BuildContext context) {
 
     contentHeight = calculatePercentage(91, displayHeight(context));
-    contentWidth = calculatePercentage(91, displayWidth(context));
+    contentWidth = calculatePercentage(91, displayWidth(context)) * 2;
 
     return SafeArea(
         child: MaterialApp(
@@ -388,7 +388,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                         ),
                         child: SizedBox(
                           height: contentHeight,
-                          width: contentWidth,
+                          width: contentWidth * 2,
                         ),
                       )
                   )
