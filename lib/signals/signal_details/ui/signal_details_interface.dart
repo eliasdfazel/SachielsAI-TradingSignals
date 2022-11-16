@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 9:35 AM
+ * Last modified 11/16/22, 9:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,6 +27,7 @@ import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
 class SignalsDetailsInterface extends StatefulWidget {
@@ -305,7 +306,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                 /* End - Purchase Plan Picker */
 
                 Positioned(
-                  bottom: 19,
+                  bottom: 37,
                   right: 19,
                   child: signalValidation
                 )
@@ -325,7 +326,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
         signalDetailsPlaceholder = Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(19, 113, 19, 37),
+            padding: const EdgeInsets.fromLTRB(19, 113, 19, 113),
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
             children: [
@@ -1482,7 +1483,16 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
     signalValidation = SizedBox(
       height: 59,
       width: 59,
-      child: ColoredBox(color: Colors.blue,),
+      child: InkWell(
+        onTap: () {
+
+          launchUrl(Uri.parse(StringsResources.marketChartLink(widget.signalsDataStructure.tradeMarketPair())));
+
+        },
+        child: const Image(
+          image: AssetImage("validated_icon.png"),
+        ),
+      ),
     );
 
   }

@@ -178,6 +178,8 @@ flutter:
 
     - twitter_input.png
 
+    - validated_icon.png
+
 
   fonts:
     - family: Ubuntu
