@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/15/22, 8:57 AM
+ * Last modified 11/16/22, 8:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -56,58 +56,60 @@ class SocialMediaStates extends State<SocialMedia> {
       height: 59,
       width: double.infinity,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
 
           /* Start - Share */
-          Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: InkWell(
-                      onTap: () {
+          Expanded(
+            flex: 3,
+            child: Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
+                    child: InkWell(
+                        onTap: () {
 
-                        Share.share("${StringsResources.applicationName()}\n"
-                            "${StringsResources.applicationSummary()}\n"
-                            "${StringsResources.applicationLink()}");
+                          Share.share("${StringsResources.applicationName()}\n"
+                              "${StringsResources.applicationSummary()}\n"
+                              "${StringsResources.applicationLink()}");
 
-                      },
-                      child: SizedBox(
-                          height: 59,
-                          width: 59,
-                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Fshare_icon_small.png?alt=media")
-                      )
-                  )
-              )
+                        },
+                        child: SizedBox(
+                            height: 59,
+                            width: 59,
+                            child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Fshare_icon_small.png?alt=media")
+                        )
+                    )
+                )
+            ),
           ),
           /* End - Share */
 
-          /* Start - Twitter */
+          /* Start - Instagram */
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
                   child: InkWell(
                       onTap: () {
 
-                        launchUrl(Uri.parse(StringsResources.twitterLink()));
+                        launchUrl(Uri.parse(StringsResources.instagramLink()));
 
                       },
                       child: SizedBox(
                           height: 59,
                           width: 59,
-                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Ftwitter_icon.png?alt=media")
+                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Finstagram_icon.png?alt=media")
                       )
                   )
               )
           ),
-          /* End - Twitter */
+          /* End - Instagram */
 
           /* Start - Facebook */
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
                   child: InkWell(
                       onTap: () {
 
@@ -124,26 +126,26 @@ class SocialMediaStates extends State<SocialMedia> {
           ),
           /* End - Facebook */
 
-          /* Start - Instagram */
+          /* Start - Twitter */
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 19, 0),
                   child: InkWell(
                       onTap: () {
 
-                        launchUrl(Uri.parse(StringsResources.instagramLink()));
+                        launchUrl(Uri.parse(StringsResources.twitterLink()));
 
                       },
                       child: SizedBox(
                           height: 59,
                           width: 59,
-                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Finstagram_icon.png?alt=media")
+                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Ftwitter_icon.png?alt=media")
                       )
                   )
               )
-          )
-          /* End - Instagram */
+          ),
+          /* End - Twitter */
 
         ],
       ),
