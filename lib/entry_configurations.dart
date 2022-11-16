@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/5/22, 8:05 AM
+ * Last modified 11/16/22, 8:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -370,7 +370,22 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
       } else {
         debugPrint("Authentication With Phone Number Completed");
 
+        // fileExist("SliderTime.TXT").then((sliderShown) => {
+        //
+        //   if (sliderShown) {
+        //
+        //     navigateTo(context, IntroductionSlides())
+        //
+        //   } else {
+        //
+        //     navigateTo(context, const DashboardInterface())
+        //
+        //   }
+        //
+        // });
+
         navigateTo(context, IntroductionSlides());
+
 
       }
 

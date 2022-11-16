@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 7:12 AM
+ * Last modified 11/16/22, 8:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
+import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -285,11 +286,31 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
   Widget setupSlider() {
 
+    List<Widget> sliderContent = [
+
+      firstSlideIntroduction(),
+
+      secondSlideIntroduction(),
+
+      thirdSlideIntroduction(),
+
+    ];
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(17),
       child: LiquidSwipe(
         liquidController: liquidController,
         onPageChangeCallback: (position) {
+
+          if (position == sliderContent.length) {
+
+
+
+          } else {
+
+
+
+          }
 
         },
         currentUpdateTypeCallback: (updateType) {
@@ -316,15 +337,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
         ),
         positionSlideIcon: 0.91,
         waveType: WaveType.liquidReveal,
-        pages: [
-
-          firstSlideIntroduction(),
-
-          secondSlideIntroduction(),
-
-          thirdSlideIntroduction(),
-
-        ],
+        pages: sliderContent
       ),
     );
   }
@@ -352,7 +365,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
             const Align(
               alignment: Alignment.center,
               child: Opacity(
-                opacity: 0.13,
+                opacity: 0.31,
                 child: Image(
                   image: AssetImage("logo.png"),
                 ),
@@ -421,7 +434,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
             const Align(
               alignment: Alignment.center,
               child: Opacity(
-                opacity: 0.13,
+                opacity: 0.31,
                 child: Image(
                   image: AssetImage("logo.png"),
                 ),
@@ -489,7 +502,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
             const Align(
               alignment: Alignment.center,
               child: Opacity(
-                opacity: 0.13,
+                opacity: 0.31,
                 child: Image(
                   image: AssetImage("logo.png"),
                 ),
@@ -526,8 +539,33 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                       )
                   )
               ),
-            )
+            ),
             /* End - Browser */
+
+            /* Start - Skip */
+            Positioned(
+              bottom: 53,
+              left: 19,
+              child: SizedBox(
+                width: 171,
+                child: InkWell(
+                  onTap: () {
+
+                    createFileOfTexts("SliderTime", ".TXT", DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
+
+                      navigateTo(context, const DashboardInterface())
+
+                    });
+
+                  },
+                  child: const Image(
+                    image: AssetImage("continue_icon.png"),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            )
+            /* End - Skip */
 
           ],
         )
