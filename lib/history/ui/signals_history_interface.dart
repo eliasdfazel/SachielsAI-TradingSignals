@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 8:43 AM
+ * Last modified 11/18/22, 3:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
+import 'package:sachiel/in_application_store/utils/digital_store_utils.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
@@ -34,6 +35,8 @@ class SignalsHistoryInterface extends StatefulWidget {
 
 }
 class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
+
+  DigitalStoreUtils digitalStoreUtils = DigitalStoreUtils();
 
   Widget allSignalsHistory = Container(
     alignment: Alignment.center,
@@ -302,7 +305,9 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
     debugPrint("Retrieve Latest Signals Details");
 
     FirebaseFirestore.instance
-        .collection("/Sachiels/Signals/Palladium")
+        .collection("/Sachiels"
+        "/Signals"
+        "/${digitalStoreUtils.purchasedTier()}")
         .limit(73)
         .orderBy("tradeTimestamp")
         .get().then((QuerySnapshot querySnapshot) {
