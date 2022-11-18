@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 8:47 AM
+ * Last modified 11/18/22, 2:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -186,13 +186,9 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
   @override
   void authenticationWithPhoneCompleted() {
+    debugPrint("Authentication With Phone Number Completed");
 
-    Future.delayed(const Duration(milliseconds: 379), () {
-      debugPrint("Authentication With Phone Number Completed");
-
-      navigateTo(context, const DashboardInterface());
-
-    });
+    navigationCheckpoint();
 
   }
 
@@ -371,19 +367,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
       } else {
         debugPrint("Authentication With Phone Number Completed");
 
-        fileExist("SliderTime.TXT").then((sliderShown) => {
-
-          if (sliderShown) {
-
-            navigateTo(context, IntroductionSlides())
-
-          } else {
-
-            navigateTo(context, const DashboardInterface())
-
-          }
-
-        });
+        navigationCheckpoint();
 
       }
 
@@ -408,6 +392,28 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
       debugPrint("Notification Permission: ${notificationSettings.authorizationStatus}");
 
     }
+
+  }
+
+  void navigationCheckpoint() {
+
+    Future.delayed(const Duration(milliseconds: 379), () {
+
+      fileExist(StringsResources.filePurchasingPlan).then((sliderShown) => {
+
+        if (sliderShown) {
+
+          navigateTo(context, IntroductionSlides())
+
+        } else {
+
+          navigateTo(context, const DashboardInterface())
+
+        }
+
+      });
+
+    });
 
   }
 

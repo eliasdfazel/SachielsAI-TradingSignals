@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 8:48 AM
+ * Last modified 11/18/22, 2:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
+import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -278,7 +279,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
     if (widget.firebaseRemoteConfig != null) {
 
-      createFileOfTexts("SliderTime", ".TXT", widget.firebaseRemoteConfig!.getString(RemoteConfigurations.sliderTime));
+      createFileOfTexts(StringsResources.fileSliderTime, ".TXT", widget.firebaseRemoteConfig!.getString(RemoteConfigurations.sliderTime));
 
       /* Start - Introduction Liquid Slide */
       setState(() {
@@ -569,9 +570,21 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                 child: InkWell(
                   onTap: () {
 
-                    createFileOfTexts("SliderTime", ".TXT", DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
+                    createFileOfTexts(StringsResources.filePurchasingPlan, ".TXT", DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
 
-                      navigateTo(context, const DashboardInterface())
+                      fileExist(StringsResources.filePurchasingPlan).then((alreadyPurchased) => {
+
+                        if (alreadyPurchased) {
+
+                          navigateTo(context, const DashboardInterface())
+
+                        } else {
+
+                          navigateTo(context, const SachielsDigitalStore())
+
+                        }
+
+                      })
 
                     });
 

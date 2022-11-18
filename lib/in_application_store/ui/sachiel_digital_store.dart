@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 8:51 AM
+ * Last modified 11/18/22, 2:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/in_application_store/data/plans_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -36,7 +37,7 @@ class SachielsDigitalStore extends StatefulWidget {
 }
 class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
-  StreamSubscription<List<PurchaseDetails>>? sachielSubscription;
+  StreamSubscription<List<PurchaseDetails>>? streamSubscription;
 
   Widget allPurchasingPlans = Container(
     alignment: Alignment.center,
@@ -50,6 +51,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
     navigatePop(context);
+    navigateTo(context, const DashboardInterface());
 
     return true;
   }
@@ -59,7 +61,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
     BackButtonInterceptor.remove(aInterceptor);
 
-    sachielSubscription?.cancel();
+    streamSubscription?.cancel();
 
     super.dispose();
   }
@@ -71,13 +73,13 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
     final Stream purchaseUpdated = InAppPurchase.instance.purchaseStream;
 
-    sachielSubscription = purchaseUpdated.listen((purchaseDetailsList) {
+    streamSubscription = purchaseUpdated.listen((purchaseDetailsList) {
 
       purchaseUpdatedListener(purchaseDetailsList);
 
     }, onDone: () {
 
-      sachielSubscription?.cancel();
+      streamSubscription?.cancel();
 
     }, onError: (error) {
 
@@ -464,7 +466,11 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
         if (purchaseDetails.pendingCompletePurchase) {
 
-          InAppPurchase.instance.completePurchase(purchaseDetails);
+          InAppPurchase.instance.completePurchase(purchaseDetails).whenComplete(() => {
+
+            // Save Purchased Plan Offline
+
+          });
 
         }
 

@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 6:49 AM
+ * Last modified 11/18/22, 2:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -235,7 +235,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
       firebaseRemoteConfigurations.activate().then((value) async {
 
-        int oldSliderTime = int.parse(await readFileOfTexts("SliderTime", ".TXT"));
+        int oldSliderTime = int.parse(await readFileOfTexts(StringsResources.fileNameSliderTime, ".TXT"));
 
         int newSliderTime = firebaseRemoteConfigurations.getInt(RemoteConfigurations.sliderTime);
 

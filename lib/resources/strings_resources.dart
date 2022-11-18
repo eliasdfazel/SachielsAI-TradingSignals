@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 9:26 AM
+ * Last modified 11/18/22, 2:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -175,5 +175,14 @@ class StringsResources {
 
     return "https://www.tradingview.com/chart/?symbol=${marketPair}";
   }
+
+  /// SliderTime.TXT
+  static String fileSliderTime = "SliderTime.TXT";
+  /// SliderTime
+  static String fileNameSliderTime = "SliderTime";
+  /// PurchasingPlan.TXT
+  static String filePurchasingPlan = "PurchasingPlan.TXT";
+  /// PurchasingPlan
+  static String fileNamePurchasingPlan = "PurchasingPlan";
 
 }
