@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/18/22, 2:46 AM
+ * Last modified 11/18/22, 3:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,6 +21,7 @@ import 'package:sachiel/in_application_store/data/plans_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
+import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
@@ -30,6 +31,10 @@ import 'package:widget_mask/widget_mask.dart';
 class SachielsDigitalStore extends StatefulWidget {
 
   const SachielsDigitalStore({Key? key}) : super(key: key);
+
+  static const String titaniumTier = "titanium.tier";
+  static const String goldTier = "gold.tier";
+  static const String palladiumTier = "palladium.tier";
 
   @override
   State<SachielsDigitalStore> createState() => _SachielsDigitalStoreState();
@@ -469,6 +474,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
           InAppPurchase.instance.completePurchase(purchaseDetails).whenComplete(() => {
 
             // Save Purchased Plan Offline
+            createFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT", purchaseDetails.productID)
 
           });
 

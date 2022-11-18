@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/18/22, 2:39 AM
+ * Last modified 11/18/22, 3:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -57,6 +57,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
     changeColor(ColorsResources.black, ColorsResources.black);
 
+    sliderCheckpoint();
+
   }
 
   @override
@@ -66,8 +68,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   @override
   Widget build(BuildContext context) {
-
-    sliderCheckpoint();
 
     return SafeArea(
       child: MaterialApp(
@@ -241,24 +241,28 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
         if (newSliderTime > oldSliderTime) {
 
-          sliderInvocation = Positioned(
-            left: 19,
-            bottom: 31,
-            child: SizedBox(
-              height: 59,
-              width: 59,
-              child: InkWell(
-                  onTap: () async {
+          setState(() {
 
-                    navigateTo(context, IntroductionSlides(firebaseRemoteConfig: firebaseRemoteConfigurations));
+            sliderInvocation = Positioned(
+              left: 19,
+              bottom: 31,
+              child: SizedBox(
+                  height: 59,
+                  width: 59,
+                  child: InkWell(
+                      onTap: () async {
 
-                  },
-                  child: const Image(
-                    image: AssetImage("golden_information_icon.png"),
+                        navigateTo(context, IntroductionSlides(firebaseRemoteConfig: firebaseRemoteConfigurations));
+
+                      },
+                      child: const Image(
+                        image: AssetImage("golden_information_icon.png"),
+                      )
                   )
-              )
-            ),
-          );
+              ),
+            );
+
+          });
 
         }
 
