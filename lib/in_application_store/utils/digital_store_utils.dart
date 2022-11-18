@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/18/22, 4:00 AM
+ * Last modified 11/18/22, 4:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,13 +15,23 @@ class DigitalStoreUtils {
 
   Future<String> purchasedTier() async {
 
-    String purchasingPlanDirectory = await readFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT");
+    String purchasingTier = "";
 
-    int lengthOfText = purchasingPlanDirectory.length;
+    bool alreadyPurchased = await fileExist(StringsResources.filePurchasingPlan);
 
-    purchasingPlanDirectory = "${purchasingPlanDirectory.substring(0, 1).toUpperCase()}${purchasingPlanDirectory.substring(1, lengthOfText)}";
+    if (alreadyPurchased) {
 
-    return purchasingPlanDirectory.replaceAll(".tier", "");
+      String purchasingPlanDirectory = await readFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT");
+
+      int lengthOfText = purchasingPlanDirectory.length;
+
+      purchasingPlanDirectory = "${purchasingPlanDirectory.substring(0, 1).toUpperCase()}${purchasingPlanDirectory.substring(1, lengthOfText)}";
+
+      purchasingTier = purchasingPlanDirectory.replaceAll(".tier", "");
+
+    }
+
+    return purchasingTier;
   }
 
 }

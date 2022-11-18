@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/18/22, 2:51 AM
+ * Last modified 11/18/22, 4:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -399,9 +399,9 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
     Future.delayed(const Duration(milliseconds: 379), () {
 
-      fileExist(StringsResources.filePurchasingPlan).then((sliderShown) => {
+      fileExist(StringsResources.filePurchasingPlan).then((alreadyPurchased) => {
 
-        if (sliderShown) {
+        if (alreadyPurchased) {
 
           navigateTo(context, IntroductionSlides())
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/18/22, 3:51 AM
+ * Last modified 11/18/22, 4:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -76,25 +76,31 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
     );
   }
 
-  void retrieveLastSignalDetails() {
+  void retrieveLastSignalDetails() async {
     debugPrint("Retrieve Last Signal Details");
 
-    FirebaseFirestore.instance
-        .collection("/Sachiels"
-        "/Signals"
-        "/${digitalStoreUtils.purchasedTier()}")
-        .limit(1)
-        .orderBy("tradeTimestamp")
-        .get().then((QuerySnapshot querySnapshot) {
-            debugPrint("Last Signal Details Data: ${querySnapshot.docs.first.data()}");
+    String purchasingTier = await digitalStoreUtils.purchasedTier();
 
-            SignalsDataStructure signalsDataStructure = SignalsDataStructure(querySnapshot.docs.first);
+    if (purchasingTier.isNotEmpty) {
 
-            prepareLastSignalsDetails(signalsDataStructure);
+      FirebaseFirestore.instance
+          .collection("/Sachiels"
+          "/Signals"
+          "/${digitalStoreUtils.purchasedTier()}")
+          .limit(1)
+          .orderBy("tradeTimestamp")
+          .get().then((QuerySnapshot querySnapshot) {
+        debugPrint("Last Signal Details Data: ${querySnapshot.docs.first.data()}");
 
-          },
-          onError: (e) => debugPrint("$e"),
-        );
+        SignalsDataStructure signalsDataStructure = SignalsDataStructure(querySnapshot.docs.first);
+
+        prepareLastSignalsDetails(signalsDataStructure);
+
+      },
+        onError: (e) => debugPrint("$e"),
+      );
+
+    }
 
   }
 
