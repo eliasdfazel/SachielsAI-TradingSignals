@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/21/22, 1:40 AM
+ * Last modified 11/21/22, 1:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,7 @@ import 'dart:async';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_firestore/cloud_firestorebase_messaging.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -438,32 +438,53 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
               switch (plansDataStructure.purchasingPlanProductId()) {
                 case SachielsDigitalStore.titaniumTier: {
 
+                  final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.titaniumTier});
 
+                  PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+
+                  InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+
+                  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+                  await firebaseMessaging.subscribeToTopic("Titanium");
+
+                  await firebaseMessaging.unsubscribeFromTopic("Gold");
+                  await firebaseMessaging.unsubscribeFromTopic("Palladium");
 
                   break;
                 }
                 case SachielsDigitalStore.goldTier: {
 
+                  final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.goldTier});
 
+                  PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+
+                  InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+
+                  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+                  await firebaseMessaging.subscribeToTopic("Gold");
+
+                  await firebaseMessaging.unsubscribeFromTopic("Titanium");
+                  await firebaseMessaging.unsubscribeFromTopic("Palladium");
 
                   break;
                 }
                 case SachielsDigitalStore.palladiumTier: {
 
+                  final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.palladiumTier});
 
+                  PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+
+                  InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+
+                  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+                  await firebaseMessaging.subscribeToTopic("Palladium");
+
+                  await firebaseMessaging.unsubscribeFromTopic("Titanium");
+                  await firebaseMessaging.unsubscribeFromTopic("Gold");
 
                   break;
                 }
               }
-
-              /*              final ProductDetails productDetails = ... // Saved earlier from queryProductDetails().
-              final PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetails);
-              if (_isConsumable(productDetails)) {
-              InAppPurchase.instance.buyConsumable(purchaseParam: purchaseParam);
-              } else {
-              InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
-              }
-              await FirebaseMessaging.instance.subscribeToTopic(PlansDataStructure.purchasingPlanName.replaceAll(" ", ""));*/
 
             },
             child: Column(
