@@ -2,7 +2,7 @@
   ~ Copyright © 2022 By Geeks Empire.
   ~
   ~ Created by Elias Fazel
-  ~ Last modified 11/18/22, 4:51 AM
+  ~ Last modified 11/21/22, 12:44 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -17,6 +17,16 @@
         android:label="Sachiels Signals"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+           <meta-data
+                       android:name="com.google.firebase.messaging.default_notification_icon"
+                       android:resource="@drawable/branding" />
+           <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+                notification message. See README(https://goo.gl/6BKBk7) for more. -->
+           <meta-data
+                       android:name="com.google.firebase.messaging.default_notification_color"
+                       android:resource="@color/notificationColor" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

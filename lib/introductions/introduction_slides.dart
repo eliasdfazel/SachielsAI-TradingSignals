@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/18/22, 2:46 AM
+ * Last modified 11/21/22, 1:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -580,7 +580,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
                         } else {
 
-                          navigateTo(context, const SachielsDigitalStore())
+                          navigateTo(context, SachielsDigitalStore(topPadding: 0))
 
                         }
 

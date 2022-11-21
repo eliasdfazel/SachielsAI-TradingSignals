@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/18/22, 3:07 AM
+ * Last modified 11/21/22, 1:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,8 +11,7 @@
 import 'dart:async';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:cloud_firestore/cloud_firestorebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -30,11 +29,13 @@ import 'package:widget_mask/widget_mask.dart';
 
 class SachielsDigitalStore extends StatefulWidget {
 
-  const SachielsDigitalStore({Key? key}) : super(key: key);
+  double topPadding = 0;
 
-  static const String titaniumTier = "titanium.tier";
-  static const String goldTier = "gold.tier";
-  static const String palladiumTier = "palladium.tier";
+  SachielsDigitalStore({Key? key, required this.topPadding}) : super(key: key);
+
+  static const String titaniumTier = "titanium.sachiel";
+  static const String goldTier = "gold.sachiel";
+  static const String palladiumTier = "palladium.sachiel";
 
   @override
   State<SachielsDigitalStore> createState() => _SachielsDigitalStoreState();
@@ -103,252 +104,267 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: StringsResources.applicationName(),
-        color: ColorsResources.primaryColor,
-        theme: ThemeData(
-          fontFamily: 'Ubuntu',
-          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-          backgroundColor: ColorsResources.black,
-          pageTransitionsTheme: const PageTransitionsTheme(builders: {
-            TargetPlatform.android: ZoomPageTransitionsBuilder(),
-            TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
-          }),
-        ),
-        home: Scaffold(
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, widget.topPadding, 0, 0),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: StringsResources.applicationName(),
+          color: ColorsResources.primaryColor,
+          theme: ThemeData(
+            fontFamily: 'Ubuntu',
+            colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
             backgroundColor: ColorsResources.black,
-            body: Stack(
-              children: [
+            pageTransitionsTheme: const PageTransitionsTheme(builders: {
+              TargetPlatform.android: ZoomPageTransitionsBuilder(),
+              TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+            }),
+          ),
+          home: Scaffold(
+              backgroundColor: ColorsResources.black,
+              body: Stack(
+                children: [
 
-                /* Start - Gradient Background - Dark */
-                Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(17),
-                          topRight: Radius.circular(17),
-                          bottomLeft: Radius.circular(17),
-                          bottomRight: Radius.circular(17)
-                      ),
-                      border: Border(
-                          top: BorderSide(
-                            color: ColorsResources.black,
-                            width: 7,
-                          ),
-                          bottom: BorderSide(
-                            color: ColorsResources.black,
-                            width: 7,
-                          ),
-                          left: BorderSide(
-                            color: ColorsResources.black,
-                            width: 7,
-                          ),
-                          right: BorderSide(
-                            color: ColorsResources.black,
-                            width: 7,
-                          )
-                      ),
-                      gradient: LinearGradient(
-                          colors: [
-                            ColorsResources.premiumDark,
-                            ColorsResources.black,
-                          ],
-                          begin: FractionalOffset(0.0, 0.0),
-                          end: FractionalOffset(1.0, 0.0),
-                          stops: [0.0, 1.0],
-                          transform: GradientRotation(-45),
-                          tileMode: TileMode.clamp
-                      ),
-                    )
-                ),
-                /* End - Gradient Background - Dark */
-
-                /* Start - Branding Transparent */
-                Align(
-                  alignment: Alignment.center,
-                  child: Opacity(
-                      opacity: 0.1,
-                      child: Transform.scale(
-                          scale: 1.7,
-                          child: const Image(
-                            image: AssetImage("logo.png"),
-                          )
+                  /* Start - Gradient Background - Dark */
+                  Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(17),
+                            topRight: Radius.circular(17),
+                            bottomLeft: Radius.circular(17),
+                            bottomRight: Radius.circular(17)
+                        ),
+                        border: Border(
+                            top: BorderSide(
+                              color: ColorsResources.black,
+                              width: 7,
+                            ),
+                            bottom: BorderSide(
+                              color: ColorsResources.black,
+                              width: 7,
+                            ),
+                            left: BorderSide(
+                              color: ColorsResources.black,
+                              width: 7,
+                            ),
+                            right: BorderSide(
+                              color: ColorsResources.black,
+                              width: 7,
+                            )
+                        ),
+                        gradient: LinearGradient(
+                            colors: [
+                              ColorsResources.premiumDark,
+                              ColorsResources.black,
+                            ],
+                            begin: FractionalOffset(0.0, 0.0),
+                            end: FractionalOffset(1.0, 0.0),
+                            stops: [0.0, 1.0],
+                            transform: GradientRotation(-45),
+                            tileMode: TileMode.clamp
+                        ),
                       )
                   ),
-                ),
-                /* End - Branding Transparent */
+                  /* End - Gradient Background - Dark */
 
-                /* Start - Gradient Background - Golden */
-                Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(17),
-                              topRight: Radius.circular(17),
-                              bottomLeft: Radius.circular(17),
-                              bottomRight: Radius.circular(17)
-                          ),
-                          gradient: RadialGradient(
-                            radius: 1.1,
-                            colors: <Color> [
-                              ColorsResources.primaryColorLighter.withOpacity(0.51),
-                              Colors.transparent,
-                            ],
-                            center: const Alignment(0.79, -0.87),
-                          )
-                      ),
-                      child: SizedBox(
-                        height: calculatePercentage(99, displayHeight()),
-                        width: calculatePercentage(99, displayWidth()),
-                      ),
-                    )
-                ),
-                /* End - Gradient Background - Golden */
-
-                allPurchasingPlans,
-
-                /* Start - Back */
-                Row(
-                  children: [
-
-                    /* Start - Back */
-                    Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                            padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
-                            child: SizedBox(
-                                height: 59,
-                                width: 59,
-                                child: InkWell(
-                                  onTap: () {
-
-                                    navigatePop(context);
-
-                                  },
-                                  child: const Image(
-                                    image: AssetImage("back_icon.png"),
-                                  ),
-                                )
+                  /* Start - Branding Transparent */
+                  Align(
+                    alignment: Alignment.center,
+                    child: Opacity(
+                        opacity: 0.1,
+                        child: Transform.scale(
+                            scale: 1.7,
+                            child: const Image(
+                              image: AssetImage("logo.png"),
                             )
                         )
                     ),
-                    /* End - Back */
+                  ),
+                  /* End - Branding Transparent */
 
-                    /* Start - Title */
-                    Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                            padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
-                            child: SizedBox(
-                                height: 59,
-                                width: 155,
-                                child: Stack(
-                                  children: [
-                                    WidgetMask(
-                                      blendMode: BlendMode.srcATop,
-                                      childSaveLayer: true,
-                                      mask /* Original Image */: Container(
-                                        decoration: const BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  ColorsResources.premiumDark,
-                                                  ColorsResources.black,
-                                                ],
-                                                transform: GradientRotation(45)
-                                            )
-                                        ),
-                                      ),
-                                      child: const Image(
-                                        image: AssetImage("rectircle_shape.png"),
-                                      ),
-                                    ),
-                                    Align(
-                                        alignment: Alignment.center,
-                                        child: Padding(
-                                            padding: const EdgeInsets.all(1.9),
-                                            child: WidgetMask(
-                                                blendMode: BlendMode.srcATop,
-                                                childSaveLayer: true,
-                                                mask /* Original Image */: Container(
-                                                  decoration: const BoxDecoration(
-                                                      gradient: LinearGradient(
-                                                          colors: [
-                                                            ColorsResources.black,
-                                                            ColorsResources.premiumDark,
-                                                          ],
-                                                          transform: GradientRotation(45)
-                                                      )
-                                                  ),
-                                                ),
-                                                child: const Image(
-                                                  image: AssetImage("rectircle_shape.png"),
-                                                )
-                                            )
-                                        )
-                                    ),
-                                    Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                            child: Text(
-                                                StringsResources.storeTitle(),
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: const TextStyle(
-                                                    color: ColorsResources.premiumLight,
-                                                    fontSize: 19
-                                                )
-                                            )
-                                        )
-                                    )
-                                  ],
-                                )
+                  /* Start - Gradient Background - Golden */
+                  Align(
+                      alignment: Alignment.topRight,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(17),
+                                topRight: Radius.circular(17),
+                                bottomLeft: Radius.circular(17),
+                                bottomRight: Radius.circular(17)
+                            ),
+                            gradient: RadialGradient(
+                              radius: 1.1,
+                              colors: <Color> [
+                                ColorsResources.primaryColorLighter.withOpacity(0.51),
+                                Colors.transparent,
+                              ],
+                              center: const Alignment(0.79, -0.87),
                             )
-                        )
-                    ),
-                    /* End - Title */
+                        ),
+                        child: SizedBox(
+                          height: calculatePercentage(99, displayHeight()),
+                          width: calculatePercentage(99, displayWidth()),
+                        ),
+                      )
+                  ),
+                  /* End - Gradient Background - Golden */
 
-                  ],
-                ),
-                /* End - Back */
+                  allPurchasingPlans,
 
-                /* Start - Purchase Plan Picker */
-                Positioned(
-                    right: 19,
-                    top: 19,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                color: ColorsResources.primaryColorLighter,
-                                blurRadius: 51,
-                                spreadRadius: 0,
-                                offset: Offset(0, 0)
-                            )
-                          ]
-                      ),
-                      child: SizedBox(
-                          height: 59,
-                          width: 59,
-                          child: InkWell(
-                              onTap: () async {
+                  /* Start - Back */
+                  Row(
+                    children: [
 
-                                launchUrl(Uri.parse("https://GeeksEmpire.co/Sachiels/PurchasingPlans"));
+                      /* Start - Back */
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                              padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                              child: SizedBox(
+                                  height: 59,
+                                  width: 59,
+                                  child: InkWell(
+                                    onTap: () {
 
-                              },
-                              child: const Image(
-                                image: AssetImage("golden_information_icon.png"),
+                                      navigatePop(context);
+
+                                    },
+                                    child: const Image(
+                                      image: AssetImage("back_icon.png"),
+                                    ),
+                                  )
                               )
                           )
                       ),
-                    )
-                ),
-                /* End - Purchase Plan Picker */
+                      /* End - Back */
 
-              ],
-            )
-        )
+                      /* Start - Title */
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                              padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                              child: SizedBox(
+                                  height: 59,
+                                  width: 155,
+                                  child: Stack(
+                                    children: [
+                                      WidgetMask(
+                                        blendMode: BlendMode.srcATop,
+                                        childSaveLayer: true,
+                                        mask /* Original Image */: Container(
+                                          decoration: const BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  colors: [
+                                                    ColorsResources.premiumDark,
+                                                    ColorsResources.black,
+                                                  ],
+                                                  transform: GradientRotation(45)
+                                              )
+                                          ),
+                                        ),
+                                        child: const Image(
+                                          image: AssetImage("rectircle_shape.png"),
+                                        ),
+                                      ),
+                                      Align(
+                                          alignment: Alignment.center,
+                                          child: Padding(
+                                              padding: const EdgeInsets.all(1.9),
+                                              child: WidgetMask(
+                                                  blendMode: BlendMode.srcATop,
+                                                  childSaveLayer: true,
+                                                  mask /* Original Image */: Container(
+                                                    decoration: const BoxDecoration(
+                                                        gradient: LinearGradient(
+                                                            colors: [
+                                                              ColorsResources.black,
+                                                              ColorsResources.premiumDark,
+                                                            ],
+                                                            transform: GradientRotation(45)
+                                                        )
+                                                    ),
+                                                  ),
+                                                  child: const Image(
+                                                    image: AssetImage("rectircle_shape.png"),
+                                                  )
+                                              )
+                                          )
+                                      ),
+                                      Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                              child: Text(
+                                                  StringsResources.storeTitle(),
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: const TextStyle(
+                                                      color: ColorsResources.premiumLight,
+                                                      fontSize: 19
+                                                  )
+                                              )
+                                          )
+                                      )
+                                    ],
+                                  )
+                              )
+                          )
+                      ),
+                      /* End - Title */
+
+                    ],
+                  ),
+                  /* End - Back */
+
+                  /* Start - Purchase Information (Try Restore If Nothing Purchased, Redirect to Link) */
+                  Positioned(
+                      right: 19,
+                      top: 19,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: ColorsResources.primaryColorLighter,
+                                  blurRadius: 51,
+                                  spreadRadius: 0,
+                                  offset: Offset(0, 0)
+                              )
+                            ]
+                        ),
+                        child: SizedBox(
+                            height: 59,
+                            width: 59,
+                            child: InkWell(
+                                onTap: () async {
+
+                                  fileExist(StringsResources.filePurchasingPlan).then((alreadyPurchased) => {
+
+                                    if (alreadyPurchased) {
+
+                                      navigateTo(context, const DashboardInterface())
+
+                                    } else {
+
+                                      launchUrl(Uri.parse("https://GeeksEmpire.co/Sachiels/PurchasingPlans"), mode: LaunchMode.externalApplication)
+
+                                  }
+
+                                  });
+
+                                },
+                                child: const Image(
+                                  image: AssetImage("golden_information_icon.png"),
+                                )
+                            )
+                        ),
+                      )
+                  ),
+                  /* End - Purchase Information (Try Restore If Nothing Purchased, Redirect to Link) */
+
+                ],
+              )
+          )
+      )
     );
   }
 
@@ -397,7 +413,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
         padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
         child: ListView(
           padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
-          physics: const BouncingScrollPhysics(),
+          physics: const PageScrollPhysics(),
           scrollDirection: Axis.horizontal,
           children: signalHistoryItem,
         )
@@ -418,7 +434,35 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
         child: InkWell(
             onTap: () async {
 
-              await FirebaseMessaging.instance.subscribeToTopic(PlansDataStructure.purchasingPlanName.replaceAll(" ", ""));
+              switch (plansDataStructure.purchasingPlanProductId()) {
+                case SachielsDigitalStore.titaniumTier: {
+
+
+
+                  break;
+                }
+                case SachielsDigitalStore.goldTier: {
+
+
+
+                  break;
+                }
+                case SachielsDigitalStore.palladiumTier: {
+
+
+
+                  break;
+                }
+              }
+
+              /*              final ProductDetails productDetails = ... // Saved earlier from queryProductDetails().
+              final PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetails);
+              if (_isConsumable(productDetails)) {
+              InAppPurchase.instance.buyConsumable(purchaseParam: purchaseParam);
+              } else {
+              InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+              }
+              await FirebaseMessaging.instance.subscribeToTopic(PlansDataStructure.purchasingPlanName.replaceAll(" ", ""));*/
 
             },
             child: Column(
@@ -465,7 +509,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
         } else if (purchaseDetails.status == PurchaseStatus.purchased
             || purchaseDetails.status == PurchaseStatus.restored) {
 
-
+          createFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT", purchaseDetails.productID);
 
         }
 
@@ -473,7 +517,6 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
           InAppPurchase.instance.completePurchase(purchaseDetails).whenComplete(() => {
 
-            // Save Purchased Plan Offline
             createFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT", purchaseDetails.productID)
 
           });

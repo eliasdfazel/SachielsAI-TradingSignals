@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/18/22, 4:13 AM
+ * Last modified 11/21/22, 1:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,7 +27,7 @@ class DigitalStoreUtils {
 
       purchasingPlanDirectory = "${purchasingPlanDirectory.substring(0, 1).toUpperCase()}${purchasingPlanDirectory.substring(1, lengthOfText)}";
 
-      purchasingTier = purchasingPlanDirectory.replaceAll(".tier", "");
+      purchasingTier = purchasingPlanDirectory.replaceAll(".sachiel", "");
 
     }
 

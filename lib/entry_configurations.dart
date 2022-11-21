@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/18/22, 4:09 AM
+ * Last modified 11/21/22, 1:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,7 +18,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
+import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -373,6 +373,9 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
   }
 
+  /*
+   * Request Notification Permission for iOS
+   */
   void requestNotificationPermission() async {
 
     if (Platform.isIOS) {
@@ -407,7 +410,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
         } else {
 
-          navigateTo(context, const DashboardInterface())
+          navigateTo(context, SachielsDigitalStore(topPadding: MediaQuery.of(context).viewPadding.top))
 
         }
 
