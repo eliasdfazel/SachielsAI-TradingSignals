@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/21/22, 1:52 AM
+ * Last modified 11/21/22, 2:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -515,7 +515,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
     );
   }
 
-  void purchaseUpdatedListener(List<PurchaseDetails> purchaseDetailsList) {
+  void purchaseUpdatedListener(List<PurchaseDetails> purchaseDetailsList) async {
 
     for (var purchaseDetails in purchaseDetailsList) {
 
@@ -537,11 +537,19 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
         if (purchaseDetails.pendingCompletePurchase) {
 
-          InAppPurchase.instance.completePurchase(purchaseDetails).whenComplete(() => {
+          await InAppPurchase.instance.completePurchase(purchaseDetails);
 
-            createFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT", purchaseDetails.productID)
+          createFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT", purchaseDetails.productID);
 
-          });
+          if (widget.topPadding == 0) {
+
+            navigatePop(context);
+
+          } else {
+
+            navigateTo(context, const DashboardInterface());
+
+          }
 
         }
 
