@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/21/22, 1:39 AM
+ * Last modified 11/21/22, 1:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,6 +25,7 @@ import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/authentication/authentication_process.dart';
 import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
+import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 
 class EntryConfigurations extends StatefulWidget {
@@ -410,7 +411,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
         } else {
 
-          navigateTo(context, SachielsDigitalStore(topPadding: MediaQuery.of(context).viewPadding.top))
+          navigateTo(context, SachielsDigitalStore(topPadding: statusBarHeight(context)))
 
         }
 
