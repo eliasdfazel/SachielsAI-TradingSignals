@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/10/22, 6:29 AM
+ * Last modified 11/22/22, 3:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,8 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class RemoteConfigurations {
+
+  static const String sachielPrincipal = "sachielPrincipal";
 
   static const String slideOneContent = "slideOneContent";
   static const String slideTwoContent = "slideTwoContent";

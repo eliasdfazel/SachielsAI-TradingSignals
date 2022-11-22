@@ -3,12 +3,14 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/18/22, 3:11 AM
+ * Last modified 11/22/22, 3:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/dashboard/ui/sections/academy_summary.dart';
 import 'package:sachiel/dashboard/ui/sections/account_information_overview.dart';
@@ -17,6 +19,7 @@ import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
 import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/dashboard/ui/sections/social_media.dart';
+import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
@@ -58,6 +61,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
     changeColor(ColorsResources.black, ColorsResources.black);
 
     sliderCheckpoint();
+
+    prototypeProcess();
 
   }
 
@@ -263,6 +268,29 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
             );
 
           });
+
+        }
+
+      });
+
+    });
+
+  }
+
+  void prototypeProcess() {
+
+    remoteConfigurations.initialize().then((firebaseRemoteConfigurations) {
+
+      firebaseRemoteConfigurations.activate().then((value) async {
+
+        String sachielPrincipal = firebaseRemoteConfigurations.getString(RemoteConfigurations.sachielPrincipal);
+
+        if (sachielPrincipal.contains(FirebaseAuth.instance.currentUser!.email.toString())) {
+
+          FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTier);
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.titaniumTier);
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTier);
 
         }
 
