@@ -22,6 +22,66 @@
           }
         },
         {
+          "client_id": "730794126051-7ec3mtgapq25bg7vilkek4klcvvel5nn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.geeksempire.sachiel.signals",
+            "certificate_hash": "ef7c9698e2ffe57e20e0015042e6c7afcd3c23d8"
+          }
+        },
+        {
+          "client_id": "730794126051-icg0efaquhvmr39v8eutglm9m429t8qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAY93XIKH52_iWPGJXXp6goYmikHDJEuno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730794126051-icg0efaquhvmr39v8eutglm9m429t8qu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "730794126051-i1djtkuqt12t2rci5b0lqiv3ttr9jv52.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "co.geeksempire.sachiel.signals.sachiel"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730794126051:android:55f399285b6d1f9dffb3d6",
+        "android_client_info": {
+          "package_name": "co.geeksempire.sachiel.signals.administrators"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730794126051-65tp2vr5660g24fothokltla82vnvaiv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.geeksempire.sachiel.signals.administrators",
+            "certificate_hash": "ef7c9698e2ffe57e20e0015042e6c7afcd3c23d8"
+          }
+        },
+        {
+          "client_id": "730794126051-s8o35c52efceqbv589am41cpgpr8npe8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.geeksempire.sachiel.signals.administrators",
+            "certificate_hash": "6fa2d23f54167ebdfcb1ce7cb183c0f709f8934e"
+          }
+        },
+        {
           "client_id": "730794126051-icg0efaquhvmr39v8eutglm9m429t8qu.apps.googleusercontent.com",
           "client_type": 3
         }
