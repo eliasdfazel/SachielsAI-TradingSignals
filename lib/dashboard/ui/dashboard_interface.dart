@@ -240,7 +240,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
       firebaseRemoteConfigurations.activate().then((value) async {
 
-        int oldSliderTime = int.parse(await readFileOfTexts(StringsResources.fileNameSliderTime, ".TXT"));
+        int oldSliderTime = int.parse(await readFileOfTexts(StringsResources.fileNameSliderTime, "TXT"));
 
         int newSliderTime = firebaseRemoteConfigurations.getInt(RemoteConfigurations.sliderTime);
 

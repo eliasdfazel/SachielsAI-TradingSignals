@@ -414,7 +414,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
           if (kDebugMode) {
 
-            createFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT", "Palladium").then((value) => {
+            createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", "Palladium").then((value) => {
 
               navigateTo(context, const DashboardInterface())
 

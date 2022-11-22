@@ -531,7 +531,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
         } else if (purchaseDetails.status == PurchaseStatus.purchased
             || purchaseDetails.status == PurchaseStatus.restored) {
 
-          createFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT", purchaseDetails.productID);
+          createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", purchaseDetails.productID);
 
         }
 
@@ -539,7 +539,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
           await InAppPurchase.instance.completePurchase(purchaseDetails);
 
-          createFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT", purchaseDetails.productID);
+          createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", purchaseDetails.productID);
 
           if (widget.topPadding == 0) {
 

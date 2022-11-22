@@ -21,7 +21,7 @@ class DigitalStoreUtils {
 
     if (alreadyPurchased) {
 
-      String purchasingPlanDirectory = await readFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT");
+      String purchasingPlanDirectory = await readFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT");
 
       int lengthOfText = purchasingPlanDirectory.length;
 

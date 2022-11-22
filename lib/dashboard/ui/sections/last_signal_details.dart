@@ -86,7 +86,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
       FirebaseFirestore.instance
           .collection("/Sachiels"
           "/Signals"
-          "/${digitalStoreUtils.purchasedTier()}")
+          "/${purchasingTier}")
           .limit(1)
           .orderBy("tradeTimestamp")
           .get().then((QuerySnapshot querySnapshot) {
