@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/21/22, 1:56 AM
+ * Last modified 11/22/22, 3:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,6 +18,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
 import 'package:sachiel/resources/colors_resources.dart';
@@ -411,7 +412,19 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
         } else {
 
-          navigateTo(context, SachielsDigitalStore(topPadding: statusBarHeight(context)))
+          if (kDebugMode) {
+
+            createFileOfTexts(StringsResources.fileNamePurchasingPlan, ".TXT", "Palladium").then((value) => {
+
+              navigateTo(context, const DashboardInterface())
+
+            })
+
+          } else {
+
+            navigateTo(context, SachielsDigitalStore(topPadding: statusBarHeight(context)))
+
+          }
 
         }
 
