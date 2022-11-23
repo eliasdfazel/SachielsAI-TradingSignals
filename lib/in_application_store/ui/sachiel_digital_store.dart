@@ -52,7 +52,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
       colorOne: ColorsResources.premiumLight,
       colorTwo: ColorsResources.primaryColor,
       size: 73,
-    ),
+    )
   );
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
@@ -62,6 +62,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
     return true;
   }
+
+  bool animationVisibility = false;
 
   @override
   void dispose() {
@@ -362,6 +364,21 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                   ),
                   /* End - Purchase Information (Try Restore If Nothing Purchased, Redirect to Link) */
 
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Visibility(
+                        visible: animationVisibility,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 153),
+                          child: LoadingAnimationWidget.staggeredDotsWave(
+                            colorOne: ColorsResources.premiumLight,
+                            colorTwo: ColorsResources.primaryColor,
+                            size: 53,
+                          )
+                        )
+                    )
+                  )
+
                 ],
               )
           )
@@ -438,6 +455,10 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
               switch (plansDataStructure.purchasingPlanProductId()) {
                 case SachielsDigitalStore.platinumTier: {
 
+                  setState(() {
+                    animationVisibility = true;
+                  });
+
                   final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.platinumTier});
 
                   PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
@@ -449,6 +470,10 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   await firebaseMessaging.unsubscribeFromTopic("Gold");
                   await firebaseMessaging.unsubscribeFromTopic("Palladium");
+
+                  setState(() {
+                    animationVisibility = false;
+                  });
 
                   break;
                 }

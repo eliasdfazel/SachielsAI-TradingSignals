@@ -405,10 +405,23 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
     Future.delayed(const Duration(milliseconds: 379), () {
 
       fileExist(StringsResources.filePurchasingPlan).then((alreadyPurchased) => {
+        debugPrint("Already Purchased: ${alreadyPurchased}"),
 
         if (alreadyPurchased) {
 
-          navigateTo(context, IntroductionSlides())
+          fileExist(StringsResources.fileSliderTime).then((sliderInitialized) => {
+
+            if (sliderInitialized) {
+
+              navigateTo(context, const DashboardInterface())
+
+            } else {
+
+              navigateTo(context, IntroductionSlides())
+
+            }
+
+          })
 
         } else {
 
