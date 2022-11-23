@@ -289,7 +289,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
           FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTier);
-          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.titaniumTier);
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTier);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTier);
 
         }

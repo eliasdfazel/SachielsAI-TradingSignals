@@ -34,7 +34,7 @@ class SachielsDigitalStore extends StatefulWidget {
 
   SachielsDigitalStore({Key? key, required this.topPadding}) : super(key: key);
 
-  static const String titaniumTier = "titanium.sachiel";
+  static const String platinumTier = "platinum.sachiel";
   static const String goldTier = "gold.sachiel";
   static const String palladiumTier = "palladium.sachiel";
 
@@ -436,16 +436,16 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
             onTap: () async {
 
               switch (plansDataStructure.purchasingPlanProductId()) {
-                case SachielsDigitalStore.titaniumTier: {
+                case SachielsDigitalStore.platinumTier: {
 
-                  final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.titaniumTier});
+                  final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.platinumTier});
 
                   PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
 
                   InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
 
                   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-                  await firebaseMessaging.subscribeToTopic("Titanium");
+                  await firebaseMessaging.subscribeToTopic("Platinum");
 
                   await firebaseMessaging.unsubscribeFromTopic("Gold");
                   await firebaseMessaging.unsubscribeFromTopic("Palladium");
@@ -463,7 +463,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
                   await firebaseMessaging.subscribeToTopic("Gold");
 
-                  await firebaseMessaging.unsubscribeFromTopic("Titanium");
+                  await firebaseMessaging.unsubscribeFromTopic("Platinum");
                   await firebaseMessaging.unsubscribeFromTopic("Palladium");
 
                   break;
@@ -479,7 +479,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
                   await firebaseMessaging.subscribeToTopic("Palladium");
 
-                  await firebaseMessaging.unsubscribeFromTopic("Titanium");
+                  await firebaseMessaging.unsubscribeFromTopic("Platinum");
                   await firebaseMessaging.unsubscribeFromTopic("Gold");
 
                   break;
