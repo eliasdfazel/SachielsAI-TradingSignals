@@ -570,7 +570,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                 child: InkWell(
                   onTap: () {
 
-                    createFileOfTexts(StringsResources.filePurchasingPlan, "TXT", DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
+                    createFileOfTexts(StringsResources.fileNameSliderTime, "TXT", DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
 
                       fileExist(StringsResources.filePurchasingPlan).then((alreadyPurchased) => {
 
