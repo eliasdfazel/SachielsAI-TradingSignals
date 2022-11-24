@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 9/2/22, 9:24 AM
+ * Last modified 11/24/22, 7:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,7 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:sachiel/entry_configurations.dart';
 import 'package:sachiel/firebase_options.dart';
 
+@pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
   await Firebase.initializeApp();
