@@ -13,121 +13,136 @@ const runtimeOptions = {
     timeoutSeconds: 512,
 }
 
-exports.platinumTier = functions.https.onCall(async (data, context) => {
+exports.platinumTier = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
+    functions.logger.log("Receiving Platinum Signal :::", data.tradeTimestamp);
 
-    var documentSnapshot = await firestore.document('Sachiels/Signals/Platinum/' + data.tradeTimestamp).get();
+    firestore.doc('/Sachiels/Signals/Platinum/' + data.tradeTimestamp).get().then((documentSnapshot) => {
+        functions.logger.log("Platinum Signal Document Snapshot ::: ", documentSnapshot);
 
-    const documentData = documentSnapshot.data();
+        const documentData = documentSnapshot.data();
+        functions.logger.log("Platinum Signal Document ::: ", documentData);
 
-    var signalData = {
-
-        android: {
-            ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
-
-            priority: 'high',
-        },
-
-        data: {
-            "tradeCommand": documentData.tradeCommand,
-            "tradeAccuracyPercentage": documentData.tradeAccuracyPercentage,
-            "tradeEntryPrice": documentData.tradeEntryPrice,
-            "tradeLotSize": documentData.tradeLotSize,
-            "tradeMarketPair": documentData.tradeMarketPair,
-            "tradeProfitAmount": documentData.tradeProfitAmount,
-            "tradeStopLoss": documentData.tradeStopLoss,
-            "tradeTakeProfit": documentData.tradeTakeProfit,
-            "tradeTimeframe": documentData.tradeTimeframe,
-            "tradeTimestamp": documentData.tradeTimestamp,
-        },
-
-        topic: "Platinum"
-    };
-
-    return admin.messaging().send(signalData).then((response) => {
-        console.log('Successfully Sent ::: ', response);
-
-    }).catch((error) => {
-        console.log('Error Sending ::: ', error);
-
-    });
-
-});
-
-exports.goldTier = functions.https.onCall(async (data, context) => {
-
-    var documentSnapshot = await firestore.document('Sachiels/Signals/Gold/' + data.tradeTimestamp).get();
-
-    const documentData = documentSnapshot.data();
-
-    var signalData = {
-
-        android: {
-            ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
-
-            priority: 'high',
-        },
-
-        data: {
-            "tradeCommand": documentData.tradeCommand,
-            "tradeAccuracyPercentage": documentData.tradeAccuracyPercentage,
-            "tradeEntryPrice": documentData.tradeEntryPrice,
-            "tradeLotSize": documentData.tradeLotSize,
-            "tradeMarketPair": documentData.tradeMarketPair,
-            "tradeProfitAmount": documentData.tradeProfitAmount,
-            "tradeStopLoss": documentData.tradeStopLoss,
-            "tradeTakeProfit": documentData.tradeTakeProfit,
-            "tradeTimeframe": documentData.tradeTimeframe,
-            "tradeTimestamp": documentData.tradeTimestamp,
-        },
-
-        topic: "Gold"
-    };
-
-    return admin.messaging().send(signalData).then((response) => {
-        console.log('Successfully Sent ::: ', response);
-
-    }).catch((error) => {
-        console.log('Error Sending ::: ', error);
+        var signalData = {
+    
+            android: {
+                ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
+    
+                priority: 'high',
+            },
+    
+            data: {
+                "tradeCommand": documentData.tradeCommand,
+                "tradeAccuracyPercentage": documentData.tradeAccuracyPercentage,
+                "tradeEntryPrice": documentData.tradeEntryPrice,
+                "tradeLotSize": documentData.tradeLotSize,
+                "tradeMarketPair": documentData.tradeMarketPair,
+                "tradeProfitAmount": documentData.tradeProfitAmount,
+                "tradeStopLoss": documentData.tradeStopLoss,
+                "tradeTakeProfit": documentData.tradeTakeProfit,
+                "tradeTimeframe": documentData.tradeTimeframe,
+                "tradeTimestamp": documentData.tradeTimestamp,
+            },
+    
+            topic: "Platinum"
+        };
+    
+        admin.messaging().send(signalData).then((response) => {
+            functions.logger.log("Successfully Sent ::: ", response);
+    
+        }).catch((error) => {
+            functions.logger.log("Error Sending ::: ", error);
+    
+        });
 
     });
 
 });
 
-exports.palladiumTier = functions.https.onCall(async (data, context) => {
+exports.goldTier = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
+    functions.logger.log("Receiving Gold Signal :::", data.tradeTimestamp);
 
-    var documentSnapshot = await firestore.document('Sachiels/Signals/Palladium/' + data.tradeTimestamp).get();
+    firestore.doc('/Sachiels/Signals/Gold/' + data.tradeTimestamp).get().then((documentSnapshot) => {
+        functions.logger.log("Gold Signal Document Snapshot ::: ", documentSnapshot);
 
-    const documentData = documentSnapshot.data();
+        const documentData = documentSnapshot.data();
+        functions.logger.log("Gold Signal Document ::: ", documentData);
 
-    var signalData = {
+        var signalData = {
+    
+            android: {
+                ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
+    
+                priority: 'high',
+            },
+    
+            data: {
+                "tradeCommand": documentData.tradeCommand,
+                "tradeAccuracyPercentage": documentData.tradeAccuracyPercentage,
+                "tradeEntryPrice": documentData.tradeEntryPrice,
+                "tradeLotSize": documentData.tradeLotSize,
+                "tradeMarketPair": documentData.tradeMarketPair,
+                "tradeProfitAmount": documentData.tradeProfitAmount,
+                "tradeStopLoss": documentData.tradeStopLoss,
+                "tradeTakeProfit": documentData.tradeTakeProfit,
+                "tradeTimeframe": documentData.tradeTimeframe,
+                "tradeTimestamp": documentData.tradeTimestamp,
+            },
+    
+            topic: "Gold"
+        };
+    
+        admin.messaging().send(signalData).then((response) => {
+            functions.logger.log("Successfully Sent ::: ", response);
+    
+        }).catch((error) => {
+            functions.logger.log("Error Sending ::: ", error);
+    
+        });
 
-        android: {
-            ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
+    });
 
-            priority: 'high',
-        },
+});
 
-        data: {
-            "tradeCommand": documentData.tradeCommand,
-            "tradeAccuracyPercentage": documentData.tradeAccuracyPercentage,
-            "tradeEntryPrice": documentData.tradeEntryPrice,
-            "tradeLotSize": documentData.tradeLotSize,
-            "tradeMarketPair": documentData.tradeMarketPair,
-            "tradeProfitAmount": documentData.tradeProfitAmount,
-            "tradeStopLoss": documentData.tradeStopLoss,
-            "tradeTakeProfit": documentData.tradeTakeProfit,
-            "tradeTimeframe": documentData.tradeTimeframe,
-            "tradeTimestamp": documentData.tradeTimestamp,
-        },
+exports.palladiumTier = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
+    functions.logger.log("Receiving Palladium Signal :::", data.tradeTimestamp);
 
-        topic: "Palladium"
-    };
+    firestore.doc("/Sachiels/Signals/Palladium/" + data.tradeTimestamp).get().then((documentSnapshot) => {
+        functions.logger.log("Palladium Signal Document Snapshot ::: ", documentSnapshot);
 
-    return admin.messaging().send(signalData).then((response) => {
-        console.log('Successfully Sent ::: ', response);
-
-    }).catch((error) => {
-        console.log('Error Sending ::: ', error);
+        const documentData = documentSnapshot.data();
+        functions.logger.log("Palladium Signal Document ::: ", documentData);
+    
+        var signalData = {
+    
+            android: {
+                ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
+    
+                priority: 'high',
+            },
+    
+            data: {
+                "tradeCommand": documentData.tradeCommand,
+                "tradeAccuracyPercentage": documentData.tradeAccuracyPercentage,
+                "tradeEntryPrice": documentData.tradeEntryPrice,
+                "tradeLotSize": documentData.tradeLotSize,
+                "tradeMarketPair": documentData.tradeMarketPair,
+                "tradeProfitAmount": documentData.tradeProfitAmount,
+                "tradeStopLoss": documentData.tradeStopLoss,
+                "tradeTakeProfit": documentData.tradeTakeProfit,
+                "tradeTimeframe": documentData.tradeTimeframe,
+                "tradeTimestamp": documentData.tradeTimestamp,
+            },
+    
+            topic: "Palladium"
+        };
+    
+        admin.messaging().send(signalData).then((response) => {
+            functions.logger.log("Successfully Sent ::: ", response);
+    
+        }).catch((error) => {
+            functions.logger.log("Error Sending ::: ", error);
+    
+        });
 
     });
 
@@ -214,7 +229,7 @@ async function setPostsData(jsonObject) {
     try {
         productCategory = categoriesMap.get(jsonObject[categoriesKey][0].toString());
     } catch (err) {
-        console.log(err.toString());
+        functions.logger.log(err.toString());
     }
 
 
@@ -235,8 +250,8 @@ async function setPostsData(jsonObject) {
 
     }
 
-    console.log(jsonObject[categoriesKey][0].toString());
-    console.log(postId + " Added To " + postType + " | " + productCategory);
+    functions.logger.log(jsonObject[categoriesKey][0].toString());
+    functions.logger.log(postId + " Added To " + postType + " | " + productCategory);
 
     /* Start - Document * With Even Directory */
     var firestoreDirectory = '/' + 'Sachiels'
@@ -252,10 +267,10 @@ async function setPostsData(jsonObject) {
         articleTimestamp: Date.now().toString(),
         articleTitle: postTitle,
     }).then(result => {
-        console.log("Successfully Added.");
+        functions.logger.log("Successfully Added.");
 
     }).catch(error => {
-        console.log("Error: " + error);
+        functions.logger.log("Error: " + error);
     });
     /* End - Document * With Even Directory */
 
