@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/22/22, 3:08 AM
+ * Last modified 11/26/22, 1:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -288,9 +288,9 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
         if (sachielPrincipal.contains(FirebaseAuth.instance.currentUser!.email.toString())) {
 
           FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTier);
-          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTier);
-          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTier);
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTopic);
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTopic);
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTopic);
 
         }
 

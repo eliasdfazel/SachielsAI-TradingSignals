@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/21/22, 2:04 AM
+ * Last modified 11/26/22, 1:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,8 +35,13 @@ class SachielsDigitalStore extends StatefulWidget {
   SachielsDigitalStore({Key? key, required this.topPadding}) : super(key: key);
 
   static const String platinumTier = "platinum.sachiel";
+  static const String platinumTopic = "Platinum";
+
   static const String goldTier = "gold.sachiel";
+  static const String goldTopic = "Gold";
+
   static const String palladiumTier = "palladium.sachiel";
+  static const String palladiumTopic = "Palladium";
 
   @override
   State<SachielsDigitalStore> createState() => _SachielsDigitalStoreState();
@@ -466,10 +471,10 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                   InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
 
                   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-                  await firebaseMessaging.subscribeToTopic("Platinum");
+                  await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTopic);
 
-                  await firebaseMessaging.unsubscribeFromTopic("Gold");
-                  await firebaseMessaging.unsubscribeFromTopic("Palladium");
+                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
+                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
 
                   setState(() {
                     animationVisibility = false;
@@ -486,10 +491,10 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                   InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
 
                   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-                  await firebaseMessaging.subscribeToTopic("Gold");
+                  await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTopic);
 
-                  await firebaseMessaging.unsubscribeFromTopic("Platinum");
-                  await firebaseMessaging.unsubscribeFromTopic("Palladium");
+                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
+                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
 
                   break;
                 }
@@ -502,10 +507,10 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                   InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
 
                   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-                  await firebaseMessaging.subscribeToTopic("Palladium");
+                  await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTopic);
 
-                  await firebaseMessaging.unsubscribeFromTopic("Platinum");
-                  await firebaseMessaging.unsubscribeFromTopic("Gold");
+                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
+                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
 
                   break;
                 }
