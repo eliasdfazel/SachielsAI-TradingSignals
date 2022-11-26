@@ -41,32 +41,32 @@ class ArticlesDataStructure {
 
   String articleLink() {
 
-    return articlesDocumentData[ArticlesDataStructure.articleLinkName];
+    return articlesDocumentData[ArticlesDataStructure.articleLinkName].toString();
   }
 
   String articleTitle() {
 
-    return articlesDocumentData[ArticlesDataStructure.articleTitleName];
+    return articlesDocumentData[ArticlesDataStructure.articleTitleName].toString();
   }
 
   String articleSummary() {
 
-    return articlesDocumentData[ArticlesDataStructure.articleSummaryName];
+    return articlesDocumentData[ArticlesDataStructure.articleSummaryName].toString();
   }
 
   String articleCategory() {
 
-    return articlesDocumentData[ArticlesDataStructure.articleCategoryName];
+    return articlesDocumentData[ArticlesDataStructure.articleCategoryName].toString();
   }
 
   String articleCover() {
 
-    return articlesDocumentData[ArticlesDataStructure.articleCoverName];
+    return articlesDocumentData[ArticlesDataStructure.articleCoverName].toString();
   }
 
   String tradeTimestamp() {
 
-    return articlesDocumentData[ArticlesDataStructure.articleTimestampName];
+    return articlesDocumentData[ArticlesDataStructure.articleTimestampName].toString();
   }
 
 }

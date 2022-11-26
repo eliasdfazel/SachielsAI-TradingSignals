@@ -267,11 +267,12 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                       /* Start - Article Text */
                       SizedBox(
                           height: 130,
-                          child: Padding(
+                          child: Container(
                               padding: const EdgeInsets.fromLTRB(13, 11, 13, 13),
                               child: GradientText(
                                 articlesDataStructure.articleTitle(),
                                 textAlign: TextAlign.start,
+                                maxLinesNumber: 5,
                                 style: TextStyle(
                                     fontSize: 17,
                                     decoration: TextDecoration.none,
