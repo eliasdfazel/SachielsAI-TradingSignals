@@ -49,10 +49,10 @@ android {
         applicationId "co.geeksempire.sachiel.signals"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 23
+        minSdkVersion 26
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 2
-        versionName "0.11.23.2022.2"
+        versionCode 3
+        versionName "0.11.26.2022.${versionCode}"
     }
 
     signingConfigs {
