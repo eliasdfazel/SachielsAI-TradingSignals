@@ -70,21 +70,27 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
           .orderBy("tradeTimestamp")
           .get().then((QuerySnapshot querySnapshot) {
 
-        List<SignalsDataStructure> signalsDataStructure = [];
+            List<SignalsDataStructure> signalsDataStructure = [];
 
-        for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+            if (querySnapshot.docs.length > 1) {
 
-          signalsDataStructure.add(SignalsDataStructure(queryDocumentSnapshot));
+              querySnapshot.docs.removeAt(0);
 
-        }
+              for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-        if (signalsDataStructure.isNotEmpty) {
+                signalsDataStructure.add(SignalsDataStructure(queryDocumentSnapshot));
 
-          prepareLatestSignalsDetails(signalsDataStructure);
+              }
 
-        }
+              if (signalsDataStructure.isNotEmpty) {
 
-      },
+                prepareLatestSignalsDetails(signalsDataStructure);
+
+              }
+
+            }
+
+          },
           onError: (e) => {
 
           });
