@@ -50,6 +50,8 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
   String? warningNoticePhoneNumber;
 
+  bool entranceVisibility = false;
+
   @override
   void initState() {
     super.initState();
@@ -169,10 +171,13 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                   }
 
                                 },
-                                child: const Image(
-                                  image: AssetImage("entrance_next.png"),
-                                  height: 239,
-                                  fit: BoxFit.fitHeight,
+                                child: Visibility(
+                                  visible: entranceVisibility,
+                                  child: const Image(
+                                    image: AssetImage("entrance_next.png"),
+                                    height: 239,
+                                    fit: BoxFit.fitHeight,
+                                  )
                                 )
                               )
                             )
@@ -200,6 +205,8 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
         debugPrint("Phone Number Not Authenticated");
 
         setState(() {
+
+          entranceVisibility = true;
 
           phoneNumberAuthentication = SizedBox(
               height: 113,
@@ -413,7 +420,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
             if (sliderInitialized) {
 
-              navigateTo(context, const DashboardInterface())
+              navigateToWithPop(context, const DashboardInterface())
 
             } else {
 
@@ -429,7 +436,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
             createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", "Palladium").then((value) => {
 
-              navigateTo(context, const DashboardInterface())
+              navigateToWithPop(context, const DashboardInterface())
 
             })
 

@@ -12,6 +12,19 @@ import 'package:flutter/material.dart';
 
 void navigateTo(BuildContext context, StatefulWidget statefulWidget) {
 
+  Navigator.pop(context);
+
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => statefulWidget),
+  );
+
+}
+
+void navigateToWithPop(BuildContext context, StatefulWidget statefulWidget) {
+
+  Navigator.pop(context);
+
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => statefulWidget),
