@@ -23,7 +23,6 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 }
 
-
 void main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
