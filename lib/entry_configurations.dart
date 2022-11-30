@@ -84,6 +84,10 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
           phoneNumberCheckpoint();
 
+        } else {
+
+          navigationCheckpoint();
+
         }
 
       });
