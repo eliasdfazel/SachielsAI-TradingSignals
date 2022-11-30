@@ -30,6 +30,14 @@
           }
         },
         {
+          "client_id": "730794126051-ncf1gupdctl5bo5nhu9uk8u19hc2f0ag.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.geeksempire.sachiel.signals",
+            "certificate_hash": "b01ea4c2554baa20de5bb1a2e59c62f2f0a6f925"
+          }
+        },
+        {
           "client_id": "730794126051-icg0efaquhvmr39v8eutglm9m429t8qu.apps.googleusercontent.com",
           "client_type": 3
         }
