@@ -610,6 +610,12 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTopic);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTopic);
 
+          createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", "Palladium").then((value) => {
+
+            navigateToWithPop(context, const DashboardInterface())
+
+          });
+
         }
 
       });
