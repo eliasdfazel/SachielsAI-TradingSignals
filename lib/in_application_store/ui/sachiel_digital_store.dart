@@ -12,12 +12,14 @@ import 'dart:async';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/in_application_store/data/plans_data_structure.dart';
+import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
@@ -48,6 +50,8 @@ class SachielsDigitalStore extends StatefulWidget {
 
 }
 class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
+
+  RemoteConfigurations remoteConfigurations = RemoteConfigurations();
 
   StreamSubscription<List<PurchaseDetails>>? streamSubscription;
 
@@ -106,6 +110,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
     super.initState();
 
     changeColor(ColorsResources.black, ColorsResources.black);
+
+    prototypeProcess();
 
   }
 
@@ -586,6 +592,29 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
       }
 
     }
+
+  }
+
+  void prototypeProcess() {
+
+    remoteConfigurations.initialize().then((firebaseRemoteConfigurations) {
+
+      firebaseRemoteConfigurations.activate().then((value) async {
+
+        String sachielPrincipal = firebaseRemoteConfigurations.getString(RemoteConfigurations.sachielPrincipal);
+
+        if (sachielPrincipal.contains(FirebaseAuth.instance.currentUser!.email.toString())) {
+
+          FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTopic);
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTopic);
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTopic);
+
+        }
+
+      });
+
+    });
 
   }
 
