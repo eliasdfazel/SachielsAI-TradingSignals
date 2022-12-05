@@ -692,7 +692,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     }
 
-    int gridColumnCount = (displayWidth() / 199).round();
+    int gridColumnCount = (displayLogicalWidth(context) / 199).round();
 
     setState(() {
 
@@ -978,7 +978,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     }
 
-    int gridColumnCount = (displayWidth() / 199).round();
+    int gridColumnCount = (displayLogicalWidth(context) / 199).round();
 
     setState(() {
 

@@ -12,6 +12,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+double displayLogicalWidth(BuildContext context) {
+
+  return  MediaQuery.of(context).size.width;
+}
+
 double displayWidth() {
 
   return  window.physicalSize.width;

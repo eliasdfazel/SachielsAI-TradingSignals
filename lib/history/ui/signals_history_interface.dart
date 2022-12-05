@@ -311,22 +311,22 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
       FirebaseFirestore.instance
           .collection("/Sachiels"
           "/Signals"
-          "/${digitalStoreUtils.purchasedTier()}")
+          "/$purchasingTier")
           .limit(73)
           .orderBy("tradeTimestamp")
           .get().then((QuerySnapshot querySnapshot) {
 
-        List<SignalsDataStructure> signalsDataStructure = [];
+            List<SignalsDataStructure> signalsDataStructure = [];
 
-        for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+            for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-          signalsDataStructure.add(SignalsDataStructure(queryDocumentSnapshot));
+              signalsDataStructure.add(SignalsDataStructure(queryDocumentSnapshot));
 
-        }
+            }
 
-        prepareSignalsHistoryItems(signalsDataStructure);
+            prepareSignalsHistoryItems(signalsDataStructure);
 
-      },
+          },
           onError: (e) => {
 
           });
@@ -345,7 +345,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
 
     }
 
-    int gridColumnCount = (displayWidth() / 359).round();
+    int gridColumnCount = (displayLogicalWidth(context) / 359).round();
 
     setState(() {
 
