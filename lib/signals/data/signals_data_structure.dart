@@ -13,7 +13,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class SignalsDataStructure {
 
   static const String tradeCommandName = "tradeCommand";
+
   static const String tradeMarketPairName = "tradeMarketPair";
+  static const String tradeMarketTypeName = "tradeMarketType";
 
   static const String tradeAccuracyPercentageName = "tradeAccuracyPercentage";
 
@@ -41,10 +43,16 @@ class SignalsDataStructure {
 
     return signalsDocumentData[SignalsDataStructure.tradeCommandName];
   }
+
   /// Trade Market Pair/Name (For Example, XAUUSD or Crude Oil or GOOGL)
   String tradeMarketPair() {
 
     return signalsDocumentData[SignalsDataStructure.tradeMarketPairName];
+  }
+  /// Trade Market Type (For Example, Foreign Exchange, Cryptocurrency, Stock)
+  String tradeMarketType() {
+
+    return signalsDocumentData[SignalsDataStructure.tradeMarketTypeName];
   }
 
   /// Trade Accuracy In Percentage
