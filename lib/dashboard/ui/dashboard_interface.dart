@@ -9,7 +9,6 @@
  * https://opensource.org/licenses/MIT
  */
 
-import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -55,19 +54,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   Widget sliderInvocation = Container();
 
-  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-
-    navigatePop(context);
-
-    return true;
-  }
-
-
   @override
   void dispose() {
-
-    BackButtonInterceptor.remove(aInterceptor);
-
     super.dispose();
   }
 

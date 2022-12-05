@@ -146,7 +146,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
     try {
 
-      tradeTimestampText = "${DateFormat("EEEE").format(tradeTimestamp)}, ${DateFormat("MMMM").format(tradeTimestamp)} ${tradeTimestamp.day}, ${tradeTimestamp.year}"
+      tradeTimestampText = "${DateFormat("EE").format(tradeTimestamp)}, ${DateFormat("MMMM").format(tradeTimestamp)} ${tradeTimestamp.day}, ${tradeTimestamp.year}"
           " - "
           "${tradeTimestamp.hour}:${tradeTimestamp.minute}:${tradeTimestamp.second}";
 
@@ -618,7 +618,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
     try {
 
-      tradeTimestampText = "${DateFormat("EEEE").format(tradeTimestamp)}, ${DateFormat("MMMM").format(tradeTimestamp)} ${tradeTimestamp.day}, ${tradeTimestamp.year}"
+      tradeTimestampText = "${DateFormat("EE").format(tradeTimestamp)}, ${DateFormat("MMMM").format(tradeTimestamp)} ${tradeTimestamp.day}, ${tradeTimestamp.year}"
           " - "
           "${tradeTimestamp.hour}:${tradeTimestamp.minute}:${tradeTimestamp.second}";
 
