@@ -185,4 +185,18 @@ class StringsResources {
   /// PurchasingPlan
   static String fileNamePurchasingPlan = "PurchasingPlan";
 
+  static List<String> marketsTypes() {
+
+    List<String> allMarketsTypes = [];
+    allMarketsTypes.add("Foreign Exchange");
+    allMarketsTypes.add("Cryptocurrency");
+    allMarketsTypes.add("Stock Markets");
+    allMarketsTypes.add("Indices");
+    allMarketsTypes.add("Bonds");
+    allMarketsTypes.add("Energy");
+    allMarketsTypes.add("Metal");
+
+    return allMarketsTypes;
+  }
+
 }

@@ -34,7 +34,7 @@ class SignalsHistoryInterface extends StatefulWidget {
   State<SignalsHistoryInterface> createState() => _SignalsHistoryInterfaceState();
 
 }
-class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
+class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with TickerProviderStateMixin {
 
   DigitalStoreUtils digitalStoreUtils = DigitalStoreUtils();
 
@@ -292,6 +292,27 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
                     right: 19,
                     top: 19,
                     child: PurchasePlanPicker()
+                ),
+                /* End - Purchase Plan Picker */
+
+                /* Start - Purchase Plan Picker */
+                Positioned(
+                    right: 19,
+                    bottom: 19,
+                    child: SizedBox(
+                        height: 59,
+                        width: 59,
+                        child: InkWell(
+                            onTap: () {
+
+                              setupAdvancedFilter();
+
+                            },
+                            child: const Image(
+                              image: AssetImage("filter_icon.png"),
+                            )
+                        )
+                    ),
                 ),
                 /* End - Purchase Plan Picker */
 
@@ -586,6 +607,58 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> {
           )
       )
     );
+  }
+
+  void setupAdvancedFilter() {
+
+    AnimationController animationController = BottomSheet.createAnimationController(this);
+    animationController.duration = const Duration(milliseconds: 159);
+    animationController.reverseDuration = const Duration(milliseconds: 159);
+
+    showModalBottomSheet(
+        context: context,
+        enableDrag: true,
+        isDismissible: true,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(19))
+        ),
+        elevation: 7,
+        transitionAnimationController: animationController,
+        barrierColor: ColorsResources.applicationDarkGeeksEmpire.withOpacity(0.51),
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext context) {
+
+          return Container(
+            height: 357,
+            width: double.infinity,
+            margin: const EdgeInsets.fromLTRB(13, 0, 13, 19),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(19),
+              gradient: const LinearGradient(
+                  colors: [
+                    ColorsResources.blueGray,
+                    ColorsResources.black,
+                  ],
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  transform: GradientRotation(45),
+                  tileMode: TileMode.clamp
+              ),
+            ),
+            child: ListView.builder(
+                itemCount: StringsResources.marketsTypes().length,
+                itemBuilder: (BuildContext context, int index) {
+
+                  return Container(
+
+                  );
+                }
+            ),
+          );
+        }
+    );
+
   }
 
 }
