@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/26/22, 1:27 AM
+ * Last modified 12/6/22, 6:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
@@ -117,6 +118,12 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
   @override
   Widget build(BuildContext context) {
+
+    Future.delayed(const Duration(milliseconds: 777), () {
+
+      FlutterNativeSplash.remove();
+
+    });
 
     return Container(
       padding: EdgeInsets.fromLTRB(0, widget.topPadding, 0, 0),

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/22/22, 3:17 AM
+ * Last modified 12/6/22, 7:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -65,17 +65,17 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
   @override
   Widget build(BuildContext context) {
 
-    Future.delayed(const Duration(milliseconds: 1357), () {
-
-      FlutterNativeSplash.remove();
-
-    });
-
     if (firebaseAuthentication.currentUser == null) {
       debugPrint("Google Not Authenticated");
 
       Future.delayed(const Duration(milliseconds: 1357), () async {
-        debugPrint("Google Authenticated");
+        debugPrint("Google Authenticating...");
+
+        Future.delayed(const Duration(milliseconds: 111), () {
+
+          FlutterNativeSplash.remove();
+
+        });
 
         UserCredential userCredential = await authenticationsProcess.startGoogleAuthentication();
 
@@ -92,10 +92,15 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
       });
 
-    } else {
+    } else if (firebaseAuthentication.currentUser!.phoneNumber == null) {
       debugPrint("Phone Number Not Authenticated");
 
       phoneNumberCheckpoint();
+
+    } else {
+      debugPrint("Authenticated");
+
+      navigationCheckpoint();
 
     }
 
@@ -118,7 +123,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                 backgroundColor: ColorsResources.black,
                 body: Stack(
                     children: [
-                      // Gradient Background
+
                       Container(
                           decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
@@ -134,12 +139,14 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                               )
                           )
                       ),
+
                       Align(
                         alignment: Alignment.center,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+
                             const Padding(
                               padding: EdgeInsets.fromLTRB(0, 31, 0, 13),
                               child: Image(
@@ -148,7 +155,9 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                 fit: BoxFit.fitHeight,
                               ),
                             ),
+
                             phoneNumberAuthentication,
+
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 13, 0, 73),
                               child: InkWell(
@@ -185,9 +194,11 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                 )
                               )
                             )
+
                           ],
                         ),
                       )
+
                     ]
                 )
             )
@@ -207,6 +218,12 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
       if (firebaseAuthentication.currentUser!.phoneNumber == null) {
         debugPrint("Phone Number Not Authenticated");
+
+        Future.delayed(const Duration(milliseconds: 111), () {
+
+          FlutterNativeSplash.remove();
+
+        });
 
         setState(() {
 
@@ -438,9 +455,13 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
           if (kDebugMode) {
 
-            createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", "Palladium").then((value) => {
+            createFileOfTexts(StringsResources.fileNameSliderTime, "TXT", DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
 
-              navigateToWithPop(context, const DashboardInterface())
+              createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", "Palladium").then((value) => {
+
+                navigateToWithPop(context, const DashboardInterface())
+
+              })
 
             })
 
