@@ -155,10 +155,12 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
     debugPrint("Latest Signals Details Data: ${signalsDataStructure.tradeCommand()} ${signalsDataStructure.tradeMarketPair()}");
 
     var tradeCommandColor = ColorsResources.sellColor;
+    double tradeCommandFontSize = 43;
 
     if (signalsDataStructure.tradeCommand() == "Buy") {
 
       tradeCommandColor = ColorsResources.buyColor;
+      tradeCommandFontSize = 47;
 
     }
 
@@ -238,7 +240,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                               child: Text(
                                 signalsDataStructure.tradeCommand().toUpperCase(),
                                 style: TextStyle(
-                                    fontSize: 43,
+                                    fontSize: tradeCommandFontSize,
                                     fontWeight: FontWeight.bold,
                                     color: tradeCommandColor
                                 ),

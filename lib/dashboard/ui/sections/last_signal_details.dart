@@ -133,10 +133,12 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
     debugPrint("Overview Details: ${signalsDataStructure.signalsDocumentData}");
 
     var tradeCommandColor = ColorsResources.sellColor;
+    double tradeCommandFontSize = 87;
 
     if (signalsDataStructure.tradeCommand() == "Buy") {
 
       tradeCommandColor = ColorsResources.buyColor;
+      tradeCommandFontSize = 97;
 
     }
 
@@ -231,12 +233,13 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
                                 /* Start - Trade Command */
                                 Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       signalsDataStructure.tradeCommand().toUpperCase(),
                                       style: TextStyle(
                                           color: tradeCommandColor,
-                                          fontSize: 87,
+                                          fontSize: tradeCommandFontSize,
                                           fontWeight: FontWeight.bold,
                                           shadows: [
                                             Shadow(
@@ -286,7 +289,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                               width: 351,
                               height: 119,
                               padding: const EdgeInsets.fromLTRB(0, 37, 0, 0),
-                              alignment: Alignment.center,
+                              alignment: Alignment.centerLeft,
                               child: Text(
                                 signalsDataStructure.tradeProfitAmount().replaceAll("\$", ""),
                                 maxLines: 1,
@@ -373,10 +376,12 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
     debugPrint("Overview Details: ${signalsDataStructure.signalsDocumentData}");
 
     var tradeCommandColor = ColorsResources.sellColor;
+    double tradeCommandFontSize = 87;
 
     if (signalsDataStructure.tradeCommand() == "Buy") {
 
       tradeCommandColor = ColorsResources.buyColor;
+      tradeCommandFontSize = 97;
 
     }
 
@@ -476,18 +481,19 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
                                   /* Start - Trade Command */
                                   Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         signalsDataStructure.tradeCommand().toUpperCase(),
                                         style: TextStyle(
                                             color: tradeCommandColor,
-                                            fontSize: 87,
+                                            fontSize: tradeCommandFontSize,
                                             fontWeight: FontWeight.bold,
                                             shadows: [
                                               Shadow(
                                                   color: ColorsResources.black.withOpacity(0.3),
                                                   blurRadius: 19,
-                                                  offset: Offset(0, 5)
+                                                  offset: const Offset(0, 5)
                                               )
                                             ]
                                         ),
@@ -531,7 +537,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                 width: 351,
                                 height: 113,
                                 padding: const EdgeInsets.fromLTRB(0, 31, 0, 0),
-                                alignment: Alignment.center,
+                                alignment: Alignment.centerLeft,
                                 child: Text(
                                   signalsDataStructure.tradeProfitAmount().replaceAll("\$", ""),
                                   maxLines: 1,
