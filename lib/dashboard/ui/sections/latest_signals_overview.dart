@@ -74,9 +74,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
 
             if (querySnapshot.docs.length > 1) {
 
-              querySnapshot.docs.removeAt(0);
-
-              for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+              for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs.getRange(1, querySnapshot.docs.length)) {
 
                 signalsDataStructure.add(SignalsDataStructure(queryDocumentSnapshot));
 
