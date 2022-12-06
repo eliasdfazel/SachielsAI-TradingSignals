@@ -12,6 +12,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
@@ -38,6 +39,8 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
 
   DigitalStoreUtils digitalStoreUtils = DigitalStoreUtils();
 
+  List<SignalsDataStructure> signalsDataStructure = [];
+
   Widget allSignalsHistory = Container(
     alignment: Alignment.center,
     child: LoadingAnimationWidget.staggeredDotsWave(
@@ -46,6 +49,12 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
       size: 73,
     ),
   );
+
+  List<Widget> allMarketsTypes = [];
+
+  bool filterVisibility = false;
+
+  BuildContext? popupContext;
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
@@ -71,6 +80,8 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
     changeColor(ColorsResources.black, ColorsResources.black);
 
     BackButtonInterceptor.add(aInterceptor);
+
+    prepareMarketsTypes();
 
   }
 
@@ -298,20 +309,23 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
                 /* Start - Purchase Plan Picker */
                 Positioned(
                     right: 19,
-                    bottom: 19,
-                    child: SizedBox(
-                        height: 59,
-                        width: 59,
-                        child: InkWell(
-                            onTap: () {
+                    bottom: 37,
+                    child: Visibility(
+                      visible: filterVisibility,
+                      child: SizedBox(
+                          height: 59,
+                          width: 59,
+                          child: InkWell(
+                              onTap: () {
 
-                              setupAdvancedFilter();
+                                setupAdvancedFilter();
 
-                            },
-                            child: const Image(
-                              image: AssetImage("filter_icon.png"),
-                            )
-                        )
+                              },
+                              child: const Image(
+                                image: AssetImage("filter_icon.png"),
+                              )
+                          )
+                      )
                     ),
                 ),
                 /* End - Purchase Plan Picker */
@@ -337,8 +351,6 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
           .orderBy("tradeTimestamp")
           .get().then((QuerySnapshot querySnapshot) {
 
-            List<SignalsDataStructure> signalsDataStructure = [];
-
             for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
               signalsDataStructure.add(SignalsDataStructure(queryDocumentSnapshot));
@@ -346,6 +358,12 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
             }
 
             prepareSignalsHistoryItems(signalsDataStructure);
+
+            setState(() {
+
+              filterVisibility = true;
+
+            });
 
           },
           onError: (e) => {
@@ -379,7 +397,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
             crossAxisSpacing: 19.0,
             mainAxisSpacing: 19.0,
           ),
-          padding: const EdgeInsets.fromLTRB(19, 101, 19, 37),
+          padding: const EdgeInsets.fromLTRB(19, 101, 19, 119),
           physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.vertical,
           children: signalHistoryItem,
@@ -609,55 +627,184 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
     );
   }
 
+  void prepareMarketsTypes() async {
+
+    StringsResources.marketsTypes().forEach((element) {
+
+      allMarketsTypes.add(Padding(
+        padding: const EdgeInsets.fromLTRB(0, 7, 0, 3),
+        child: SizedBox(
+          height: 53,
+          width: double.infinity,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(19),
+            child: Material(
+              shadowColor: Colors.transparent,
+              color: Colors.transparent,
+              child: InkWell(
+                  splashColor: ColorsResources.lightestYellow.withOpacity(0.3),
+                  splashFactory: InkRipple.splashFactory,
+                  onTap: () {
+
+                    processFilteringSignals(element);
+
+                    if (popupContext != null) {
+
+                      Future.delayed(const Duration(milliseconds: 379), () {
+
+                        Navigator.pop(popupContext!);
+
+                      });
+
+                    }
+
+                  },
+                  onLongPress: () {
+
+                    resetSignalsHistory();
+
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(19),
+                        gradient: const LinearGradient(
+                            colors: [
+                              ColorsResources.dark,
+                              ColorsResources.black,
+                            ],
+                            begin: FractionalOffset(0.0, 0.0),
+                            end: FractionalOffset(1.0, 0.0),
+                            stops: [0.0, 1.0],
+                            transform: GradientRotation(45),
+                            tileMode: TileMode.clamp
+                        ),
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                element,
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                    color: ColorsResources.premiumLight,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal
+                                ),
+                              )
+                          )
+                      )
+                  )
+              )
+            )
+          )
+        )
+      ));
+
+    });
+
+  }
+
   void setupAdvancedFilter() {
 
-    AnimationController animationController = BottomSheet.createAnimationController(this);
-    animationController.duration = const Duration(milliseconds: 159);
-    animationController.reverseDuration = const Duration(milliseconds: 159);
+    if (allMarketsTypes.isNotEmpty) {
 
-    showModalBottomSheet(
-        context: context,
-        enableDrag: true,
-        isDismissible: true,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(19))
-        ),
-        elevation: 7,
-        transitionAnimationController: animationController,
-        barrierColor: ColorsResources.applicationDarkGeeksEmpire.withOpacity(0.51),
-        backgroundColor: Colors.transparent,
-        builder: (BuildContext context) {
+      AnimationController animationController = BottomSheet.createAnimationController(this);
+      animationController.duration = const Duration(milliseconds: 199);
+      animationController.reverseDuration = const Duration(milliseconds: 199);
 
-          return Container(
-            height: 357,
-            width: double.infinity,
-            margin: const EdgeInsets.fromLTRB(13, 0, 13, 19),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(19),
-              gradient: const LinearGradient(
-                  colors: [
-                    ColorsResources.blueGray,
-                    ColorsResources.black,
-                  ],
-                  begin: FractionalOffset(0.0, 0.0),
-                  end: FractionalOffset(1.0, 0.0),
-                  stops: [0.0, 1.0],
-                  transform: GradientRotation(45),
-                  tileMode: TileMode.clamp
-              ),
-            ),
-            child: ListView.builder(
-                itemCount: StringsResources.marketsTypes().length,
-                itemBuilder: (BuildContext context, int index) {
+      showModalBottomSheet(
+          context: context,
+          enableDrag: true,
+          isDismissible: true,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(19))
+          ),
+          elevation: 0,
+          transitionAnimationController: animationController,
+          barrierColor: ColorsResources.black.withOpacity(0.51),
+          backgroundColor: Colors.transparent,
+          builder: (BuildContext context) {
 
-                  return Container(
+            popupContext = context;
 
-                  );
-                }
-            ),
-          );
-        }
-    );
+            return Container(
+                height: 357,
+                width: double.infinity,
+                margin: const EdgeInsets.fromLTRB(13, 0, 13, 19),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(19),
+                  gradient: const LinearGradient(
+                      colors: [
+                        ColorsResources.dark,
+                        ColorsResources.black,
+                      ],
+                      begin: FractionalOffset(0.0, 0.0),
+                      end: FractionalOffset(1.0, 0.0),
+                      stops: [0.0, 1.0],
+                      transform: GradientRotation(45),
+                      tileMode: TileMode.clamp
+                  ),
+                ),
+                child: ListView(
+                    padding: const EdgeInsets.fromLTRB(13, 3, 13, 7),
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    children: allMarketsTypes
+                )
+            );
+          }
+      );
+
+    }
+
+  }
+
+  void processFilteringSignals(String filterMarketType) {
+
+    List<SignalsDataStructure> filteredSignalsDataStructure = [];
+
+    for (SignalsDataStructure aSignalsDataStructure in signalsDataStructure) {
+
+      if (aSignalsDataStructure.tradeMarketType() == filterMarketType) {
+
+        filteredSignalsDataStructure.add(aSignalsDataStructure);
+
+      }
+
+    }
+
+    if (filteredSignalsDataStructure.isNotEmpty) {
+
+      prepareSignalsHistoryItems(filteredSignalsDataStructure);
+
+    } else {
+
+      Fluttertoast.showToast(
+          msg: StringsResources.errorNoSignalText(filterMarketType),
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ColorsResources.dark,
+          textColor: ColorsResources.light,
+          fontSize: 13.0
+      );
+
+    }
+
+  }
+
+  void resetSignalsHistory() {
+
+    List<SignalsDataStructure> filteredSignalsDataStructure = [];
+
+    for (SignalsDataStructure aSignalsDataStructure in signalsDataStructure) {
+
+      filteredSignalsDataStructure.add(aSignalsDataStructure);
+
+    }
+
+    prepareSignalsHistoryItems(filteredSignalsDataStructure);
 
   }
 

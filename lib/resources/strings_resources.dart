@@ -55,6 +55,11 @@ class StringsResources {
     return "You Didn't Entered Text | Error Occurred";
   }
 
+  static String errorNoSignalText(String marketType) {
+
+    return "No Trading Signals For $marketType";
+  }
+
   static String accuracyText() {
 
     return "Accuracy";
