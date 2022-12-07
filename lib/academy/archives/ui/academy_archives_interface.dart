@@ -463,10 +463,6 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
     for (var articlesDataStructureItem in articlesDataStructure) {
 
       aAcademyArticle.add(academyTutorialsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyTutorialsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyTutorialsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyTutorialsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyTutorialsItem(articlesDataStructureItem));
 
     }
 
@@ -682,12 +678,6 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     for (var articlesDataStructureItem in articlesDataStructure) {
 
-      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
       aAcademyArticle.add(academyArticlesItem(articlesDataStructureItem));
 
     }
@@ -962,18 +952,6 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
     for (var articlesDataStructureItem in articlesDataStructure) {
 
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
-      aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
       aAcademyArticle.add(academyNewsItem(articlesDataStructureItem));
 
     }
