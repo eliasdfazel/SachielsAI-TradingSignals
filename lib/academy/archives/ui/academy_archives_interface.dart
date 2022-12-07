@@ -869,7 +869,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                           top: 0,
                           child: SizedBox(
                             height: 21,
-                            width: 73,
+                            width: 79,
                             child: Blur(
                                 blur: 3,
                                 blurColor: ColorsResources.premiumDark,
@@ -893,14 +893,14 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                             top: 0,
                             child: SizedBox(
                                 height: 21,
-                                width: 73,
+                                width: 79,
                                 child: Align(
                                     alignment: Alignment.center,
                                     child: Text(
                                       articlesDataStructure.articleCategory().split(" ").last,
                                       style: const TextStyle(
                                           fontSize: 13,
-                                          color: ColorsResources.light
+                                          color: ColorsResources.premiumLight
                                       ),
                                     )
                                 )

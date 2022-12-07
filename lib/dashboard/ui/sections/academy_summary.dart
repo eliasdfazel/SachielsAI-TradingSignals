@@ -332,7 +332,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                               articlesDataStructure.initialPostType,
                               style: const TextStyle(
                                 fontSize: 13,
-                                color: ColorsResources.light
+                                color: ColorsResources.premiumLight
                               ),
                             )
                           )
