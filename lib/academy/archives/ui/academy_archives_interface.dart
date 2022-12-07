@@ -12,6 +12,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:marquee/marquee.dart';
 import 'package:sachiel/academy/data/articles_data_structure.dart';
@@ -602,6 +603,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                                   articlesDataStructure.articleTitle(),
                                   textAlign: TextAlign.start,
                                   overflow: TextOverflow.fade,
+                                  maxLinesNumber: 3,
                                   style: TextStyle(
                                       fontSize: 19,
                                       decoration: TextDecoration.none,
@@ -786,7 +788,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
                             /* Start - Article Cover */
                             SizedBox(
-                                height: 101,
+                                height: 117,
                                 child: ClipRRect(
                                   borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(17),
@@ -805,14 +807,15 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
                             /* Start - Article Text */
                             SizedBox(
-                                height: 79,
+                                height: 67,
                                 child: Container(
                                   color: Colors.transparent,
                                   child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(13, 11, 13, 3),
+                                      padding: const EdgeInsets.fromLTRB(13, 11, 13, 0),
                                       child: GradientText(
                                         articlesDataStructure.articleTitle(),
                                         textAlign: TextAlign.start,
+                                        maxLinesNumber: 3,
                                         style: TextStyle(
                                             fontSize: 15,
                                             decoration: TextDecoration.none,
@@ -838,22 +841,22 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                             SizedBox(
                                 height: 87,
                                 child: Container(
-                                  color: Colors.transparent,
-                                  child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(13, 3, 13, 7),
-                                      child: Text(
-                                        articlesDataStructure.articleSummary(),
-                                        textAlign: TextAlign.start,
-                                        maxLines: 6,
-                                        overflow: TextOverflow.fade,
-                                        style: const TextStyle(
-                                          color: ColorsResources.premiumLightTransparent,
-                                          fontSize: 11,
-                                          decoration: TextDecoration.none,
-                                          wordSpacing: 1.3
-                                        ),
-                                      )
-                                  )
+                                    color: Colors.transparent,
+                                    child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(3, 0, 3, 3),
+                                        child: Html(
+                                            data: articlesDataStructure.articleSummary(),
+                                            style: {
+                                              '#': Style(
+                                                  padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                                                  color: ColorsResources.premiumLightTransparent,
+                                                  maxLines: 5,
+                                                  fontSize: const FontSize(11),
+                                                  wordSpacing: 1.3
+                                              )
+                                            }
+                                        )
+                                    )
                                 )
                             )
                             /* End - Summary Text */
@@ -894,7 +897,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                                 child: Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      articlesDataStructure.articleCategory(),
+                                      articlesDataStructure.articleCategory().split(" ").last,
                                       style: const TextStyle(
                                           fontSize: 13,
                                           color: ColorsResources.light
