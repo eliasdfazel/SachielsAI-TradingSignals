@@ -234,7 +234,7 @@ async function setPostsData(jsonObject) {
 
 
     /* Articles - News - Tutorials */
-    var postType = "4562";
+    var postType = "Articles";
 
     if (productCategories.includes("4562")) {
 

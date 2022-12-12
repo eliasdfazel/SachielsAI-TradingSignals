@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/16/22, 8:50 AM
+ * Last modified 12/12/22, 4:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:marquee/marquee.dart';
 import 'package:sachiel/academy/data/articles_data_structure.dart';
+import 'package:sachiel/academy/utils/measurements.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/in_application_browser/ui/sachiel_academy_browser.dart';
 import 'package:sachiel/resources/colors_resources.dart';
@@ -716,7 +717,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
             Padding(
                 padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 child: SizedBox(
-                  height: 1237,
+                  height: gridHeight(303, aAcademyArticle.length, gridColumnCount),
                   width: double.infinity,
                   child: GridView(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -991,7 +992,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
             Padding(
                 padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 child: SizedBox(
-                    height: 1937,
+                    height: gridHeight(291, aAcademyArticle.length, gridColumnCount),
                     width: double.infinity,
                     child: GridView(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
