@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 11/18/22, 2:41 AM
+ * Last modified 12/12/22, 7:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -193,7 +193,7 @@ class StringsResources {
   static List<String> marketsTypes() {
 
     List<String> allMarketsTypes = [];
-    allMarketsTypes.add("Foreign Exchange");
+    allMarketsTypes.add("ForeignExchange");
     allMarketsTypes.add("Cryptocurrency");
     allMarketsTypes.add("Stock Markets");
     allMarketsTypes.add("Indices");
