@@ -25,7 +25,6 @@ import 'package:sachiel/utils/io/file_io.dart';
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage remoteMessage) async {
   debugPrint("Sachiels Signal Received: ${remoteMessage.data}");
-
 }
 
 void main() async {
