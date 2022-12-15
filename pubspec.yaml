@@ -60,7 +60,6 @@ dependencies:
     path: 'X:\Xlutter\Libraries\SachielProject\flutter_launcher_icons'
   flutter_native_splash: ^2.1.6
 
-
   flutter_phoenix: ^1.0.0
   flutter_slidable: ^2.0.0
   fluttertoast: ^8.0.9
