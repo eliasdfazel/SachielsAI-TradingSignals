@@ -22,7 +22,13 @@ exports.platinumTier = functions.runWith(runtimeOptions).https.onCall(async (dat
         const documentData = documentSnapshot.data();
         functions.logger.log("Platinum Signal Document ::: ", documentData);
 
-        var signalData = {
+        const signalData = {
+
+            notification: {
+                title: documentData.tradeCommand + " ➡️ " + documentData.tradeMarketPair,
+                body: "Estimated Profit: " + documentData.tradeProfitAmount + "\n" 
+                    + "Trade Accuracy: " + documentData.tradeAccuracyPercentage
+            },
     
             android: {
                 ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
@@ -68,6 +74,12 @@ exports.goldTier = functions.runWith(runtimeOptions).https.onCall(async (data, c
 
         var signalData = {
     
+            notification: {
+                title: documentData.tradeCommand + " ➡️ " + documentData.tradeMarketPair,
+                body: "Estimated Profit: " + documentData.tradeProfitAmount + "\n" 
+                    + "Trade Accuracy: " + documentData.tradeAccuracyPercentage
+            },
+
             android: {
                 ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
                 priority: 'high',
@@ -112,6 +124,12 @@ exports.palladiumTier = functions.runWith(runtimeOptions).https.onCall(async (da
     
         var signalData = {
     
+            notification: {
+                title: documentData.tradeCommand + " ➡️ " + documentData.tradeMarketPair,
+                body: "Estimated Profit: " + documentData.tradeProfitAmount + "\n" 
+                    + "Trade Accuracy: " + documentData.tradeAccuracyPercentage
+            },
+            
             android: {
                 ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
                 priority: 'high',
