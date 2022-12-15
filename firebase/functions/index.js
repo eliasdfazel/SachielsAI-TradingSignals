@@ -26,7 +26,6 @@ exports.platinumTier = functions.runWith(runtimeOptions).https.onCall(async (dat
     
             android: {
                 ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
-    
                 priority: 'high',
             },
     
@@ -71,7 +70,6 @@ exports.goldTier = functions.runWith(runtimeOptions).https.onCall(async (data, c
     
             android: {
                 ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
-    
                 priority: 'high',
             },
     
@@ -116,7 +114,6 @@ exports.palladiumTier = functions.runWith(runtimeOptions).https.onCall(async (da
     
             android: {
                 ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
-    
                 priority: 'high',
             },
     
