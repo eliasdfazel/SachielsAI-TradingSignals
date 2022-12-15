@@ -17,11 +17,7 @@ import 'package:sachiel/entry_configurations.dart';
 import 'package:sachiel/firebase_options.dart';
 
 @pragma('vm:entry-point')
-Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-
-  await Firebase.initializeApp();
-
-}
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage remoteMessage) async {}
 
 void main() async {
 
