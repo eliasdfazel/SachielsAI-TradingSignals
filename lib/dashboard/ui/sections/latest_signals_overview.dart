@@ -67,7 +67,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
           "/Signals"
           "/$purchasingTier")
           .limit(13)
-          .orderBy("tradeTimestamp")
+          .orderBy("tradeTimestamp", descending: true)
           .get().then((QuerySnapshot querySnapshot) {
 
             List<SignalsDataStructure> signalsDataStructure = [];

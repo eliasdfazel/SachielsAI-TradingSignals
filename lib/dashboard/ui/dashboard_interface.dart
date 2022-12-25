@@ -16,6 +16,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sachiel/dashboard/ui/sections/academy_summary.dart';
 import 'package:sachiel/dashboard/ui/sections/account_information_overview.dart';
+import 'package:sachiel/dashboard/ui/sections/ai_status.dart';
 import 'package:sachiel/dashboard/ui/sections/brokers_suggestions.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
 import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
@@ -45,6 +46,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
   RemoteConfigurations remoteConfigurations = RemoteConfigurations();
 
   AccountInformationOverview accountInformationOverview = const AccountInformationOverview();
+
+  StatusAi statusAi = const StatusAi();
 
   LastSignalDetails lastSignalDetails = const LastSignalDetails();
 
@@ -197,6 +200,10 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                         /* Start - Account Information Overview */
                         accountInformationOverview,
                         /* End - Account Information Overview */
+
+                        /* Start - Sachiel AI Status */
+                        statusAi,
+                        /* End - Sachiel AI Status */
 
                         /* Start - The Last Signal Details */
                         lastSignalDetails,

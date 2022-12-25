@@ -88,17 +88,15 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
           "/Signals"
           "/${purchasingTier}")
           .limit(1)
-          .orderBy("tradeTimestamp")
+          .orderBy("tradeTimestamp", descending: true)
           .get().then((QuerySnapshot querySnapshot) {
-        debugPrint("Last Signal Details Data: ${querySnapshot.docs.first.data()}");
+            debugPrint("Last Signal Details Data: ${querySnapshot.docs.first.data()}");
 
-        SignalsDataStructure signalsDataStructure = SignalsDataStructure(querySnapshot.docs.first);
+            SignalsDataStructure signalsDataStructure = SignalsDataStructure(querySnapshot.docs.first);
 
-        prepareLastSignalsDetails(signalsDataStructure);
+            prepareLastSignalsDetails(signalsDataStructure);
 
-      },
-        onError: (e) => debugPrint("$e"),
-      );
+          }, onError: (e) => debugPrint("$e"));
 
     }
 

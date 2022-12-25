@@ -136,6 +136,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - ai_status.png
     - archive_icon.png
 
     - back_icon.png
