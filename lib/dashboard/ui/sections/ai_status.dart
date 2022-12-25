@@ -133,19 +133,19 @@ class _StatusAiState extends State<StatusAi> {
       padding: const EdgeInsets.only(left: 13),
       child: SizedBox(
         height: 53,
-        width: 171,
+        width: 173,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(19),
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               colors: [
                 ColorsResources.premiumDark,
-                ColorsResources.blackTransparent
+                ColorsResources.black.withOpacity(0.51)
               ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                transform: GradientRotation(45),
+                begin: const FractionalOffset(0.0, 0.0),
+                end: const FractionalOffset(1.0, 0.0),
+                stops: const [0.0, 1.0],
+                transform: const GradientRotation(45),
                 tileMode: TileMode.clamp
             )
           ),
