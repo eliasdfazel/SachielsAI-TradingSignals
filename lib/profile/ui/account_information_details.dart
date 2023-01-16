@@ -254,7 +254,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                                   profileName.replaceFirst(" ", "\n"),
                                                   overflow: TextOverflow.fade,
                                                   style: const TextStyle(
-                                                      fontSize: 59
+                                                      fontSize: 37
                                                   ),
                                                   gradientDirection: GradientDirection.tltbr,
                                                   maxLinesNumber: 2,
