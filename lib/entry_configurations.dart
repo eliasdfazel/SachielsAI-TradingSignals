@@ -18,10 +18,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
+import 'package:sachiel/introductions/introduction_slides.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/authentication/authentication_process.dart';
+import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
@@ -427,9 +430,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
   void navigationCheckpoint() {
 
-    navigateTo(context, SachielsDigitalStore(topPadding: statusBarHeight(context)));
-
-    /*Future.delayed(const Duration(milliseconds: 379), () {
+    Future.delayed(const Duration(milliseconds: 379), () {
 
       fileExist(StringsResources.filePurchasingPlan).then((alreadyPurchased) => {
         debugPrint("Already Purchased: ${alreadyPurchased}"),
@@ -474,7 +475,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
       });
 
-    });*/
+    });
 
   }
 
