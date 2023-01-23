@@ -163,6 +163,37 @@ exports.palladiumTier = functions.runWith(runtimeOptions).https.onCall(async (da
 
 });
 
+exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
+    functions.logger.log("AI Status Message :::", data.statusMessage);
+
+    var dataStatusAI = {
+    
+        notification: {
+            title: "Sachiels Signals | AI Status 🤖",
+            body: statusMessage
+        },
+        
+        android: {
+            ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
+            priority: 'high',
+        },
+
+        data: {
+            "statusMessage": statusMessage,
+        }
+        
+    };
+
+    admin.messaging().send(dataStatusAI).then((response) => {
+        functions.logger.log("Successfully Sent ::: ", response);
+
+    }).catch((error) => {
+        functions.logger.log("Error Sending ::: ", error);
+
+    });
+
+});
+
 exports.transferAcademyContents = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
 
     var numberOfPage = req.query.numberOfPage;
