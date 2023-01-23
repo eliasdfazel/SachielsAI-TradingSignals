@@ -15,6 +15,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -463,10 +464,10 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
     debugPrint("Plan Details: ${plansDataStructure.plansDocumentData}");
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 37, 31, 0),
+      padding: const EdgeInsets.fromLTRB(0, 91, 37, 19),
       child: SizedBox(
-        height: 593,
-        width: 373,
+        height: double.maxFinite,
+        width: 353,
         child: InkWell(
             onTap: () async {
 
@@ -538,16 +539,23 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                   borderRadius: BorderRadius.circular(17),
                   child: Image.network(
                     plansDataStructure.purchasingPlanSnapshot(),
-                    height: 373,
-                    width: 373,
+                    height: 353,
+                    width: 353,
                     fit: BoxFit.contain,
+                  )
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                  child: Html(
+                      data: plansDataStructure.purchasingPlanDescription()
                   )
                 ),
 
                 const Image(
                   image: AssetImage("purchasing_icon.png"),
                   height: 73,
-                  width: 373,
+                  width: 353,
                   fit: BoxFit.contain,
                 )
 

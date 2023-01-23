@@ -13,6 +13,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class PlansDataStructure {
 
   static const String purchasingPlanName = "purchasingPlan";
+  static const String purchasingPlanDescriptionName = "purchasingPlanDescription";
 
   static const String purchasingPlanSnapshotName = "purchasingPlanSnapshot";
   static const String purchasingPlanPriceName = "purchasingPlanPrice";
@@ -45,6 +46,11 @@ class PlansDataStructure {
   String purchasingPlanProductId() {
 
     return plansDocumentData[PlansDataStructure.purchasingPlanProductIdName];
+  }
+
+  String purchasingPlanDescription() {
+
+    return plansDocumentData[PlansDataStructure.purchasingPlanDescriptionName];
   }
 
 }
