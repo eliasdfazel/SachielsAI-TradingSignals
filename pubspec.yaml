@@ -55,9 +55,9 @@ dependencies:
 
   flutter_app_name: ^0.1.1
   flutter_html:
-    path: 'X:\Xlutter\Libraries\SachielProject\flutter_html'
+    path: 'X:\Xlutter\Libraries\flutter_html'
   flutter_launcher_icons:
-    path: 'X:\Xlutter\Libraries\SachielProject\flutter_launcher_icons'
+    path: 'X:\Xlutter\Libraries\flutter_launcher_icons'
   flutter_native_splash: ^2.1.6
 
   flutter_phoenix: ^1.0.0
@@ -83,7 +83,7 @@ dependencies:
   ####### ####### #######
   liquid_swipe: ^3.0.0
   loading_animation_widget:
-    path: 'X:\Xlutter\Libraries\SachielProject\loading_animation_widget'
+    path: 'X:\Xlutter\Libraries\loading_animation_widget'
   local_auth: ^2.1.0
   lottie: ^1.4.0
   ####### ####### #######

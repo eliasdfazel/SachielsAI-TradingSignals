@@ -373,14 +373,14 @@ packages:
   flutter_html:
     dependency: "direct main"
     description:
-      path: "X:\\Xlutter\\Libraries\\SachielProject\\flutter_html"
+      path: "X:\\Xlutter\\Libraries\\flutter_html"
       relative: false
     source: path
     version: "3.0.0-alpha.5"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
-      path: "X:\\Xlutter\\Libraries\\SachielProject\\flutter_launcher_icons"
+      path: "X:\\Xlutter\\Libraries\\flutter_launcher_icons"
       relative: false
     source: path
     version: "0.9.2"
@@ -572,7 +572,7 @@ packages:
   loading_animation_widget:
     dependency: "direct main"
     description:
-      path: "X:\\Xlutter\\Libraries\\SachielProject\\loading_animation_widget"
+      path: "X:\\Xlutter\\Libraries\\loading_animation_widget"
       relative: false
     source: path
     version: "1.2.0+2"
