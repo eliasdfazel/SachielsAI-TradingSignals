@@ -50,9 +50,24 @@ class StringsResources {
     return "Share Sachiel's Signal";
   }
 
+  static String termService() {
+
+    return "Terms Of Services. Agree By Login In...";
+  }
+
   static String warningEmptyText() {
 
     return "You Didn't Entered Text | Error Occurred";
+  }
+
+  static String agree() {
+
+    return "Agree";
+  }
+
+  static String read() {
+
+    return "Read";
   }
 
   static String errorNoSignalText(String marketType) {

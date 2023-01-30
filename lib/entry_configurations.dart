@@ -24,10 +24,13 @@ import 'package:sachiel/introductions/introduction_slides.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/authentication/authentication_process.dart';
+import 'package:sachiel/utils/data/numbers.dart';
 import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class EntryConfigurations extends StatefulWidget {
 
@@ -195,8 +198,135 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                               )
                             )
 
-                          ],
-                        ),
+                          ]
+                        )
+                      ),
+
+                      Positioned(
+                        bottom: 19,
+                        right: 19,
+                        left: 19,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(19),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: ColorsResources.primaryColor.withOpacity(0.31),
+                                        width: 3,
+                                        strokeAlign: StrokeAlign.inside
+                                    )
+                                ),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      ColorsResources.black.withOpacity(0.73),
+                                      ColorsResources.primaryColor.withOpacity(0.73)
+                                    ],
+                                    stops: const [0.47, 1.0],
+                                    transform: GradientRotation(degreeToRadian(90))
+                                )
+                            ),
+                            child: SizedBox(
+                                height: 53,
+                                width: double.maxFinite,
+                                child: Row(
+
+                                    children: [
+
+                                      Expanded(
+                                        flex: 7,
+                                        child: SizedBox(
+                                          height: 53,
+                                          child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                                            child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                    StringsResources.termService(),
+                                                    maxLines: 1,
+                                                    style: TextStyle(
+                                                      color: ColorsResources.premiumLight,
+                                                      fontSize: 13,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      shadows: [
+                                                        Shadow(
+                                                          color: ColorsResources.primaryColor.withOpacity(0.37),
+                                                          blurRadius: 7,
+                                                          offset: const Offset(0, 5)
+                                                        )
+                                                      ]
+                                                    )
+                                                )
+                                            )
+                                          )
+                                        )
+                                      ),
+
+                                      Expanded(
+                                          flex: 3,
+                                          child: SizedBox(
+                                              height: 53,
+                                              child: Center(
+                                                child: Padding(
+                                                    padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                                                    child: Container(
+                                                        height: 31,
+                                                        width: double.maxFinite,
+                                                        decoration: BoxDecoration(
+                                                            color: ColorsResources.black,
+                                                            borderRadius: BorderRadius.circular(11),
+                                                            border: Border.all(
+                                                                color: ColorsResources.primaryColor,
+                                                                width: 1.73,
+                                                                strokeAlign: StrokeAlign.outside
+                                                            ),
+                                                            boxShadow: [
+                                                              BoxShadow(
+                                                                color: ColorsResources.primaryColor.withOpacity(0.73),
+                                                                blurRadius: 13,
+                                                              )
+                                                            ]
+                                                        ),
+                                                        child: ClipRRect(
+                                                          borderRadius: BorderRadius.circular(11),
+                                                          child: Material(
+                                                              shadowColor: Colors.transparent,
+                                                              color: Colors.transparent,
+                                                              child: InkWell(
+                                                                  splashColor: ColorsResources.lightestYellow.withOpacity(0.31),
+                                                                  splashFactory: InkRipple.splashFactory,
+                                                                  onTap: () {
+
+                                                                    Future.delayed(const Duration(milliseconds: 333), () {
+
+                                                                      launchUrlString("https://geeksempire.co/sachiel-ai-trading-signals/term-of-services/", mode: LaunchMode.externalApplication);
+
+                                                                    });
+
+                                                                  },
+                                                                  child: Center(
+                                                                      child: Text(
+                                                                          StringsResources.read(),
+                                                                          style: const TextStyle(
+                                                                              color: ColorsResources.premiumLight,
+                                                                              fontSize: 12
+                                                                          )
+                                                                      )
+                                                                  )
+                                                              )
+                                                          )
+                                                        )
+                                                    )
+                                                )
+                                              )
+                                          )
+                                      )
+
+                                    ]
+                                )
+                            ),
+                          )
+                        )
                       )
 
                     ]
