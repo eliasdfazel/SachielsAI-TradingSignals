@@ -55,6 +55,11 @@ class StringsResources {
     return "Terms Of Services. Agree By Login In...";
   }
 
+  static String noInternetConnection() {
+
+    return "No Internet Connection...";
+  }
+
   static String warningEmptyText() {
 
     return "You Didn't Entered Text | Error Occurred";
@@ -68,6 +73,11 @@ class StringsResources {
   static String read() {
 
     return "Read";
+  }
+
+  static String ok() {
+
+    return "Ok";
   }
 
   static String errorNoSignalText(String marketType) {

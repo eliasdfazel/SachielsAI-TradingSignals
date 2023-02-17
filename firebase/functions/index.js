@@ -22,10 +22,18 @@ exports.platinumTier = functions.runWith(runtimeOptions).https.onCall(async (dat
         const documentData = documentSnapshot.data();
         functions.logger.log("Platinum Signal Document ::: ", documentData);
 
+        var notificationColor = "🟢";
+
+        if (documentData.tradeCommand == "Sell") {
+
+            notificationColor = "🔴";
+
+        }
+
         const signalData = {
 
             notification: {
-                title: documentData.tradeCommand + " ➡️ " + documentData.tradeMarketPair,
+                title: notificationColor + " " + documentData.tradeCommand + " ➡️ " + documentData.tradeMarketPair,
                 body: "Estimated Profit: " + documentData.tradeProfitAmount + "\n" 
                     + "Trade Accuracy: " + documentData.tradeAccuracyPercentage
             },
@@ -72,10 +80,18 @@ exports.goldTier = functions.runWith(runtimeOptions).https.onCall(async (data, c
         const documentData = documentSnapshot.data();
         functions.logger.log("Gold Signal Document ::: ", documentData);
 
+        var notificationColor = "🟢";
+
+        if (documentData.tradeCommand == "Sell") {
+
+            notificationColor = "🔴";
+
+        }
+
         var signalData = {
     
             notification: {
-                title: documentData.tradeCommand + " ➡️ " + documentData.tradeMarketPair,
+                title: notificationColor + " " + documentData.tradeCommand + " ➡️ " + documentData.tradeMarketPair,
                 body: "Estimated Profit: " + documentData.tradeProfitAmount + "\n" 
                     + "Trade Accuracy: " + documentData.tradeAccuracyPercentage
             },
@@ -122,10 +138,18 @@ exports.palladiumTier = functions.runWith(runtimeOptions).https.onCall(async (da
         const documentData = documentSnapshot.data();
         functions.logger.log("Palladium Signal Document ::: ", documentData);
     
+        var notificationColor = "🟢";
+        
+        if (documentData.tradeCommand == "Sell") {
+
+            notificationColor = "🔴";
+
+        }
+
         var signalData = {
     
             notification: {
-                title: documentData.tradeCommand + " ➡️ " + documentData.tradeMarketPair,
+                title: notificationColor + " " + documentData.tradeCommand + " ➡️ " + documentData.tradeMarketPair,
                 body: "Estimated Profit: " + documentData.tradeProfitAmount + "\n" 
                     + "Trade Accuracy: " + documentData.tradeAccuracyPercentage
             },

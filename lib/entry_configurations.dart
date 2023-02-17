@@ -10,6 +10,7 @@
 
 import 'dart:io';
 
+import 'package:app_settings/app_settings.dart';
 import 'package:blur/blur.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -34,7 +35,9 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class EntryConfigurations extends StatefulWidget {
 
-  const EntryConfigurations({Key? key}) : super(key: key);
+  bool internetConnection = false;
+
+  EntryConfigurations({Key? key, required this.internetConnection}) : super(key: key);
 
   @override
   State<EntryConfigurations> createState() => _EntryConfigurationsState();
@@ -55,6 +58,9 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
   bool entranceVisibility = false;
 
+  String noticeMessage = StringsResources.termService();
+  String noticeAction = StringsResources.read();
+
   @override
   void initState() {
     super.initState();
@@ -68,42 +74,53 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
   @override
   Widget build(BuildContext context) {
 
-    if (firebaseAuthentication.currentUser == null) {
-      debugPrint("Google Not Authenticated");
+    if (widget.internetConnection) {
 
-      Future.delayed(const Duration(milliseconds: 1357), () async {
-        debugPrint("Google Authenticating...");
+      if (firebaseAuthentication.currentUser == null) {
+        debugPrint("Google Not Authenticated");
 
-        Future.delayed(const Duration(milliseconds: 111), () {
+        Future.delayed(const Duration(milliseconds: 1357), () async {
+          debugPrint("Google Authenticating...");
 
-          FlutterNativeSplash.remove();
+          Future.delayed(const Duration(milliseconds: 111), () {
+
+            FlutterNativeSplash.remove();
+
+          });
+
+          UserCredential userCredential = await authenticationsProcess.startGoogleAuthentication();
+
+          if (userCredential.user!.phoneNumber == null) {
+            debugPrint("Phone Number Not Authenticated");
+
+            phoneNumberCheckpoint();
+
+          } else {
+
+            navigationCheckpoint();
+
+          }
 
         });
 
-        UserCredential userCredential = await authenticationsProcess.startGoogleAuthentication();
+      } else if (firebaseAuthentication.currentUser!.phoneNumber == null) {
+        debugPrint("Phone Number Not Authenticated");
 
-        if (userCredential.user!.phoneNumber == null) {
-          debugPrint("Phone Number Not Authenticated");
+        phoneNumberCheckpoint();
 
-          phoneNumberCheckpoint();
+      } else {
+        debugPrint("Authenticated");
 
-        } else {
+        navigationCheckpoint();
 
-          navigationCheckpoint();
-
-        }
-
-      });
-
-    } else if (firebaseAuthentication.currentUser!.phoneNumber == null) {
-      debugPrint("Phone Number Not Authenticated");
-
-      phoneNumberCheckpoint();
+      }
 
     } else {
-      debugPrint("Authenticated");
 
-      navigationCheckpoint();
+      FlutterNativeSplash.remove();
+
+      noticeMessage = StringsResources.noInternetConnection();
+      noticeAction = StringsResources.ok();
 
     }
 
@@ -242,7 +259,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                             child: Align(
                                                 alignment: Alignment.centerLeft,
                                                 child: Text(
-                                                    StringsResources.termService(),
+                                                    noticeMessage,
                                                     maxLines: 1,
                                                     style: TextStyle(
                                                       color: ColorsResources.premiumLight,
@@ -299,14 +316,22 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
                                                                     Future.delayed(const Duration(milliseconds: 333), () {
 
-                                                                      launchUrlString("https://geeksempire.co/sachiel-ai-trading-signals/term-of-services/", mode: LaunchMode.externalApplication);
+                                                                      if (noticeAction == StringsResources.read()) {
+
+                                                                        launchUrlString("https://geeksempire.co/sachiel-ai-trading-signals/term-of-services/", mode: LaunchMode.externalApplication);
+
+                                                                      } else {
+
+                                                                        AppSettings.openWIFISettings();
+
+                                                                      }
 
                                                                     });
 
                                                                   },
                                                                   child: Center(
                                                                       child: Text(
-                                                                          StringsResources.read(),
+                                                                          noticeAction,
                                                                           style: const TextStyle(
                                                                               color: ColorsResources.premiumLight,
                                                                               fontSize: 12
@@ -323,6 +348,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                       )
 
                                     ]
+
                                 )
                             ),
                           )

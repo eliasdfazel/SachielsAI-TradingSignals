@@ -8,6 +8,9 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:io';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -47,6 +50,7 @@ void main() async {
   fileExist(StringsResources.filePurchasingPlan).then((fileExist) => {
 
     if (fileExist) {
+
       readFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT").then((purchasedPlan) => {
 
         Future.delayed(Duration.zero, () {
@@ -63,16 +67,41 @@ void main() async {
 
   });
 
-  prototypeProcess();
+  final connectivityResult = await (Connectivity().checkConnectivity());
 
-  runApp(
-      Phoenix(
-          child: const MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: EntryConfigurations()
+  if (connectivityResult == ConnectivityResult.mobile
+      || connectivityResult == ConnectivityResult.wifi
+      || connectivityResult == ConnectivityResult.vpn
+      || connectivityResult == ConnectivityResult.ethernet) {
+
+    try {
+
+      final internetLookup = await InternetAddress.lookup('example.com');
+
+      bool connectionResult = (internetLookup.isNotEmpty && internetLookup[0].rawAddress.isNotEmpty);
+
+      prototypeProcess();
+
+      runApp(
+          Phoenix(
+              child: MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  home: EntryConfigurations(internetConnection: connectionResult)
+              )
           )
-      )
-  );
+      );
+
+    } on SocketException catch (exception) {
+      debugPrint(exception.message);
+
+
+    }
+
+  } else {
+
+
+
+  }
 
 }
 

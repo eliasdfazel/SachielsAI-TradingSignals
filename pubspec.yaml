@@ -21,6 +21,12 @@ dependencies:
 
 
   ####### ####### #######
+  app_settings: 4.2.0
+  ####### ####### #######
+
+
+
+  ####### ####### #######
   back_button_interceptor: ^6.0.1
 
   blur: ^3.0.0
@@ -30,11 +36,21 @@ dependencies:
 
   ####### ####### #######
   cached_network_image: ^3.2.0
-  cupertino_icons: ^1.0.5
-  currency_text_input_formatter: ^2.1.7
+
+  connectivity_plus: ^3.0.3
 
   cloud_firestore: ^4.0.5
   cloud_functions: ^4.0.4
+
+  cupertino_icons: ^1.0.5
+
+  currency_text_input_formatter: ^2.1.7
+  ####### ####### #######
+
+
+
+  ####### ####### #######
+
   ####### ####### #######
 
 
