@@ -182,6 +182,16 @@ class StringsResources {
 
     return "+1 666 975 3333";
   }
+
+  static String enterCode() {
+
+    return "Enter Code";
+  }
+
+  static String enterCodeHint() {
+
+    return "951370";
+  }
   /*
    * End - Authentications
    */

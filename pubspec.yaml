@@ -84,7 +84,7 @@ dependencies:
 
 
   ####### ####### #######
-  google_sign_in: ^5.4.0
+  google_sign_in: ^6.0.1
   ####### ####### #######
 
 
@@ -101,7 +101,6 @@ dependencies:
   loading_animation_widget:
     path: 'X:\Xlutter\Libraries\loading_animation_widget'
   local_auth: ^2.1.0
-  lottie: ^1.4.0
   ####### ####### #######
 
 

@@ -14,6 +14,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthenticationsCallback {
   void authenticationWithPhoneCompleted();
+  void authenticationCodeSent(String verificationId);
 }
 
 class AuthenticationsProcess {
@@ -55,7 +56,7 @@ class AuthenticationsProcess {
       codeSent: (String verificationId, int? resendToken) {
         debugPrint("Phone Authentication Code Sent");
 
-
+        authenticationsCallback.authenticationCodeSent(verificationId);
 
       },
       codeAutoRetrievalTimeout: (String verificationId) {

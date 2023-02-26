@@ -58,8 +58,13 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
   bool entranceVisibility = false;
 
+  String titlePlaceholder = StringsResources.phoneNumber();
+  String hintPlaceholder = StringsResources.phoneNumberHint();
+
   String noticeMessage = StringsResources.termService();
   String noticeAction = StringsResources.read();
+
+  String generatedVerificationId = "";
 
   @override
   void initState() {
@@ -196,7 +201,23 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
                                   if (phoneNumberController.text.isNotEmpty) {
 
-                                    authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+                                    if (titlePlaceholder == StringsResources.enterCode()) {
+
+                                      String smsCode = phoneNumberController.text;
+
+                                      PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(verificationId: generatedVerificationId, smsCode: smsCode);
+
+                                      FirebaseAuth.instance.currentUser?.updatePhoneNumber(phoneAuthCredential).then((value) => {
+
+                                        navigationCheckpoint()
+
+                                      });
+
+                                    } else {
+
+                                      authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+
+                                    }
 
                                     setState(() {
 
@@ -381,6 +402,23 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
   }
 
+  @override
+  void authenticationCodeSent(String verificationId) {
+
+    setState(() {
+
+      generatedVerificationId = verificationId;
+
+      phoneNumberController.clear();
+
+      titlePlaceholder = StringsResources.enterCode();
+
+      hintPlaceholder = StringsResources.enterCodeHint();
+
+    });
+
+  }
+
   void phoneNumberCheckpoint() {
 
       if (firebaseAuthentication.currentUser!.phoneNumber == null) {
@@ -435,7 +473,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                               child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    StringsResources.phoneNumber(),
+                                    titlePlaceholder,
                                     style: const TextStyle(
                                         color: ColorsResources.premiumLight,
                                         fontSize: 17
@@ -526,13 +564,29 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                 ),
                                 errorText: warningNoticePhoneNumber,
                                 contentPadding: const EdgeInsets.fromLTRB(19, 21, 19, 21),
-                                hintText: StringsResources.phoneNumberHint(),
+                                hintText: hintPlaceholder,
                               ),
                               onSubmitted: (phoneNumber) {
 
                                 if (phoneNumberController.text.isNotEmpty) {
 
-                                  authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+                                  if (titlePlaceholder == StringsResources.enterCode()) {
+
+                                    String smsCode = phoneNumberController.text;
+
+                                    PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(verificationId: generatedVerificationId, smsCode: smsCode);
+
+                                    FirebaseAuth.instance.currentUser?.updatePhoneNumber(phoneAuthCredential).then((value) => {
+
+                                      navigationCheckpoint()
+
+                                    });
+
+                                  } else {
+
+                                    authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+
+                                  }
 
                                   setState(() {
 
@@ -614,7 +668,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                               child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    StringsResources.phoneNumber(),
+                                    titlePlaceholder,
                                     style: const TextStyle(
                                         color: ColorsResources.premiumLight,
                                         fontSize: 17
@@ -705,13 +759,29 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                 ),
                                 errorText: warningNoticePhoneNumber,
                                 contentPadding: const EdgeInsets.fromLTRB(19, 21, 19, 21),
-                                hintText: StringsResources.phoneNumberHint(),
+                                hintText: hintPlaceholder,
                               ),
                               onSubmitted: (phoneNumber) {
 
                                 if (phoneNumberController.text.isNotEmpty) {
 
-                                  authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+                                  if (titlePlaceholder == StringsResources.enterCode()) {
+
+                                    String smsCode = phoneNumberController.text;
+
+                                    PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(verificationId: generatedVerificationId, smsCode: smsCode);
+
+                                    FirebaseAuth.instance.currentUser?.updatePhoneNumber(phoneAuthCredential).then((value) => {
+
+                                      navigationCheckpoint()
+
+                                    });
+
+                                  } else {
+
+                                    authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+
+                                  }
 
                                   setState(() {
 

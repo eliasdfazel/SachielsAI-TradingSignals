@@ -471,13 +471,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.2.1"
+  google_identity_services_web:
+    dependency: transitive
+    description:
+      name: google_identity_services_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   google_sign_in:
     dependency: "direct main"
     description:
       name: google_sign_in
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.4.4"
+    version: "6.0.1"
   google_sign_in_android:
     dependency: transitive
     description:
@@ -505,7 +512,7 @@ packages:
       name: google_sign_in_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.2+1"
+    version: "0.11.0+1"
   html:
     dependency: transitive
     description:
@@ -646,13 +653,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.6"
-  lottie:
-    dependency: "direct main"
-    description:
-      name: lottie
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.3"
   marquee:
     dependency: "direct main"
     description:
