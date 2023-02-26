@@ -38,7 +38,7 @@ class AuthenticationsProcess {
 
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: enteredPhoneNumber,
-      timeout: const Duration(seconds: 37),
+      timeout: const Duration(seconds: 119),
       verificationCompleted: (PhoneAuthCredential phoneAuthCredential) {
         debugPrint("Phone Authentication Completed");
 
@@ -54,6 +54,7 @@ class AuthenticationsProcess {
       },
       codeSent: (String verificationId, int? resendToken) {
         debugPrint("Phone Authentication Code Sent");
+
 
 
       },

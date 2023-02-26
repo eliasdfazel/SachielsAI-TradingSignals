@@ -438,7 +438,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                     StringsResources.phoneNumber(),
                                     style: const TextStyle(
                                         color: ColorsResources.premiumLight,
-                                        fontSize: 19
+                                        fontSize: 17
                                     ),
                                   )
                               ),
@@ -617,7 +617,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                     StringsResources.phoneNumber(),
                                     style: const TextStyle(
                                         color: ColorsResources.premiumLight,
-                                        fontSize: 19
+                                        fontSize: 17
                                     ),
                                   )
                               ),
