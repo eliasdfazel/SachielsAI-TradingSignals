@@ -799,25 +799,23 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
         } else {
 
-          // if (kDebugMode) {
-          //
-          //   createFileOfTexts(StringsResources.fileNameSliderTime, "TXT", DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
-          //
-          //     createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", "Palladium").then((value) => {
-          //
-          //       navigateToWithPop(context, const DashboardInterface())
-          //
-          //     })
-          //
-          //   })
-          //
-          // } else {
-          //
-          //   navigateTo(context, SachielsDigitalStore(topPadding: statusBarHeight(context)))
-          //
-          // }
+          if (kDebugMode) {
 
-          navigateTo(context, SachielsDigitalStore(topPadding: statusBarHeight(context)))
+            createFileOfTexts(StringsResources.fileNameSliderTime, "TXT", DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
+
+              createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", "Palladium").then((value) => {
+
+                navigateToWithPop(context, const DashboardInterface())
+
+              })
+
+            })
+
+          } else {
+
+            navigateTo(context, SachielsDigitalStore(topPadding: statusBarHeight(context)))
+
+          }
 
         }
 
