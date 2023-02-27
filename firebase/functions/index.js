@@ -194,7 +194,7 @@ exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, c
     
         notification: {
             title: "Sachiels Signals | AI Status 🤖",
-            body: statusMessage
+            body: data.statusMessage
         },
         
         android: {
@@ -203,7 +203,7 @@ exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, c
         },
 
         data: {
-            "statusMessage": statusMessage,
+            "statusMessage": data.statusMessage,
         }
         
     };
