@@ -22,6 +22,8 @@ dependencies:
 
   ####### ####### #######
   app_settings: 4.2.0
+
+  app_uninstaller: ^0.4.1
   ####### ####### #######
 
 
@@ -158,6 +160,8 @@ flutter:
 
     - continue_icon.png
     - cyborg_girl.jpg
+
+    - delete_account.png
 
     - facebook_input.png
     - filter_icon.png

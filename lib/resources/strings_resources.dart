@@ -170,6 +170,11 @@ class StringsResources {
     return "Online Courses";
   }
 
+  static String confirm() {
+
+    return "Confirm";
+  }
+
   /*
    * Start - Authentications
    */
@@ -191,6 +196,11 @@ class StringsResources {
   static String enterCodeHint() {
 
     return "951370";
+  }
+
+  static String signOutNotice() {
+
+    return "Sign Out & Uninstall Sachiel";
   }
   /*
    * End - Authentications

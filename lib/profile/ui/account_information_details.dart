@@ -12,7 +12,6 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/profile/data/profiles_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -183,7 +182,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
                   child: ListView(
-                    padding: const EdgeInsets.fromLTRB(0, 137, 0, 37),
+                    padding: const EdgeInsets.fromLTRB(0, 137, 0, 73),
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     children: [
@@ -587,13 +586,210 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                 ),
                 /* End - Back */
 
-                /* Start - Purchase Plan Picker */
-                const Positioned(
-                    right: 19,
-                    top: 19,
-                    child: PurchasePlanPicker()
+                /* Start - Delete Account */
+                Positioned(
+                    top: 37,
+                    right: 37,
+                    child: Container(
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: ColorsResources.black.withOpacity(0.73),
+                                  blurRadius: 19
+                              )
+                            ]
+                        ),
+                        child: const WidgetMask(
+                            blendMode: BlendMode.srcATop,
+                            childSaveLayer: true,
+                            mask: ColoredBox(
+                                color: ColorsResources.primaryColorDarkest
+                            ),
+                            child: Image(
+                              image: AssetImage("squircle.png"),
+                              height: 73,
+                              width: 73,
+                            )
+                        )
+                    )
                 ),
-                /* End - Purchase Plan Picker */
+                Positioned(
+                    top: 37,
+                    right: 37,
+                    child: WidgetMask(
+                      blendMode: BlendMode.srcIn,
+                      childSaveLayer: true,
+                      mask: Material(
+                          shadowColor: Colors.transparent,
+                          color: Colors.transparent,
+                          child: InkWell(
+                              splashColor: ColorsResources.primaryColor,
+                              splashFactory: InkRipple.splashFactory,
+                              onTap: () {
+
+
+
+
+
+                              },
+                              child: const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 19, 0, 19),
+                                  child: Image(
+                                    image: AssetImage("delete_account.png"),
+                                    height: 31,
+                                    width: 31,
+                                  )
+                              )
+                          )
+                      ),
+                      child: const Image(
+                        image: AssetImage("squircle_shape.png"),
+                        height: 59,
+                        width: 59,
+                      ),
+                    )
+                ),
+                /* End - Delete Account */
+
+                /* Start - Confirm */
+                Positioned(
+                    bottom: 19,
+                    right: 19,
+                    left: 19,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(19),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      color: ColorsResources.primaryColor.withOpacity(0.31),
+                                      width: 3,
+                                      strokeAlign: StrokeAlign.inside
+                                  )
+                              ),
+                              gradient: LinearGradient(
+                                  colors: [
+                                    ColorsResources.black.withOpacity(0.73),
+                                    ColorsResources.primaryColor.withOpacity(0.73)
+                                  ],
+                                  stops: const [0.47, 1.0],
+                                  transform: GradientRotation(degreeToRadian(90))
+                              )
+                          ),
+                          child: SizedBox(
+                              height: 53,
+                              width: double.maxFinite,
+                              child: Row(
+
+                                  children: [
+
+                                    Expanded(
+                                        flex: 7,
+                                        child: SizedBox(
+                                            height: 53,
+                                            child: Padding(
+                                                padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                                                child: Align(
+                                                    alignment: Alignment.centerLeft,
+                                                    child: Text(
+                                                        StringsResources.signOutNotice(),
+                                                        maxLines: 1,
+                                                        style: TextStyle(
+                                                            color: ColorsResources.premiumLight,
+                                                            fontSize: 13,
+                                                            overflow: TextOverflow.ellipsis,
+                                                            shadows: [
+                                                              Shadow(
+                                                                  color: ColorsResources.primaryColor.withOpacity(0.37),
+                                                                  blurRadius: 7,
+                                                                  offset: const Offset(0, 5)
+                                                              )
+                                                            ]
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    ),
+
+                                    Expanded(
+                                        flex: 3,
+                                        child: SizedBox(
+                                            height: 53,
+                                            child: Center(
+                                                child: Padding(
+                                                    padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                                                    child: Container(
+                                                        height: 31,
+                                                        width: double.maxFinite,
+                                                        decoration: BoxDecoration(
+                                                            color: ColorsResources.black,
+                                                            borderRadius: BorderRadius.circular(11),
+                                                            border: Border.all(
+                                                                color: ColorsResources.primaryColor,
+                                                                width: 1.73,
+                                                                strokeAlign: StrokeAlign.outside
+                                                            ),
+                                                            boxShadow: [
+                                                              BoxShadow(
+                                                                color: ColorsResources.primaryColor.withOpacity(0.73),
+                                                                blurRadius: 13,
+                                                              )
+                                                            ]
+                                                        ),
+                                                        child: ClipRRect(
+                                                            borderRadius: BorderRadius.circular(11),
+                                                            child: Material(
+                                                                shadowColor: Colors.transparent,
+                                                                color: Colors.transparent,
+                                                                child: InkWell(
+                                                                    splashColor: ColorsResources.lightestYellow.withOpacity(0.31),
+                                                                    splashFactory: InkRipple.splashFactory,
+                                                                    onTap: () {
+
+                                                                      // FirebaseAuth.instance.currentUser?.delete().then((value) => {
+                                                                      //
+                                                                      //   FirebaseAuth.instance.signOut().then((value) => {
+                                                                      //
+                                                                      //     Future.delayed(const Duration(milliseconds: 333), () {
+                                                                      //
+                                                                      //
+                                                                      //
+                                                                      //     })
+                                                                      //
+                                                                      //   })
+                                                                      //
+                                                                      // });
+
+                                                                      // var isUninstalled = await AppUninstaller.Uninstall("com.google.android.gm");
+
+                                                                    },
+                                                                    child: Center(
+                                                                        child: Text(
+                                                                            StringsResources.confirm(),
+                                                                            style: const TextStyle(
+                                                                                color: ColorsResources.premiumLight,
+                                                                                fontSize: 12
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+
+                                  ]
+
+                              )
+                          ),
+                        )
+                    )
+                )
+                /* End - Confirm */
 
               ],
             )
