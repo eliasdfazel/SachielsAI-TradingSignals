@@ -12,6 +12,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:sachiel/profile/data/profiles_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -760,7 +761,9 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
 
                                                                             Future.delayed(const Duration(milliseconds: 333), () async {
 
-                                                                              // await AppUninstaller.Uninstall("co.geeksempire.sachie.signals");
+                                                                              navigatePop(context);
+
+                                                                              Phoenix.rebirth(context);
 
                                                                             })
 

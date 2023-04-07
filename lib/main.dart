@@ -82,6 +82,8 @@ void main() async {
 
       prototypeProcess();
 
+      await FirebaseAuth.instance.currentUser?.reload();
+
       runApp(
           Phoenix(
               child: MaterialApp(
