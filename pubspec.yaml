@@ -22,8 +22,6 @@ dependencies:
 
   ####### ####### #######
   app_settings: 4.2.0
-
-  app_uninstaller: ^0.4.1
   ####### ####### #######
 
 

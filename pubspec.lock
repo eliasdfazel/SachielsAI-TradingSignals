@@ -15,13 +15,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.0"
-  app_uninstaller:
-    dependency: "direct main"
-    description:
-      name: app_uninstaller
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.1"
   archive:
     dependency: transitive
     description:

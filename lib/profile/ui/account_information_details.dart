@@ -184,7 +184,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
                   child: ListView(
-                    padding: const EdgeInsets.fromLTRB(0, 137, 0, 73),
+                    padding: const EdgeInsets.fromLTRB(0, 137, 0, 103),
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     children: [
@@ -752,23 +752,21 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                                                   child: InkWell(
                                                                       splashColor: ColorsResources.lightestYellow.withOpacity(0.31),
                                                                       splashFactory: InkRipple.splashFactory,
-                                                                      onTap: () {
+                                                                      onTap: () async {
 
-                                                                        // FirebaseAuth.instance.currentUser?.delete().then((value) => {
-                                                                        //
-                                                                        //   FirebaseAuth.instance.signOut().then((value) => {
-                                                                        //
-                                                                        //     Future.delayed(const Duration(milliseconds: 333), () {
-                                                                        //
-                                                                        //
-                                                                        //
-                                                                        //     })
-                                                                        //
-                                                                        //   })
-                                                                        //
-                                                                        // });
+                                                                        FirebaseAuth.instance.currentUser?.delete().then((value) => {
 
-                                                                        // var isUninstalled = await AppUninstaller.Uninstall("com.google.android.gm");
+                                                                          FirebaseAuth.instance.signOut().then((value) => {
+
+                                                                            Future.delayed(const Duration(milliseconds: 333), () async {
+
+                                                                              // await AppUninstaller.Uninstall("co.geeksempire.sachie.signals");
+
+                                                                            })
+
+                                                                          })
+
+                                                                        });
 
                                                                       },
                                                                       child: Center(
