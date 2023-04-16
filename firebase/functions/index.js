@@ -190,6 +190,8 @@ exports.palladiumTier = functions.runWith(runtimeOptions).https.onCall(async (da
 exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
     functions.logger.log("AI Status Message :::", data.statusMessage);
 
+    const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
+
     var dataStatusAI = {
     
         notification: {
@@ -204,7 +206,9 @@ exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, c
 
         data: {
             "statusMessage": data.statusMessage,
-        }
+        },
+
+        condition: statusCondition
         
     };
 
@@ -274,6 +278,8 @@ async function setPostsData(jsonObject) {
     categoriesMap.set("4508", "Investment");
     categoriesMap.set("4444", "Make Money Online");
     categoriesMap.set("4393", "Trading");
+
+    categoriesMap.set("2485", "Lifestyle");
 
     const idKey = "id";
     const linkKey = "link";
