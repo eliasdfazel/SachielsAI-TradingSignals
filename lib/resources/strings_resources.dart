@@ -85,6 +85,11 @@ class StringsResources {
     return "No Trading Signals For $marketType";
   }
 
+  static String subscriptionExpired() {
+
+    return "Subscription Expired. Purchase Now Or Contact Support@GeeksEmpire.co";
+  }
+
   static String accuracyText() {
 
     return "Accuracy";

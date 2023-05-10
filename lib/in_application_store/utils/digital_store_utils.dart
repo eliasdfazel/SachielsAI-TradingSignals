@@ -34,12 +34,35 @@ class DigitalStoreUtils {
     return purchasingTier;
   }
 
-  Future<void> externalSubscriberExpiry() async {
+  /// Formatted Text for Expiry Date MM-DD-YYYY
+  Future<bool> subscriberExpired() async {
 
-    // compare year with current year
-    // compare month with current month
-    // compare day with current day
+    bool expired = false;
 
+    bool fileExists = await fileExist("${StringsResources.fileNamePurchasingTime}.TXT");
+
+    if (fileExists) {
+
+      DateTime nowTime = DateTime.now();
+
+      String expiryTime = await readFileOfTexts(StringsResources.fileNamePurchasingTime, "TXT");
+
+      int nowYear = nowTime.year;
+      int savedYear = int.parse(expiryTime.split("-")[2]);
+
+
+
+      int nowMonth = nowTime.month;
+      int savedMonth = int.parse(expiryTime.split("-")[0]);
+
+
+
+      int nowDay = nowTime.day;
+      int savedDay = int.parse(expiryTime.split("-")[1]);
+
+    }
+
+    return expired;
   }
 
 }

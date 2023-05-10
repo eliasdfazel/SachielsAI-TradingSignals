@@ -14,6 +14,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sachiel/dashboard/ui/sections/academy_summary.dart';
 import 'package:sachiel/dashboard/ui/sections/account_information_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/ai_status.dart';
@@ -23,6 +24,7 @@ import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
 import 'package:sachiel/dashboard/ui/sections/social_media.dart';
 import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
+import 'package:sachiel/in_application_store/utils/digital_store_utils.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
@@ -42,6 +44,8 @@ class DashboardInterface extends StatefulWidget {
 
 }
 class _DashboardInterfaceState extends State<DashboardInterface> {
+
+  DigitalStoreUtils digitalStoreUtils = DigitalStoreUtils();
 
   RemoteConfigurations remoteConfigurations = RemoteConfigurations();
 
@@ -312,6 +316,32 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
       });
 
     });
+
+  }
+
+  void externalSubscriberCheckpoint() async {
+
+    bool subscriberExpired = await digitalStoreUtils.subscriberExpired();
+
+    if (subscriberExpired) {
+
+      Fluttertoast.showToast(
+          msg: StringsResources.subscriptionExpired(),
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ColorsResources.dark,
+          textColor: ColorsResources.light,
+          fontSize: 13.0
+      );
+
+      navigateTo(context, SachielsDigitalStore(topPadding: statusBarHeight(context)));
+
+    } else {
+
+
+
+    }
 
   }
 

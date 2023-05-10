@@ -13,7 +13,6 @@ import 'dart:async';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_authe/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -412,7 +411,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
     User firebaseUser = FirebaseAuth.instance.currentUser!;
 
     FirebaseFirestore.instance
-        .doc("/Sachiels/Subscribers/External/${firebaseUser.uid}")
+        .doc("/Sachiels/Subscribers/External/${firebaseUser.email}")
         .get().then((DocumentSnapshot documentSnapshot) {
 
           if (documentSnapshot.exists) {
@@ -642,7 +641,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
       Future.delayed(const Duration(milliseconds: 137), () async {
 
         FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-        await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTopic);
+        await firebaseMessaging.subscribeToTopic(purchasedPlan);
 
         navigateToWithPop(context, const DashboardInterface());
 
