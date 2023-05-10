@@ -47,18 +47,15 @@ class DigitalStoreUtils {
 
       String expiryTime = await readFileOfTexts(StringsResources.fileNamePurchasingTime, "TXT");
 
+      int nowMonth = nowTime.month;
+      int nowDay = nowTime.day;
       int nowYear = nowTime.year;
+
+      int savedMonth = int.parse(expiryTime.split("-")[0]);
+      int savedDay = int.parse(expiryTime.split("-")[1]);
       int savedYear = int.parse(expiryTime.split("-")[2]);
 
-
-
-      int nowMonth = nowTime.month;
-      int savedMonth = int.parse(expiryTime.split("-")[0]);
-
-
-
-      int nowDay = nowTime.day;
-      int savedDay = int.parse(expiryTime.split("-")[1]);
+      expired = (nowYear + nowMonth + nowDay) > (savedYear + savedMonth + savedDay);
 
     }
 
