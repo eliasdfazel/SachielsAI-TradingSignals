@@ -34,4 +34,12 @@ class DigitalStoreUtils {
     return purchasingTier;
   }
 
+  Future<void> externalSubscriberExpiry() async {
+
+    // compare year with current year
+    // compare month with current month
+    // compare day with current day
+
+  }
+
 }

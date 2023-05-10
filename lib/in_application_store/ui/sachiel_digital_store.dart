@@ -12,6 +12,7 @@ import 'dart:async';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_authe/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -416,7 +417,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
           if (documentSnapshot.exists) {
 
-            processExternalSubscriber(documentSnapshot.get("uniqueIdentifier"),
+            processExternalSubscriber(
                 documentSnapshot.get("emailAddress"),
                 documentSnapshot.get("purchasedPlan"),
                 documentSnapshot.get("expiryTime"));
@@ -632,7 +633,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
   }
 
   /// Formatted Text for Expiry Date MM-DD-YYYY
-  void processExternalSubscriber(String uniqueIdentifier, String emailAddress, String purchasedPlan, String expiryTime) {
+  void processExternalSubscriber(String emailAddress, String purchasedPlan, String expiryTime) {
 
     createFileOfTexts(StringsResources.fileNamePurchasingTime, "TXT", expiryTime);
 
