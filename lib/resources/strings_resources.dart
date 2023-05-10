@@ -234,6 +234,8 @@ class StringsResources {
   static String filePurchasingPlan = "PurchasingPlan.TXT";
   /// PurchasingPlan
   static String fileNamePurchasingPlan = "PurchasingPlan";
+  /// PurchasingPlan
+  static String fileNamePurchasingTime = "PurchasingTime";
 
   static List<String> marketsTypes() {
 

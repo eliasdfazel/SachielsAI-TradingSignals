@@ -12,7 +12,7 @@ import 'dart:async';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_authe/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -408,27 +408,48 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
   void retrievePurchasingPlans() {
     debugPrint("Retrieve Latest Signals Details");
 
+    User firebaseUser = FirebaseAuth.instance.currentUser!;
+
     FirebaseFirestore.instance
-        .collection("/Sachiels/Purchasing/Plans")
-        .orderBy("purchasingPlanPrice")
-        .get().then((QuerySnapshot querySnapshot) {
+        .doc("/Sachiels/Subscribers/External/${firebaseUser.uid}")
+        .get().then((DocumentSnapshot documentSnapshot) {
 
-          List<PlansDataStructure> plansDataStructure = [];
+          if (documentSnapshot.exists) {
 
-          for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+            processExternalSubscriber(documentSnapshot.get("uniqueIdentifier"),
+                documentSnapshot.get("emailAddress"),
+                documentSnapshot.get("purchasedPlan"),
+                documentSnapshot.get("expiryTime"));
 
-            plansDataStructure.add(PlansDataStructure(queryDocumentSnapshot));
+          } else {
+
+            FirebaseFirestore.instance
+                .collection("/Sachiels/Purchasing/Plans")
+                .orderBy("purchasingPlanPrice")
+                .get().then((QuerySnapshot querySnapshot) {
+
+              List<PlansDataStructure> plansDataStructure = [];
+
+              for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+
+                plansDataStructure.add(PlansDataStructure(queryDocumentSnapshot));
+
+              }
+
+              if (plansDataStructure.isNotEmpty) {
+
+                prepareSignalsHistoryItems(plansDataStructure);
+
+              }
+
+            },
+                onError: (e) => {
+
+                });
 
           }
 
-          if (plansDataStructure.isNotEmpty) {
-
-            prepareSignalsHistoryItems(plansDataStructure);
-
-          }
-
-        },
-        onError: (e) => {
+        }, onError: (e) => {
 
         });
 
@@ -607,6 +628,26 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
       }
 
     }
+
+  }
+
+  /// Formatted Text for Expiry Date MM-DD-YYYY
+  void processExternalSubscriber(String uniqueIdentifier, String emailAddress, String purchasedPlan, String expiryTime) {
+
+    createFileOfTexts(StringsResources.fileNamePurchasingTime, "TXT", expiryTime);
+
+    createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", purchasedPlan).then((value) => {
+
+      Future.delayed(const Duration(milliseconds: 137), () async {
+
+        FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+        await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTopic);
+
+        navigateToWithPop(context, const DashboardInterface());
+
+    })
+
+    });
 
   }
 
