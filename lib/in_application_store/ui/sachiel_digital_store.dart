@@ -419,7 +419,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
             processExternalSubscriber(
                 documentSnapshot.get("emailAddress"),
                 documentSnapshot.get("purchasedPlan"),
-                documentSnapshot.get("expiryTime"));
+                documentSnapshot.get("expiryTime")
+            );
 
           } else {
 
@@ -428,21 +429,21 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                 .orderBy("purchasingPlanPrice")
                 .get().then((QuerySnapshot querySnapshot) {
 
-              List<PlansDataStructure> plansDataStructure = [];
+                  List<PlansDataStructure> plansDataStructure = [];
 
-              for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+                  for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-                plansDataStructure.add(PlansDataStructure(queryDocumentSnapshot));
+                    plansDataStructure.add(PlansDataStructure(queryDocumentSnapshot));
 
-              }
+                  }
 
-              if (plansDataStructure.isNotEmpty) {
+                  if (plansDataStructure.isNotEmpty) {
 
-                prepareSignalsHistoryItems(plansDataStructure);
+                    prepareSignalsHistoryItems(plansDataStructure);
 
-              }
+                  }
 
-            },
+                },
                 onError: (e) => {
 
                 });
