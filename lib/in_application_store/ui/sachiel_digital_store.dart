@@ -38,6 +38,9 @@ class SachielsDigitalStore extends StatefulWidget {
 
   SachielsDigitalStore({Key? key, required this.topPadding}) : super(key: key);
 
+  static const String previewTier = "preview.sachiel";
+  static const String previewTopic = "Preview";
+
   static const String platinumTier = "platinum.sachiel";
   static const String platinumTopic = "Platinum";
 
@@ -494,6 +497,29 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
             onTap: () async {
 
               switch (plansDataStructure.purchasingPlanProductId()) {
+                case SachielsDigitalStore.previewTier: {
+
+                  setState(() {
+                    animationVisibility = true;
+                  });
+
+                  final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.previewTier});
+
+                  PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+
+                  InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+
+                  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
+                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
+                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
+
+                  setState(() {
+                    animationVisibility = false;
+                  });
+
+                  break;
+                }
                 case SachielsDigitalStore.platinumTier: {
 
                   setState(() {
@@ -520,6 +546,10 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                 }
                 case SachielsDigitalStore.goldTier: {
 
+                  setState(() {
+                    animationVisibility = true;
+                  });
+
                   final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.goldTier});
 
                   PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
@@ -532,9 +562,17 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                   await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
                   await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
 
+                  setState(() {
+                    animationVisibility = false;
+                  });
+
                   break;
                 }
                 case SachielsDigitalStore.palladiumTier: {
+
+                  setState(() {
+                    animationVisibility = true;
+                  });
 
                   final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.palladiumTier});
 
@@ -547,6 +585,10 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
                   await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
+
+                  setState(() {
+                    animationVisibility = false;
+                  });
 
                   break;
                 }
