@@ -51,8 +51,8 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 26
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 17
-        versionName "1.1.23.2023.${versionCode}"
+        versionCode 18
+        versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"
     }
 
     signingConfigs {
@@ -76,6 +76,24 @@ android {
 
 flutter {
     source '../..'
+}
+
+static def getDateYear() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy')//yyyyMMdd
+    return formattedDate
+}
+
+static def getDateMonth() {
+    def date = new Date()
+    def formattedDate = date.format('MM')//yyyyMMdd
+    return formattedDate
+}
+
+static def getDateDay() {
+    def date = new Date()
+    def formattedDate = date.format('dd')//yyyyMMdd
+    return formattedDate
 }
 
 dependencies {
