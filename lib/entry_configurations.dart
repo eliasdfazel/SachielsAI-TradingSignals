@@ -32,6 +32,7 @@ import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:widget_mask/widget_mask.dart';
 
 class EntryConfigurations extends StatefulWidget {
 
@@ -196,55 +197,72 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
 
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 13, 0, 73),
-                              child: InkWell(
-                                onTap: () {
+                                child: SizedBox(
+                                  height: 239,
+                                  width: 239,
+                                  child: WidgetMask(
+                                    blendMode: BlendMode.srcATop,
+                                    childSaveLayer: true,
+                                    mask /* Original Image */: Material(
+                                        shadowColor: Colors.transparent,
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                            splashColor: ColorsResources.lightestYellow.withOpacity(0.3),
+                                            splashFactory: InkRipple.splashFactory,
+                                            onTap: () {
 
-                                  if (phoneNumberController.text.isNotEmpty) {
+                                              if (phoneNumberController.text.isNotEmpty) {
 
-                                    if (titlePlaceholder == StringsResources.enterCode()) {
+                                                if (titlePlaceholder == StringsResources.enterCode()) {
 
-                                      String smsCode = phoneNumberController.text;
+                                                  String smsCode = phoneNumberController.text;
 
-                                      PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(verificationId: generatedVerificationId, smsCode: smsCode);
+                                                  PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(verificationId: generatedVerificationId, smsCode: smsCode);
 
-                                      FirebaseAuth.instance.currentUser?.updatePhoneNumber(phoneAuthCredential).then((value) => {
+                                                  FirebaseAuth.instance.currentUser?.updatePhoneNumber(phoneAuthCredential).then((value) => {
 
-                                        navigationCheckpoint()
+                                                    navigationCheckpoint()
 
-                                      });
+                                                  });
 
-                                    } else {
+                                                } else {
 
-                                      authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+                                                  authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
 
-                                    }
+                                                }
 
-                                    setState(() {
+                                                setState(() {
 
-                                      warningNoticePhoneNumber = null;
+                                                  warningNoticePhoneNumber = null;
 
-                                    });
+                                                });
 
-                                  } else {
+                                              } else {
 
-                                    setState(() {
+                                                setState(() {
 
-                                      warningNoticePhoneNumber = StringsResources.warningEmptyText();
+                                                  warningNoticePhoneNumber = StringsResources.warningEmptyText();
 
-                                    });
+                                                });
 
-                                  }
+                                              }
 
-                                },
-                                child: Visibility(
-                                  visible: entranceVisibility,
-                                  child: const Image(
-                                    image: AssetImage("entrance_next.png"),
-                                    height: 239,
-                                    fit: BoxFit.fitHeight,
+                                            },
+                                            child: Visibility(
+                                                visible: entranceVisibility,
+                                                child: const Image(
+                                                  image: AssetImage("entrance_next.png"),
+                                                  height: 239,
+                                                  fit: BoxFit.fitHeight,
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    child: const Image(
+                                      image: AssetImage("entrance_next.png"),
+                                    )
                                   )
                                 )
-                              )
                             )
 
                           ]

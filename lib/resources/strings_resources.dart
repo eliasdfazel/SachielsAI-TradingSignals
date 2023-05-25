@@ -27,17 +27,17 @@ class StringsResources {
 
   static String twitterLink() {
 
-    return "https://twitter.com/SachielsSignals";
+    return "https://twitter.com/SachielsAI";
   }
 
   static String facebookLink() {
 
-    return "https://facebook.com/SachielsSignals";
+    return "https://facebook.com/SachielsAI";
   }
 
   static String instagramLink() {
 
-    return "https://instagram.com/SachielsSignals";
+    return "https://instagram.com/SachielsAI";
   }
 
   static String sachielAI() {
