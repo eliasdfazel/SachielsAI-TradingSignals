@@ -8,6 +8,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/io/file_io.dart';
 
@@ -22,6 +23,12 @@ class DigitalStoreUtils {
     if (alreadyPurchased) {
 
       String purchasingPlanDirectory = await readFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT");
+
+      if (purchasingPlanDirectory == SachielsDigitalStore.previewTier) {
+
+        purchasingPlanDirectory = SachielsDigitalStore.palladiumTier;
+
+      }
 
       int lengthOfText = purchasingPlanDirectory.length;
 

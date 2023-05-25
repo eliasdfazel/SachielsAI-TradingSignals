@@ -68,8 +68,12 @@ void main() async {
         Future.delayed(Duration.zero, () {
           debugPrint("Purchased Plan: ${capitalizeFirstCharacter(purchasedPlan.split(".").first)}");
 
-          FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-          firebaseMessaging.subscribeToTopic(capitalizeFirstCharacter(purchasedPlan.split(".").first));
+          if (purchasedPlan != SachielsDigitalStore.previewTier) {
+
+            FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+            firebaseMessaging.subscribeToTopic(capitalizeFirstCharacter(purchasedPlan.split(".").first));
+
+          }
 
         })
 
