@@ -76,6 +76,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
     sliderCheckpoint();
 
+    digitalStoreUtils.validateSubscriptions();
+
     prototypeProcess();
 
   }
