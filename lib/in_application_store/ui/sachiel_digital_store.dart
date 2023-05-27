@@ -509,15 +509,6 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
 
-                  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
-                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
-                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
-
-                  setState(() {
-                    animationVisibility = false;
-                  });
-
                   break;
                 }
                 case SachielsDigitalStore.platinumTier: {
@@ -531,16 +522,6 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                   PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
 
                   InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
-
-                  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-                  await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTopic);
-
-                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
-                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
-
-                  setState(() {
-                    animationVisibility = false;
-                  });
 
                   break;
                 }
@@ -556,16 +537,6 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
 
-                  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-                  await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTopic);
-
-                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
-                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
-
-                  setState(() {
-                    animationVisibility = false;
-                  });
-
                   break;
                 }
                 case SachielsDigitalStore.palladiumTier: {
@@ -579,16 +550,6 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                   PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
 
                   InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
-
-                  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-                  await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTopic);
-
-                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
-                  await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
-
-                  setState(() {
-                    animationVisibility = false;
-                  });
 
                   break;
                 }
@@ -645,6 +606,64 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
         } else if (purchaseDetails.status == PurchaseStatus.purchased
             || purchaseDetails.status == PurchaseStatus.restored) {
+
+          switch (purchaseDetails.productID) {
+            case SachielsDigitalStore.previewTier: {
+
+              FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
+
+              setState(() {
+                animationVisibility = false;
+              });
+
+              break;
+            }
+            case SachielsDigitalStore.platinumTier: {
+
+              FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+              await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTopic);
+
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
+
+              setState(() {
+                animationVisibility = false;
+              });
+
+              break;
+            }
+            case SachielsDigitalStore.goldTier: {
+
+              FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+              await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTopic);
+
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
+
+              setState(() {
+                animationVisibility = false;
+              });
+
+              break;
+            }
+            case SachielsDigitalStore.palladiumTier: {
+
+              FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+              await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTopic);
+
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
+
+              setState(() {
+                animationVisibility = false;
+              });
+
+              break;
+            }
+          }
 
           createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", purchaseDetails.productID);
 
