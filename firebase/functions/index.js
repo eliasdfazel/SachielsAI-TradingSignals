@@ -3,9 +3,11 @@ const admin = require('firebase-admin');
 
 admin.initializeApp({
     credential: admin.credential.applicationDefault(),
+    databaseURL: "https://sachiel-s-signals-default-rtdb.firebaseio.com"
 });
 
 const firestore = admin.firestore();
+const database = admin.database();
 
 const XMLHttpRequest = require("xhr2").XMLHttpRequest;
 
@@ -21,6 +23,12 @@ exports.platinumTier = functions.runWith(runtimeOptions).https.onCall(async (dat
 
         const documentData = documentSnapshot.data();
         functions.logger.log("Platinum Signal Document ::: ", documentData);
+
+        if (tradeMarketType.length == 0) {
+
+            updateMarketType(purchasingTier, data.tradeTimestamp, documentData.tradeMarketPair);
+
+        }
 
         var notificationColor = "🟢";
 
@@ -80,6 +88,12 @@ exports.goldTier = functions.runWith(runtimeOptions).https.onCall(async (data, c
         const documentData = documentSnapshot.data();
         functions.logger.log("Gold Signal Document ::: ", documentData);
 
+        if (tradeMarketType.length == 0) {
+
+            updateMarketType(purchasingTier, data.tradeTimestamp, documentData.tradeMarketPair);
+
+        }
+
         var notificationColor = "🟢";
 
         if (documentData.tradeCommand == "Sell") {
@@ -138,6 +152,12 @@ exports.palladiumTier = functions.runWith(runtimeOptions).https.onCall(async (da
         const documentData = documentSnapshot.data();
         functions.logger.log("Palladium Signal Document ::: ", documentData);
     
+        if (tradeMarketType.length == 0) {
+
+            updateMarketType(purchasingTier, data.tradeTimestamp, documentData.tradeMarketPair);
+
+        }
+
         var notificationColor = "🟢";
         
         if (documentData.tradeCommand == "Sell") {
@@ -350,4 +370,39 @@ async function setPostsData(jsonObject) {
     });
     /* End - Document * With Even Directory */
 
+}
+
+exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
+    functions.logger.log("Experiments 🧪");
+});
+
+async function updateMarketType(purchasingTier, tradeTimestamp, tradingPair) {
+
+    const reference = database.ref("/SachielsSignals/Markets");
+
+    reference.once("value", function(querySnapshot) {
+        
+        querySnapshot.forEach((childSnapshot) => {  
+            functions.logger.log("🧪 " + childSnapshot.key);
+
+            childSnapshot.forEach((itemSnapshot) => {
+
+                if (itemSnapshot.key == tradingPair) {
+                    console.log('Founded Item ::: ' + itemSnapshot.key);
+
+                    firestore.doc("/Sachiels/Signals/" + purchasingTier + "/" + tradeTimestamp)
+                        .update({tradeMarketType: childSnapshot.key}).then((documentSnapshot) => {
+        
+                            
+
+                        });
+
+                }
+                
+            });
+            
+        });
+
+    }); 
+      
 }
