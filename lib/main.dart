@@ -68,6 +68,7 @@ void main() async {
         Future.delayed(Duration.zero, () {
           debugPrint("Purchased Plan: ${capitalizeFirstCharacter(purchasedPlan.split(".").first)}");
 
+          // If It's Not Preview Then Subscribe To Tiers
           if (purchasedPlan != SachielsDigitalStore.previewTier) {
 
             FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
