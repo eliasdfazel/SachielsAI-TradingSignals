@@ -73,6 +73,8 @@ class DigitalStoreUtils {
               switch (purchaseDetails.productID) {
                 case SachielsDigitalStore.previewTier: {
 
+                  deletePrivateFile("${StringsResources.fileNamePurchasingPlan}.TXT");
+
                   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
                   firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
                   firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
@@ -111,6 +113,8 @@ class DigitalStoreUtils {
                   break;
                 }
                 default: {
+
+                  deletePrivateFile("${StringsResources.fileNamePurchasingPlan}.TXT");
 
                   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
                   firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
