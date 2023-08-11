@@ -15,6 +15,96 @@ const runtimeOptions = {
     timeoutSeconds: 512,
 }
 
+// Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
+exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *')
+    .timeZone('America/New_York')
+    .onRun((context) => {
+        console.log('Time; ' + Date.now());
+
+        var marketPair = 'ETH/USDT';
+
+        var ethusdRsiEndpoint = 'https://api.taapi.io/rsi?secret=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVlIjoiNjRkMTQxYzA0OThkNzVkYTM2N2JlMDg0IiwiaWF0IjoxNjkxNDM1NTU1LCJleHAiOjMzMTk1ODk5NTU1fQ.UyiGARXTkW5HjHKoiRxTAV1lMALBiY3tk7PbRKhMrdw'
+            + '&exchange=binance'
+            + '&symbol=' + marketPair
+            + '&interval=1d';
+
+        var xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.open('GET', ethusdRsiEndpoint, true);
+        xmlHttpRequest.setRequestHeader('accept', 'application/json');
+        xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+        xmlHttpRequest.onreadystatechange = function () {
+            if (this.readyState == 4) {
+
+            } else {
+
+            }
+        };
+        xmlHttpRequest.onprogress = function () {
+
+        };
+        xmlHttpRequest.onload = function () {
+
+            var jsonObjectRSI = JSON.parse(xmlHttpRequest.responseText);
+
+            var valueRSI = parseInt(jsonObjectRSI["value"].toString());
+
+            analysisOfRsi(valueRSI, marketPair);
+
+        };
+        xmlHttpRequest.send();
+
+        return null;
+});
+
+async function analysisOfRsi(rsiNumber, marketPair) {
+
+    var statusMessage = 'Observing ' + marketPair;
+
+    if (rsiNumber >= 73) {
+       
+        statusMessage = 'Sachiel AI is Analysing ' + marketPair + ' to BUY.';
+
+    } else if (rsiNumber <= 37) {
+
+        statusMessage = 'Sachiel AI is Analysing ' + marketPair + ' to SELL.';
+
+    } else {
+
+        
+    }
+
+    const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
+
+    var dataStatusAI = {
+    
+        notification: {
+            title: "Sachiels AI Status 🤖",
+            body: statusMessage
+        },
+        
+        android: {
+            ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
+            priority: 'high',
+        },
+
+        data: {
+            "statusMessage": statusMessage,
+        },
+
+        condition: statusCondition
+        
+    };
+
+    admin.messaging().send(dataStatusAI).then((response) => {
+        functions.logger.log("Successfully Sent ::: ", response);
+
+    }).catch((error) => {
+        functions.logger.log("Error Sending ::: ", error);
+
+    });
+
+}
+
 exports.platinumTier = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
     functions.logger.log("Receiving Platinum Signal :::", data.tradeTimestamp);
 
@@ -215,7 +305,7 @@ exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, c
     var dataStatusAI = {
     
         notification: {
-            title: "Sachiels Signals | AI Status 🤖",
+            title: "Sachiels AI Status 🤖",
             body: data.statusMessage
         },
         
