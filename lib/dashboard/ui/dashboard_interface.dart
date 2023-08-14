@@ -78,7 +78,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
     digitalStoreUtils.validateSubscriptions();
 
-    prototypeProcess();
+    principalsProcess();
 
   }
 
@@ -298,7 +298,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   }
 
-  void prototypeProcess() {
+  void principalsProcess() {
 
     remoteConfigurations.initialize().then((firebaseRemoteConfigurations) {
 
@@ -312,6 +312,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTopic);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTopic);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTopic);
+
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
 
         }
 

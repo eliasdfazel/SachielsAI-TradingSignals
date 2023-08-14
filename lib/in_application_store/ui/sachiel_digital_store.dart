@@ -50,6 +50,8 @@ class SachielsDigitalStore extends StatefulWidget {
   static const String palladiumTier = "palladium.sachiel";
   static const String palladiumTopic = "Palladium";
 
+  static const String privilegedTopic = "Privileged";
+
   @override
   State<SachielsDigitalStore> createState() => _SachielsDigitalStoreState();
 
