@@ -313,6 +313,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTopic);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTopic);
 
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.previewTopic);
+
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
 
         }

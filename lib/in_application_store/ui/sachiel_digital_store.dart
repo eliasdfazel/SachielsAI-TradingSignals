@@ -613,6 +613,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
             case SachielsDigitalStore.previewTier: {
 
               FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+              await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.previewTopic);
+
               await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
               await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
               await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
@@ -631,6 +633,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
               await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
               await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
 
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.previewTopic);
+
               setState(() {
                 animationVisibility = false;
               });
@@ -645,6 +649,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
               await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
               await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
 
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.previewTopic);
+
               setState(() {
                 animationVisibility = false;
               });
@@ -658,6 +664,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
               await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
               await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
+
+              await firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.previewTopic);
 
               setState(() {
                 animationVisibility = false;
@@ -729,6 +737,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTopic);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTopic);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTopic);
+
+          firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
 
           createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", "Palladium").then((value) => {
 

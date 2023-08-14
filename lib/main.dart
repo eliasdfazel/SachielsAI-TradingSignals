@@ -68,10 +68,18 @@ void main() async {
         Future.delayed(Duration.zero, () {
           debugPrint("Purchased Plan: ${capitalizeFirstCharacter(purchasedPlan.split(".").first)}");
 
-          // If It's Not Preview Then Subscribe To Tiers
-          if (purchasedPlan != SachielsDigitalStore.previewTier) {
+          FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
-            FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+          if (purchasedPlan == SachielsDigitalStore.previewTier) {
+
+            firebaseMessaging.subscribeToTopic(capitalizeFirstCharacter(purchasedPlan.split(".").first));
+
+            firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
+            firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.goldTopic);
+            firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.palladiumTopic);
+
+          } else {
+
             firebaseMessaging.subscribeToTopic(capitalizeFirstCharacter(purchasedPlan.split(".").first));
 
           }
@@ -140,6 +148,10 @@ void prototypeProcess() {
         firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTopic);
         firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTopic);
         firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTopic);
+
+        firebaseMessaging.subscribeToTopic(SachielsDigitalStore.previewTopic);
+
+        firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
 
       }
 
