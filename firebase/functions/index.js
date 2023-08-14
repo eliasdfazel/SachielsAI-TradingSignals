@@ -58,6 +58,8 @@ exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *')
 
 async function analysisOfRsi(rsiNumber, marketPair) {
 
+    const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
+
     var statusMessage = 'Observing ' + marketPair;
 
     if (rsiNumber >= 73) {
@@ -70,39 +72,13 @@ async function analysisOfRsi(rsiNumber, marketPair) {
 
     } else { 
 
-        statusMessage = 'Observing ' + marketPair + '...';
+        statusMessage = 'Observing ' + marketPair + '...' + 'RSI: ' + rsiNumber;
+
+        statusCondition = '\'Privileged\' in topics';
 
      }
 
-    const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
-
-        var dataStatusAI = {
-        
-            notification: {
-                title: "Sachiels AI Status 🤖",
-                body: statusMessage
-            },
-            
-            android: {
-                ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
-                priority: 'high',
-            },
-
-            data: {
-                "statusMessage": statusMessage,
-            },
-
-            condition: statusCondition
-            
-        };
-
-        admin.messaging().send(dataStatusAI).then((response) => {
-            functions.logger.log("Successfully Sent ::: ", response);
-
-        }).catch((error) => {
-            functions.logger.log("Error Sending ::: ", error);
-
-        });
+     sendNotification(statusMessage, statusCondition)
 
 }
 
@@ -303,33 +279,7 @@ exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, c
 
     const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
 
-    var dataStatusAI = {
-    
-        notification: {
-            title: "Sachiels AI Status 🤖",
-            body: data.statusMessage
-        },
-        
-        android: {
-            ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
-            priority: 'high',
-        },
-
-        data: {
-            "statusMessage": data.statusMessage,
-        },
-
-        condition: statusCondition
-        
-    };
-
-    admin.messaging().send(dataStatusAI).then((response) => {
-        functions.logger.log("Successfully Sent ::: ", response);
-
-    }).catch((error) => {
-        functions.logger.log("Error Sending ::: ", error);
-
-    });
+    sendNotification(data.statusMessage, statusCondition);
 
 });
 
@@ -496,4 +446,36 @@ async function updateMarketType(purchasingTier, tradeTimestamp, tradingPair) {
 
     }); 
       
+}
+
+function sendNotification(statusMessage, statusCondition) {
+
+    var dataStatusAI = {
+        
+        notification: {
+            title: "Sachiels AI Status 🤖",
+            body: statusMessage
+        },
+        
+        android: {
+            ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
+            priority: 'high',
+        },
+
+        data: {
+            "statusMessage": statusMessage,
+        },
+
+        condition: statusCondition
+        
+    };
+
+    admin.messaging().send(dataStatusAI).then((response) => {
+        functions.logger.log("Successfully Sent ::: ", response);
+
+    }).catch((error) => {
+        functions.logger.log("Error Sending ::: ", error);
+
+    });
+
 }
