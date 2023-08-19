@@ -58,17 +58,17 @@ exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *')
 
 async function analysisOfRsi(rsiNumber, marketPair) {
 
-    const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
+    var statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
 
     var statusMessage = 'Observing ' + marketPair;
 
     if (rsiNumber >= 73) {
        
-        statusMessage = 'Sachiel AI is Analysing ' + marketPair + ' to BUY.';
+        statusMessage = 'Sachiel AI is Analysing ' + marketPair + ' to SELL.';
 
     } else if (rsiNumber <= 37) {
 
-        statusMessage = 'Sachiel AI is Analysing ' + marketPair + ' to SELL.';
+        statusMessage = 'Sachiel AI is Analysing ' + marketPair + ' to BUY.';
 
     } else { 
 
