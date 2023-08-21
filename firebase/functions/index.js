@@ -16,44 +16,42 @@ const runtimeOptions = {
 }
 
 // Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
-exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *')
-    .timeZone('America/New_York')
-    .onRun((context) => {
-        console.log('Time; ' + Date.now());
+exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *').timeZone('America/New_York').onRun((context) => {
+    console.log('Time; ' + Date.now());
 
-        var marketPair = 'ETH/USDT';
+    var marketPair = 'ETH/USDT';
 
-        var ethusdRsiEndpoint = 'https://api.taapi.io/rsi?secret=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVlIjoiNjRkMTQxYzA0OThkNzVkYTM2N2JlMDg0IiwiaWF0IjoxNjkxNDM1NTU1LCJleHAiOjMzMTk1ODk5NTU1fQ.UyiGARXTkW5HjHKoiRxTAV1lMALBiY3tk7PbRKhMrdw'
-            + '&exchange=binance'
-            + '&symbol=' + marketPair
-            + '&interval=1d';
+    var ethusdRsiEndpoint = 'https://api.taapi.io/rsi?secret=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVlIjoiNjRkMTQxYzA0OThkNzVkYTM2N2JlMDg0IiwiaWF0IjoxNjkxNDM1NTU1LCJleHAiOjMzMTk1ODk5NTU1fQ.UyiGARXTkW5HjHKoiRxTAV1lMALBiY3tk7PbRKhMrdw'
+        + '&exchange=binance'
+        + '&symbol=' + marketPair
+        + '&interval=1d';
 
-        var xmlHttpRequest = new XMLHttpRequest();
-        xmlHttpRequest.open('GET', ethusdRsiEndpoint, true);
-        xmlHttpRequest.setRequestHeader('accept', 'application/json');
-        xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
-        xmlHttpRequest.onreadystatechange = function () {
-            if (this.readyState == 4) {
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.open('GET', ethusdRsiEndpoint, true);
+    xmlHttpRequest.setRequestHeader('accept', 'application/json');
+    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+    xmlHttpRequest.onreadystatechange = function () {
+        if (this.readyState == 4) {
 
-            } else {
+        } else {
 
-            }
-        };
-        xmlHttpRequest.onprogress = function () {
+        }
+    };
+    xmlHttpRequest.onprogress = function () {
 
-        };
-        xmlHttpRequest.onload = function () {
+    };
+    xmlHttpRequest.onload = function () {
 
-            var jsonObjectRSI = JSON.parse(xmlHttpRequest.responseText);
+        var jsonObjectRSI = JSON.parse(xmlHttpRequest.responseText);
 
-            var valueRSI = parseInt(jsonObjectRSI["value"].toString());
+        var valueRSI = parseInt(jsonObjectRSI["value"].toString());
 
-            analysisOfRsi(valueRSI, marketPair);
+        analysisOfRsi(valueRSI, marketPair.replace("/", ""));
 
-        };
-        xmlHttpRequest.send();
+    };
+    xmlHttpRequest.send();
 
-        return null;
+    return null;
 });
 
 async function analysisOfRsi(rsiNumber, marketPair) {
@@ -66,9 +64,13 @@ async function analysisOfRsi(rsiNumber, marketPair) {
        
         statusMessage = 'Sachiel AI is Analysing ' + marketPair + ' to SELL.';
 
-    } else if (rsiNumber <= 37) {
+        statusCheckpoint(marketPair, statusMessage, statusCondition);
+
+    } else if (rsiNumber <= 27) {
 
         statusMessage = 'Sachiel AI is Analysing ' + marketPair + ' to BUY.';
+        
+        statusCheckpoint(marketPair, statusMessage, statusCondition);
 
     } else { 
 
@@ -76,9 +78,40 @@ async function analysisOfRsi(rsiNumber, marketPair) {
 
         statusCondition = '\'Privileged\' in topics';
 
-     }
+        sendNotification(statusMessage, statusCondition);
 
-     sendNotification(statusMessage, statusCondition)
+    }
+
+}
+
+function statusCheckpoint(marketPair, statusMessage, statusCondition) {
+
+    firestore.doc('/Sachiels/AI/Status/' + marketPair).get().then((documentSnapshot) => {
+
+        const documentData = documentSnapshot.data();
+
+        var lastStatusUpdate = parseInt(documentData.statusTimestamp.toString());
+
+        var nowMillisecond = Date.now();
+
+        var sevenDaysMillisecond = 86400000 * 7;
+
+        if ((nowMillisecond - lastStatusUpdate) > sevenDaysMillisecond) {
+
+            sendNotification(statusMessage, statusCondition);
+
+            const aiStatus = {
+                statusMessage: statusMessage,
+                statusMarket: marketPair,
+                statusAuthor: "Sachiels AI",
+                statusTimestamp: nowMillisecond
+            };
+
+            firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
+
+        }
+
+    });
 
 }
 
