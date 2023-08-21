@@ -80,9 +80,17 @@ class _StatusAiState extends State<StatusAi> {
 
     if (querySnapshot.docs.isNotEmpty) {
 
+      List<QueryDocumentSnapshot> listOfStatus = querySnapshot.docs;
+
+      if (querySnapshot.docs.length > 7) {
+
+        listOfStatus = querySnapshot.docs.sublist(0, 7);
+
+      }
+
       List<Widget> aiStatusWidgets = [];
 
-      for (var element in querySnapshot.docs) {
+      for (var element in listOfStatus) {
 
         aiStatusWidgets.add(statusItem(AIStatusDataStructure(element)));
 
