@@ -141,7 +141,7 @@ class _StatusAiState extends State<StatusAi> {
       padding: const EdgeInsets.only(left: 13),
       child: SizedBox(
         height: 53,
-        width: 173,
+        width: 193,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(19),
