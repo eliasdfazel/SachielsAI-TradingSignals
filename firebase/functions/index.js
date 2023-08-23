@@ -88,15 +88,32 @@ function statusCheckpoint(marketPair, statusMessage, statusCondition) {
 
     firestore.doc('/Sachiels/AI/Status/' + marketPair).get().then((documentSnapshot) => {
 
-        const documentData = documentSnapshot.data();
+        if (documentSnapshot.exists()) {
 
-        var lastStatusUpdate = parseInt(documentData.statusTimestamp.toString());
+            const documentData = documentSnapshot.data();
 
-        var nowMillisecond = Date.now();
+            var lastStatusUpdate = parseInt(documentData.statusTimestamp.toString());
 
-        var sevenDaysMillisecond = 86400000 * 7;
+            var nowMillisecond = Date.now();
 
-        if ((nowMillisecond - lastStatusUpdate) > sevenDaysMillisecond) {
+            var sevenDaysMillisecond = 86400000 * 7;
+
+            if ((nowMillisecond - lastStatusUpdate) > sevenDaysMillisecond) {
+
+                sendNotification(statusMessage, statusCondition);
+
+                const aiStatus = {
+                    statusMessage: statusMessage,
+                    statusMarket: marketPair,
+                    statusAuthor: "Sachiels AI",
+                    statusTimestamp: nowMillisecond
+                };
+
+                firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
+
+            }
+
+        } else {
 
             sendNotification(statusMessage, statusCondition);
 
