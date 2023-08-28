@@ -15,16 +15,31 @@ const runtimeOptions = {
     timeoutSeconds: 512,
 }
 
+/* Scheduled Functions */
 // Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
 exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *').timeZone('America/New_York').onRun((context) => {
     console.log('Time; ' + Date.now());
 
-    var marketPair = 'ETH/USDT';
+    /* Start - ETH/USDT */
+    retrieveMarketData('ETH/USDT');
+    /* End - ETH/USDT */
 
-    var ethusdRsiEndpoint = 'https://api.taapi.io/rsi?secret=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbHVlIjoiNjRkMTQxYzA0OThkNzVkYTM2N2JlMDg0IiwiaWF0IjoxNjkxNDM1NTU1LCJleHAiOjMzMTk1ODk5NTU1fQ.UyiGARXTkW5HjHKoiRxTAV1lMALBiY3tk7PbRKhMrdw'
-        + '&exchange=binance'
-        + '&symbol=' + marketPair
-        + '&interval=1d';
+    /* Start - EUR/USD */
+    retrieveMarketData('EUR/USD');
+    /* End - EUR/USD */
+
+    return null;
+});
+
+async function retrieveMarketData(marketPairInput) {
+
+    var marketPair = marketPairInput;
+
+    var ethusdRsiEndpoint = 'https://api.polygon.io/v1/indicators/rsi/'
+        + 'X:' + marketPair
+        + '?timespan=day&window=13&series_type=close'
+        + '&order=desc&limit=1'
+        + '&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_'
 
     var xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.open('GET', ethusdRsiEndpoint, true);
@@ -42,6 +57,25 @@ exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *').timeZon
     };
     xmlHttpRequest.onload = function () {
 
+        /*
+        {
+            "results": {
+                "underlying": {
+                    "url": "https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/day/1253851200000/1693236267122?limit=62&sort=desc"
+                },
+                "values": [
+                    {
+                        "timestamp": 1693094400000,
+                        "value": 29.18548305999019
+                    }
+                ]
+            },
+            "status": "OK",
+            "request_id": "834178999f763bdc336a2f95b530057f",
+            "next_url": "https://api.polygon.io/v1/indicators/rsi/C:EURUSD?cursor=YWRqdXN0ZWQ9dHJ1ZSZhcD0lN0IlMjJ2JTIyJTNBMCUyQyUyMm8lMjIlM0EwJTJDJTIyYyUyMiUzQTEuMDc5NCUyQyUyMmglMjIlM0EwJTJDJTIybCUyMiUzQTAlMkMlMjJ0JTIyJTNBMTY5MzAwODAwMDAwMCU3RCZhcz0mZXhwYW5kX3VuZGVybHlpbmc9ZmFsc2UmbGltaXQ9MSZvcmRlcj1kZXNjJnNlcmllc190eXBlPWNsb3NlJnRpbWVzcGFuPWRheSZ0aW1lc3RhbXAubHQ9MTY5MzA5NDQwMDAwMCZ3aW5kb3c9MTM"
+        }
+        */
+
         var jsonObjectRSI = JSON.parse(xmlHttpRequest.responseText);
 
         var valueRSI = parseInt(jsonObjectRSI["value"].toString());
@@ -51,8 +85,7 @@ exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *').timeZon
     };
     xmlHttpRequest.send();
 
-    return null;
-});
+}
 
 async function analysisOfRsi(rsiNumber, marketPair) {
 
@@ -131,6 +164,7 @@ function statusCheckpoint(marketPair, statusMessage, statusCondition) {
     });
 
 }
+/* Scheduled Functions */
 
 exports.platinumTier = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
     functions.logger.log("Receiving Platinum Signal :::", data.tradeTimestamp);
@@ -498,6 +532,7 @@ async function updateMarketType(purchasingTier, tradeTimestamp, tradingPair) {
       
 }
 
+/* Utilities */
 function sendNotification(statusMessage, statusCondition) {
 
     var dataStatusAI = {
@@ -529,3 +564,4 @@ function sendNotification(statusMessage, statusCondition) {
     });
 
 }
+/* Utilities */
