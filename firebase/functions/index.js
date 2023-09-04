@@ -21,17 +21,17 @@ exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *').timeZon
     console.log('Time; ' + Date.now());
 
     /* Start - ETH/USDT */
-    retrieveMarketData('ETH/USDT');
+    cryptocurrenciesMarketData('ETH/USDT');
     /* End - ETH/USDT */
 
     /* Start - EUR/USD */
-    retrieveMarketData('EUR/USD');
+    // forexMarketData('EUR/USD');
     /* End - EUR/USD */
 
     return null;
 });
 
-async function retrieveMarketData(marketPairInput) {
+async function cryptocurrenciesMarketData(marketPairInput) {
 
     var marketPair = marketPairInput;
 
@@ -57,30 +57,12 @@ async function retrieveMarketData(marketPairInput) {
     };
     xmlHttpRequest.onload = function () {
 
-        /*
-        {
-            "results": {
-                "underlying": {
-                    "url": "https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/day/1253851200000/1693236267122?limit=62&sort=desc"
-                },
-                "values": [
-                    {
-                        "timestamp": 1693094400000,
-                        "value": 29.18548305999019
-                    }
-                ]
-            },
-            "status": "OK",
-            "request_id": "834178999f763bdc336a2f95b530057f",
-            "next_url": "https://api.polygon.io/v1/indicators/rsi/C:EURUSD?cursor=YWRqdXN0ZWQ9dHJ1ZSZhcD0lN0IlMjJ2JTIyJTNBMCUyQyUyMm8lMjIlM0EwJTJDJTIyYyUyMiUzQTEuMDc5NCUyQyUyMmglMjIlM0EwJTJDJTIybCUyMiUzQTAlMkMlMjJ0JTIyJTNBMTY5MzAwODAwMDAwMCU3RCZhcz0mZXhwYW5kX3VuZGVybHlpbmc9ZmFsc2UmbGltaXQ9MSZvcmRlcj1kZXNjJnNlcmllc190eXBlPWNsb3NlJnRpbWVzcGFuPWRheSZ0aW1lc3RhbXAubHQ9MTY5MzA5NDQwMDAwMCZ3aW5kb3c9MTM"
-        }
-        */
-
         var jsonObjectRSI = JSON.parse(xmlHttpRequest.responseText);
 
-        var valueRSI = parseInt(jsonObjectRSI["value"].toString());
+        var rsiValue = jsonObjectRSI.results.values[0].value;
+        var timestampValue = jsonObjectRSI.results.values[0].timestamp;
 
-        analysisOfRsi(valueRSI, marketPair.replace("/", ""));
+        analysisOfRsi(rsiValue, marketPair.replace("/", ""));
 
     };
     xmlHttpRequest.send();
@@ -499,6 +481,18 @@ async function setPostsData(jsonObject) {
 
 exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
     functions.logger.log("Experiments 🧪");
+
+    var rawText = '{"results": {"underlying": {"url": "https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/day/1253851200000/1693236267122?limit=62&sort=desc"},"values": [{"timestamp": 1693094400000,"value": 29.18548305999019}]},"status": "OK","request_id": "834178999f763bdc336a2f95b530057f","next_url": "https://api.polygon.io/v1/indicators/rsi/C:EURUSD?cursor=YWRqdXN0ZWQ9dHJ1ZSZhcD0lN0IlMjJ2JTIyJTNBMCUyQyUyMm8lMjIlM0EwJTJDJTIyYyUyMiUzQTEuMDc5NCUyQyUyMmglMjIlM0EwJTJDJTIybCUyMiUzQTAlMkMlMjJ0JTIyJTNBMTY5MzAwODAwMDAwMCU3RCZhcz0mZXhwYW5kX3VuZGVybHlpbmc9ZmFsc2UmbGltaXQ9MSZvcmRlcj1kZXNjJnNlcmllc190eXBlPWNsb3NlJnRpbWVzcGFuPWRheSZ0aW1lc3RhbXAubHQ9MTY5MzA5NDQwMDAwMCZ3aW5kb3c9MTM"}';
+    
+    var jsonObjectRSI = JSON.parse(rawText);
+
+    var rsiValue = jsonObjectRSI.results.values[0].value;
+    var timestampValue = jsonObjectRSI.results.values[0].timestamp;
+
+    res.send(200, "RSI: " + rsiValue 
+        + " ----- "
+        + "Timestamp: " + timestampValue);
+
 });
 
 async function updateMarketType(purchasingTier, tradeTimestamp, tradingPair) {
