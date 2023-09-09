@@ -20,13 +20,13 @@ const runtimeOptions = {
 exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *').timeZone('America/New_York').onRun((context) => {
     console.log('Time; ' + Date.now());
 
-    /* Start - ETH/USDT */
-    cryptocurrenciesMarketData('ETH/USDT');
-    /* End - ETH/USDT */
+    /* Start - ETHUSDT */
+    cryptocurrenciesMarketData('ETHUSDT');
+    /* End - ETHUSDT */
 
-    /* Start - EUR/USD */
-    forexMarketData('EUR/USD');
-    /* End - EUR/USD */
+    /* Start - EURUSD */
+    forexMarketData('EURUSD');
+    /* End - EURUSD */
 
     return null;
 });
@@ -35,11 +35,13 @@ async function cryptocurrenciesMarketData(marketPairInput) {
 
     var marketPair = marketPairInput;
 
+    //https://api.polygon.io/v1/indicators/rsi/X:ETHUSD?timespan=day&adjusted=true&window=13&series_type=close&order=desc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
     var cryptocurrencyRsiEndpoint = 'https://api.polygon.io/v1/indicators/rsi/'
         + 'X:' + marketPair
         + '?timespan=day&window=13&series_type=close'
         + '&order=desc&limit=1'
-        + '&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_'
+        + '&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+    console.log('Cryptocurrency Endpoint; ' + cryptocurrencyRsiEndpoint);
 
     var xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.open('GET', cryptocurrencyRsiEndpoint, true);
@@ -62,7 +64,7 @@ async function cryptocurrenciesMarketData(marketPairInput) {
         var rsiValue = jsonObjectRSI.results.values[0].value;
         var timestampValue = jsonObjectRSI.results.values[0].timestamp;
 
-        analysisOfRsi(rsiValue, marketPair.replace("/", ""));
+        analysisOfRsi(rsiValue, marketPair);
 
     };
     xmlHttpRequest.send();
@@ -73,14 +75,16 @@ async function forexMarketData(marketPairInput) {
 
     var marketPair = marketPairInput;
 
-    var cryptocurrencyRsiEndpoint = 'https://api.polygon.io/v1/indicators/rsi/'
+    //https://api.polygon.io/v1/indicators/rsi/C:EURUSD?timespan=day&adjusted=true&window=13&series_type=close&order=desc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+    var forexRsiEndpoint = 'https://api.polygon.io/v1/indicators/rsi/'
         + 'C:' + marketPair
         + '?timespan=day&adjusted=true&window=13&series_type=close'
         + '&order=desc&limit=1'
-        + '&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_'
+        + '&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+    console.log('Forex Endpoint; ' + forexRsiEndpoint);
 
     var xmlHttpRequest = new XMLHttpRequest();
-    xmlHttpRequest.open('GET', cryptocurrencyRsiEndpoint, true);
+    xmlHttpRequest.open('GET', forexRsiEndpoint, true);
     xmlHttpRequest.setRequestHeader('accept', 'application/json');
     xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
     xmlHttpRequest.onreadystatechange = function () {
@@ -100,7 +104,7 @@ async function forexMarketData(marketPairInput) {
         var rsiValue = jsonObjectRSI.results.values[0].value;
         var timestampValue = jsonObjectRSI.results.values[0].timestamp;
 
-        analysisOfRsi(rsiValue, marketPair.replace("/", ""));
+        analysisOfRsi(rsiValue, marketPair);
 
     };
     xmlHttpRequest.send();
@@ -519,6 +523,14 @@ async function setPostsData(jsonObject) {
 
 exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
     functions.logger.log("Experiments 🧪");
+
+    /* Start - ETH/USDT */
+    cryptocurrenciesMarketData('ETH/USDT');
+    /* End - ETH/USDT */
+    
+    /* Start - EUR/USD */
+    forexMarketData('EUR/USD');
+    /* End - EUR/USD */
 
 });
 
