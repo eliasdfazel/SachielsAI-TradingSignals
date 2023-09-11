@@ -20,9 +20,9 @@ const runtimeOptions = {
 exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *').timeZone('America/New_York').onRun((context) => {
     console.log('Time; ' + Date.now());
 
-    /* Start - ETHUSDT */
-    cryptocurrenciesMarketData('ETHUSDT');
-    /* End - ETHUSDT */
+    /* Start - ETHUSD */
+    cryptocurrenciesMarketData('ETHUSD');
+    /* End - ETHUSD */
 
     /* Start - EURUSD */
     forexMarketData('EURUSD');
@@ -58,6 +58,7 @@ async function cryptocurrenciesMarketData(marketPairInput) {
 
     };
     xmlHttpRequest.onload = function () {
+        console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
 
         var jsonObjectRSI = JSON.parse(xmlHttpRequest.responseText);
 
@@ -98,6 +99,7 @@ async function forexMarketData(marketPairInput) {
 
     };
     xmlHttpRequest.onload = function () {
+        console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
 
         var jsonObjectRSI = JSON.parse(xmlHttpRequest.responseText);
 
@@ -525,11 +527,11 @@ exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (re
     functions.logger.log("Experiments 🧪");
 
     /* Start - ETH/USDT */
-    cryptocurrenciesMarketData('ETH/USDT');
+    cryptocurrenciesMarketData('ETHUSD');
     /* End - ETH/USDT */
     
     /* Start - EUR/USD */
-    forexMarketData('EUR/USD');
+    forexMarketData('EURUSD');
     /* End - EUR/USD */
 
 });
