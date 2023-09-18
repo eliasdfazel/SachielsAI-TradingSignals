@@ -262,7 +262,7 @@ async function forexDailyMarketIdentifier(marketPairInput) {
 
         let highestPrice = jsonObjectRSI.results[0].h;
         let lowestPrice = jsonObjectRSI.results[0].l;
-        console.log('::: ::: ::: Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+        console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
         analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPrice);
 
@@ -271,7 +271,7 @@ async function forexDailyMarketIdentifier(marketPairInput) {
 
 }
 
-// 
+// Doji
 async function analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPrice) {
 
     
