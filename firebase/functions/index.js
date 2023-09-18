@@ -15,7 +15,7 @@ const runtimeOptions = {
     timeoutSeconds: 512,
 }
 
-/* Scheduled Functions */
+/* START - Scheduled Status Functions */
 // Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
 exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *').timeZone('America/New_York').onRun((context) => {
     console.log('Time; ' + Date.now());
@@ -190,7 +190,95 @@ function statusCheckpoint(marketPair, statusMessage, statusCondition) {
     });
 
 }
-/* Scheduled Functions */
+/* END - Scheduled Status Functions */
+
+/* START - Scheduled Candlestick Indentifier */
+// Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
+exports.dailyMarketIdentifier = functions.pubsub.schedule('13 01 * * *').timeZone('America/New_York').onRun((context) => {
+
+    /* Start - EURUSD */
+    forexDailyMarketIdentifier('EURUSD');
+    /* End - EURUSD */
+
+});
+
+async function forexDailyMarketIdentifier(marketPairInput) {
+
+    var marketPair = marketPairInput;
+
+    let dateObject = new Date(Date.now() - 86400000);
+
+    var dateMonth = dateObject.getUTCMonth() + 1; // Months 1-12
+
+    if (dateMonth.toString().length == 1) {
+
+        dateMonth = '0' + dateMonth;
+
+    }
+
+    var dateDay = dateObject.getUTCDate();
+
+    if (dateDay.toString().length == 1) {
+
+        dateDay = '0' + dateDay;
+
+    }
+
+    let dateYear = dateObject.getUTCFullYear();
+
+    // YYYY-MM-DD
+    var dateTimespan = dateYear + '-' + dateMonth + '-' + dateDay;
+    console.log('Date: ' + dateTimespan);
+
+    //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/day/2023-09-14/2023-09-14?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+    var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
+        + 'C:' + marketPair
+        + '/range/1/day/'
+        + dateTimespan + '/' + dateTimespan
+        + '?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+    console.log('Market Identifier Endpoint; ' + marketEndpoint);
+
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.open('GET', marketEndpoint, true);
+    xmlHttpRequest.setRequestHeader('accept', 'application/json');
+    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+    xmlHttpRequest.onreadystatechange = function () {
+        if (this.readyState == 4) {
+
+        } else {
+
+        }
+    };
+    xmlHttpRequest.onprogress = function () {
+
+    };
+    xmlHttpRequest.onload = function () {
+        console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
+
+        var jsonObjectRSI = JSON.parse(xmlHttpRequest.responseText);
+        
+        let openPrice = jsonObjectRSI.results[0].o;
+        let closePrice = jsonObjectRSI.results[0].c;
+
+        let highestPrice = jsonObjectRSI.results[0].h;
+        let lowestPrice = jsonObjectRSI.results[0].l;
+        console.log('::: ::: ::: Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+
+        analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPrice);
+
+    };
+    xmlHttpRequest.send();
+
+}
+
+// 
+async function analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPrice) {
+
+    
+
+}
+/* END - Scheduled Candlestick Indentifier */
+
 
 exports.platinumTier = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
     functions.logger.log("Receiving Platinum Signal :::", data.tradeTimestamp);
@@ -526,13 +614,7 @@ async function setPostsData(jsonObject) {
 exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
     functions.logger.log("Experiments 🧪");
 
-    /* Start - ETH/USDT */
-    cryptocurrenciesMarketData('ETHUSD');
-    /* End - ETH/USDT */
-    
-    /* Start - EUR/USD */
-    forexMarketData('EURUSD');
-    /* End - EUR/USD */
+    forexDailyMarketIdentifier('EURUSD');
 
 });
 
