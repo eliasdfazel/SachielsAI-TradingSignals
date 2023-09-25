@@ -274,7 +274,58 @@ async function forexDailyMarketIdentifier(marketPairInput) {
 // Doji
 async function analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPrice) {
 
-    
+    if (closePrice > openPrice) { // GREEN
+
+        let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
+        let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
+
+        if (closePercentage < 55 
+            && openPercentage > 45) {
+
+                // Doji
+                // To Identify A Strong Doji, the Length of Range should be Calculated!
+
+        }
+
+    } else { // RED
+
+        if (openPercentage < 55 
+            && closePercentage > 45) {
+
+                // Doji
+                // To Identify A Strong Doji, the Length of Range should be Calculated!
+
+        }
+
+    }
+
+}
+
+async function analyseArrowUp(openPrice, closePrice, highestPrice, lowestPrice) {
+
+    let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
+    let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
+
+    if (openPercentage > 70) {
+
+        // Arrow Up
+        // To Identify A Strong Arrow Up, the Length of Range should be Calculated!
+
+    }
+
+}
+
+async function analyseArrowUp(openPrice, closePrice, highestPrice, lowestPrice) {
+
+    let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
+    let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
+
+    if (closePercentage < 30) {
+
+        // Arrow Down
+        // To Identify A Strong Arrow Down, the Length of Range should be Calculated!
+
+    }
 
 }
 /* END - Scheduled Candlestick Indentifier */
