@@ -681,4 +681,11 @@ function sendNotification(statusMessage, statusCondition) {
     });
 
 }
+
+function linearInterpolation(firstNumber, lastNumber, inputNumber) {
+
+    var mappedNumber = 0 + (100 / (lastNumber - firstNumber)) * (inputNumber - firstNumber);
+
+    return mappedNumber;
+}
 /* Utilities */
