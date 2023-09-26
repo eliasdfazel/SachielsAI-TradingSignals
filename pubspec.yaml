@@ -152,52 +152,52 @@ flutter:
   uses-material-design: true
 
   assets:
-    - ai_status.png
-    - archive_icon.png
+    - assets/ai_status.png
+    - assets/archive_icon.png
 
-    - back_icon.png
+    - assets/back_icon.png
 
-    - continue_icon.png
-    - cyborg_girl.jpg
+    - assets/continue_icon.png
+    - assets/cyborg_girl.jpg
 
-    - delete_account.png
+    - assets/delete_account.png
 
-    - facebook_input.png
-    - filter_icon.png
+    - assets/facebook_input.png
+    - assets/filter_icon.png
 
-    - instagram_input.png
+    - assets/instagram_input.png
 
-    - logo.png
-    - logo_background.png
-    - logo_android.png
-    - logo_ios.png
+    - assets/logo.png
+    - assets/logo_background.png
+    - assets/logo_android.png
+    - assets/logo_ios.png
 
-    - entry_background.jpg
-    - entrance_next.png
+    - assets/entry_background.jpg
+    - assets/entrance_next.png
 
-    - golden_information_icon.png
+    - assets/golden_information_icon.png
 
-    - next_icon.png
-    - next_arrow_icon.png
+    - assets/next_icon.png
+    - assets/next_arrow_icon.png
 
-    - oval_circle_shape.png
+    - assets/oval_circle_shape.png
 
-    - point_icon.png
-    - purchasing_icon.png
+    - assets/point_icon.png
+    - assets/purchasing_icon.png
 
-    - rectircle_shape.png
+    - assets/rectircle_shape.png
 
-    - share_icon.png
-    - show_history_icon.png
+    - assets/share_icon.png
+    - assets/show_history_icon.png
 
-    - squircle_logo.png
-    - squircle_shape.png
+    - assets/squircle_logo.png
+    - assets/squircle_shape.png
 
-    - submit_icon.png
+    - assets/submit_icon.png
 
-    - twitter_input.png
+    - assets/twitter_input.png
 
-    - validated_icon.png
+    - assets/validated_icon.png
 
 
   fonts:
