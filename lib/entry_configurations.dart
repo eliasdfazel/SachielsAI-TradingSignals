@@ -17,7 +17,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
@@ -30,7 +29,6 @@ import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
 import 'package:sachiel/utils/ui/system_bars.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:widget_mask/widget_mask.dart';
 
@@ -281,7 +279,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                     bottom: BorderSide(
                                         color: ColorsResources.primaryColor.withOpacity(0.31),
                                         width: 3,
-                                        strokeAlign: StrokeAlign.inside
+                                        strokeAlign: BorderSide.strokeAlignInside
                                     )
                                 ),
                                 gradient: LinearGradient(
@@ -345,7 +343,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                                             border: Border.all(
                                                                 color: ColorsResources.primaryColor,
                                                                 width: 1.73,
-                                                                strokeAlign: StrokeAlign.outside
+                                                                strokeAlign: BorderSide.strokeAlignOutside
                                                             ),
                                                             boxShadow: [
                                                               BoxShadow(

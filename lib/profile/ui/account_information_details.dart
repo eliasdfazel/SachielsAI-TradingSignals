@@ -672,7 +672,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                     bottom: BorderSide(
                                         color: ColorsResources.primaryColor.withOpacity(0.31),
                                         width: 3,
-                                        strokeAlign: StrokeAlign.inside
+                                        strokeAlign: BorderSide.strokeAlignInside
                                     )
                                 ),
                                 gradient: LinearGradient(
@@ -736,7 +736,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                                               border: Border.all(
                                                                   color: ColorsResources.primaryColor,
                                                                   width: 1.73,
-                                                                  strokeAlign: StrokeAlign.outside
+                                                                  strokeAlign: BorderSide.strokeAlignOutside
                                                               ),
                                                               boxShadow: [
                                                                 BoxShadow(

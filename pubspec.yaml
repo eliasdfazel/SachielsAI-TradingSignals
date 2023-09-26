@@ -91,7 +91,7 @@ dependencies:
 
 
   ####### ####### #######
-  in_app_purchase: ^3.1.7
+  in_app_purchase: ^3.1.10
   intl: ^0.17.0
   ####### ####### #######
 
