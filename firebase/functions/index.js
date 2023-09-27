@@ -283,7 +283,7 @@ async function analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPri
             && openPercentage > 45) {
 
                 // Doji
-                // To Identify A Strong Doji, the Length of Range should be Calculated!
+                // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
 
         }
 
@@ -293,7 +293,7 @@ async function analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPri
             && closePercentage > 45) {
 
                 // Doji
-                // To Identify A Strong Doji, the Length of Range should be Calculated!
+                // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
 
         }
 
@@ -309,7 +309,7 @@ async function analyseArrowUp(openPrice, closePrice, highestPrice, lowestPrice) 
     if (openPercentage > 70) {
 
         // Arrow Up
-        // To Identify A Strong Arrow Up, the Length of Range should be Calculated!
+        // To Identify Strength Of Doji, Check Differencial Of xPercentage. 70 - 90 Means Stroger Pattern.
 
     }
 
@@ -323,7 +323,7 @@ async function analyseArrowUp(openPrice, closePrice, highestPrice, lowestPrice) 
     if (closePercentage < 30) {
 
         // Arrow Down
-        // To Identify A Strong Arrow Down, the Length of Range should be Calculated!
+        // To Identify Strength Of Doji, Check Differencial Of xPercentage. 70 - 90 Means Stroger Pattern.
 
     }
 
