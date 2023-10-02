@@ -189,7 +189,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
                                       },
                                       child: const Image(
-                                        image: AssetImage("back_icon.png"),
+                                        image: AssetImage("assets/back_icon.png"),
                                       ),
                                     )
                                 )
@@ -222,7 +222,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                                             ),
                                           ),
                                           child: const Image(
-                                            image: AssetImage("rectircle_shape.png"),
+                                            image: AssetImage("assets/rectircle_shape.png"),
                                           ),
                                         ),
                                         Align(
@@ -244,7 +244,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                                                       ),
                                                     ),
                                                     child: const Image(
-                                                      image: AssetImage("rectircle_shape.png"),
+                                                      image: AssetImage("assets/rectircle_shape.png"),
                                                     )
                                                 )
                                             )
@@ -393,7 +393,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
               child: Opacity(
                 opacity: 0.31,
                 child: Image(
-                  image: AssetImage("logo.png"),
+                  image: AssetImage("assets/logo.png"),
                 ),
               ),
             ),
@@ -462,7 +462,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
               child: Opacity(
                 opacity: 0.31,
                 child: Image(
-                  image: AssetImage("logo.png"),
+                  image: AssetImage("assets/logo.png"),
                 ),
               ),
             ),
@@ -530,7 +530,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
               child: Opacity(
                 opacity: 0.31,
                 child: Image(
-                  image: AssetImage("logo.png"),
+                  image: AssetImage("assets/logo.png"),
                 ),
               ),
             ),
@@ -597,7 +597,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
                   },
                   child: const Image(
-                    image: AssetImage("continue_icon.png"),
+                    image: AssetImage("assets/continue_icon.png"),
                     fit: BoxFit.contain,
                   ),
                 ),

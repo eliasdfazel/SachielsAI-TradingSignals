@@ -32,7 +32,7 @@ class SocialMediaStates extends State<SocialMedia> {
   String profileName = StringsResources.sachielAI();
 
   Widget profileImage = const Image(
-    image: AssetImage("cyborg_girl.jpg"),
+    image: AssetImage("assets/cyborg_girl.jpg"),
     fit: BoxFit.cover,
   );
 

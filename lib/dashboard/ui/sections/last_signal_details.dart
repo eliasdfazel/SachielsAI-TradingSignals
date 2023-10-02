@@ -592,7 +592,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
                           },
                           child: const Image(
-                            image: AssetImage("next_icon.png"),
+                            image: AssetImage("assets/next_icon.png"),
                             height: 37,
                             width: 37,
                           )
@@ -749,7 +749,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Image(
-                                          image: AssetImage("point_icon.png"),
+                                          image: AssetImage("assets/point_icon.png"),
                                           height: 19,
                                           fit: BoxFit.contain,
                                         ),
@@ -806,7 +806,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: AssetImage("point_icon.png"),
+                                            image: AssetImage("assets/point_icon.png"),
                                             height: 19,
                                             fit: BoxFit.contain,
                                           ),
@@ -863,7 +863,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: AssetImage("point_icon.png"),
+                                            image: AssetImage("assets/point_icon.png"),
                                             height: 19,
                                             fit: BoxFit.contain,
                                           ),
@@ -924,7 +924,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: const AssetImage("point_icon.png"),
+                                            image: const AssetImage("assets/point_icon.png"),
                                             color: ColorsResources.entryPriceColor.withOpacity(0.91),
                                             height: 19,
                                             fit: BoxFit.contain,
@@ -982,7 +982,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: const AssetImage("point_icon.png"),
+                                            image: const AssetImage("assets/point_icon.png"),
                                             color: ColorsResources.takeProfitColor.withOpacity(0.91),
                                             height: 19,
                                             fit: BoxFit.contain,
@@ -1040,7 +1040,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: const AssetImage("point_icon.png"),
+                                            image: const AssetImage("assets/point_icon.png"),
                                             color: ColorsResources.stopLossColor.withOpacity(0.91),
                                             height: 19,
                                             fit: BoxFit.contain,
@@ -1142,7 +1142,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
                           },
                           child: const Image(
-                            image: AssetImage("next_icon.png"),
+                            image: AssetImage("assets/next_icon.png"),
                             height: 37,
                             width: 37,
                           )
@@ -1236,7 +1236,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                               child: Align(
                                 alignment: Alignment.topCenter,
                                 child: Image(
-                                  image: AssetImage("share_icon.png"),
+                                  image: AssetImage("assets/share_icon.png"),
                                   height: 233,
                                   width: 233,
                                   fit: BoxFit.contain,

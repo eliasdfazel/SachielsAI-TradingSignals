@@ -135,7 +135,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
 
                         },
                         child: const Image(
-                          image: AssetImage("show_history_icon.png"),
+                          image: AssetImage("assets/show_history_icon.png"),
                           width: 173,
                         )
                     )

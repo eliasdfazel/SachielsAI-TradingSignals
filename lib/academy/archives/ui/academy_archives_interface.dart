@@ -152,7 +152,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                     child: Transform.scale(
                       scale: 1.7,
                       child: const Image(
-                        image: AssetImage("logo.png"),
+                        image: AssetImage("assets/logo.png"),
                       )
                     )
                   ),
@@ -234,7 +234,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
 
                                   },
                                   child: const Image(
-                                    image: AssetImage("back_icon.png"),
+                                    image: AssetImage("assets/back_icon.png"),
                                   ),
                                 )
                             )
@@ -267,7 +267,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                                         ),
                                       ),
                                       child: const Image(
-                                        image: AssetImage("rectircle_shape.png"),
+                                        image: AssetImage("assets/rectircle_shape.png"),
                                       ),
                                     ),
                                     Align(
@@ -289,7 +289,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                                                   ),
                                                 ),
                                                 child: const Image(
-                                                  image: AssetImage("rectircle_shape.png"),
+                                                  image: AssetImage("assets/rectircle_shape.png"),
                                                 )
                                             )
                                         )
@@ -361,7 +361,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                                       ),
                                     ),
                                     child: const Image(
-                                      image: AssetImage("rectircle_shape.png"),
+                                      image: AssetImage("assets/rectircle_shape.png"),
                                     ),
                                   ),
                                   Align(
@@ -383,7 +383,7 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                                                 ),
                                               ),
                                               child: const Image(
-                                                image: AssetImage("rectircle_shape.png"),
+                                                image: AssetImage("assets/rectircle_shape.png"),
                                               )
                                           )
                                       )

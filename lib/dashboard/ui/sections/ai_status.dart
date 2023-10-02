@@ -110,7 +110,7 @@ class _StatusAiState extends State<StatusAi> {
                     height: 53,
                     width: 53,
                     child: Image(
-                      image: AssetImage("ai_status.png"),
+                      image: AssetImage("assets/ai_status.png"),
                       height: 53,
                       width: 53,
                     )

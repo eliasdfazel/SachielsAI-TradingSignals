@@ -12,7 +12,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sachiel/dashboard/ui/sections/academy_summary.dart';
@@ -160,7 +159,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                         child: Transform.scale(
                             scale: 1.7,
                             child: const Image(
-                              image: AssetImage("logo.png"),
+                              image: AssetImage("assets/logo.png"),
                             )
                         )
                     ),
@@ -282,7 +281,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
                       },
                       child: const Image(
-                        image: AssetImage("golden_information_icon.png"),
+                        image: AssetImage("assets/golden_information_icon.png"),
                       )
                   )
               ),

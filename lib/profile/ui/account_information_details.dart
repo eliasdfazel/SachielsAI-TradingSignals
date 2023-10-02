@@ -37,7 +37,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
   String profileName = StringsResources.sachielAI();
 
   Widget profileImage = const Image(
-    image: AssetImage("cyborg_girl.jpg"),
+    image: AssetImage("assets/cyborg_girl.jpg"),
     fit: BoxFit.cover,
     height: 373,
     width: 373,
@@ -147,7 +147,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                       child: Transform.scale(
                           scale: 1.7,
                           child: const Image(
-                            image: AssetImage("logo.png"),
+                            image: AssetImage("assets/logo.png"),
                           )
                       )
                   ),
@@ -222,7 +222,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                                   ),
                                                 ),
                                                 child: const Image(
-                                                  image: AssetImage("squircle_shape.png"),
+                                                  image: AssetImage("assets/squircle_shape.png"),
                                                 ),
                                               ),
                                               Padding(
@@ -232,7 +232,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                                     childSaveLayer: true,
                                                     mask /* Original Image */: profileImage,
                                                     child: const Image(
-                                                      image: AssetImage("squircle_shape.png"),
+                                                      image: AssetImage("assets/squircle_shape.png"),
                                                     ),
                                                   )
                                               )
@@ -292,7 +292,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                               height: 113,
                               width: double.infinity,
                               child: Image(
-                                image: AssetImage("twitter_input.png"),
+                                image: AssetImage("assets/twitter_input.png"),
                               ),
                             ),
 
@@ -351,7 +351,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                               height: 113,
                               width: double.infinity,
                               child: Image(
-                                image: AssetImage("facebook_input.png"),
+                                image: AssetImage("assets/facebook_input.png"),
                               ),
                             ),
 
@@ -410,7 +410,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                               height: 113,
                               width: double.infinity,
                               child: Image(
-                                image: AssetImage("instagram_input.png"),
+                                image: AssetImage("assets/instagram_input.png"),
                               ),
                             ),
 
@@ -471,7 +471,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
 
                             },
                             child: const Image(
-                              image: AssetImage("submit_icon.png"),
+                              image: AssetImage("assets/submit_icon.png"),
                               fit: BoxFit.contain,
                               width: 173,
                             ),
@@ -503,7 +503,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
 
                                   },
                                   child: const Image(
-                                    image: AssetImage("back_icon.png"),
+                                    image: AssetImage("assets/back_icon.png"),
                                   ),
                                 )
                             )
@@ -536,7 +536,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                         ),
                                       ),
                                       child: const Image(
-                                        image: AssetImage("rectircle_shape.png"),
+                                        image: AssetImage("assets/rectircle_shape.png"),
                                       ),
                                     ),
                                     Align(
@@ -558,7 +558,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                                   ),
                                                 ),
                                                 child: const Image(
-                                                  image: AssetImage("rectircle_shape.png"),
+                                                  image: AssetImage("assets/rectircle_shape.png"),
                                                 )
                                             )
                                         )
@@ -609,7 +609,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                 color: ColorsResources.primaryColorDarkest
                             ),
                             child: Image(
-                              image: AssetImage("squircle_shape.png"),
+                              image: AssetImage("assets/squircle_shape.png"),
                               height: 59,
                               width: 59,
                             )
@@ -640,7 +640,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                               child: const Padding(
                                   padding: EdgeInsets.fromLTRB(0, 19, 0, 19),
                                   child: Image(
-                                    image: AssetImage("delete_account.png"),
+                                    image: AssetImage("assets/delete_account.png"),
                                     height: 31,
                                     width: 31,
                                   )
@@ -648,7 +648,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                           )
                       ),
                       child: const Image(
-                        image: AssetImage("squircle_shape.png"),
+                        image: AssetImage("assets/squircle_shape.png"),
                         height: 59,
                         width: 59,
                       ),

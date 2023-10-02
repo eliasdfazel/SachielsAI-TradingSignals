@@ -187,7 +187,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
 
                         },
                         child: const Image(
-                          image: AssetImage("archive_icon.png"),
+                          image: AssetImage("assets/archive_icon.png"),
                           width: 173,
                         )
                     )

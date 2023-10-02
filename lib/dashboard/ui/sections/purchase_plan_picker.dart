@@ -57,7 +57,7 @@ class PurchasePlanPickerStates extends State<PurchasePlanPicker> {
 
               },
               child: const Image(
-                image: AssetImage("squircle_logo.png"),
+                image: AssetImage("assets/squircle_logo.png"),
               )
           )
       ),

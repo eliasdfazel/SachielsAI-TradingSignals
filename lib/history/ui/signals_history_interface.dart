@@ -156,7 +156,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
                       child: Transform.scale(
                           scale: 1.7,
                           child: const Image(
-                            image: AssetImage("logo.png"),
+                            image: AssetImage("assets/logo.png"),
                           )
                       )
                   ),
@@ -212,7 +212,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
 
                                   },
                                   child: const Image(
-                                    image: AssetImage("back_icon.png"),
+                                    image: AssetImage("assets/back_icon.png"),
                                   ),
                                 )
                             )
@@ -245,7 +245,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
                                         ),
                                       ),
                                       child: const Image(
-                                        image: AssetImage("rectircle_shape.png"),
+                                        image: AssetImage("assets/rectircle_shape.png"),
                                       ),
                                     ),
                                     Align(
@@ -267,7 +267,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
                                                   ),
                                                 ),
                                                 child: const Image(
-                                                  image: AssetImage("rectircle_shape.png"),
+                                                  image: AssetImage("assets/rectircle_shape.png"),
                                                 )
                                             )
                                         )
@@ -322,7 +322,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
 
                               },
                               child: const Image(
-                                image: AssetImage("filter_icon.png"),
+                                image: AssetImage("assets/filter_icon.png"),
                               )
                           )
                       )

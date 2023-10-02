@@ -136,7 +136,7 @@ class _SachielBrokersBrowserState extends State<SachielBrokersBrowser> {
                       child: Transform.scale(
                           scale: 1.7,
                           child: const Image(
-                            image: AssetImage("logo.png"),
+                            image: AssetImage("assets/logo.png"),
                           )
                       )
                   ),
@@ -227,7 +227,7 @@ class _SachielBrokersBrowserState extends State<SachielBrokersBrowser> {
 
                                   },
                                   child: const Image(
-                                    image: AssetImage("back_icon.png"),
+                                    image: AssetImage("assets/back_icon.png"),
                                   ),
                                 )
                             )
@@ -260,7 +260,7 @@ class _SachielBrokersBrowserState extends State<SachielBrokersBrowser> {
                                         ),
                                       ),
                                       child: const Image(
-                                        image: AssetImage("rectircle_shape.png"),
+                                        image: AssetImage("assets/rectircle_shape.png"),
                                       ),
                                     ),
                                     Align(
@@ -282,7 +282,7 @@ class _SachielBrokersBrowserState extends State<SachielBrokersBrowser> {
                                                   ),
                                                 ),
                                                 child: const Image(
-                                                  image: AssetImage("rectircle_shape.png"),
+                                                  image: AssetImage("assets/rectircle_shape.png"),
                                                 )
                                             )
                                         )

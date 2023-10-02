@@ -169,7 +169,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                               ),
                               color: ColorsResources.black,
                               image: DecorationImage(
-                                  image: AssetImage("entry_background.jpg"),
+                                  image: AssetImage("assets/entry_background.jpg"),
                                   fit: BoxFit.cover
                               )
                           )
@@ -185,7 +185,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                             const Padding(
                               padding: EdgeInsets.fromLTRB(0, 31, 0, 13),
                               child: Image(
-                                image: AssetImage("logo.png"),
+                                image: AssetImage("assets/logo.png"),
                                 height: 259,
                                 fit: BoxFit.fitHeight,
                               ),
@@ -249,7 +249,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                             child: Visibility(
                                                 visible: entranceVisibility,
                                                 child: const Image(
-                                                  image: AssetImage("entrance_next.png"),
+                                                  image: AssetImage("assets/entrance_next.png"),
                                                   height: 239,
                                                   fit: BoxFit.fitHeight,
                                                 )
@@ -257,7 +257,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
                                         )
                                     ),
                                     child: const Image(
-                                      image: AssetImage("entrance_next.png"),
+                                      image: AssetImage("assets/entrance_next.png"),
                                     )
                                   )
                                 )

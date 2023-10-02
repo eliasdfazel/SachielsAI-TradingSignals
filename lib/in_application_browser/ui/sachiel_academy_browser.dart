@@ -134,7 +134,7 @@ class _SachielAcademyBrowserState extends State<SachielAcademyBrowser> {
                   child: Opacity(
                     opacity: 0.1,
                     child: Image(
-                      image: AssetImage("logo.png"),
+                      image: AssetImage("assets/logo.png"),
                     ),
                   ),
                 ),
@@ -224,7 +224,7 @@ class _SachielAcademyBrowserState extends State<SachielAcademyBrowser> {
 
                                   },
                                   child: const Image(
-                                    image: AssetImage("back_icon.png"),
+                                    image: AssetImage("assets/back_icon.png"),
                                   ),
                                 )
                             )
@@ -257,7 +257,7 @@ class _SachielAcademyBrowserState extends State<SachielAcademyBrowser> {
                                         ),
                                       ),
                                       child: const Image(
-                                        image: AssetImage("rectircle_shape.png"),
+                                        image: AssetImage("assets/rectircle_shape.png"),
                                       ),
                                     ),
                                     Align(
@@ -279,7 +279,7 @@ class _SachielAcademyBrowserState extends State<SachielAcademyBrowser> {
                                                   ),
                                                 ),
                                                 child: const Image(
-                                                  image: AssetImage("rectircle_shape.png"),
+                                                  image: AssetImage("assets/rectircle_shape.png"),
                                                 )
                                             )
                                         )

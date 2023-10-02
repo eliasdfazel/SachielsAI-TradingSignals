@@ -201,7 +201,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                         child: Transform.scale(
                             scale: 1.7,
                             child: const Image(
-                              image: AssetImage("logo.png"),
+                              image: AssetImage("assets/logo.png"),
                             )
                         )
                     ),
@@ -257,7 +257,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                                     },
                                     child: const Image(
-                                      image: AssetImage("back_icon.png"),
+                                      image: AssetImage("assets/back_icon.png"),
                                     ),
                                   )
                               )
@@ -290,7 +290,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                                           ),
                                         ),
                                         child: const Image(
-                                          image: AssetImage("rectircle_shape.png"),
+                                          image: AssetImage("assets/rectircle_shape.png"),
                                         ),
                                       ),
                                       Align(
@@ -312,7 +312,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                                                     ),
                                                   ),
                                                   child: const Image(
-                                                    image: AssetImage("rectircle_shape.png"),
+                                                    image: AssetImage("assets/rectircle_shape.png"),
                                                   )
                                               )
                                           )
@@ -380,7 +380,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                                 },
                                 child: const Image(
-                                  image: AssetImage("golden_information_icon.png"),
+                                  image: AssetImage("assets/golden_information_icon.png"),
                                 )
                             )
                         ),
@@ -580,7 +580,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                 ),
 
                 const Image(
-                  image: AssetImage("purchasing_icon.png"),
+                  image: AssetImage("assets/purchasing_icon.png"),
                   height: 73,
                   width: 353,
                   fit: BoxFit.contain,

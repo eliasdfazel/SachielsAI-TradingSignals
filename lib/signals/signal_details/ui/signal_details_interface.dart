@@ -153,7 +153,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                       child: Transform.scale(
                           scale: 1.7,
                           child: const Image(
-                            image: AssetImage("logo.png"),
+                            image: AssetImage("assets/logo.png"),
                           )
                       )
                   ),
@@ -211,7 +211,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
 
                                   },
                                   child: const Image(
-                                    image: AssetImage("back_icon.png"),
+                                    image: AssetImage("assets/back_icon.png"),
                                   ),
                                 )
                             )
@@ -244,7 +244,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                                         ),
                                       ),
                                       child: const Image(
-                                        image: AssetImage("rectircle_shape.png"),
+                                        image: AssetImage("assets/rectircle_shape.png"),
                                       ),
                                     ),
                                     Align(
@@ -266,7 +266,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                                                   ),
                                                 ),
                                                 child: const Image(
-                                                  image: AssetImage("rectircle_shape.png"),
+                                                  image: AssetImage("assets/rectircle_shape.png"),
                                                 )
                                             )
                                         )
@@ -723,7 +723,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: AssetImage("point_icon.png"),
+                                            image: AssetImage("assets/point_icon.png"),
                                             height: 19,
                                             fit: BoxFit.contain,
                                           ),
@@ -780,7 +780,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: AssetImage("point_icon.png"),
+                                            image: AssetImage("assets/point_icon.png"),
                                             height: 19,
                                             fit: BoxFit.contain,
                                           ),
@@ -837,7 +837,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: AssetImage("point_icon.png"),
+                                            image: AssetImage("assets/point_icon.png"),
                                             height: 19,
                                             fit: BoxFit.contain,
                                           ),
@@ -898,7 +898,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: const AssetImage("point_icon.png"),
+                                            image: const AssetImage("assets/point_icon.png"),
                                             color: ColorsResources.entryPriceColor.withOpacity(0.91),
                                             height: 19,
                                             fit: BoxFit.contain,
@@ -956,7 +956,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: const AssetImage("point_icon.png"),
+                                            image: const AssetImage("assets/point_icon.png"),
                                             color: ColorsResources.takeProfitColor.withOpacity(0.91),
                                             height: 19,
                                             fit: BoxFit.contain,
@@ -1014,7 +1014,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Image(
-                                            image: const AssetImage("point_icon.png"),
+                                            image: const AssetImage("assets/point_icon.png"),
                                             color: ColorsResources.stopLossColor.withOpacity(0.91),
                                             height: 19,
                                             fit: BoxFit.contain,
@@ -1190,7 +1190,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                               child: Align(
                                 alignment: Alignment.topCenter,
                                 child: Image(
-                                  image: AssetImage("share_icon.png"),
+                                  image: AssetImage("assets/share_icon.png"),
                                   height: 233,
                                   width: 233,
                                   fit: BoxFit.contain,
@@ -1495,7 +1495,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
 
         },
         child: const Image(
-          image: AssetImage("validated_icon.png"),
+          image: AssetImage("assets/validated_icon.png"),
         ),
       ),
     );

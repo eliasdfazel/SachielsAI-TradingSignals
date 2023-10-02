@@ -31,7 +31,7 @@ class AccountInformationOverviewStates extends State<AccountInformationOverview>
   String profileName = StringsResources.sachielAI();
 
   Widget profileImage = const Image(
-    image: AssetImage("cyborg_girl.jpg"),
+    image: AssetImage("assets/cyborg_girl.jpg"),
     fit: BoxFit.cover,
   );
 
@@ -85,7 +85,7 @@ class AccountInformationOverviewStates extends State<AccountInformationOverview>
                               ),
                             ),
                             child: const Image(
-                              image: AssetImage("squircle_shape.png"),
+                              image: AssetImage("assets/squircle_shape.png"),
                             ),
                           ),
                           Padding(
@@ -95,7 +95,7 @@ class AccountInformationOverviewStates extends State<AccountInformationOverview>
                                 childSaveLayer: true,
                                 mask /* Original Image */: profileImage,
                                 child: const Image(
-                                  image: AssetImage("squircle_shape.png"),
+                                  image: AssetImage("assets/squircle_shape.png"),
                                 ),
                               )
                           )
@@ -138,7 +138,7 @@ class AccountInformationOverviewStates extends State<AccountInformationOverview>
                               ),
                             ),
                             child: const Image(
-                              image: AssetImage("rectircle_shape.png"),
+                              image: AssetImage("assets/rectircle_shape.png"),
                             ),
                           ),
                           Align(
@@ -160,7 +160,7 @@ class AccountInformationOverviewStates extends State<AccountInformationOverview>
                                         ),
                                       ),
                                       child: const Image(
-                                        image: AssetImage("rectircle_shape.png"),
+                                        image: AssetImage("assets/rectircle_shape.png"),
                                       )
                                   )
                               )
