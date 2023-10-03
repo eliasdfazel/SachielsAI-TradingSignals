@@ -21,7 +21,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
-import 'package:sachiel/remote/dynamic_shortcuts.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/authentication/authentication_process.dart';
@@ -73,9 +72,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
     firebaseAuthentication.currentUser?.reload();
 
     changeColor(ColorsResources.black, ColorsResources.black);
-
-    DynamicShortcuts dynamicShortcuts = DynamicShortcuts();
-    dynamicShortcuts.setup(context);
 
   }
 

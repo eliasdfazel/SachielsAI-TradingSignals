@@ -27,7 +27,7 @@ class DynamicShortcuts {
       if (shortcutType == 'share') {
         debugPrint("Quick Action: Share");
 
-        Future.delayed(const Duration(milliseconds: 777), () {
+        Future.delayed(const Duration(milliseconds: 1777), () {
 
           Share.share('Sachiels AI; Trading Signals For Forex, Cryptocurrency, Stock Market https://GeeksEmpire.co/SachielsAI');
 
@@ -36,7 +36,7 @@ class DynamicShortcuts {
       } else if (shortcutType == 'history') {
         debugPrint("Quick Action: History");
 
-        Future.delayed(const Duration(milliseconds: 777), () {
+        Future.delayed(const Duration(milliseconds: 1777), () {
 
           navigateTo(context, const SignalsHistoryInterface());
 

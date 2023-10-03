@@ -25,6 +25,7 @@ import 'package:sachiel/dashboard/ui/sections/social_media.dart';
 import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/in_application_store/utils/digital_store_utils.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
+import 'package:sachiel/remote/dynamic_shortcuts.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -60,6 +61,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   BrokersSuggestionsInterface brokersSuggestionsInterface = const BrokersSuggestionsInterface();
 
+  DynamicShortcuts dynamicShortcuts = DynamicShortcuts();
+
   Widget sliderInvocation = Container();
 
   @override
@@ -87,6 +90,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
     Future.delayed(const Duration(milliseconds: 777), () {
 
       FlutterNativeSplash.remove();
+
+      dynamicShortcuts.setup(context);
 
     });
 
