@@ -37,7 +37,7 @@ class DynamicShortcuts {
 
     quickActions.setShortcutItems(<ShortcutItem>[
       const ShortcutItem(type: 'share', localizedTitle: 'Share', icon: 'share_icon'),
-      const ShortcutItem(type: 'history', localizedTitle: 'History'),
+      const ShortcutItem(type: 'history', localizedTitle: 'History', icon: 'squircle_logo.png'),
       const ShortcutItem(type: 'twitter', localizedTitle: 'X', icon: 'twitter_icon'),
       const ShortcutItem(type: 'threads', localizedTitle: 'Threads', icon: 'threads_icon')
     ]);
