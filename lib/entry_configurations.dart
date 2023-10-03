@@ -75,7 +75,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with Authenti
     changeColor(ColorsResources.black, ColorsResources.black);
 
     DynamicShortcuts dynamicShortcuts = DynamicShortcuts();
-    dynamicShortcuts.setup();
+    dynamicShortcuts.setup(context);
 
   }
 
