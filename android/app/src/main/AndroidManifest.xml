@@ -14,7 +14,7 @@
         <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
-        android:label="Sachiels Signals"
+        android:label="Sachiels AI; Trading Signals"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
