@@ -1,1 +1,1 @@
-# Sachiel Signals
+# Sachiels AI; Trading Signals
