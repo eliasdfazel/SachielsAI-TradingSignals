@@ -22,7 +22,7 @@ import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/in_application_store/data/plans_data_structure.dart';
-import 'package:sachiel/in_application_store/utils/android/purchase_upgrade.dart';
+import 'package:sachiel/in_application_store/utils/android/subscription_changes.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -409,7 +409,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
     );
   }
 
-  void retrievePurchasingPlans() {
+  void retrievePurchasingPlans() async {
     debugPrint("Retrieve Latest Signals Details");
 
     User firebaseUser = FirebaseAuth.instance.currentUser!;
@@ -460,7 +460,23 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
   }
 
-  void prepareSignalsHistoryItems(List<PlansDataStructure> plansDataStructure) {
+  void prepareSignalsHistoryItems(List<PlansDataStructure> plansDataStructure) async {
+
+    bool alreadyPurchased = await fileExist(StringsResources.filePurchasingPlan);
+
+    String purchasedPlan = "";
+
+    if (alreadyPurchased) {
+
+      purchasedPlan = await readFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT");
+
+    }
+
+    if (purchasedPlan.toLowerCase() != SachielsDigitalStore.previewTier) {
+
+      plansDataStructure.removeWhere((element) => element.purchasingPlanProductId() == SachielsDigitalStore.previewTier);
+
+    }
 
     List<Widget> signalHistoryItem = [];
 
