@@ -34,7 +34,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
 
   User? firebaseUser = FirebaseAuth.instance.currentUser;
 
-  String profileName = StringsResources.sachielAI();
+  String profileName = StringsResources.sachielsAI();
 
   Widget profileImage = const Image(
     image: AssetImage("assets/cyborg_girl.jpg"),

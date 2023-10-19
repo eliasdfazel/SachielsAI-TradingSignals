@@ -40,9 +40,9 @@ class StringsResources {
     return "https://instagram.com/SachielsAI";
   }
 
-  static String sachielAI() {
+  static String sachielsAI() {
 
-    return "Sachiel AI";
+    return "Sachiels AI";
   }
 
   static String shareSachiel() {
