@@ -9,6 +9,7 @@
  */
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,6 +22,7 @@ import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/in_application_store/data/plans_data_structure.dart';
+import 'package:sachiel/in_application_store/utils/android/purchase_upgrade.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
@@ -108,8 +110,6 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
     }, onError: (error) {
 
-
-
     }) as StreamSubscription<List<PurchaseDetails>>?;
 
     retrievePurchasingPlans();
@@ -140,7 +140,6 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
           theme: ThemeData(
             fontFamily: 'Ubuntu',
             colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-            backgroundColor: ColorsResources.black,
             pageTransitionsTheme: const PageTransitionsTheme(builders: {
               TargetPlatform.android: ZoomPageTransitionsBuilder(),
               TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
@@ -509,7 +508,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
 
-                  InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+                  await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
 
                   break;
                 }
@@ -521,9 +520,26 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.platinumTier});
 
-                  PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+                  bool alreadyPurchased = await fileExist(StringsResources.filePurchasingPlan);
 
-                  InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+                  if (Platform.isAndroid && alreadyPurchased) {
+
+                    Future.delayed(const Duration(milliseconds: 0), () async {
+
+                      await streamSubscription?.cancel();
+
+                      AndroidSubscriptionChanges()
+                          .changeSubscription();
+
+                    });
+
+                  } else {
+
+                    PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+
+                    await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+
+                  }
 
                   break;
                 }
@@ -535,9 +551,26 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.goldTier});
 
-                  PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+                  bool alreadyPurchased = await fileExist(StringsResources.filePurchasingPlan);
 
-                  InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+                  if (Platform.isAndroid && alreadyPurchased) {
+
+                    Future.delayed(const Duration(milliseconds: 0), () async {
+
+                      await streamSubscription?.cancel();
+
+                      AndroidSubscriptionChanges()
+                          .changeSubscription();
+
+                    });
+
+                  } else {
+
+                    PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+
+                    await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+
+                  }
 
                   break;
                 }
@@ -549,9 +582,26 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.palladiumTier});
 
-                  PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+                  bool alreadyPurchased = await fileExist(StringsResources.filePurchasingPlan);
 
-                  InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+                  if (Platform.isAndroid && alreadyPurchased) {
+
+                    Future.delayed(const Duration(milliseconds: 0), () async {
+
+                      await streamSubscription?.cancel();
+
+                      AndroidSubscriptionChanges()
+                          .changeSubscription();
+
+                    });
+
+                  } else {
+
+                    PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+
+                    await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+
+                  }
 
                   break;
                 }

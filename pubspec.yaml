@@ -91,7 +91,9 @@ dependencies:
 
 
   ####### ####### #######
-  in_app_purchase: ^3.1.10
+  in_app_purchase: ^3.1.11
+  in_app_purchase_android: ^0.3.0+13
+
   intl: ^0.17.0
   ####### ####### #######
 

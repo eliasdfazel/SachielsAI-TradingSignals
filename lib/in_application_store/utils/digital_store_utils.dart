@@ -141,8 +141,6 @@ class DigitalStoreUtils {
 
       }, onError: (error) {
 
-
-
       });
 
       await InAppPurchase.instance.restorePurchases();
