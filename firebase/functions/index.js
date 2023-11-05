@@ -15,7 +15,9 @@ const runtimeOptions = {
     timeoutSeconds: 512,
 }
 
-/* START - Scheduled Status Functions */
+/* 
+ * START - Scheduled Status Functions 
+ */
 // Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
 exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *').timeZone('America/New_York').onRun((context) => {
     console.log('Time; ' + Date.now());
@@ -190,13 +192,19 @@ function statusCheckpoint(marketPair, statusMessage, statusCondition) {
     });
 
 }
-/* END - Scheduled Status Functions */
+/* 
+ * END - Scheduled Status Functions 
+ */
 
-/* START - Scheduled Candlestick Indentifier */
+/* 
+ *START - Scheduled Candlestick Indentifier 
+ */
 // Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
 exports.dailyMarketIdentifier = functions.pubsub.schedule('13 01 * * *').timeZone('America/New_York').onRun((context) => {
 
-    /* Start - Forex */
+    /* 
+     * Start - Forex 
+     */
     /* Start - EURUSD */
     forexDailyMarketIdentifier('EURUSD');
     /* End - EURUSD */
@@ -204,13 +212,20 @@ exports.dailyMarketIdentifier = functions.pubsub.schedule('13 01 * * *').timeZon
     /* Start - GBPJPY */
     forexDailyMarketIdentifier('GBPJPY');
     /* End - GBPJPY */
-    /* End - Forex */
+    /* 
+     * End - Forex 
+     */
 
-    /* Start - Cryptocurrency */
+    /* 
+     * Start - Cryptocurrency 
+     */
     /* Start - ETHUSD */
     cryptocurrenciesDailyMarketIdentifier('ETHUSD');
     /* End - ETHUSD */
-    /* End - Cryptocurrency */
+    /* 
+     * End - Cryptocurrency 
+     */
+
 });
 
 async function forexDailyMarketIdentifier(marketPairInput) {
@@ -453,7 +468,22 @@ async function analyseNarrowArrow(marketPair, openPrice, closePrice, highestPric
     }
 
 }
-/* END - Scheduled Candlestick Indentifier */
+
+// Notification Topic Example DOJIGreen4HoursEURUSD
+async function candlestickTopic(candlestickName, timeframe, marketPair) {
+
+    var candlestickTopic = candlestickName.replace(" ", "") + timeframe.replace(" ", "") + marketPair.replace(" ", "");
+
+    var notificationMessage = "";
+
+    var candlestickCondition = "\'" + candlestickTopic + "'\' in topics";
+
+    sendNotification(notificationMessage, candlestickCondition);
+
+}
+/* 
+ * END - Scheduled Candlestick Indentifier 
+ */
 
 
 exports.platinumTier = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
