@@ -276,13 +276,13 @@ async function forexDailyMarketIdentifier(marketPairInput) {
         let lowestPrice = jsonObjectPrices.results[0].l;
         console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
-        analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPrice);
+        analyseDojiPattern(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseArrowUp(openPrice, closePrice, highestPrice, lowestPrice);
+        analyseArrowUp(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseArrowDown(openPrice, closePrice, highestPrice, lowestPrice);
+        analyseArrowDown(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseNarrowArrow(openPrice, closePrice, highestPrice, lowestPrice);
+        analyseNarrowArrow(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
 
     };
     xmlHttpRequest.send();
@@ -352,13 +352,13 @@ async function cryptocurrenciesDailyMarketIdentifier(marketPairInput) {
         let lowestPrice = jsonObjectPrices.results[0].l;
         console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
-        analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPrice);
+        analyseDojiPattern(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseArrowUp(openPrice, closePrice, highestPrice, lowestPrice);
+        analyseArrowUp(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseArrowDown(openPrice, closePrice, highestPrice, lowestPrice);
+        analyseArrowDown(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseNarrowArrow(openPrice, closePrice, highestPrice, lowestPrice);
+        analyseNarrowArrow(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
 
     };
     xmlHttpRequest.send();
@@ -366,7 +366,7 @@ async function cryptocurrenciesDailyMarketIdentifier(marketPairInput) {
 }
 
 // Doji
-async function analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPrice) {
+async function analyseDojiPattern(marketPair, openPrice, closePrice, highestPrice, lowestPrice) {
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
@@ -393,7 +393,7 @@ async function analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPri
 
 }
 
-async function analyseArrowUp(openPrice, closePrice, highestPrice, lowestPrice) {
+async function analyseArrowUp(marketPair, openPrice, closePrice, highestPrice, lowestPrice) {
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
@@ -414,7 +414,7 @@ async function analyseArrowUp(openPrice, closePrice, highestPrice, lowestPrice) 
 
 }
 
-async function analyseArrowDown(openPrice, closePrice, highestPrice, lowestPrice) {
+async function analyseArrowDown(marketPair, openPrice, closePrice, highestPrice, lowestPrice) {
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
@@ -435,7 +435,7 @@ async function analyseArrowDown(openPrice, closePrice, highestPrice, lowestPrice
 
 }
 
-async function analyseNarrowArrow(openPrice, closePrice, highestPrice, lowestPrice) {
+async function analyseNarrowArrow(marketPair, openPrice, closePrice, highestPrice, lowestPrice) {
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
