@@ -164,7 +164,7 @@ function statusCheckpoint(marketPair, statusMessage, statusCondition) {
                 const aiStatus = {
                     statusMessage: statusMessage,
                     statusMarket: marketPair,
-                    statusAuthor: "Sachiels AI",
+                    statusAuth0or: "Sachiels AI",
                     statusTimestamp: nowMillisecond
                 };
 
@@ -206,6 +206,7 @@ async function forexDailyMarketIdentifier(marketPairInput) {
 
     var marketPair = marketPairInput;
 
+    // Yesterday 
     let dateObject = new Date(Date.now() - 86400000);
 
     var dateMonth = dateObject.getUTCMonth() + 1; // Months 1-12
@@ -255,16 +256,20 @@ async function forexDailyMarketIdentifier(marketPairInput) {
     xmlHttpRequest.onload = function () {
         console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
 
-        var jsonObjectRSI = JSON.parse(xmlHttpRequest.responseText);
+        var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
         
-        let openPrice = jsonObjectRSI.results[0].o;
-        let closePrice = jsonObjectRSI.results[0].c;
+        let openPrice = jsonObjectPrices.results[0].o;
+        let closePrice = jsonObjectPrices.results[0].c;
 
-        let highestPrice = jsonObjectRSI.results[0].h;
-        let lowestPrice = jsonObjectRSI.results[0].l;
+        let highestPrice = jsonObjectPrices.results[0].h;
+        let lowestPrice = jsonObjectPrices.results[0].l;
         console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
         analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPrice);
+
+        analyseArrowUp(openPrice, closePrice, highestPrice, lowestPrice);
+
+        analyseArrowDown(openPrice, closePrice, highestPrice, lowestPrice);
 
     };
     xmlHttpRequest.send();
@@ -274,28 +279,26 @@ async function forexDailyMarketIdentifier(marketPairInput) {
 // Doji
 async function analyseDojiPattern(openPrice, closePrice, highestPrice, lowestPrice) {
 
-    if (closePrice > openPrice) { // GREEN
+    let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
+    let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
 
-        let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
-        let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
+    if (closePercentage <= 55 
+        && openPercentage >= 45) { // GREEN
 
-        if (closePercentage < 55 
-            && openPercentage > 45) {
+            // Doji
+            // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
+            let deltaPrice = closePercentage - openPercentage; // Smaller Value Means Stronger Doji
 
-                // Doji
-                // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
+    } else if (openPercentage <= 55 
+        && closePercentage >= 45) { // RED
 
-        }
+            // Doji
+            // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
+            let deltaPrice = closePercentage - openPercentage; // Smaller Value Means Stronger Doji
 
-    } else { // RED
+    } else { // EQUAL
 
-        if (openPercentage < 55 
-            && closePercentage > 45) {
 
-                // Doji
-                // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
-
-        }
 
     }
 
@@ -306,24 +309,57 @@ async function analyseArrowUp(openPrice, closePrice, highestPrice, lowestPrice) 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
 
-    if (openPercentage > 70) {
+    if ((openPercentage >= 70 && openPercentage <= 80)
+        && (closePercentage >= 85 && closePercentage <= 100)) { // GREEN 
 
-        // Arrow Up
-        // To Identify Strength Of Doji, Check Differencial Of xPercentage. 70 - 90 Means Stroger Pattern.
+        
+
+    } else if ((closePercentage >= 70 && closePercentage <= 80)
+    && (openPercentage >= 85 && openPercentage <= 100)) { // RED
+
+
+
+    } else { // EQUAL
 
     }
 
 }
 
-async function analyseArrowUp(openPrice, closePrice, highestPrice, lowestPrice) {
+async function analyseArrowDown(openPrice, closePrice, highestPrice, lowestPrice) {
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
 
-    if (closePercentage < 30) {
+    if ((openPercentage <= 30 && openPercentage >= 20)
+        && (closePercentage <= 15 && closePercentage >= 0)) { // RED
 
-        // Arrow Down
-        // To Identify Strength Of Doji, Check Differencial Of xPercentage. 70 - 90 Means Stroger Pattern.
+        
+
+    } else if ((closePercentage <= 30 && closePercentage >= 20)
+    && (openPercentage <= 15 && openPercentage >= 0)) { // GREEN
+
+
+
+    } else { // EQUAL
+
+    }
+
+}
+
+async function analyseNarrowArrow(openPrice, closePrice, highestPrice, lowestPrice) {
+
+    let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
+    let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
+
+    if (openPercentage >= 90
+        && closePercentage >= 90) { // GREEN
+
+
+            
+    } else if (openPercentage <= 10
+        && closePercentage >= 0) { // RED
+
+
 
     }
 
