@@ -206,11 +206,11 @@ exports.dailyMarketIdentifier = functions.pubsub.schedule('13 01 * * *').timeZon
      * Start - Forex 
      */
     /* Start - EURUSD */
-    forexDailyMarketIdentifier('EURUSD');
+    forexDailyMarketIdentifier('EURUSD', 'Daily');
     /* End - EURUSD */
 
     /* Start - GBPJPY */
-    forexDailyMarketIdentifier('GBPJPY');
+    forexDailyMarketIdentifier('GBPJPY', 'Daily');
     /* End - GBPJPY */
     /* 
      * End - Forex 
@@ -220,7 +220,7 @@ exports.dailyMarketIdentifier = functions.pubsub.schedule('13 01 * * *').timeZon
      * Start - Cryptocurrency 
      */
     /* Start - ETHUSD */
-    cryptocurrenciesDailyMarketIdentifier('ETHUSD');
+    cryptocurrenciesDailyMarketIdentifier('ETHUSD', 'Daily');
     /* End - ETHUSD */
     /* 
      * End - Cryptocurrency 
@@ -228,7 +228,7 @@ exports.dailyMarketIdentifier = functions.pubsub.schedule('13 01 * * *').timeZon
 
 });
 
-async function forexDailyMarketIdentifier(marketPairInput) {
+async function forexDailyMarketIdentifier(marketPairInput, timeframe) {
 
     var marketPair = marketPairInput;
 
@@ -291,20 +291,20 @@ async function forexDailyMarketIdentifier(marketPairInput) {
         let lowestPrice = jsonObjectPrices.results[0].l;
         console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
-        analyseDojiPattern(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
+        analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseArrowUp(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
+        analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseArrowDown(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
+        analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseNarrowArrow(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
+        analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
     };
     xmlHttpRequest.send();
 
 }
 
-async function cryptocurrenciesDailyMarketIdentifier(marketPairInput) {
+async function cryptocurrenciesDailyMarketIdentifier(marketPairInput, timeframe) {
 
     var marketPair = marketPairInput;
 
@@ -367,21 +367,21 @@ async function cryptocurrenciesDailyMarketIdentifier(marketPairInput) {
         let lowestPrice = jsonObjectPrices.results[0].l;
         console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
-        analyseDojiPattern(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
+        analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseArrowUp(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
+        analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseArrowDown(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
+        analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseNarrowArrow(marketPair, openPrice, closePrice, highestPrice, lowestPrice);
+        analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
     };
     xmlHttpRequest.send();
 
 }
 
-// Doji
-async function analyseDojiPattern(marketPair, openPrice, closePrice, highestPrice, lowestPrice) {
+// DOJI
+async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice) {
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
@@ -391,14 +391,30 @@ async function analyseDojiPattern(marketPair, openPrice, closePrice, highestPric
 
             // Doji
             // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
-            let deltaPrice = closePercentage - openPercentage; // Smaller Value Means Stronger Doji
+            let deltaPercentage = closePercentage - openPercentage; // Smaller Value Means Stronger Doji
+
+            let candlestickName = "DOJI Green"; 
+            let candlestickMessage = "DOJI (BULLISH) Candlestick Generated 🟢\n" 
+                + "Market: " + marketPair + "\n"
+                + "Timeframe: " + timeframe;
+            let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Green.png?alt=media";
+
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
     } else if (openPercentage <= 55 
         && closePercentage >= 45) { // RED
 
             // Doji
             // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
-            let deltaPrice = closePercentage - openPercentage; // Smaller Value Means Stronger Doji
+            let deltaPercentage = closePercentage - openPercentage; // Smaller Value Means Stronger Doji
+
+            let candlestickName = "DOJI Red"; 
+            let candlestickMessage = "DOJI (BEARISH) Candlestick Generated 🔴\n" 
+                + "Market: " + marketPair + "\n"
+                + "Timeframe: " + timeframe;
+            let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Red.png?alt=media";
+
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
     } else { // EQUAL
 
@@ -408,77 +424,124 @@ async function analyseDojiPattern(marketPair, openPrice, closePrice, highestPric
 
 }
 
-async function analyseArrowUp(marketPair, openPrice, closePrice, highestPrice, lowestPrice) {
+// HAMMER - HANGING
+async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice) {
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
 
     if ((openPercentage >= 70 && openPercentage <= 80)
-        && (closePercentage >= 85 && closePercentage <= 100)) { // GREEN 
+        && (closePercentage >= 85 && closePercentage <= 100)) { // GREEN - HAMMER
 
-        
+            let candlestickName = "HAMMER"; 
+            let candlestickMessage = "HAMMER (BULLISH) Candlestick Generated 🟢\n" 
+                + "Market: " + marketPair + "\n"
+                + "Timeframe: " + timeframe;
+            let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FHammer.png?alt=media";
+
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
     } else if ((closePercentage >= 70 && closePercentage <= 80)
-    && (openPercentage >= 85 && openPercentage <= 100)) { // RED
+    && (openPercentage >= 85 && openPercentage <= 100)) { // RED - HANGING MAN
 
+        let candlestickName = "HANGING MAN"; 
+        let candlestickMessage = "HANGING MAN (BEARISH) Candlestick Generated 🔴\n" 
+            + "Market: " + marketPair + "\n"
+            + "Timeframe: " + timeframe;
+        let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FHanging.png?alt=media";
 
+        candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
     } else { // EQUAL
+
+
 
     }
 
 }
 
-async function analyseArrowDown(marketPair, openPrice, closePrice, highestPrice, lowestPrice) {
+// HAMMER INVERTED - SHOOTING STAR
+async function analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice) {
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
 
     if ((openPercentage <= 30 && openPercentage >= 20)
-        && (closePercentage <= 15 && closePercentage >= 0)) { // RED
+        && (closePercentage <= 15 && closePercentage >= 0)) { // RED - SHOOTING STAR
 
-        
+            let candlestickName = "SHOOTING STAR"; 
+            let candlestickMessage = "SHOOTING STAR (BEARISH) Candlestick Generated 🔴\n" 
+                + "Market: " + marketPair + "\n"
+                + "Timeframe: " + timeframe;
+            let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FShooting%20Star.png?alt=media";
+
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
     } else if ((closePercentage <= 30 && closePercentage >= 20)
-    && (openPercentage <= 15 && openPercentage >= 0)) { // GREEN
+    && (openPercentage <= 15 && openPercentage >= 0)) { // GREEN - HAMMER INVERTED
 
+        let candlestickName = "HAMMER INVERTED"; 
+        let candlestickMessage = "HAMMER INVERTED (BULLISH) Candlestick Generated 🟢\n" 
+            + "Market: " + marketPair + "\n"
+            + "Timeframe: " + timeframe;
+        let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FInverted%20Hammer.png?alt=media";
 
+        candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
     } else { // EQUAL
+
+
 
     }
 
 }
 
-async function analyseNarrowArrow(marketPair, openPrice, closePrice, highestPrice, lowestPrice) {
+// DRAGONFLY - GRAVESTONE
+async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice) {
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
 
     if (openPercentage >= 90
-        && closePercentage >= 90) { // GREEN
+        && closePercentage >= 90) { // GREEN - DRAGONFLY
 
-
+            let candlestickName = "DRAGONFLY"; 
+            let candlestickMessage = "DRAGONFLY (BULLISH) Candlestick Generated 🟢\n" 
+                + "Market: " + marketPair + "\n"
+                + "Timeframe: " + timeframe;
+            let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDragonfly.png?alt=media";
+    
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
     } else if (openPercentage <= 10
-        && closePercentage >= 0) { // RED
+        && closePercentage >= 0) { // RED - GRAVESTONE
 
+            let candlestickName = "GRAVESTONE"; 
+            let candlestickMessage = "GRAVESTONE (BEARISH) Candlestick Generated 🔴\n" 
+                + "Market: " + marketPair + "\n"
+                + "Timeframe: " + timeframe;
+            let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FGravestone.png?alt=media";
+    
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
+    } else { // EQUAL
+
+        
 
     }
 
 }
 
 // Notification Topic Example DOJIGreen4HoursEURUSD
-async function candlestickTopic(candlestickName, timeframe, marketPair) {
+async function candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair) {
 
     var candlestickTopic = candlestickName.replace(" ", "") + timeframe.replace(" ", "") + marketPair.replace(" ", "");
 
-    var notificationMessage = "";
+    var notificationMessage = candlestickMessage;
 
     var candlestickCondition = "\'" + candlestickTopic + "'\' in topics";
 
-    sendNotification(notificationMessage, candlestickCondition);
+    sendNotification(notificationMessage, candlestickImage, candlestickCondition);
 
 }
 /* 
@@ -856,7 +919,7 @@ async function updateMarketType(purchasingTier, tradeTimestamp, tradingPair) {
 }
 
 /* Utilities */
-function sendNotification(statusMessage, statusCondition) {
+function sendNotification(statusMessage, notificationImage, statusCondition) {
 
     var dataStatusAI = {
         
@@ -868,7 +931,17 @@ function sendNotification(statusMessage, statusCondition) {
         android: {
             ttl: (3600 * 1000) * (1), // 1 Hour in Milliseconds
             priority: 'high',
+            notification: {
+                imageUrl: notificationImage
+            }
         },
+
+        apns: {
+            fcm_options: {
+              image: notificationImage
+            }
+        },
+        
 
         data: {
             "statusMessage": statusMessage,
