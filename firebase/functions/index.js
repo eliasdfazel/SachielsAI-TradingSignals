@@ -19,7 +19,7 @@ const runtimeOptions = {
  * START - Scheduled Status Functions 
  */
 // Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
-exports.sachielAnalysisStatus = functions.pubsub.schedule('30 23 * * *').timeZone('America/New_York').onRun((context) => {
+exports.sachielAnalysisStatus = functions.runWith(runtimeOptions).pubsub.schedule('30 23 * * *').timeZone('America/New_York').onRun((context) => {
     console.log('Time; ' + Date.now());
 
     /* Start - ETHUSD */
@@ -200,7 +200,7 @@ function statusCheckpoint(marketPair, statusMessage, statusCondition) {
  *START - Scheduled Candlestick Indentifier 
  */
 // Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
-exports.dailyMarketIdentifier = functions.pubsub.schedule('13 01 * * *').timeZone('America/New_York').onRun((context) => {
+exports.dailyMarketIdentifier = functions.runWith(runtimeOptions).pubsub.schedule('13 01 * * *').timeZone('America/New_York').onRun((context) => {
 
     /* 
      * Start - Forex 
