@@ -139,7 +139,7 @@ async function analysisOfRsi(rsiNumber, marketPair) {
 
         statusCondition = '\'Privileged\' in topics';
 
-        sendNotification(statusMessage, statusCondition);
+        sendNotification(statusMessage, "", statusCondition);
 
     }
 
@@ -161,7 +161,7 @@ function statusCheckpoint(marketPair, statusMessage, statusCondition) {
 
             if ((nowMillisecond - lastStatusUpdate) > sevenDaysMillisecond) {
 
-                sendNotification(statusMessage, statusCondition);
+                sendNotification(statusMessage, "", statusCondition);
 
                 const aiStatus = {
                     statusMessage: statusMessage,
@@ -176,7 +176,7 @@ function statusCheckpoint(marketPair, statusMessage, statusCondition) {
 
         } else {
 
-            sendNotification(statusMessage, statusCondition);
+            sendNotification(statusMessage, "", statusCondition);
 
             const aiStatus = {
                 statusMessage: statusMessage,
@@ -746,7 +746,7 @@ exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, c
 
     const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
 
-    sendNotification(data.statusMessage, statusCondition);
+    sendNotification(data.statusMessage, "", statusCondition);
 
 });
 
