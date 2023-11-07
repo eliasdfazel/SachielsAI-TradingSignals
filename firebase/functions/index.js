@@ -401,6 +401,8 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
             candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
+            storeHistory("DOJI", candlestickImage, "BULLISH", marketPair, timeframe);
+
     } else if (openPercentage <= 55 
         && closePercentage >= 45) { // RED
 
@@ -415,6 +417,8 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Red.png?alt=media";
 
             candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+
+            storeHistory("DOJI", candlestickImage, "BEARISH", marketPair, timeframe);
 
     } else { // EQUAL
 
@@ -441,6 +445,8 @@ async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, high
 
             candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
+            storeHistory("HAMMER", candlestickImage, "BULLISH", marketPair, timeframe);
+
     } else if ((closePercentage >= 70 && closePercentage <= 80)
     && (openPercentage >= 85 && openPercentage <= 100)) { // RED - HANGING MAN
 
@@ -451,6 +457,8 @@ async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, high
         let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FHanging.png?alt=media";
 
         candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+
+        storeHistory("HANGING MAN", candlestickImage, "BEARISH", marketPair, timeframe);
 
     } else { // EQUAL
 
@@ -477,6 +485,8 @@ async function analyseArrowDown(marketPair, timeframe, openPrice, closePrice, hi
 
             candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
+            storeHistory("SHOOTING STAR", candlestickImage, "BEARISH", marketPair, timeframe);
+
     } else if ((closePercentage <= 30 && closePercentage >= 20)
     && (openPercentage <= 15 && openPercentage >= 0)) { // GREEN - HAMMER INVERTED
 
@@ -487,6 +497,8 @@ async function analyseArrowDown(marketPair, timeframe, openPrice, closePrice, hi
         let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FInverted%20Hammer.png?alt=media";
 
         candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+
+        storeHistory("HAMMER INVERTED", candlestickImage, "BULLISH", marketPair, timeframe);
 
     } else { // EQUAL
 
@@ -513,6 +525,8 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
     
             candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
+            storeHistory("DRAGONFLY", candlestickImage, "BULLISH", marketPair, timeframe);
+
     } else if (openPercentage <= 10
         && closePercentage >= 0) { // RED - GRAVESTONE
 
@@ -523,6 +537,8 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FGravestone.png?alt=media";
     
             candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+
+            storeHistory("GRAVESTONE", candlestickImage, "BEARISH", marketPair, timeframe);
 
     } else { // EQUAL
 
@@ -542,6 +558,20 @@ async function candlestickTopic(candlestickMessage, candlestickImage, candlestic
     var candlestickCondition = "\'" + candlestickTopic + "'\' in topics";
 
     sendNotification(notificationMessage, candlestickImage, candlestickCondition);
+
+}
+
+async function storeHistory(candlestickName, candlestickImage, marketDirection, marketPair, timeframe) {
+
+    // Sachiels/Candlesticks/History/[Milliseconds]
+    firestore.doc("Sachiels/Candlesticks/History/" + Date.now().toString()).set({
+        timestamp: FieldValue.serverTimestamp(),
+        candlestickName: candlestickName,
+        candlestickImage: candlestickImage,
+        marketDirection: marketDirection,
+        marketPair: marketPair,
+        timeframe: timeframe,
+    });
 
 }
 /* 
