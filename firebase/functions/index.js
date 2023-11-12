@@ -145,7 +145,7 @@ async function analysisOfRsi(rsiNumber, marketPair) {
 
 }
 
-function statusCheckpoint(marketPair, statusMessage, statusCondition) {
+async function statusCheckpoint(marketPair, statusMessage, statusCondition) {
 
     firestore.doc('/Sachiels/AI/Status/' + marketPair).get().then((documentSnapshot) => {
 
@@ -192,6 +192,21 @@ function statusCheckpoint(marketPair, statusMessage, statusCondition) {
     });
 
 }
+
+/* 
+ * START - Manual Status From Sachiels Administrators
+ */
+exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
+    functions.logger.log("AI Status Message :::", data.statusMessage);
+
+    const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
+
+    sendNotification(data.statusMessage, "", statusCondition);
+
+});
+/* 
+ * END - Manual Status From Sachiels Administrators
+ */
 /* 
  * END - Scheduled Status Functions 
  */
@@ -768,15 +783,6 @@ exports.palladiumTier = functions.runWith(runtimeOptions).https.onCall(async (da
         });
 
     });
-
-});
-
-exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
-    functions.logger.log("AI Status Message :::", data.statusMessage);
-
-    const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
-
-    sendNotification(data.statusMessage, "", statusCondition);
 
 });
 
