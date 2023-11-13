@@ -15,6 +15,8 @@ const runtimeOptions = {
     timeoutSeconds: 512,
 }
 
+firestore.settings({ ignoreUndefinedProperties: true })
+
 /* 
  * START - Scheduled Status Functions 
  */
@@ -121,21 +123,24 @@ async function analysisOfRsi(rsiNumber, marketPair) {
 
     var statusMessage = 'Observing ' + marketPair;
 
-    if (rsiNumber >= 73) {
+    if (parseInt(rsiNumber) >= 73) {
+        console.log("SELL");
        
         statusMessage = 'Sachiel AI is Analysing ' + marketPair + ' to SELL.';
 
         statusCheckpoint(marketPair, statusMessage, statusCondition);
 
-    } else if (rsiNumber <= 27) {
+    } else if (parseInt(rsiNumber) <= 27) {
+        console.log("BUY");
 
         statusMessage = 'Sachiel AI is Analysing ' + marketPair + ' to BUY.';
         
         statusCheckpoint(marketPair, statusMessage, statusCondition);
 
-    } else { 
+    } else {
+        console.log("Observing");
 
-        statusMessage = 'Observing ' + marketPair + '...' + 'RSI: ' + rsiNumber;
+        statusMessage = 'Observing ' + marketPair + '...' + 'RSI: ' + parseInt(rsiNumber);
 
         statusCondition = '\'Privileged\' in topics';
 
@@ -145,26 +150,26 @@ async function analysisOfRsi(rsiNumber, marketPair) {
 
 }
 
-async function statusCheckpoint(marketPair, statusMessage, statusCondition) {
+async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
 
     firestore.doc('/Sachiels/AI/Status/' + marketPair).get().then((documentSnapshot) => {
 
-        if (documentSnapshot.exists()) {
+        if (documentSnapshot.exists) {
+            console.log("Status Exists");
 
             const documentData = documentSnapshot.data();
 
-            var lastStatusUpdate = parseInt(documentData.statusTimestamp.toString());
+            var lastStatusUpdate = parseInt(documentData.statusTimestamp);
 
             var nowMillisecond = Date.now();
 
             var sevenDaysMillisecond = 86400000 * 7;
 
             if ((nowMillisecond - lastStatusUpdate) > sevenDaysMillisecond) {
-
-                sendNotification(statusMessage, "", statusCondition);
+                console.log("Status Updating");
 
                 const aiStatus = {
-                    statusMessage: statusMessage,
+                    statusMessage: aiStatusMessage,
                     statusMarket: marketPair,
                     statusAuth0or: "Sachiels AI",
                     statusTimestamp: nowMillisecond
@@ -172,20 +177,25 @@ async function statusCheckpoint(marketPair, statusMessage, statusCondition) {
 
                 firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
 
+                sendNotification(aiStatusMessage, "", statusCondition);
+
+            } else {
+                console.log("Status Recently Sent");
             }
 
         } else {
-
-            sendNotification(statusMessage, "", statusCondition);
+            console.log("New Status Sending...");
 
             const aiStatus = {
-                statusMessage: statusMessage,
+                statusMessage: aiStatusMessage,
                 statusMarket: marketPair,
                 statusAuthor: "Sachiels AI",
                 statusTimestamp: nowMillisecond
             };
 
             firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
+
+            sendNotification(aiStatusMessage, "", statusCondition);
 
         }
 
@@ -919,7 +929,7 @@ async function setPostsData(jsonObject) {
 exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
     functions.logger.log("Experiments 🧪");
 
-    forexDailyMarketIdentifier('EURUSD');
+    analysisOfRsi(73, "MNO");
 
 });
 
@@ -956,6 +966,12 @@ async function updateMarketType(purchasingTier, tradeTimestamp, tradingPair) {
 
 /* Utilities */
 function sendNotification(statusMessage, notificationImage, statusCondition) {
+
+    if (notificationImage.toString().length === 0) {
+
+        notificationImage = "https://pbs.twimg.com/profile_images/1530852621673811968/uCJBBRJy_400x400.jpg";
+
+    }
 
     var dataStatusAI = {
         
