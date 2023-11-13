@@ -17,6 +17,8 @@ const runtimeOptions = {
 
 firestore.settings({ ignoreUndefinedProperties: true })
 
+
+
 /* 
  * START - Scheduled Status Functions 
  */
@@ -25,17 +27,17 @@ exports.sachielAnalysisStatus = functions.runWith(runtimeOptions).pubsub.schedul
     console.log('Time; ' + Date.now());
 
     /* Start - ETHUSD */
-    cryptocurrenciesMarketData('ETHUSD');
+    cryptocurrenciesMarketStatus('ETHUSD');
     /* End - ETHUSD */
 
     /* Start - EURUSD */
-    forexMarketData('EURUSD');
+    forexMarketStatus('EURUSD');
     /* End - EURUSD */
 
     return null;
 });
 
-async function cryptocurrenciesMarketData(marketPairInput) {
+async function cryptocurrenciesMarketStatus(marketPairInput) {
 
     var marketPair = marketPairInput;
 
@@ -76,7 +78,7 @@ async function cryptocurrenciesMarketData(marketPairInput) {
 
 }
 
-async function forexMarketData(marketPairInput) {
+async function forexMarketStatus(marketPairInput) {
 
     var marketPair = marketPairInput;
 
@@ -221,21 +223,25 @@ exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, c
  * END - Scheduled Status Functions 
  */
 
+
+
 /* 
- *START - Scheduled Candlestick Indentifier 
+ * START - Scheduled Candlestick Indentifier 
  */
 // Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
 exports.dailyMarketIdentifier = functions.runWith(runtimeOptions).pubsub.schedule('13 01 * * *').timeZone('America/New_York').onRun((context) => {
+
+    const timeframe = "Daily";
 
     /* 
      * Start - Forex 
      */
     /* Start - EURUSD */
-    forexDailyMarketIdentifier('EURUSD', 'Daily');
+    forexDailyMarketIdentifier('EURUSD', timeframe);
     /* End - EURUSD */
 
     /* Start - GBPJPY */
-    forexDailyMarketIdentifier('GBPJPY', 'Daily');
+    forexDailyMarketIdentifier('GBPJPY', timeframe);
     /* End - GBPJPY */
     /* 
      * End - Forex 
@@ -245,7 +251,37 @@ exports.dailyMarketIdentifier = functions.runWith(runtimeOptions).pubsub.schedul
      * Start - Cryptocurrency 
      */
     /* Start - ETHUSD */
-    cryptocurrenciesDailyMarketIdentifier('ETHUSD', 'Daily');
+    cryptocurrenciesDailyMarketIdentifier('ETHUSD', timeframe);
+    /* End - ETHUSD */
+    /* 
+     * End - Cryptocurrency 
+     */
+
+});
+
+exports.fourHoursMarketIdentifier = functions.runWith(runtimeOptions).pubsub.schedule('0 */4 * * *').timeZone('America/New_York').onRun((context) => {
+
+    const timeframe = "4 Hours";
+
+    /* 
+     * Start - Forex 
+     */
+    /* Start - EURUSD */
+    forexDailyMarketIdentifier('EURUSD', timeframe);
+    /* End - EURUSD */
+
+    /* Start - GBPJPY */
+    forexDailyMarketIdentifier('GBPJPY', timeframe);
+    /* End - GBPJPY */
+    /* 
+     * End - Forex 
+     */
+
+    /* 
+     * Start - Cryptocurrency 
+     */
+    /* Start - ETHUSD */
+    cryptocurrenciesDailyMarketIdentifier('ETHUSD', timeframe);
     /* End - ETHUSD */
     /* 
      * End - Cryptocurrency 
@@ -604,6 +640,10 @@ async function storeHistory(candlestickName, candlestickImage, marketDirection, 
  */
 
 
+
+/*
+ * START - Sachiels Signals 
+ */
 exports.platinumTier = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
     functions.logger.log("Receiving Platinum Signal :::", data.tradeTimestamp);
 
@@ -796,6 +836,45 @@ exports.palladiumTier = functions.runWith(runtimeOptions).https.onCall(async (da
 
 });
 
+async function updateMarketType(purchasingTier, tradeTimestamp, tradingPair) {
+
+    const reference = database.ref("/SachielsSignals/Markets");
+
+    reference.once("value", function(querySnapshot) {
+        
+        querySnapshot.forEach((childSnapshot) => {  
+            functions.logger.log("🧪 " + childSnapshot.key);
+
+            childSnapshot.forEach((itemSnapshot) => {
+
+                if (itemSnapshot.key == tradingPair) {
+                    console.log('Founded Item ::: ' + itemSnapshot.key);
+
+                    firestore.doc("/Sachiels/Signals/" + purchasingTier + "/" + tradeTimestamp)
+                        .update({tradeMarketType: childSnapshot.key}).then((documentSnapshot) => {
+        
+                            
+
+                        });
+
+                }
+                
+            });
+            
+        });
+
+    }); 
+      
+}
+/*
+ * END - Sachiels Signals
+ */
+
+
+
+/*
+ * START - Academy
+ */
 exports.transferAcademyContents = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
 
     var numberOfPage = req.query.numberOfPage;
@@ -925,46 +1004,13 @@ async function setPostsData(jsonObject) {
     /* End - Document * With Even Directory */
 
 }
+/*
+ * END - Academy
+ */
 
-exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
-    functions.logger.log("Experiments 🧪");
 
-    analysisOfRsi(73, "PQRST");
 
-});
-
-async function updateMarketType(purchasingTier, tradeTimestamp, tradingPair) {
-
-    const reference = database.ref("/SachielsSignals/Markets");
-
-    reference.once("value", function(querySnapshot) {
-        
-        querySnapshot.forEach((childSnapshot) => {  
-            functions.logger.log("🧪 " + childSnapshot.key);
-
-            childSnapshot.forEach((itemSnapshot) => {
-
-                if (itemSnapshot.key == tradingPair) {
-                    console.log('Founded Item ::: ' + itemSnapshot.key);
-
-                    firestore.doc("/Sachiels/Signals/" + purchasingTier + "/" + tradeTimestamp)
-                        .update({tradeMarketType: childSnapshot.key}).then((documentSnapshot) => {
-        
-                            
-
-                        });
-
-                }
-                
-            });
-            
-        });
-
-    }); 
-      
-}
-
-/* Utilities */
+/* START - Utilities */
 function sendNotification(statusMessage, notificationImage, statusCondition) {
 
     if (notificationImage.toString().length === 0) {
@@ -1019,4 +1065,13 @@ function linearInterpolation(firstNumber, lastNumber, inputNumber) {
 
     return mappedNumber;
 }
-/* Utilities */
+/* END - Utilities */
+
+
+
+exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
+    functions.logger.log("Experiments 🧪");
+
+    analysisOfRsi(73, "PQRST");
+
+});
