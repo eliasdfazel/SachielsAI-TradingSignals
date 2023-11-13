@@ -152,7 +152,7 @@ async function analysisOfRsi(rsiNumber, marketPair) {
 
 async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
 
-    firestore.doc('/Sachiels/AI/Status/' + marketPair).get().then((documentSnapshot) => {
+    firestore.doc('/Sachiels/AI/Status/' + marketPair).get().then(async (documentSnapshot) => {
 
         if (documentSnapshot.exists) {
             console.log("Status Exists");
@@ -175,7 +175,7 @@ async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
                     statusTimestamp: nowMillisecond
                 };
 
-                firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
+                await firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
 
                 sendNotification(aiStatusMessage, "", statusCondition);
 
@@ -193,7 +193,7 @@ async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
                 statusTimestamp: nowMillisecond
             };
 
-            firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
+            await firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
 
             sendNotification(aiStatusMessage, "", statusCondition);
 
@@ -589,7 +589,7 @@ async function candlestickTopic(candlestickMessage, candlestickImage, candlestic
 async function storeHistory(candlestickName, candlestickImage, marketDirection, marketPair, timeframe) {
 
     // Sachiels/Candlesticks/History/[Milliseconds]
-    firestore.doc("Sachiels/Candlesticks/History/" + Date.now().toString()).set({
+    await firestore.doc("Sachiels/Candlesticks/History/" + Date.now().toString()).set({
         timestamp: FieldValue.serverTimestamp(),
         candlestickName: candlestickName,
         candlestickImage: candlestickImage,
@@ -929,7 +929,7 @@ async function setPostsData(jsonObject) {
 exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
     functions.logger.log("Experiments 🧪");
 
-    analysisOfRsi(73, "MNO");
+    analysisOfRsi(73, "PQRST");
 
 });
 
