@@ -17,7 +17,9 @@ const runtimeOptions = {
 
 firestore.settings({ ignoreUndefinedProperties: true })
 
-
+// Polygon Free API Keys;
+// Elias Fazel; fH4mh0CtBWHOBlWb90ozkxJmTOBWLl3o
+// Geeks Empire Support; BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
 
 /* 
  * START - Scheduled Status Functions 
@@ -229,39 +231,12 @@ exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, c
  * START - Scheduled Candlestick Indentifier 
  */
 // Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
+/*
+ * START - Daily 
+ */
 exports.dailyMarketIdentifier = functions.runWith(runtimeOptions).pubsub.schedule('13 01 * * *').timeZone('America/New_York').onRun((context) => {
 
     const timeframe = "Daily";
-
-    /* 
-     * Start - Forex 
-     */
-    /* Start - EURUSD */
-    forexDailyMarketIdentifier('EURUSD', timeframe);
-    /* End - EURUSD */
-
-    /* Start - GBPJPY */
-    forexDailyMarketIdentifier('GBPJPY', timeframe);
-    /* End - GBPJPY */
-    /* 
-     * End - Forex 
-     */
-
-    /* 
-     * Start - Cryptocurrency 
-     */
-    /* Start - ETHUSD */
-    cryptocurrenciesDailyMarketIdentifier('ETHUSD', timeframe);
-    /* End - ETHUSD */
-    /* 
-     * End - Cryptocurrency 
-     */
-
-});
-
-exports.fourHoursMarketIdentifier = functions.runWith(runtimeOptions).pubsub.schedule('0 */4 * * *').timeZone('America/New_York').onRun((context) => {
-
-    const timeframe = "4 Hours";
 
     /* 
      * Start - Forex 
@@ -440,6 +415,160 @@ async function cryptocurrenciesDailyMarketIdentifier(marketPairInput, timeframe)
     xmlHttpRequest.send();
 
 }
+/*
+ * END - Daily 
+ */
+
+/*
+ * START - 4 Hours
+ */
+//exports.fourHoursMarketIdentifier = functions.runWith(runtimeOptions).pubsub.schedule('0 */4 * * *').timeZone('America/New_York').onRun((context) => {
+//
+//    const timeframe = "4 Hours";
+//
+//    /* 
+//     * Start - Forex 
+//     */
+//    /* Start - EURUSD */
+//    forexFourHoursIdentifier('EURUSD', timeframe);
+//    /* End - EURUSD */
+//
+//    /* Start - GBPJPY */
+//    forexFourHoursIdentifier('GBPJPY', timeframe);
+//    /* End - GBPJPY */
+//    /* 
+//     * End - Forex 
+//     */
+//
+//    /* 
+//     * Start - Cryptocurrency 
+//     */
+//    /* Start - ETHUSD */
+//    cryptocurrenciesFourHoursIdentifier('ETHUSD', timeframe);
+//    /* End - ETHUSD */
+//    /* 
+//     * End - Cryptocurrency 
+//     */
+//
+//});
+
+async function forexFourHoursIdentifier(marketPairInput, timeframe) {
+
+    var marketPair = marketPairInput;
+
+    // From 4 Hours (14400000 Milliseconds) Ago Until Now
+    var startTimespan = Date.now() - 14400000;
+    var endTimespan = Date.now();
+    console.log('Start Timespan: ' + startTimespan);
+    console.log('End Timespan: ' + endTimespan);
+
+    //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/hour/{Millisecond}/{Millisecond}?adjusted=true&sort=asc&limit=120&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+    var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
+        + 'C:' + marketPair
+        + '/range/1/hour/'
+        + startTimespan + '/' + endTimespan
+        + '?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+    console.log('Market Identifier Endpoint; ' + marketEndpoint);
+
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.open('GET', marketEndpoint, true);
+    xmlHttpRequest.setRequestHeader('accept', 'application/json');
+    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+    xmlHttpRequest.onreadystatechange = function () {
+        if (this.readyState == 4) {
+
+        } else {
+
+        }
+    };
+    xmlHttpRequest.onprogress = function () {
+
+    };
+    xmlHttpRequest.onload = function () {
+        console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
+
+        var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
+        
+        let openPrice = jsonObjectPrices.results[0].o;
+        let closePrice = jsonObjectPrices.results[0].c;
+
+        let highestPrice = jsonObjectPrices.results[0].h;
+        let lowestPrice = jsonObjectPrices.results[0].l;
+        console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+
+        analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+        analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+        analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+        analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+    };
+    xmlHttpRequest.send();
+
+}
+
+async function cryptocurrenciesFourHoursIdentifier(marketPairInput, timeframe) {
+
+    var marketPair = marketPairInput;
+
+    // From 4 Hours (14400000 Milliseconds) Ago Until Now
+    var startTimespan = Date.now() - 14400000;
+    var endTimespan = Date.now();
+    console.log('Start Timespan: ' + startTimespan);
+    console.log('End Timespan: ' + endTimespan);
+
+    //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/range/1/hour/{Millisecond}/{Millisecond}?adjusted=true&sort=asc&limit=120&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+    var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
+        + 'X' + marketPair
+        + '/range/1/hour/'
+        + startTimespan + '/' + endTimespan
+        + '?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+    console.log('Market Identifier Endpoint; ' + marketEndpoint);
+
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.open('GET', marketEndpoint, true);
+    xmlHttpRequest.setRequestHeader('accept', 'application/json');
+    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+    xmlHttpRequest.onreadystatechange = function () {
+        if (this.readyState == 4) {
+
+        } else {
+
+        }
+    };
+    xmlHttpRequest.onprogress = function () {
+
+    };
+    xmlHttpRequest.onload = function () {
+        console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
+
+        var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
+        
+        let openPrice = jsonObjectPrices.results[0].o;
+        let closePrice = jsonObjectPrices.results[0].c;
+
+        let highestPrice = jsonObjectPrices.results[0].h;
+        let lowestPrice = jsonObjectPrices.results[0].l;
+        console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+
+        analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+        analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+        analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+        analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+    };
+    xmlHttpRequest.send();
+
+}
+/*
+ * end - 4 Hours
+ */
+
 
 // DOJI
 async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice) {
@@ -616,7 +745,7 @@ async function candlestickTopic(candlestickMessage, candlestickImage, candlestic
 
     var notificationMessage = candlestickMessage;
 
-    var candlestickCondition = "\'" + candlestickTopic + "'\' in topics";
+    var candlestickCondition = "\'" + candlestickTopic + "'\' in topics || \'Privileged\' in topics";
 
     sendNotification(notificationMessage, candlestickImage, candlestickCondition);
 
