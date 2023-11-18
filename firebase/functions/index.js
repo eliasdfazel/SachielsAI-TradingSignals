@@ -822,7 +822,7 @@ exports.platinumTier = functions.runWith(runtimeOptions).https.onCall(async (dat
                 "tradeTimestamp": documentData.tradeTimestamp,
             },
     
-            topic: "Platinum"
+            topic: "\'Platinum\' in topics"
         };
     
         admin.messaging().send(signalData).then((response) => {
@@ -885,8 +885,8 @@ exports.goldTier = functions.runWith(runtimeOptions).https.onCall(async (data, c
                 "tradeTimeframe": documentData.tradeTimeframe,
                 "tradeTimestamp": documentData.tradeTimestamp,
             },
-    
-            topic: "Gold"
+
+            topic: "\'Gold\' in topics"
         };
     
         admin.messaging().send(signalData).then((response) => {
@@ -950,7 +950,7 @@ exports.palladiumTier = functions.runWith(runtimeOptions).https.onCall(async (da
                 "tradeTimestamp": documentData.tradeTimestamp,
             },
     
-            topic: "Palladium"
+            topic: "\'Palladium\' in topics"
         };
     
         admin.messaging().send(signalData).then((response) => {
