@@ -28,7 +28,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -48,9 +48,9 @@ android {
         applicationId "co.geeksempire.sachiel.signals"
 
         minSdkVersion 26
-        targetSdkVersion 33
+        targetSdkVersion 34
 
-        versionCode 27
+        versionCode 28
         versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"
     }
 
