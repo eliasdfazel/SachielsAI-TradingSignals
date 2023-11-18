@@ -429,7 +429,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
           } else {
 
             FirebaseFirestore.instance
-                .collection("/Sachiels/Purchasing/Plans")
+                .collection("/Sachiels/Signals/Plans")
                 .orderBy("purchasingPlanPrice")
                 .get().then((QuerySnapshot querySnapshot) {
 
