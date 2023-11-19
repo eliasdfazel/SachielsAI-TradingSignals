@@ -9,6 +9,8 @@ admin.initializeApp({
 const firestore = admin.firestore();
 const database = admin.database();
 
+const FieldValue = require('firebase-admin').firestore.FieldValue;
+
 const XMLHttpRequest = require("xhr2").XMLHttpRequest;
 
 const runtimeOptions = {
@@ -148,7 +150,7 @@ async function analysisOfRsi(rsiNumber, marketPair) {
 
         statusCondition = '\'Privileged\' in topics';
 
-        sendNotification(statusMessage, "", statusCondition);
+        sendNotification("", statusMessage, "", statusCondition);
 
     }
 
@@ -181,7 +183,7 @@ async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
 
                 await firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
 
-                sendNotification(aiStatusMessage, "", statusCondition);
+                sendNotification("", aiStatusMessage, "", statusCondition);
 
             } else {
                 console.log("Status Recently Sent");
@@ -199,7 +201,7 @@ async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
 
             await firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
 
-            sendNotification(aiStatusMessage, "", statusCondition);
+            sendNotification("", aiStatusMessage, "", statusCondition);
 
         }
 
@@ -215,7 +217,7 @@ exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, c
 
     const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
 
-    sendNotification(data.statusMessage, "", statusCondition);
+    sendNotification("", data.statusMessage, "", statusCondition);
 
 });
 /* 
@@ -578,6 +580,7 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
     if (closePercentage <= 55 
         && openPercentage >= 45) { // GREEN
+            console.log('Candlesticks Pattern; DOJI Green');
 
             // Doji
             // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
@@ -595,6 +598,7 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
     } else if (openPercentage <= 55 
         && closePercentage >= 45) { // RED
+            console.log('Candlesticks Pattern; DOJI Red');
 
             // Doji
             // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
@@ -612,7 +616,21 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
     } else { // EQUAL
 
+        let deltaPercentage = closePercentage - openPercentage;
 
+        if (deltaPercentage <= 11) {
+
+            let candlestickName = "DOJI"; 
+            let candlestickMessage = "DOJI Candlestick Generated\n" 
+                + "Market: " + marketPair + "\n"
+                + "Timeframe: " + timeframe;
+            let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Red.png?alt=media";
+
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+
+            storeHistory("DOJI", candlestickImage, "UNKNOWN", marketPair, timeframe);
+
+        }
 
     }
 
@@ -626,6 +644,7 @@ async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, high
 
     if ((openPercentage >= 70 && openPercentage <= 80)
         && (closePercentage >= 85 && closePercentage <= 100)) { // GREEN - HAMMER
+            console.log('Candlesticks Pattern; HAMMER Green');
 
             let candlestickName = "HAMMER"; 
             let candlestickMessage = "HAMMER (BULLISH) Candlestick Generated 🟢\n" 
@@ -639,6 +658,7 @@ async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, high
 
     } else if ((closePercentage >= 70 && closePercentage <= 80)
     && (openPercentage >= 85 && openPercentage <= 100)) { // RED - HANGING MAN
+        console.log('Candlesticks Pattern; HAMMER Red');
 
         let candlestickName = "HANGING MAN"; 
         let candlestickMessage = "HANGING MAN (BEARISH) Candlestick Generated 🔴\n" 
@@ -666,6 +686,7 @@ async function analyseArrowDown(marketPair, timeframe, openPrice, closePrice, hi
 
     if ((openPercentage <= 30 && openPercentage >= 20)
         && (closePercentage <= 15 && closePercentage >= 0)) { // RED - SHOOTING STAR
+            console.log('Candlesticks Pattern; SHOOTING STAR Red');
 
             let candlestickName = "SHOOTING STAR"; 
             let candlestickMessage = "SHOOTING STAR (BEARISH) Candlestick Generated 🔴\n" 
@@ -679,6 +700,7 @@ async function analyseArrowDown(marketPair, timeframe, openPrice, closePrice, hi
 
     } else if ((closePercentage <= 30 && closePercentage >= 20)
     && (openPercentage <= 15 && openPercentage >= 0)) { // GREEN - HAMMER INVERTED
+        console.log('Candlesticks Pattern; SHOOTING STAR Green');
 
         let candlestickName = "HAMMER INVERTED"; 
         let candlestickMessage = "HAMMER INVERTED (BULLISH) Candlestick Generated 🟢\n" 
@@ -706,6 +728,7 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
 
     if (openPercentage >= 90
         && closePercentage >= 90) { // GREEN - DRAGONFLY
+            console.log('Candlesticks Pattern; DRAGONFLY Green');
 
             let candlestickName = "DRAGONFLY"; 
             let candlestickMessage = "DRAGONFLY (BULLISH) Candlestick Generated 🟢\n" 
@@ -719,6 +742,7 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
 
     } else if (openPercentage <= 10
         && closePercentage >= 0) { // RED - GRAVESTONE
+            console.log('Candlesticks Pattern; DRAGONFLY Red');
 
             let candlestickName = "GRAVESTONE"; 
             let candlestickMessage = "GRAVESTONE (BEARISH) Candlestick Generated 🔴\n" 
@@ -745,9 +769,9 @@ async function candlestickTopic(candlestickMessage, candlestickImage, candlestic
 
     var notificationMessage = candlestickMessage;
 
-    var candlestickCondition = "\'" + candlestickTopic + "'\' in topics || \'Privileged\' in topics";
+    var candlestickCondition = "\'" + candlestickTopic + "\' in topics || \'Privileged\' in topics";
 
-    sendNotification(notificationMessage, candlestickImage, candlestickCondition);
+    sendNotification("Sachiels AI; Candlesticks", notificationMessage, candlestickImage, candlestickCondition);
 
 }
 
@@ -1140,7 +1164,7 @@ async function setPostsData(jsonObject) {
 
 
 /* START - Utilities */
-function sendNotification(statusMessage, notificationImage, statusCondition) {
+function sendNotification(statusTitle, statusMessage, notificationImage, statusCondition) {
 
     if (notificationImage.toString().length === 0) {
 
@@ -1148,10 +1172,16 @@ function sendNotification(statusMessage, notificationImage, statusCondition) {
 
     }
 
+    if (statusTitle.toString().length === 0) {
+
+        statusTitle = "Sachiels AI Status";
+
+    }
+
     var dataStatusAI = {
         
         notification: {
-            title: "Sachiels AI Status 🤖",
+            title: statusTitle,
             body: statusMessage
         },
         
@@ -1179,10 +1209,10 @@ function sendNotification(statusMessage, notificationImage, statusCondition) {
     };
 
     admin.messaging().send(dataStatusAI).then((response) => {
-        functions.logger.log("Successfully Sent ::: ", response);
+        functions.logger.log("Message Successfully Sent ::: ", response);
 
     }).catch((error) => {
-        functions.logger.log("Error Sending ::: ", error);
+        functions.logger.log("Message Sending Error ::: ", error);
 
     });
 
@@ -1201,6 +1231,7 @@ function linearInterpolation(firstNumber, lastNumber, inputNumber) {
 exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
     functions.logger.log("Experiments 🧪");
 
-    analysisOfRsi(73, "PQRST");
+    //marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice
+    analyseDojiPattern('ETHUSD', 'Daily', 1885.93, 1888.84, 1905.30, 1873.55);
 
 });
