@@ -57,10 +57,10 @@ class DynamicShortcuts {
     });
 
     quickActions.setShortcutItems(<ShortcutItem>[
-      const ShortcutItem(type: 'share', localizedTitle: 'Share', icon: 'share_icon'),
-      const ShortcutItem(type: 'history', localizedTitle: 'History', icon: 'squircle_logo'),
-      const ShortcutItem(type: 'twitter', localizedTitle: 'X', icon: 'twitter_icon'),
-      const ShortcutItem(type: 'threads', localizedTitle: 'Threads', icon: 'threads_icon')
+      const ShortcutItem(type: 'share', localizedTitle: 'Share', icon: 'assets/share_icon'),
+      const ShortcutItem(type: 'history', localizedTitle: 'History', icon: 'assets/squircle_logo'),
+      const ShortcutItem(type: 'twitter', localizedTitle: 'X', icon: 'assets/twitter_icon'),
+      const ShortcutItem(type: 'threads', localizedTitle: 'Threads', icon: 'assets/threads_icon')
     ]);
 
   }
