@@ -295,12 +295,11 @@ async function forexDailyMarketIdentifier(marketPairInput, timeframe) {
     var dateTimespan = dateYear + '-' + dateMonth + '-' + dateDay;
     console.log('Date: ' + dateTimespan);
 
+    //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
     //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/day/2023-09-14/2023-09-14?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
     var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
         + 'C:' + marketPair
-        + '/range/1/day/'
-        + dateTimespan + '/' + dateTimespan
-        + '?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+        + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
     console.log('Market Identifier Endpoint; ' + marketEndpoint);
 
     var xmlHttpRequest = new XMLHttpRequest();
@@ -327,7 +326,7 @@ async function forexDailyMarketIdentifier(marketPairInput, timeframe) {
 
         let highestPrice = jsonObjectPrices.results[0].h;
         let lowestPrice = jsonObjectPrices.results[0].l;
-        console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+        console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
         analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
@@ -371,12 +370,11 @@ async function cryptocurrenciesDailyMarketIdentifier(marketPairInput, timeframe)
     var dateTimespan = dateYear + '-' + dateMonth + '-' + dateDay;
     console.log('Date: ' + dateTimespan);
 
+    //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
     //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/range/1/day/2023-09-14/2023-09-14?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
     var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
-        + 'X' + marketPair
-        + '/range/1/day/'
-        + dateTimespan + '/' + dateTimespan
-        + '?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+        + 'X:' + marketPair
+        + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
     console.log('Market Identifier Endpoint; ' + marketEndpoint);
 
     var xmlHttpRequest = new XMLHttpRequest();
@@ -403,7 +401,7 @@ async function cryptocurrenciesDailyMarketIdentifier(marketPairInput, timeframe)
 
         let highestPrice = jsonObjectPrices.results[0].h;
         let lowestPrice = jsonObjectPrices.results[0].l;
-        console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+        console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
         analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
@@ -464,12 +462,11 @@ async function forexFourHoursIdentifier(marketPairInput, timeframe) {
     console.log('Start Timespan: ' + startTimespan);
     console.log('End Timespan: ' + endTimespan);
 
+    //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
     //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/hour/{Millisecond}/{Millisecond}?adjusted=true&sort=asc&limit=120&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
     var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
         + 'C:' + marketPair
-        + '/range/1/hour/'
-        + startTimespan + '/' + endTimespan
-        + '?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+        + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
     console.log('Market Identifier Endpoint; ' + marketEndpoint);
 
     var xmlHttpRequest = new XMLHttpRequest();
@@ -496,7 +493,7 @@ async function forexFourHoursIdentifier(marketPairInput, timeframe) {
 
         let highestPrice = jsonObjectPrices.results[0].h;
         let lowestPrice = jsonObjectPrices.results[0].l;
-        console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+        console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
         analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
@@ -521,12 +518,11 @@ async function cryptocurrenciesFourHoursIdentifier(marketPairInput, timeframe) {
     console.log('Start Timespan: ' + startTimespan);
     console.log('End Timespan: ' + endTimespan);
 
+    //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
     //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/range/1/hour/{Millisecond}/{Millisecond}?adjusted=true&sort=asc&limit=120&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
     var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
-        + 'X' + marketPair
-        + '/range/1/hour/'
-        + startTimespan + '/' + endTimespan
-        + '?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+        + 'X:' + marketPair
+        + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
     console.log('Market Identifier Endpoint; ' + marketEndpoint);
 
     var xmlHttpRequest = new XMLHttpRequest();
@@ -553,7 +549,7 @@ async function cryptocurrenciesFourHoursIdentifier(marketPairInput, timeframe) {
 
         let highestPrice = jsonObjectPrices.results[0].h;
         let lowestPrice = jsonObjectPrices.results[0].l;
-        console.log('Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+        console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
         analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
@@ -577,10 +573,11 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
+    console.log('Open Percentage: ' + openPercentage + ' - ' + 'Close Percentage: ' + closePercentage);
 
     if (closePercentage <= 55 
         && openPercentage >= 45) { // GREEN
-            console.log('Candlesticks Pattern; DOJI Green');
+            console.log(marketPair + ' Candlesticks Pattern; DOJI Green');
 
             // Doji
             // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
@@ -598,7 +595,7 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
     } else if (openPercentage <= 55 
         && closePercentage >= 45) { // RED
-            console.log('Candlesticks Pattern; DOJI Red');
+            console.log(marketPair + ' Candlesticks Pattern; DOJI Red');
 
             // Doji
             // To Identify Strength Of Doji, Check Differencial Of xPercentage. Smaller Means Stronger Doji.
@@ -641,10 +638,11 @@ async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, high
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
-
+    console.log('Open Percentage: ' + openPercentage + ' - ' + 'Close Percentage: ' + closePercentage);
+    
     if ((openPercentage >= 70 && openPercentage <= 80)
         && (closePercentage >= 85 && closePercentage <= 100)) { // GREEN - HAMMER
-            console.log('Candlesticks Pattern; HAMMER Green');
+            console.log(marketPair + ' Candlesticks Pattern; HAMMER Green');
 
             let candlestickName = "HAMMER"; 
             let candlestickMessage = "HAMMER (BULLISH) Candlestick Generated 🟢\n" 
@@ -658,7 +656,7 @@ async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, high
 
     } else if ((closePercentage >= 70 && closePercentage <= 80)
     && (openPercentage >= 85 && openPercentage <= 100)) { // RED - HANGING MAN
-        console.log('Candlesticks Pattern; HAMMER Red');
+        console.log(marketPair + ' Candlesticks Pattern; HAMMER Red');
 
         let candlestickName = "HANGING MAN"; 
         let candlestickMessage = "HANGING MAN (BEARISH) Candlestick Generated 🔴\n" 
@@ -683,10 +681,11 @@ async function analyseArrowDown(marketPair, timeframe, openPrice, closePrice, hi
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
+    console.log('Open Percentage: ' + openPercentage + ' - ' + 'Close Percentage: ' + closePercentage);
 
     if ((openPercentage <= 30 && openPercentage >= 20)
         && (closePercentage <= 15 && closePercentage >= 0)) { // RED - SHOOTING STAR
-            console.log('Candlesticks Pattern; SHOOTING STAR Red');
+            console.log(marketPair + ' Candlesticks Pattern; SHOOTING STAR Red');
 
             let candlestickName = "SHOOTING STAR"; 
             let candlestickMessage = "SHOOTING STAR (BEARISH) Candlestick Generated 🔴\n" 
@@ -700,7 +699,7 @@ async function analyseArrowDown(marketPair, timeframe, openPrice, closePrice, hi
 
     } else if ((closePercentage <= 30 && closePercentage >= 20)
     && (openPercentage <= 15 && openPercentage >= 0)) { // GREEN - HAMMER INVERTED
-        console.log('Candlesticks Pattern; SHOOTING STAR Green');
+        console.log(marketPair + ' Candlesticks Pattern; SHOOTING STAR Green');
 
         let candlestickName = "HAMMER INVERTED"; 
         let candlestickMessage = "HAMMER INVERTED (BULLISH) Candlestick Generated 🟢\n" 
@@ -725,10 +724,11 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
+    console.log('Open Percentage: ' + openPercentage + ' - ' + 'Close Percentage: ' + closePercentage);
 
     if (openPercentage >= 90
         && closePercentage >= 90) { // GREEN - DRAGONFLY
-            console.log('Candlesticks Pattern; DRAGONFLY Green');
+            console.log(marketPair + ' Candlesticks Pattern; DRAGONFLY Green');
 
             let candlestickName = "DRAGONFLY"; 
             let candlestickMessage = "DRAGONFLY (BULLISH) Candlestick Generated 🟢\n" 
@@ -742,7 +742,7 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
 
     } else if (openPercentage <= 10
         && closePercentage >= 0) { // RED - GRAVESTONE
-            console.log('Candlesticks Pattern; DRAGONFLY Red');
+            console.log(marketPair + ' Candlesticks Pattern; DRAGONFLY Red');
 
             let candlestickName = "GRAVESTONE"; 
             let candlestickMessage = "GRAVESTONE (BEARISH) Candlestick Generated 🔴\n" 
