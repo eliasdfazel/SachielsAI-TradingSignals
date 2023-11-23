@@ -777,8 +777,10 @@ async function candlestickTopic(candlestickMessage, candlestickImage, candlestic
 
 async function storeHistory(candlestickName, candlestickImage, marketDirection, marketPair, timeframe) {
 
+    let timestimestampValuetamp = Date.now().toString();
+
     // Sachiels/Candlesticks/History/[Milliseconds]
-    await firestore.doc("Sachiels/Candlesticks/History/" + Date.now().toString()).set({
+    await firestore.doc("Sachiels/Candlesticks/History/" + timestampValue).set({
         timestamp: FieldValue.serverTimestamp(),
         candlestickName: candlestickName,
         candlestickImage: candlestickImage,
