@@ -575,8 +575,8 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
     let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
     console.log('Open Percentage: ' + openPercentage + ' - ' + 'Close Percentage: ' + closePercentage);
 
-    if (closePercentage <= 55 
-        && openPercentage >= 45) { // GREEN
+    if (closePercentage <= 55 && closePercentage > 50
+        && openPercentage >= 45 && openPercentage < 50) { // GREEN
             console.log(marketPair + ' Candlesticks Pattern; DOJI Green');
 
             // Doji
@@ -593,8 +593,8 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
             storeHistory("DOJI", candlestickImage, "BULLISH", marketPair, timeframe);
 
-    } else if (openPercentage <= 55 
-        && closePercentage >= 45) { // RED
+    } else if (openPercentage <= 55 && openPercentage > 50
+        && closePercentage >= 45 && closePercentage < 50) { // RED
             console.log(marketPair + ' Candlesticks Pattern; DOJI Red');
 
             // Doji
@@ -613,9 +613,10 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
     } else { // EQUAL
 
-        let deltaPercentage = closePercentage - openPercentage;
+        let deltaPercentage = Math.abs(closePercentage - openPercentage);
 
-        if (deltaPercentage <= 11) {
+        if (deltaPercentage <= 9) {
+            console.log(marketPair + ' Candlesticks Pattern; Unknown');
 
             let candlestickName = "DOJI"; 
             let candlestickMessage = "DOJI Candlestick Generated\n" 
@@ -627,6 +628,8 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
             storeHistory("DOJI", candlestickImage, "UNKNOWN", marketPair, timeframe);
 
+        } else {
+            console.log('Doji: Not Matched');
         }
 
     }
@@ -655,23 +658,21 @@ async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, high
             storeHistory("HAMMER", candlestickImage, "BULLISH", marketPair, timeframe);
 
     } else if ((closePercentage >= 70 && closePercentage <= 80)
-    && (openPercentage >= 85 && openPercentage <= 100)) { // RED - HANGING MAN
-        console.log(marketPair + ' Candlesticks Pattern; HAMMER Red');
+        && (openPercentage >= 85 && openPercentage <= 100)) { // RED - HANGING MAN
+            console.log(marketPair + ' Candlesticks Pattern; HAMMER Red');
 
-        let candlestickName = "HANGING MAN"; 
-        let candlestickMessage = "HANGING MAN (BEARISH) Candlestick Generated 🔴\n" 
-            + "Market: " + marketPair + "\n"
-            + "Timeframe: " + timeframe;
-        let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FHanging.png?alt=media";
+            let candlestickName = "HANGING MAN"; 
+            let candlestickMessage = "HANGING MAN (BEARISH) Candlestick Generated 🔴\n" 
+                + "Market: " + marketPair + "\n"
+                + "Timeframe: " + timeframe;
+            let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FHanging.png?alt=media";
 
-        candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
-        storeHistory("HANGING MAN", candlestickImage, "BEARISH", marketPair, timeframe);
+            storeHistory("HANGING MAN", candlestickImage, "BEARISH", marketPair, timeframe);
 
     } else { // EQUAL
-
-
-
+        console.log('Arrow Up: Not Matched');
     }
 
 }
@@ -698,23 +699,21 @@ async function analyseArrowDown(marketPair, timeframe, openPrice, closePrice, hi
             storeHistory("SHOOTING STAR", candlestickImage, "BEARISH", marketPair, timeframe);
 
     } else if ((closePercentage <= 30 && closePercentage >= 20)
-    && (openPercentage <= 15 && openPercentage >= 0)) { // GREEN - HAMMER INVERTED
-        console.log(marketPair + ' Candlesticks Pattern; SHOOTING STAR Green');
+        && (openPercentage <= 15 && openPercentage >= 0)) { // GREEN - HAMMER INVERTED
+            console.log(marketPair + ' Candlesticks Pattern; SHOOTING STAR Green');
 
-        let candlestickName = "HAMMER INVERTED"; 
-        let candlestickMessage = "HAMMER INVERTED (BULLISH) Candlestick Generated 🟢\n" 
-            + "Market: " + marketPair + "\n"
-            + "Timeframe: " + timeframe;
-        let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FInverted%20Hammer.png?alt=media";
+            let candlestickName = "HAMMER INVERTED"; 
+            let candlestickMessage = "HAMMER INVERTED (BULLISH) Candlestick Generated 🟢\n" 
+                + "Market: " + marketPair + "\n"
+                + "Timeframe: " + timeframe;
+            let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FInverted%20Hammer.png?alt=media";
 
-        candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
-        storeHistory("HAMMER INVERTED", candlestickImage, "BULLISH", marketPair, timeframe);
+            storeHistory("HAMMER INVERTED", candlestickImage, "BULLISH", marketPair, timeframe);
 
     } else { // EQUAL
-
-
-
+        console.log('Arrow Down: Not Matched');
     }
 
 }
@@ -727,7 +726,7 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
     console.log('Open Percentage: ' + openPercentage + ' - ' + 'Close Percentage: ' + closePercentage);
 
     if (openPercentage >= 90
-        && closePercentage >= 90) { // GREEN - DRAGONFLY
+        && closePercentage > 90) { // GREEN - DRAGONFLY
             console.log(marketPair + ' Candlesticks Pattern; DRAGONFLY Green');
 
             let candlestickName = "DRAGONFLY"; 
@@ -741,7 +740,7 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
             storeHistory("DRAGONFLY", candlestickImage, "BULLISH", marketPair, timeframe);
 
     } else if (openPercentage <= 10
-        && closePercentage >= 0) { // RED - GRAVESTONE
+        && closePercentage < 10) { // RED - GRAVESTONE
             console.log(marketPair + ' Candlesticks Pattern; DRAGONFLY Red');
 
             let candlestickName = "GRAVESTONE"; 
@@ -755,9 +754,7 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
             storeHistory("GRAVESTONE", candlestickImage, "BEARISH", marketPair, timeframe);
 
     } else { // EQUAL
-
-        
-
+        console.log('Narrow Arrow: Not Matched');
     }
 
 }
@@ -777,7 +774,7 @@ async function candlestickTopic(candlestickMessage, candlestickImage, candlestic
 
 async function storeHistory(candlestickName, candlestickImage, marketDirection, marketPair, timeframe) {
 
-    let timestimestampValuetamp = Date.now().toString();
+    let timestampValue = Date.now().toString();
 
     // Sachiels/Candlesticks/History/[Milliseconds]
     await firestore.doc("Sachiels/Candlesticks/History/" + timestampValue).set({
@@ -1233,7 +1230,16 @@ function linearInterpolation(firstNumber, lastNumber, inputNumber) {
 exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
     functions.logger.log("Experiments 🧪");
 
+    // Market: EURUSD | Open: 1.09168 - Close: 1.0888 - Highest: 1.0923 - Lowest: 1.0851
+    // Open Percentage: 91.3888888888881 - Close Percentage: 51.388888888888715
+
     //marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice
-    analyseDojiPattern('ETHUSD', 'Daily', 1885.93, 1888.84, 1905.30, 1873.55);
+    analyseDojiPattern('EURUSD', 'Daily', 1.09168, 1.0888, 1.0923, 1.0851);
+
+    analyseArrowUp('EURUSD', 'Daily', 1.09168, 1.0888, 1.0923, 1.0851);
+
+    analyseArrowDown('EURUSD', 'Daily', 1.09168, 1.0888, 1.0923, 1.0851);
+
+    analyseNarrowArrow('EURUSD', 'Daily', 1.09168, 1.0888, 1.0923, 1.0851);
 
 });
