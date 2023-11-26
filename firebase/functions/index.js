@@ -622,7 +622,17 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
             let candlestickMessage = "DOJI Candlestick Generated\n" 
                 + "Market: " + marketPair + "\n"
                 + "Timeframe: " + timeframe;
-            let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Red.png?alt=media";
+            var candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Red.png?alt=media";
+
+            if (openPrice > closePrice) {
+
+                candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Red.png?alt=media";
+
+            } else {
+
+                candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Green.png?alt=media";
+
+            }
 
             candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
 
