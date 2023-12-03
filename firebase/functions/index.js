@@ -295,49 +295,55 @@ async function forexDailyMarketIdentifier(marketPairInput, timeframe) {
     var dateTimespan = dateYear + '-' + dateMonth + '-' + dateDay;
     console.log('Date: ' + dateTimespan);
 
-    //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
-    //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/day/2023-09-14/2023-09-14?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
-    var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
+    var weekday = dateObject.getDay();
+
+    if (weekday != 0 && weekday != 6) {
+
+        //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+        //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/day/2023-09-14/2023-09-14?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+        var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
         + 'C:' + marketPair
         + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
-    console.log('Market Identifier Endpoint; ' + marketEndpoint);
+        console.log('Market Identifier Endpoint; ' + marketEndpoint);
 
-    var xmlHttpRequest = new XMLHttpRequest();
-    xmlHttpRequest.open('GET', marketEndpoint, true);
-    xmlHttpRequest.setRequestHeader('accept', 'application/json');
-    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
-    xmlHttpRequest.onreadystatechange = function () {
-        if (this.readyState == 4) {
+        var xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.open('GET', marketEndpoint, true);
+        xmlHttpRequest.setRequestHeader('accept', 'application/json');
+        xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+        xmlHttpRequest.onreadystatechange = function () {
+            if (this.readyState == 4) {
 
-        } else {
+            } else {
 
-        }
-    };
-    xmlHttpRequest.onprogress = function () {
+            }
+        };
+        xmlHttpRequest.onprogress = function () {
 
-    };
-    xmlHttpRequest.onload = function () {
-        console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
+        };
+        xmlHttpRequest.onload = function () {
+            console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
 
-        var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
-        
-        let openPrice = jsonObjectPrices.results[0].o;
-        let closePrice = jsonObjectPrices.results[0].c;
+            var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
+            
+            let openPrice = jsonObjectPrices.results[0].o;
+            let closePrice = jsonObjectPrices.results[0].c;
 
-        let highestPrice = jsonObjectPrices.results[0].h;
-        let lowestPrice = jsonObjectPrices.results[0].l;
-        console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+            let highestPrice = jsonObjectPrices.results[0].h;
+            let lowestPrice = jsonObjectPrices.results[0].l;
+            console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
-        analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-    };
-    xmlHttpRequest.send();
+        };
+        xmlHttpRequest.send();
+
+    }
 
 }
 
@@ -370,49 +376,55 @@ async function cryptocurrenciesDailyMarketIdentifier(marketPairInput, timeframe)
     var dateTimespan = dateYear + '-' + dateMonth + '-' + dateDay;
     console.log('Date: ' + dateTimespan);
 
-    //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
-    //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/range/1/day/2023-09-14/2023-09-14?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
-    var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
-        + 'X:' + marketPair
-        + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
-    console.log('Market Identifier Endpoint; ' + marketEndpoint);
+    var weekday = dateObject.getDay();
 
-    var xmlHttpRequest = new XMLHttpRequest();
-    xmlHttpRequest.open('GET', marketEndpoint, true);
-    xmlHttpRequest.setRequestHeader('accept', 'application/json');
-    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
-    xmlHttpRequest.onreadystatechange = function () {
-        if (this.readyState == 4) {
+    if (weekday != 0 && weekday != 6) {
+    
+        //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+        //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/range/1/day/2023-09-14/2023-09-14?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+        var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
+            + 'X:' + marketPair
+            + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+        console.log('Market Identifier Endpoint; ' + marketEndpoint);
 
-        } else {
+        var xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.open('GET', marketEndpoint, true);
+        xmlHttpRequest.setRequestHeader('accept', 'application/json');
+        xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+        xmlHttpRequest.onreadystatechange = function () {
+            if (this.readyState == 4) {
 
-        }
-    };
-    xmlHttpRequest.onprogress = function () {
+            } else {
 
-    };
-    xmlHttpRequest.onload = function () {
-        console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
+            }
+        };
+        xmlHttpRequest.onprogress = function () {
 
-        var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
-        
-        let openPrice = jsonObjectPrices.results[0].o;
-        let closePrice = jsonObjectPrices.results[0].c;
+        };
+        xmlHttpRequest.onload = function () {
+            console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
 
-        let highestPrice = jsonObjectPrices.results[0].h;
-        let lowestPrice = jsonObjectPrices.results[0].l;
-        console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+            var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
+            
+            let openPrice = jsonObjectPrices.results[0].o;
+            let closePrice = jsonObjectPrices.results[0].c;
 
-        analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            let highestPrice = jsonObjectPrices.results[0].h;
+            let lowestPrice = jsonObjectPrices.results[0].l;
+            console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
-        analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-        analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-    };
-    xmlHttpRequest.send();
+            analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+        };
+        xmlHttpRequest.send();
+    
+    }
 
 }
 /*
@@ -462,49 +474,57 @@ async function forexFourHoursIdentifier(marketPairInput, timeframe) {
     console.log('Start Timespan: ' + startTimespan);
     console.log('End Timespan: ' + endTimespan);
 
-    //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
-    //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/hour/{Millisecond}/{Millisecond}?adjusted=true&sort=asc&limit=120&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
-    var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
-        + 'C:' + marketPair
-        + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
-    console.log('Market Identifier Endpoint; ' + marketEndpoint);
+    let dateObject = new Date(startTimespan);
 
-    var xmlHttpRequest = new XMLHttpRequest();
-    xmlHttpRequest.open('GET', marketEndpoint, true);
-    xmlHttpRequest.setRequestHeader('accept', 'application/json');
-    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
-    xmlHttpRequest.onreadystatechange = function () {
-        if (this.readyState == 4) {
+    var weekday = dateObject.getDay();
 
-        } else {
+    if (weekday != 0 && weekday != 6) {
 
-        }
-    };
-    xmlHttpRequest.onprogress = function () {
+        //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+        //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/hour/{Millisecond}/{Millisecond}?adjusted=true&sort=asc&limit=120&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+        var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
+            + 'C:' + marketPair
+            + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+        console.log('Market Identifier Endpoint; ' + marketEndpoint);
 
-    };
-    xmlHttpRequest.onload = function () {
-        console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
+        var xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.open('GET', marketEndpoint, true);
+        xmlHttpRequest.setRequestHeader('accept', 'application/json');
+        xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+        xmlHttpRequest.onreadystatechange = function () {
+            if (this.readyState == 4) {
 
-        var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
-        
-        let openPrice = jsonObjectPrices.results[0].o;
-        let closePrice = jsonObjectPrices.results[0].c;
+            } else {
 
-        let highestPrice = jsonObjectPrices.results[0].h;
-        let lowestPrice = jsonObjectPrices.results[0].l;
-        console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+            }
+        };
+        xmlHttpRequest.onprogress = function () {
 
-        analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+        };
+        xmlHttpRequest.onload = function () {
+            console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
 
-        analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
+            
+            let openPrice = jsonObjectPrices.results[0].o;
+            let closePrice = jsonObjectPrices.results[0].c;
 
-        analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            let highestPrice = jsonObjectPrices.results[0].h;
+            let lowestPrice = jsonObjectPrices.results[0].l;
+            console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
-        analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-    };
-    xmlHttpRequest.send();
+            analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+            analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+            analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+        };
+        xmlHttpRequest.send();
+
+    }
 
 }
 
@@ -518,49 +538,57 @@ async function cryptocurrenciesFourHoursIdentifier(marketPairInput, timeframe) {
     console.log('Start Timespan: ' + startTimespan);
     console.log('End Timespan: ' + endTimespan);
 
-    //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
-    //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/range/1/hour/{Millisecond}/{Millisecond}?adjusted=true&sort=asc&limit=120&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
-    var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
-        + 'X:' + marketPair
-        + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
-    console.log('Market Identifier Endpoint; ' + marketEndpoint);
+    let dateObject = new Date(startTimespan);
 
-    var xmlHttpRequest = new XMLHttpRequest();
-    xmlHttpRequest.open('GET', marketEndpoint, true);
-    xmlHttpRequest.setRequestHeader('accept', 'application/json');
-    xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
-    xmlHttpRequest.onreadystatechange = function () {
-        if (this.readyState == 4) {
+    var weekday = dateObject.getDay();
 
-        } else {
+    if (weekday != 0 && weekday != 6) {
 
-        }
-    };
-    xmlHttpRequest.onprogress = function () {
+        //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+        //https://api.polygon.io/v2/aggs/ticker/X:ETHUSD/range/1/hour/{Millisecond}/{Millisecond}?adjusted=true&sort=asc&limit=120&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+        var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
+            + 'X:' + marketPair
+            + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+        console.log('Market Identifier Endpoint; ' + marketEndpoint);
 
-    };
-    xmlHttpRequest.onload = function () {
-        console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
+        var xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.open('GET', marketEndpoint, true);
+        xmlHttpRequest.setRequestHeader('accept', 'application/json');
+        xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+        xmlHttpRequest.onreadystatechange = function () {
+            if (this.readyState == 4) {
 
-        var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
-        
-        let openPrice = jsonObjectPrices.results[0].o;
-        let closePrice = jsonObjectPrices.results[0].c;
+            } else {
 
-        let highestPrice = jsonObjectPrices.results[0].h;
-        let lowestPrice = jsonObjectPrices.results[0].l;
-        console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+            }
+        };
+        xmlHttpRequest.onprogress = function () {
 
-        analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+        };
+        xmlHttpRequest.onload = function () {
+            console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
 
-        analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
+            
+            let openPrice = jsonObjectPrices.results[0].o;
+            let closePrice = jsonObjectPrices.results[0].c;
 
-        analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            let highestPrice = jsonObjectPrices.results[0].h;
+            let lowestPrice = jsonObjectPrices.results[0].l;
+            console.log('Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
 
-        analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+            analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
 
-    };
-    xmlHttpRequest.send();
+            analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+            analyseArrowDown(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+            analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice);
+
+        };
+        xmlHttpRequest.send();
+
+    }
 
 }
 /*
@@ -1240,16 +1268,29 @@ function linearInterpolation(firstNumber, lastNumber, inputNumber) {
 exports.experiment = functions.runWith(runtimeOptions).https.onRequest(async (req, res) => {
     functions.logger.log("Experiments 🧪");
 
-    // Market: EURUSD | Open: 1.09168 - Close: 1.0888 - Highest: 1.0923 - Lowest: 1.0851
-    // Open Percentage: 91.3888888888881 - Close Percentage: 51.388888888888715
+    // Yesterday 
+    let dateObject = new Date(Date.now() - 86400000);
 
-    //marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice
-    analyseDojiPattern('EURUSD', 'Daily', 1.09168, 1.0888, 1.0923, 1.0851);
+    var dateMonth = dateObject.getUTCMonth() + 1; // Months 1-12
 
-    analyseArrowUp('EURUSD', 'Daily', 1.09168, 1.0888, 1.0923, 1.0851);
+    if (dateMonth.toString().length == 1) {
 
-    analyseArrowDown('EURUSD', 'Daily', 1.09168, 1.0888, 1.0923, 1.0851);
+        dateMonth = '0' + dateMonth;
 
-    analyseNarrowArrow('EURUSD', 'Daily', 1.09168, 1.0888, 1.0923, 1.0851);
+    }
+
+    var dateDay = dateObject.getUTCDate();
+
+    if (dateDay.toString().length == 1) {
+
+        dateDay = '0' + dateDay;
+
+    }
+
+    let dateYear = dateObject.getUTCFullYear();
+
+    // YYYY-MM-DD
+    var dateTimespan = dateObject.getDay() + ': ' + dateYear + '-' + dateMonth + '-' + dateDay;
+    console.log('Date: ' + dateTimespan);
 
 });
