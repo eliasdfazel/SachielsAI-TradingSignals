@@ -627,7 +627,7 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
     } else { // EQUAL
 
-        let deltaPercentage = Math.abs(closePercentage - openPercentage);
+        let deltaPercentage = Math.abs(openPercentage - closePercentage);
 
         if (deltaPercentage <= 9) {
             console.log(marketPair + ' Candlesticks Pattern; Unknown');
@@ -660,7 +660,7 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
 }
 
-// HAMMER - HANGING
+// HAMMER - HANGING MAN
 async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, highestPrice, lowestPrice) {
 
     let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
