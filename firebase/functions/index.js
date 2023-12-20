@@ -150,7 +150,7 @@ async function analysisOfRsi(rsiNumber, marketPair) {
 
         statusCondition = '\'Privileged\' in topics';
 
-        sendNotification("", statusMessage, "", statusCondition);
+        sendNotification("", statusMessage, "", statusCondition, "");
 
     }
 
@@ -183,7 +183,7 @@ async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
 
                 await firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
 
-                sendNotification("", aiStatusMessage, "", statusCondition);
+                sendNotification("", aiStatusMessage, "", statusCondition, "");
 
             } else {
                 console.log("Status Recently Sent");
@@ -201,7 +201,7 @@ async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
 
             await firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
 
-            sendNotification("", aiStatusMessage, "", statusCondition);
+            sendNotification("", aiStatusMessage, "", statusCondition, "");
 
         }
 
@@ -629,7 +629,7 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
         let deltaPercentage = Math.abs(openPercentage - closePercentage);
 
-        if (deltaPercentage <= 9) {
+        if (deltaPercentage < 7) {
             console.log(marketPair + ' Candlesticks Pattern; Unknown');
 
             let candlestickName = "DOJI"; 
@@ -792,7 +792,7 @@ async function candlestickTopic(candlestickMessage, candlestickImage, candlestic
 
     var candlestickCondition = "\'" + candlestickTopic + "\' in topics || \'Privileged\' in topics";
 
-    sendNotification("Sachiels AI; Candlesticks", notificationMessage, candlestickImage, candlestickCondition);
+    sendNotification("Sachiels AI; Candlesticks", notificationMessage, candlestickImage, candlestickCondition, "candlestickHistory");
 
 }
 
@@ -1187,11 +1187,17 @@ async function setPostsData(jsonObject) {
 
 
 /* START - Utilities */
-function sendNotification(statusTitle, statusMessage, notificationImage, statusCondition) {
+function sendNotification(statusTitle, statusMessage, notificationImage, statusCondition, messageUrl) {
 
     if (notificationImage.toString().length === 0) {
 
         notificationImage = "https://pbs.twimg.com/profile_images/1530852621673811968/uCJBBRJy_400x400.jpg";
+
+    }
+
+    if (messageUrl.toString().length === 0) {
+
+        messageUrl = "none";
 
     }
 
@@ -1225,6 +1231,7 @@ function sendNotification(statusTitle, statusMessage, notificationImage, statusC
 
         data: {
             "statusMessage": statusMessage,
+            "messageUrl": messageUrl,
         },
 
         condition: statusCondition
