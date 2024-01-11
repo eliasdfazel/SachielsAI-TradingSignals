@@ -41,7 +41,7 @@ class EntryConfigurations extends StatefulWidget {
   @override
   State<EntryConfigurations> createState() => _EntryConfigurationsState();
 }
-class _EntryConfigurationsState extends State<EntryConfigurations> with AuthenticationsCallback {
+class _EntryConfigurationsState extends State<EntryConfigurations> implements  AuthenticationsCallback {
 
   FirebaseRemoteConfig? firebaseRemoteConfig;
 
