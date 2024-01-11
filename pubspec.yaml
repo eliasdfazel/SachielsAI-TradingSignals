@@ -10,7 +10,7 @@ version: 1.0.0+1
 
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=3.2.0 <4.0.0"
 
 
 
@@ -39,8 +39,8 @@ dependencies:
 
   connectivity_plus: ^3.0.3
 
-  cloud_firestore: ^4.0.5
-  cloud_functions: ^4.0.4
+  cloud_firestore: ^4.14.0
+  cloud_functions: ^4.6.0
 
   cupertino_icons: ^1.0.5
 
@@ -56,19 +56,19 @@ dependencies:
 
 
   ####### ####### #######
-  firebase_core: ^2.2.0
-  firebase_app_check: ^0.1.4+1
+  firebase_core: ^2.24.2
+  firebase_app_check: ^0.2.1+8
 
-  firebase_analytics: ^10.0.5
-  firebase_crashlytics: ^3.0.5
+  firebase_analytics: ^10.8.0
+  firebase_crashlytics: ^3.4.9
 
-  firebase_auth: ^4.1.2
+  firebase_auth: ^4.16.0
 
-  firebase_remote_config: ^3.0.5
-  firebase_messaging: ^14.1.0
-  firebase_in_app_messaging: ^0.7.0+5
+  firebase_remote_config: ^4.3.8
+  firebase_messaging: ^14.7.10
+  firebase_in_app_messaging: ^0.7.4+8
 
-  firebase_dynamic_links: ^5.0.5
+  firebase_dynamic_links: ^5.4.8
 
   flutter_app_name: ^0.1.1
   flutter_html:
@@ -85,7 +85,7 @@ dependencies:
 
 
   ####### ####### #######
-  google_sign_in: ^6.0.1
+  google_sign_in: ^6.2.1
   ####### ####### #######
 
 
