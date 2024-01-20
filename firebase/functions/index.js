@@ -217,7 +217,7 @@ exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, c
 
     const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
 
-    sendNotification("", data.statusMessage, "", statusCondition);
+    sendNotification("", data.statusMessage, "", statusCondition, "");
 
 });
 /* 
