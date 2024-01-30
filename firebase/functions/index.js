@@ -250,6 +250,15 @@ exports.dailyMarketIdentifier = functions.runWith(runtimeOptions).pubsub.schedul
     /* Start - GBPJPY */
     forexDailyMarketIdentifier('GBPJPY', timeframe);
     /* End - GBPJPY */
+
+    /* Start - AUDUSD */
+    forexDailyMarketIdentifier('AUDUSD', timeframe);
+    /* End - AUDUSD */
+    
+    /* Start - USDJPY */
+    forexDailyMarketIdentifier('USDJPY', timeframe);
+    /* End - USDJPY */
+
     /* 
      * End - Forex 
      */
