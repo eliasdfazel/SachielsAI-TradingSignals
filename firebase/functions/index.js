@@ -275,6 +275,40 @@ exports.dailyMarketIdentifier = functions.runWith(runtimeOptions).pubsub.schedul
 
 });
 
+exports.dailyMarketIdentifierBatchTwo = functions.runWith(runtimeOptions).pubsub.schedule('17 01 * * *').timeZone('America/New_York').onRun((context) => {
+
+    const timeframe = "Daily";
+
+    /* 
+     * Start - Forex 
+     */
+    /* Start - GBPUSD */
+    forexDailyMarketIdentifier('GBPUSD', timeframe);
+    /* End - GBPUSD */
+
+    /* Start - USDCAD */
+    forexDailyMarketIdentifier('USDCAD', timeframe);
+    /* End - USDCAD */
+
+    /* Start - CADJPY */
+    forexDailyMarketIdentifier('CADJPY', timeframe);
+    /* End - CADJPY */
+    /* 
+     * End - Forex 
+     */
+
+    /* 
+     * Start - Cryptocurrency 
+     */
+    /* Start - ETHUSD */
+    cryptocurrenciesDailyMarketIdentifier('BTCUSD', timeframe);
+    /* End - ETHUSD */
+    /* 
+     * End - Cryptocurrency 
+     */
+
+});
+
 async function forexDailyMarketIdentifier(marketPairInput, timeframe) {
 
     var marketPair = marketPairInput;
