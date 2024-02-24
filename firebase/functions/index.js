@@ -27,16 +27,78 @@ firestore.settings({ ignoreUndefinedProperties: true })
  * START - Scheduled Status Functions 
  */
 // Schedule At 23:30 Everyday https://crontab.guru/ - (Minute) (Hours) (Day Of Month) (Month) (Day Of Week)
-exports.sachielAnalysisStatus = functions.runWith(runtimeOptions).pubsub.schedule('30 23 * * *').timeZone('America/New_York').onRun((context) => {
+exports.sachielAnalysisStatus = functions.runWith(runtimeOptions).pubsub.schedule('45 23 * * *').timeZone('America/New_York').onRun((context) => {
     console.log('Time; ' + Date.now());
 
-    /* Start - ETHUSD */
-    cryptocurrenciesMarketStatus('ETHUSD');
-    /* End - ETHUSD */
-
+    /* 
+     * Start - Forex 
+     */
     /* Start - EURUSD */
     forexMarketStatus('EURUSD');
     /* End - EURUSD */
+
+    /* Start - GBPJPY */
+    forexMarketStatus('GBPJPY');
+    /* End - GBPJPY */
+
+    /* Start - AUDUSD */
+    forexMarketStatus('AUDUSD');
+    /* End - AUDUSD */
+    
+    /* Start - USDJPY */
+    forexMarketStatus('USDJPY');
+    /* End - USDJPY */
+    /* 
+     * End - Forex 
+     */
+
+    /* 
+     * Start - Cryptocurrency 
+     */
+    /* Start - ETHUSD */
+    cryptocurrenciesMarketStatus('ETHUSD');
+    /* End - ETHUSD */
+    /* 
+     * End - Cryptocurrency 
+     */
+
+    return null;
+});
+
+exports.sachielAnalysisStatusBatchTwo = functions.runWith(runtimeOptions).pubsub.schedule('50 23 * * *').timeZone('America/New_York').onRun((context) => {
+    console.log('Time; ' + Date.now());
+
+    /* 
+     * Start - Forex 
+     */
+    /* Start - GBPUSD */
+    forexMarketStatus('GBPUSD');
+    /* End - GBPUSD */
+
+    /* Start - USDCAD */
+    forexMarketStatus('USDCAD');
+    /* End - USDCAD */
+
+    /* Start - CADJPY */
+    forexMarketStatus('CADJPY');
+    /* End - CADJPY */
+    /* 
+     * End - Forex 
+     */
+
+    /* 
+     * Start - Cryptocurrency 
+     */
+    /* Start - ETHUSD */
+    cryptocurrenciesMarketStatus('BTCUSD');
+    /* End - ETHUSD */
+
+    /* Start - XRPUSD */
+    cryptocurrenciesMarketStatus('XRPUSD');
+    /* End - XRPUSD */
+    /* 
+     * End - Cryptocurrency 
+     */
 
     return null;
 });
@@ -258,7 +320,6 @@ exports.dailyMarketIdentifier = functions.runWith(runtimeOptions).pubsub.schedul
     /* Start - USDJPY */
     forexDailyMarketIdentifier('USDJPY', timeframe);
     /* End - USDJPY */
-
     /* 
      * End - Forex 
      */
@@ -300,9 +361,13 @@ exports.dailyMarketIdentifierBatchTwo = functions.runWith(runtimeOptions).pubsub
     /* 
      * Start - Cryptocurrency 
      */
-    /* Start - ETHUSD */
+    /* Start - BTCUSD */
     cryptocurrenciesDailyMarketIdentifier('BTCUSD', timeframe);
-    /* End - ETHUSD */
+    /* End - BTCUSD */
+
+    /* Start - XRPUSD */
+    cryptocurrenciesDailyMarketIdentifier('XRPUSD', timeframe);
+    /* End - XRPUSD */
     /* 
      * End - Cryptocurrency 
      */
