@@ -149,53 +149,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/ai_status.png
-    - assets/archive_icon.png
-
-    - assets/back_icon.png
-
-    - assets/continue_icon.png
-    - assets/cyborg_girl.jpg
-
-    - assets/delete_account.png
-
-    - assets/facebook_input.png
-    - assets/filter_icon.png
-
-    - assets/instagram_input.png
-
-    - assets/logo.png
-    - assets/logo_background.png
-    - assets/logo_android.png
-    - assets/logo_ios.png
-
-    - assets/entry_background.jpg
-    - assets/entrance_next.png
-
-    - assets/golden_information_icon.png
-
-    - assets/next_icon.png
-    - assets/next_arrow_icon.png
-
-    - assets/oval_circle_shape.png
-
-    - assets/point_icon.png
-    - assets/purchasing_icon.png
-
-    - assets/rectircle_shape.png
-
-    - assets/share_icon.png
-    - assets/show_history_icon.png
-
-    - assets/squircle_logo.png
-    - assets/squircle_shape.png
-
-    - assets/submit_icon.png
-
-    - assets/threads_icon.png
-    - assets/twitter_input.png
-
-    - assets/validated_icon.png
+    - assets/
 
 
   fonts:
