@@ -21,7 +21,7 @@ dependencies:
 
 
   ####### ####### #######
-  app_settings: 4.2.0
+  app_settings: ^5.1.1
   ####### ####### #######
 
 
@@ -35,12 +35,10 @@ dependencies:
 
 
   ####### ####### #######
-  cached_network_image: ^3.2.0
+  connectivity_plus: ^5.0.2
 
-  connectivity_plus: ^3.0.3
-
-  cloud_firestore: ^4.14.0
-  cloud_functions: ^4.6.0
+  cloud_firestore: ^4.15.5
+  cloud_functions: ^4.6.5
 
   cupertino_icons: ^1.0.5
 
@@ -70,12 +68,8 @@ dependencies:
 
   firebase_dynamic_links: ^5.4.8
 
-  flutter_app_name: ^0.1.1
   flutter_html:
     path: 'X:\Xlutter\Libraries\flutter_html'
-  flutter_launcher_icons:
-    path: 'X:\Xlutter\Libraries\flutter_launcher_icons'
-  flutter_native_splash: ^2.1.6
 
   flutter_phoenix: ^1.0.0
   flutter_slidable: ^2.0.0
@@ -122,20 +116,21 @@ dependencies:
 
   ####### ####### #######
   screenshot: ^2.1.0
-  share_plus: ^4.0.10
-  status_bar_control: ^3.2.1
+  share_plus: ^7.2.2
+  status_bar_control:
+    path: 'X:\Xlutter\Libraries\flutter_statusbar_control'
   ####### ####### #######
 
 
 
   ####### ####### #######
-  url_launcher: ^6.1.5
+  url_launcher: ^6.2.5
   ####### ####### #######
 
 
 
   ####### ####### #######
-  webview_flutter: ^3.0.4
+  webview_flutter: ^4.7.0
   widget_mask: ^1.0.0+0
   ####### ####### #######
 

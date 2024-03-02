@@ -17,6 +17,7 @@
         android:label="Sachiels AI; Trading Signals"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
+        android:theme="@style/LaunchTheme"
         android:hardwareAccelerated="true"
         android:largeHeap="true">
 

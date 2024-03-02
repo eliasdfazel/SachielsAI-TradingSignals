@@ -34,6 +34,8 @@ class SachielAcademyBrowser extends StatefulWidget {
 }
 class _SachielAcademyBrowserState extends State<SachielAcademyBrowser> {
 
+  late WebViewController webViewController;
+
   bool loadingAnimationVisibility = true;
 
   String websiteAddress = "";
@@ -62,6 +64,33 @@ class _SachielAcademyBrowserState extends State<SachielAcademyBrowser> {
     changeColor(ColorsResources.black, ColorsResources.black);
 
     websiteAddress = "${widget.articlesDataStructure.articleLink()}?utm_source=sachielssignals&utm_medium=sachielssignals";
+
+    webViewController = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(ColorsResources.dark)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {
+            // Update loading bar.
+          },
+          onPageStarted: (String url) {},
+          onPageFinished: (String url) {
+
+            setState(() {
+
+              loadingAnimationVisibility = false;
+
+            });
+
+          },
+          onWebResourceError: (WebResourceError error) {},
+          onNavigationRequest: (NavigationRequest request) {
+
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(websiteAddress));
 
   }
 
@@ -171,19 +200,8 @@ class _SachielAcademyBrowserState extends State<SachielAcademyBrowser> {
                 /* Start - Browser */
                 ClipRRect(
                     borderRadius: BorderRadius.circular(17),
-                    child: WebView(
-                      initialUrl: websiteAddress,
-                      javascriptMode: JavascriptMode.unrestricted,
-                      backgroundColor: ColorsResources.dark,
-                      onPageFinished: (_) {
-
-                        setState(() {
-
-                          loadingAnimationVisibility = false;
-
-                        });
-
-                      },
+                    child: WebViewWidget(
+                      controller: webViewController
                     )
                 ),
                 /* End - Browser */

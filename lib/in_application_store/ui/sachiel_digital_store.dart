@@ -17,7 +17,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
@@ -124,12 +123,6 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
   @override
   Widget build(BuildContext context) {
-
-    Future.delayed(const Duration(milliseconds: 777), () {
-
-      FlutterNativeSplash.remove();
-
-    });
 
     return Container(
       padding: EdgeInsets.fromLTRB(0, widget.topPadding, 0, 0),

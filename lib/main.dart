@@ -17,7 +17,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:sachiel/entry_configurations.dart';
 import 'package:sachiel/firebase_options.dart';
@@ -35,8 +34,6 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage remoteMessage) asy
 void main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   var firebaseInitialized = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

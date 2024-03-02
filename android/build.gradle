@@ -1,24 +1,18 @@
-buildscript {
-    ext {
-        majorVersion = "0"
+plugins {
+    id 'com.android.application' version '8.2.2' apply false
 
-        kotlin_version = '1.8.10'
-    }
+    id 'com.google.gms.google-services' version '4.3.13' apply false
 
-    repositories {
-        google()
-        mavenCentral()
-    }
+    id 'com.google.firebase.crashlytics' version '2.9.1' apply false
+    id 'com.google.firebase.firebase-perf' version '1.4.1' apply false
 
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
+    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
+}
 
-        classpath 'com.google.gms:google-services:4.3.13'
+ext {
+    majorVersion = "0"
 
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.1'
-
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+    kotlin_version = '1.8.10'
 }
 
 allprojects {

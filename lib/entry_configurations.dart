@@ -17,7 +17,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
@@ -86,12 +85,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
         Future.delayed(const Duration(milliseconds: 1357), () async {
           debugPrint("Google Authenticating...");
 
-          Future.delayed(const Duration(milliseconds: 111), () {
-
-            FlutterNativeSplash.remove();
-
-          });
-
           UserCredential userCredential = await authenticationsProcess.startGoogleAuthentication();
 
           if (userCredential.user!.phoneNumber == null) {
@@ -131,8 +124,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
       }
 
     } else {
-
-      FlutterNativeSplash.remove();
 
       noticeMessage = StringsResources.noInternetConnection();
       noticeAction = StringsResources.ok();
@@ -369,7 +360,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
 
                                                                       } else {
 
-                                                                        AppSettings.openWIFISettings();
+                                                                        AppSettings.openAppSettings(type: AppSettingsType.wifi);
 
                                                                       }
 
@@ -438,12 +429,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
 
       if (firebaseAuthentication.currentUser!.phoneNumber == null) {
         debugPrint("Phone Number Not Authenticated > NULL");
-
-        Future.delayed(const Duration(milliseconds: 111), () {
-
-          FlutterNativeSplash.remove();
-
-        });
 
         setState(() {
 
@@ -633,12 +618,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
       } else if (firebaseAuthentication.currentUser!.phoneNumber!.isEmpty) {
 
         debugPrint("Phone Number Not Authenticated > EMPTY");
-
-        Future.delayed(const Duration(milliseconds: 111), () {
-
-          FlutterNativeSplash.remove();
-
-        });
 
         setState(() {
 
