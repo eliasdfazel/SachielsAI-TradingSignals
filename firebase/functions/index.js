@@ -212,7 +212,7 @@ async function analysisOfRsi(rsiNumber, marketPair) {
 
         statusCondition = '\'Privileged\' in topics';
 
-        sendNotification("", statusMessage, "", statusCondition, "");
+        sendNotification("", statusMessage, "", statusCondition, "", "");
 
     }
 
@@ -245,7 +245,7 @@ async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
 
                 await firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
 
-                sendNotification("", aiStatusMessage, "", statusCondition, "");
+                sendNotification("", aiStatusMessage, "", statusCondition, "", "");
 
             } else {
                 console.log("Status Recently Sent");
@@ -263,7 +263,7 @@ async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
 
             await firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
 
-            sendNotification("", aiStatusMessage, "", statusCondition, "");
+            sendNotification("", aiStatusMessage, "", statusCondition, "", "");
 
         }
 
@@ -279,7 +279,7 @@ exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, c
 
     const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
 
-    sendNotification("", data.statusMessage, "", statusCondition, "");
+    sendNotification("", data.statusMessage, "", statusCondition, "", "");
 
 });
 /* 
@@ -711,9 +711,11 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Green.png?alt=media";
 
-            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+            let timestampValue = Date.now().toString();
 
-            storeHistory("DOJI", candlestickImage, "BULLISH", marketPair, timeframe);
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue);
+
+            storeHistory("DOJI", candlestickImage, "BULLISH", marketPair, timeframe, timestampValue);
 
     } else if (openPercentage <= 55 && openPercentage > 50
         && closePercentage >= 45 && closePercentage < 50) { // RED
@@ -729,9 +731,11 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Red.png?alt=media";
 
-            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+            let timestampValue = Date.now().toString();
 
-            storeHistory("DOJI", candlestickImage, "BEARISH", marketPair, timeframe);
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue);
+
+            storeHistory("DOJI", candlestickImage, "BEARISH", marketPair, timeframe, timestampValue);
 
     } else { // EQUAL
 
@@ -756,9 +760,11 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
 
             }
 
-            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+            let timestampValue = Date.now().toString();
 
-            storeHistory("DOJI", candlestickImage, "UNKNOWN", marketPair, timeframe);
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue);
+
+            storeHistory("DOJI", candlestickImage, "UNKNOWN", marketPair, timeframe, timestampValue);
 
         } else {
             console.log('Doji: Not Matched');
@@ -785,9 +791,11 @@ async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, high
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FHammer.png?alt=media";
 
-            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+            let timestampValue = Date.now().toString();
 
-            storeHistory("HAMMER", candlestickImage, "BULLISH", marketPair, timeframe);
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue);
+
+            storeHistory("HAMMER", candlestickImage, "BULLISH", marketPair, timeframe,, timestampValue);
 
     } else if ((closePercentage >= 70 && closePercentage <= 80)
         && (openPercentage >= 85 && openPercentage <= 100)) { // RED - HANGING MAN
@@ -799,9 +807,11 @@ async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, high
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FHanging.png?alt=media";
 
-            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+            let timestampValue = Date.now().toString();
 
-            storeHistory("HANGING MAN", candlestickImage, "BEARISH", marketPair, timeframe);
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue);
+
+            storeHistory("HANGING MAN", candlestickImage, "BEARISH", marketPair, timeframe, timestampValue);
 
     } else { // EQUAL
         console.log('Arrow Up: Not Matched');
@@ -826,9 +836,11 @@ async function analyseArrowDown(marketPair, timeframe, openPrice, closePrice, hi
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FShooting%20Star.png?alt=media";
 
-            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+            let timestampValue = Date.now().toString();
 
-            storeHistory("SHOOTING STAR", candlestickImage, "BEARISH", marketPair, timeframe);
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue);
+
+            storeHistory("SHOOTING STAR", candlestickImage, "BEARISH", marketPair, timeframe, timestampValue);
 
     } else if ((closePercentage <= 30 && closePercentage >= 20)
         && (openPercentage <= 15 && openPercentage >= 0)) { // GREEN - HAMMER INVERTED
@@ -867,9 +879,11 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDragonfly.png?alt=media";
     
-            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+            let timestampValue = Date.now().toString();
 
-            storeHistory("DRAGONFLY", candlestickImage, "BULLISH", marketPair, timeframe);
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue);
+
+            storeHistory("DRAGONFLY", candlestickImage, "BULLISH", marketPair, timeframe, timestampValue);
 
     } else if (openPercentage <= 10
         && closePercentage < 10) { // RED - GRAVESTONE
@@ -881,9 +895,11 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FGravestone.png?alt=media";
     
-            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair);
+            let timestampValue = Date.now().toString();
 
-            storeHistory("GRAVESTONE", candlestickImage, "BEARISH", marketPair, timeframe);
+            candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue);
+
+            storeHistory("GRAVESTONE", candlestickImage, "BEARISH", marketPair, timeframe, timestampValue);
 
     } else { // EQUAL
         console.log('Narrow Arrow: Not Matched');
@@ -892,7 +908,7 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
 }
 
 // Notification Topic Example DOJIGreen4HoursEURUSD
-async function candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair) {
+async function candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue) {
 
     var candlestickTopic = candlestickName.replace(" ", "") + timeframe.replace(" ", "") + marketPair.replace(" ", "");
 
@@ -900,13 +916,11 @@ async function candlestickTopic(candlestickMessage, candlestickImage, candlestic
 
     var candlestickCondition = "\'" + candlestickTopic + "\' in topics || \'Privileged\' in topics";
 
-    sendNotification("Sachiels AI; Candlesticks", notificationMessage, candlestickImage, candlestickCondition, "candlestickHistory");
+    sendNotification("Sachiels AI; Candlesticks", notificationMessage, candlestickImage, candlestickCondition, "CandlestickHistory", timestampValue);
 
 }
 
-async function storeHistory(candlestickName, candlestickImage, marketDirection, marketPair, timeframe) {
-
-    let timestampValue = Date.now().toString();
+async function storeHistory(candlestickName, candlestickImage, marketDirection, marketPair, timeframe, timestampValue) {
 
     // Sachiels/Candlesticks/History/[Milliseconds]
     await firestore.doc("Sachiels/Candlesticks/History/" + timestampValue).set({
@@ -1295,7 +1309,7 @@ async function setPostsData(jsonObject) {
 
 
 /* START - Utilities */
-function sendNotification(statusTitle, statusMessage, notificationImage, statusCondition, messageUrl) {
+function sendNotification(statusTitle, statusMessage, notificationImage, statusCondition, messageUrl, timestampValue) {
 
     if (notificationImage.toString().length === 0) {
 
@@ -1306,6 +1320,12 @@ function sendNotification(statusTitle, statusMessage, notificationImage, statusC
     if (messageUrl.toString().length === 0) {
 
         messageUrl = "none";
+
+    }
+
+    if (timestampValue.toString().length === 0) {
+
+        timestampValue = "none";
 
     }
 
@@ -1340,6 +1360,7 @@ function sendNotification(statusTitle, statusMessage, notificationImage, statusC
         data: {
             "statusMessage": statusMessage,
             "messageUrl": messageUrl,
+            "timestamp": timestampValue
         },
 
         condition: statusCondition
