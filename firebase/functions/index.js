@@ -706,8 +706,8 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
             let deltaPercentage = closePercentage - openPercentage; // Smaller Value Means Stronger Doji
 
             let candlestickName = "DOJI Green"; 
-            let candlestickMessage = "DOJI (BULLISH) Candlestick Generated 🟢\n" 
-                + "Market: " + marketPair + "\n"
+            let candlestickMessage = "Market: " + marketPair + "\n"
+                + "DOJI (BULLISH) Candlestick Generated 🟢\n" 
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Green.png?alt=media";
 
@@ -726,8 +726,8 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
             let deltaPercentage = closePercentage - openPercentage; // Smaller Value Means Stronger Doji
 
             let candlestickName = "DOJI Red"; 
-            let candlestickMessage = "DOJI (BEARISH) Candlestick Generated 🔴\n" 
-                + "Market: " + marketPair + "\n"
+            let candlestickMessage = "Market: " + marketPair + "\n" 
+                + "DOJI (BEARISH) Candlestick Generated 🔴\n"
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Red.png?alt=media";
 
@@ -745,8 +745,8 @@ async function analyseDojiPattern(marketPair, timeframe, openPrice, closePrice, 
             console.log(marketPair + ' Candlesticks Pattern; Unknown');
 
             let candlestickName = "DOJI"; 
-            let candlestickMessage = "DOJI Candlestick Generated\n" 
-                + "Market: " + marketPair + "\n"
+            let candlestickMessage = "Market: " + marketPair + "\n" 
+                + "DOJI Candlestick Generated\n"
                 + "Timeframe: " + timeframe;
             var candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDoji%20Red.png?alt=media";
 
@@ -786,8 +786,8 @@ async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, high
             console.log(marketPair + ' Candlesticks Pattern; HAMMER Green');
 
             let candlestickName = "HAMMER"; 
-            let candlestickMessage = "HAMMER (BULLISH) Candlestick Generated 🟢\n" 
-                + "Market: " + marketPair + "\n"
+            let candlestickMessage = "Market: " + marketPair + "\n" 
+                + "HAMMER (BULLISH) Candlestick Generated 🟢\n"
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FHammer.png?alt=media";
 
@@ -795,15 +795,15 @@ async function analyseArrowUp(marketPair, timeframe, openPrice, closePrice, high
 
             candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue);
 
-            storeHistory("HAMMER", candlestickImage, "BULLISH", marketPair, timeframe,, timestampValue);
+            storeHistory("HAMMER", candlestickImage, "BULLISH", marketPair, timeframe, timestampValue);
 
     } else if ((closePercentage >= 70 && closePercentage <= 80)
         && (openPercentage >= 85 && openPercentage <= 100)) { // RED - HANGING MAN
             console.log(marketPair + ' Candlesticks Pattern; HAMMER Red');
 
             let candlestickName = "HANGING MAN"; 
-            let candlestickMessage = "HANGING MAN (BEARISH) Candlestick Generated 🔴\n" 
-                + "Market: " + marketPair + "\n"
+            let candlestickMessage = "Market: " + marketPair + "\n" 
+                + "HANGING MAN (BEARISH) Candlestick Generated 🔴\n"
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FHanging.png?alt=media";
 
@@ -831,8 +831,8 @@ async function analyseArrowDown(marketPair, timeframe, openPrice, closePrice, hi
             console.log(marketPair + ' Candlesticks Pattern; SHOOTING STAR Red');
 
             let candlestickName = "SHOOTING STAR"; 
-            let candlestickMessage = "SHOOTING STAR (BEARISH) Candlestick Generated 🔴\n" 
-                + "Market: " + marketPair + "\n"
+            let candlestickMessage = "Market: " + marketPair + "\n" 
+                + "SHOOTING STAR (BEARISH) Candlestick Generated 🔴\n"
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FShooting%20Star.png?alt=media";
 
@@ -847,8 +847,8 @@ async function analyseArrowDown(marketPair, timeframe, openPrice, closePrice, hi
             console.log(marketPair + ' Candlesticks Pattern; SHOOTING STAR Green');
 
             let candlestickName = "HAMMER INVERTED"; 
-            let candlestickMessage = "HAMMER INVERTED (BULLISH) Candlestick Generated 🟢\n" 
-                + "Market: " + marketPair + "\n"
+            let candlestickMessage = "Market: " + marketPair + "\n" 
+                + "HAMMER INVERTED (BULLISH) Candlestick Generated 🟢\n"
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FInverted%20Hammer.png?alt=media";
 
@@ -874,8 +874,8 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
             console.log(marketPair + ' Candlesticks Pattern; DRAGONFLY Green');
 
             let candlestickName = "DRAGONFLY"; 
-            let candlestickMessage = "DRAGONFLY (BULLISH) Candlestick Generated 🟢\n" 
-                + "Market: " + marketPair + "\n"
+            let candlestickMessage = "Market: " + marketPair + "\n" 
+                + "DRAGONFLY (BULLISH) Candlestick Generated 🟢\n"
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDragonfly.png?alt=media";
     
@@ -890,8 +890,8 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
             console.log(marketPair + ' Candlesticks Pattern; DRAGONFLY Red');
 
             let candlestickName = "GRAVESTONE"; 
-            let candlestickMessage = "GRAVESTONE (BEARISH) Candlestick Generated 🔴\n" 
-                + "Market: " + marketPair + "\n"
+            let candlestickMessage = "Market: " + marketPair + "\n" 
+                + "GRAVESTONE (BEARISH) Candlestick Generated 🔴\n"
                 + "Timeframe: " + timeframe;
             let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FGravestone.png?alt=media";
     
