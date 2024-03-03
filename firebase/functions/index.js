@@ -239,8 +239,8 @@ async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
                 const aiStatus = {
                     statusMessage: aiStatusMessage,
                     statusMarket: marketPair,
-                    statusAuth0or: "Sachiels AI",
-                    statusTimestamp: nowMillisecond
+                    statusAuthor: "Sachiels AI",
+                    statusTimestamp: nowMillisecond.toString(),
                 };
 
                 await firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
@@ -258,7 +258,7 @@ async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
                 statusMessage: aiStatusMessage,
                 statusMarket: marketPair,
                 statusAuthor: "Sachiels AI",
-                statusTimestamp: nowMillisecond
+                statusTimestamp: nowMillisecond.toString(),
             };
 
             await firestore.doc('/Sachiels/AI/Status/' + marketPair).set(aiStatus);
@@ -277,7 +277,7 @@ async function statusCheckpoint(marketPair, aiStatusMessage, statusCondition) {
 exports.statusAI = functions.runWith(runtimeOptions).https.onCall(async (data, context) => {
     functions.logger.log("AI Status Message :::", data.statusMessage);
 
-    const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics';
+    const statusCondition = '\'Platinum\' in topics || \'Gold\' in topics || \'Palladium\' in topics || \'Privileged\' in topics';
 
     sendNotification("", data.statusMessage, "", statusCondition, "", "");
 
