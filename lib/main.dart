@@ -18,6 +18,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/entry_configurations.dart';
 import 'package:sachiel/firebase_options.dart';
 import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
@@ -98,7 +99,7 @@ void main() async {
 
     try {
 
-      final internetLookup = await InternetAddress.lookup('example.com');
+      final internetLookup = await InternetAddress.lookup('google.com');
 
       bool connectionResult = (internetLookup.isNotEmpty && internetLookup[0].rawAddress.isNotEmpty);
 
@@ -106,11 +107,19 @@ void main() async {
 
       await FirebaseAuth.instance.currentUser?.reload();
 
+      Widget nextPage = EntryConfigurations(internetConnection: connectionResult);
+
+      if (FirebaseAuth.instance.currentUser != null) {
+
+        nextPage = const DashboardInterface();
+
+      }
+
       runApp(
           Phoenix(
               child: MaterialApp(
                   debugShowCheckedModeBanner: false,
-                  home: EntryConfigurations(internetConnection: connectionResult)
+                  home: nextPage
               )
           )
       );

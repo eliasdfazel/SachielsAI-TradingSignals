@@ -153,12 +153,12 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
     debugPrint("Latest Signals Details Data: ${signalsDataStructure.tradeCommand()} ${signalsDataStructure.tradeMarketPair()}");
 
     var tradeCommandColor = ColorsResources.sellColor;
-    double tradeCommandFontSize = 43;
+    double tradeCommandFontSize = 41;
 
     if (signalsDataStructure.tradeCommand() == "Buy") {
 
       tradeCommandColor = ColorsResources.buyColor;
-      tradeCommandFontSize = 47;
+      tradeCommandFontSize = 45;
 
     }
 
@@ -228,7 +228,8 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                       /* End - Percentage */
 
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
 
                           /* Start - Trade Command */
@@ -248,7 +249,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
 
                           /* Start - Trade Market Pair */
                           Container(
-                              padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                               alignment: Alignment.center,
                               child: Text(
                                 signalsDataStructure.tradeMarketPair().toUpperCase(),
@@ -268,7 +269,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                               child: Text(
                                 signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", ""),
                                 style: TextStyle(
-                                    fontSize: 63,
+                                    fontSize: 47,
                                     fontWeight: FontWeight.bold,
                                     color: ColorsResources.premiumLight,
                                     shadows: [
