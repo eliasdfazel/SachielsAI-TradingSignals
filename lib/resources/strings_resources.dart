@@ -228,7 +228,7 @@ class StringsResources {
 
   static String marketChartLink(String marketPair) {
 
-    return "https://www.tradingview.com/chart/?symbol=${marketPair}";
+    return "https://www.tradingview.com/chart/?aff_id=136528&symbol=${marketPair}";
   }
 
   /// SliderTime.TXT
