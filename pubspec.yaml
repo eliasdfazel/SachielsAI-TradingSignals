@@ -22,6 +22,7 @@ dependencies:
 
   ####### ####### #######
   app_settings: ^5.1.1
+  app_version_update: ^4.0.1
   ####### ####### #######
 
 
@@ -43,12 +44,6 @@ dependencies:
   cupertino_icons: ^1.0.5
 
   currency_text_input_formatter: ^2.1.7
-  ####### ####### #######
-
-
-
-  ####### ####### #######
-
   ####### ####### #######
 
 
