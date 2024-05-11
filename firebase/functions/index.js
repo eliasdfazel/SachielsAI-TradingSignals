@@ -1076,13 +1076,13 @@ async function analyseBullishtEngulfing(marketPair, timeframe,
                     let candlestickMessage = "Market: " + marketPair + "\n" 
                         + "ENGULFING (BULLISH) Candlestick Generated 🟢\n"
                         + "Timeframe: " + timeframe;
-                    let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDragonfly.png?alt=media";
+                    let candlestickImage = "";
             
                     let timestampValue = Date.now().toString();
         
                     candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue);
         
-                    storeHistory("DRAGONFLY", candlestickImage, "BULLISH", marketPair, timeframe, timestampValue);
+                    storeHistory("BULLLISHENGULFING", candlestickImage, "BULLISH", marketPair, timeframe, timestampValue);
 
             }
         
