@@ -374,6 +374,28 @@ exports.dailyMarketIdentifierBatchTwo = functions.runWith(runtimeOptions).pubsub
 
 });
 
+/* 
+ * START - Complex Two Part Patterns
+ */
+exports.dailyMarketIdentifierComplex = functions.runWith(runtimeOptions).pubsub.schedule('19 01 * * *').timeZone('America/New_York').onRun((context) => {
+
+    const timeframe = "Daily";
+
+    /* 
+     * Start - Forex 
+     */
+    /* Start - GBPUSD */
+    complexForexDailyMarketIdentifier('EURUSD', timeframe);
+    /* End - GBPUSD */
+    /* 
+     * End - Forex 
+     */
+
+});
+/* 
+ * END - Complex Two Part Patterns
+ */
+
 async function forexDailyMarketIdentifier(marketPairInput, timeframe) {
 
     var marketPair = marketPairInput;
@@ -527,6 +549,120 @@ async function cryptocurrenciesDailyMarketIdentifier(marketPairInput, timeframe)
 
     };
     xmlHttpRequest.send();
+
+}
+
+async function complexForexDailyMarketIdentifier(marketPairInput, timeframe) {
+
+    var marketPair = marketPairInput;
+
+    // Yesterday 
+    let dateObject = new Date(Date.now() - 86400000);
+
+    var dateMonth = dateObject.getUTCMonth() + 1; // Months 1-12
+
+    if (dateMonth.toString().length == 1) {
+
+        dateMonth = '0' + dateMonth;
+
+    }
+
+    var dateDay = dateObject.getUTCDate();
+
+    if (dateDay.toString().length == 1) {
+
+        dateDay = '0' + dateDay;
+
+    }
+
+    let dateYear = dateObject.getUTCFullYear();
+
+    // YYYY-MM-DD
+    var dateTimespan = dateYear + '-' + dateMonth + '-' + dateDay;
+    console.log('Date: ' + dateTimespan);
+
+    var weekday = dateObject.getDay();
+
+    if (weekday != 0 && weekday != 6) {
+
+        // 1 Day Ago
+        //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+        var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
+        + 'C:' + marketPair
+        + '/prev?adjusted=true&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+        console.log('Market Identifier Endpoint; ' + marketEndpoint);
+
+        var xmlHttpRequestToday = new XMLHttpRequest();
+        xmlHttpRequestToday.open('GET', marketEndpoint, true);
+        xmlHttpRequestToday.setRequestHeader('accept', 'application/json');
+        xmlHttpRequestToday.setRequestHeader('Content-Type', 'application/json');
+        xmlHttpRequestToday.onreadystatechange = function () {
+            if (this.readyState == 4) {
+
+            } else {
+
+            }
+        };
+        xmlHttpRequestToday.onprogress = function () {
+
+        };
+        xmlHttpRequestToday.onload = function () {
+            console.log('JSON Response ::: ' + xmlHttpRequestToday.responseText);
+
+            var jsonObjectPricesToday = JSON.parse(xmlHttpRequestToday.responseText);
+            
+            let openPriceToday = jsonObjectPricesToday.results[0].o;
+            let closePriceToday = jsonObjectPricesToday.results[0].c;
+
+            let highestPriceToday = jsonObjectPricesToday.results[0].h;
+            let lowestPriceToday = jsonObjectPricesToday.results[0].l;
+            console.log('Today Market: ' + marketPair + ' | ' + 'Open: ' + openPriceToday + ' - Close: ' + closePriceToday + ' - Highest: ' + highestPriceToday + ' - Lowest: ' + lowestPriceToday);
+
+            // 2 Days Ago
+            //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/day/2023-09-14/2023-09-14?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
+            var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
+            + 'C:' + marketPair
+            + '/range/1/day/2023-09-14/2023-09-14'
+            + '?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
+            console.log('Market Identifier Endpoint; ' + marketEndpoint);
+
+            var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open('GET', marketEndpoint, true);
+            xmlHttpRequest.setRequestHeader('accept', 'application/json');
+            xmlHttpRequest.setRequestHeader('Content-Type', 'application/json');
+            xmlHttpRequest.onreadystatechange = function () {
+                if (this.readyState == 4) {
+
+                } else {
+
+                }
+            };
+            xmlHttpRequest.onprogress = function () {
+
+            };
+            xmlHttpRequest.onload = function () {
+                console.log('JSON Response ::: ' + xmlHttpRequest.responseText);
+
+                var jsonObjectPrices = JSON.parse(xmlHttpRequest.responseText);
+                
+                let openPrice = jsonObjectPrices.results[0].o;
+                let closePrice = jsonObjectPrices.results[0].c;
+
+                let highestPrice = jsonObjectPrices.results[0].h;
+                let lowestPrice = jsonObjectPrices.results[0].l;
+                console.log('Yesterday Market: ' + marketPair + ' | ' + 'Open: ' + openPrice + ' - Close: ' + closePrice + ' - Highest: ' + highestPrice + ' - Lowest: ' + lowestPrice);
+
+                analyseBullishtEngulfing(marketPair, timeframe, 
+                    openPriceToday, closePriceToday, highestPriceToday, lowestPriceToday,
+                    openPrice, closePrice, highestPrice, lowestPrice);
+
+            };
+            xmlHttpRequest.send();
+
+        };
+        xmlHttpRequestToday.send();
+
+    }
 
 }
 /*
@@ -904,6 +1040,15 @@ async function analyseNarrowArrow(marketPair, timeframe, openPrice, closePrice, 
     } else { // EQUAL
         console.log('Narrow Arrow: Not Matched');
     }
+
+}
+
+// BULLISH ENGULFING
+async function analyseBullishtEngulfing(marketPair, timeframe, 
+    openPriceToday, closePriceToday, highestPriceToday, lowestPriceToday,
+    openPrice, closePrice, highestPrice, lowestPrice) {
+
+
 
 }
 
