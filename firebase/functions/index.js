@@ -1053,27 +1053,42 @@ async function analyseBullishtEngulfing(marketPair, timeframe,
     let priceRangeDelta = Math.abs(highestPrice - lowestPrice);
 
     let priceRangeDeltaBodyToday = Math.abs(openPriceToday - closePriceToday);
-    let priceRangeDeltaBody = Math.abs(openPrice - closePrice);
+
+    let priceRangeDeltaPercentage = Math.abs(openPrice - closePrice) + ((30 * priceRangeDeltaBodyToday) / 100);
 
     if ((priceRangeDeltaToday > priceRangeDelta) 
-        && (priceRangeDeltaBodyToday > priceRangeDeltaBody)) {
+        && (priceRangeDeltaBodyToday > priceRangeDeltaPercentage)) {
+
+        let closePercentageToday = linearInterpolation(lowestPriceToday, highestPriceToday, closePriceToday);
+        let openPercentageToday = linearInterpolation(lowestPriceToday, highestPriceToday, openPriceToday);
+            
+        if ((closePercentageToday >= 95)
+            && ((openPercentageToday >= 40) || (openPercentageToday <= 50))) {
         
-         
+            let closePercentage = linearInterpolation(lowestPrice, highestPrice, closePrice);
+            let openPercentage = linearInterpolation(lowestPrice, highestPrice, openPrice);
+
+            if ((openPercentage >= 95)
+                && ((closePercentage >= 40) || (closePercentage <= 50))) { // GREEN - BULLISH ENGULFING
+                    console.log(marketPair + ' Candlesticks Pattern; BULLISH ENGULFING Green');
+
+                    let candlestickName = "BULLLISHENGULFING"; 
+                    let candlestickMessage = "Market: " + marketPair + "\n" 
+                        + "ENGULFING (BULLISH) Candlestick Generated 🟢\n"
+                        + "Timeframe: " + timeframe;
+                    let candlestickImage = "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FCandlesticks%2FPatterns%2FDragonfly.png?alt=media";
+            
+                    let timestampValue = Date.now().toString();
+        
+                    candlestickTopic(candlestickMessage, candlestickImage, candlestickName, timeframe, marketPair, timestampValue);
+        
+                    storeHistory("DRAGONFLY", candlestickImage, "BULLISH", marketPair, timeframe, timestampValue);
+
+            }
+        
+        }         
         
     }
-
-    let closePercentageToday = linearInterpolation(lowestPriceToday, highestPriceToday, closePriceToday);
-    let openPercentageToday = linearInterpolation(lowestPriceToday, highestPriceToday, openPriceToday);
-    
-    if ((closePercentageToday >= 95)
-        && (openPercentageToday >= 40)) {
-
-
-
-    }
-
-   
-
 
 }
 
