@@ -377,7 +377,47 @@ exports.dailyMarketIdentifierBatchTwo = functions.runWith(runtimeOptions).pubsub
 /* 
  * START - Complex Two Part Patterns
  */
-exports.dailyMarketIdentifierComplex = functions.runWith(runtimeOptions).pubsub.schedule('19 01 * * *').timeZone('America/New_York').onRun((context) => {
+exports.dailyIdentifierComplex = functions.runWith(runtimeOptions).pubsub.schedule('19 01 * * *').timeZone('America/New_York').onRun((context) => {
+
+    const timeframe = "Daily";
+
+    /* 
+     * Start - Forex 
+     */
+    /* Start - EURUSD */
+    complexForexDailyMarketIdentifier('EURUSD', timeframe);
+    /* End - EURUSD */
+
+    /* Start - AUDUSD */
+    complexForexDailyMarketIdentifier('AUDUSD', timeframe);
+    /* End - AUDUSD */
+    /* 
+     * End - Forex 
+     */
+
+});
+
+exports.dailyIdentifierComplexBatchTwo = functions.runWith(runtimeOptions).pubsub.schedule('23 01 * * *').timeZone('America/New_York').onRun((context) => {
+
+    const timeframe = "Daily";
+
+    /* 
+     * Start - Forex 
+     */
+    /* Start - CADJPY */
+    complexForexDailyMarketIdentifier('CADJPY', timeframe);
+    /* End - CADJPY */
+
+    /* Start - GBPJPY */
+    complexForexDailyMarketIdentifier('GBPJPY', timeframe);
+    /* End - GBPJPY */
+    /* 
+     * End - Forex 
+     */
+
+});
+
+exports.dailyIdentifierComplexBatchThree = functions.runWith(runtimeOptions).pubsub.schedule('29 01 * * *').timeZone('America/New_York').onRun((context) => {
 
     const timeframe = "Daily";
 
@@ -385,10 +425,60 @@ exports.dailyMarketIdentifierComplex = functions.runWith(runtimeOptions).pubsub.
      * Start - Forex 
      */
     /* Start - GBPUSD */
-    complexForexDailyMarketIdentifier('EURUSD', timeframe);
+    complexForexDailyMarketIdentifier('GBPUSD', timeframe);
     /* End - GBPUSD */
+
+    /* Start - USDCAD */
+    complexForexDailyMarketIdentifier('USDCAD', timeframe);
+    /* End - USDCAD */
     /* 
      * End - Forex 
+     */
+
+});
+
+exports.dailyIdentifierComplexBatchFour = functions.runWith(runtimeOptions).pubsub.schedule('29 01 * * *').timeZone('America/New_York').onRun((context) => {
+
+    const timeframe = "Daily";
+
+    /* 
+     * Start - Forex 
+     */
+    /* Start - USDJPY */
+    complexForexDailyMarketIdentifier('USDJPY', timeframe);
+    /* End - USDJPY */
+    /* 
+     * End - Forex 
+     */
+    
+    /* 
+     * Start - Cryptocurrency 
+     */
+    /* Start - BTCUSD */
+    complexForexDailyMarketIdentifier('BTCUSD', timeframe);
+    /* End - BTCUSD */
+    /* 
+     * End - Cryptocurrency 
+     */
+
+});
+
+exports.dailyIdentifierComplexBatchFive = functions.runWith(runtimeOptions).pubsub.schedule('31 01 * * *').timeZone('America/New_York').onRun((context) => {
+
+    const timeframe = "Daily";
+
+    /* 
+     * Start - Cryptocurrency 
+     */
+    /* Start - ETHUSD */
+    complexForexDailyMarketIdentifier('ETHUSD', timeframe);
+    /* End - ETHUSD */
+    
+    /* Start - XRPUSD */
+    complexForexDailyMarketIdentifier('XRPUSD', timeframe);
+    /* End - XRPUSD */
+    /* 
+     * End - Cryptocurrency 
      */
 
 });
