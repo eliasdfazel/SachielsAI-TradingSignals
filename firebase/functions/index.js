@@ -437,7 +437,7 @@ exports.dailyIdentifierComplexBatchThree = functions.runWith(runtimeOptions).pub
 
 });
 
-exports.dailyIdentifierComplexBatchFour = functions.runWith(runtimeOptions).pubsub.schedule('29 01 * * *').timeZone('America/New_York').onRun((context) => {
+exports.dailyIdentifierComplexBatchFour = functions.runWith(runtimeOptions).pubsub.schedule('31 01 * * *').timeZone('America/New_York').onRun((context) => {
 
     const timeframe = "Daily";
 
@@ -463,7 +463,7 @@ exports.dailyIdentifierComplexBatchFour = functions.runWith(runtimeOptions).pubs
 
 });
 
-exports.dailyIdentifierComplexBatchFive = functions.runWith(runtimeOptions).pubsub.schedule('31 01 * * *').timeZone('America/New_York').onRun((context) => {
+exports.dailyIdentifierComplexBatchFive = functions.runWith(runtimeOptions).pubsub.schedule('37 01 * * *').timeZone('America/New_York').onRun((context) => {
 
     const timeframe = "Daily";
 
