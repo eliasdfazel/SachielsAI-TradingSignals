@@ -1049,15 +1049,30 @@ async function analyseBullishtEngulfing(marketPair, timeframe,
     openPriceToday, closePriceToday, highestPriceToday, lowestPriceToday,
     openPrice, closePrice, highestPrice, lowestPrice) {
 
-    let closePercentage = linearInterpolation(lowestPriceToday, highestPriceToday, closePriceToday);
-    let openPercentage = linearInterpolation(lowestPriceToday, highestPriceToday, openPriceToday);
+    let priceRangeDeltaToday = Math.abs(highestPriceToday - lowestPriceToday);
+    let priceRangeDelta = Math.abs(highestPrice - lowestPrice);
+
+    let priceRangeDeltaBodyToday = Math.abs(openPriceToday - closePriceToday);
+    let priceRangeDeltaBody = Math.abs(openPrice - closePrice);
+
+    if ((priceRangeDeltaToday > priceRangeDelta) 
+        && (priceRangeDeltaBodyToday > priceRangeDeltaBody)) {
+        
+         
+        
+    }
+
+    let closePercentageToday = linearInterpolation(lowestPriceToday, highestPriceToday, closePriceToday);
+    let openPercentageToday = linearInterpolation(lowestPriceToday, highestPriceToday, openPriceToday);
     
-    if (closePercentage >= 95
-        && openPercentage >= 40) {
+    if ((closePercentageToday >= 95)
+        && (openPercentageToday >= 40)) {
+
+
 
     }
 
-   // let priceRangeDelta = Math.abs(openPriceToday - closePriceToday);
+   
 
 
 }
