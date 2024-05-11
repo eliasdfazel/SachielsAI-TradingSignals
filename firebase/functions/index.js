@@ -559,28 +559,6 @@ async function complexForexDailyMarketIdentifier(marketPairInput, timeframe) {
     // Yesterday 
     let dateObject = new Date(Date.now() - 86400000);
 
-    var dateMonth = dateObject.getUTCMonth() + 1; // Months 1-12
-
-    if (dateMonth.toString().length == 1) {
-
-        dateMonth = '0' + dateMonth;
-
-    }
-
-    var dateDay = dateObject.getUTCDate();
-
-    if (dateDay.toString().length == 1) {
-
-        dateDay = '0' + dateDay;
-
-    }
-
-    let dateYear = dateObject.getUTCFullYear();
-
-    // YYYY-MM-DD
-    var dateTimespan = dateYear + '-' + dateMonth + '-' + dateDay;
-    console.log('Date: ' + dateTimespan);
-
     var weekday = dateObject.getDay();
 
     if (weekday != 0 && weekday != 6) {
@@ -618,11 +596,34 @@ async function complexForexDailyMarketIdentifier(marketPairInput, timeframe) {
             let lowestPriceToday = jsonObjectPricesToday.results[0].l;
             console.log('Today Market: ' + marketPair + ' | ' + 'Open: ' + openPriceToday + ' - Close: ' + closePriceToday + ' - Highest: ' + highestPriceToday + ' - Lowest: ' + lowestPriceToday);
 
+       
             // 2 Days Ago
+            var dateMonth = dateObject.getUTCMonth() + 1; // Months 1-12
+
+            if (dateMonth.toString().length == 1) {
+        
+                dateMonth = '0' + dateMonth;
+        
+            }
+        
+            var dateDay = dateObject.getUTCDate() - 2;
+        
+            if (dateDay.toString().length == 1) {
+        
+                dateDay = '0' + dateDay;
+        
+            }
+        
+            let dateYear = dateObject.getUTCFullYear();
+            
+            // YYYY-MM-DD
+            var dateTimespan = dateYear + '-' + dateMonth + '-' + dateDay;
+            console.log('Date: ' + dateTimespan);
+
             //https://api.polygon.io/v2/aggs/ticker/C:EURUSD/range/1/day/2023-09-14/2023-09-14?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_
             var marketEndpoint = 'https://api.polygon.io/v2/aggs/ticker/'
             + 'C:' + marketPair
-            + '/range/1/day/2023-09-14/2023-09-14'
+            + '/range/1/day/'+ dateTimespan + '/' + dateTimespan +
             + '?adjusted=true&sort=asc&limit=1&apiKey=BW99q7QQNIgDVfkyHi1H7SrTSKHZeY9_';
             console.log('Market Identifier Endpoint; ' + marketEndpoint);
 
