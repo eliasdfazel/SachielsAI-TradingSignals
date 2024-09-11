@@ -89,7 +89,7 @@ dependencies:
 
 
   ####### ####### #######
-  liquid_swipe: ^3.0.0
+  liquid_swipe: ^3.1.0
   loading_animation_widget:
     path: 'X:\Xlutter\Libraries\loading_animation_widget'
   local_auth: ^2.1.0
