@@ -92,7 +92,6 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
         theme: ThemeData(
           fontFamily: 'Ubuntu',
           colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-          backgroundColor: ColorsResources.black,
           pageTransitionsTheme: const PageTransitionsTheme(builders: {
             TargetPlatform.android: ZoomPageTransitionsBuilder(),
             TargetPlatform.iOS: ZoomPageTransitionsBuilder(),

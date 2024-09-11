@@ -57,6 +57,10 @@ void main() async {
     sound: true,
   );
 
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+
+  firebaseMessaging.subscribeToTopic("StatusAI");
+
   fileExist(StringsResources.filePurchasingPlan).then((fileExist) => {
 
     if (fileExist) {
@@ -66,7 +70,6 @@ void main() async {
         Future.delayed(Duration.zero, () {
           debugPrint("Purchased Plan: ${capitalizeFirstCharacter(purchasedPlan.split(".").first)}");
 
-          FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
           if (purchasedPlan == SachielsDigitalStore.previewTier) {
 
