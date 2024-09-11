@@ -3,16 +3,13 @@ description: A Trading Signals Platform for Cryptocurrency, Forex & More
 
 publish_to: 'none'
 
-
-
 version: 1.0.0+1
-
-
 
 environment:
   sdk: ">=3.2.0 <4.0.0"
 
-
+dependency_overrides:
+  fading_edge_scrollview: ^4.1.1
 
 dependencies:
   flutter:
@@ -63,8 +60,7 @@ dependencies:
 
   firebase_dynamic_links: ^5.4.8
 
-  flutter_html:
-    path: 'X:\Xlutter\Libraries\flutter_html'
+  flutter_html: ^3.0.0-beta.2
 
   flutter_phoenix: ^1.0.0
   flutter_slidable: ^2.0.0
@@ -110,7 +106,7 @@ dependencies:
 
 
   ####### ####### #######
-  screenshot: ^2.1.0
+  screenshot: ^3.0.0
   share_plus: ^7.2.2
   status_bar_control:
     path: 'X:\Xlutter\Libraries\flutter_statusbar_control'
@@ -129,15 +125,11 @@ dependencies:
   widget_mask: ^1.0.0+0
   ####### ####### #######
 
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
-
-
 
 flutter:
 
@@ -145,7 +137,6 @@ flutter:
 
   assets:
     - assets/
-
 
   fonts:
     - family: Ubuntu

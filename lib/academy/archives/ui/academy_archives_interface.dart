@@ -848,10 +848,10 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
                                             data: articlesDataStructure.articleSummary(),
                                             style: {
                                               '#': Style(
-                                                  padding: const EdgeInsets.fromLTRB(1, 0, 1, 0),
+                                                  padding: HtmlPaddings(left: HtmlPadding(1), top: HtmlPadding(0), right: HtmlPadding(1), bottom: HtmlPadding(0)),
                                                   color: ColorsResources.premiumLightTransparent,
                                                   maxLines: 5,
-                                                  fontSize: const FontSize(11),
+                                                  fontSize: FontSize(11),
                                                   wordSpacing: 1.3
                                               )
                                             }
