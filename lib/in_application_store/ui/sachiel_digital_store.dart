@@ -430,9 +430,9 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-                    final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.platinumTier});
-
                     PlansDataStructure planDataStructure = PlansDataStructure(queryDocumentSnapshot);
+
+                    final ProductDetailsResponse productDetailsResponse = await InAppPurchase.instance.queryProductDetails({planDataStructure.purchasingPlanProductId()});
 
                     planDataStructure.purchasingPrice = productDetailsResponse.productDetails.first.price;
 
@@ -640,7 +640,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                   child: Html(
-                      data: plansDataStructure.purchasingPlanDescription()
+                      data: "${plansDataStructure.purchasingPlanPrice()} - ${plansDataStructure.purchasingPlanDescription()}"
                   )
                 ),
 
