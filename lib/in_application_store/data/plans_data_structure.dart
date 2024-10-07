@@ -20,6 +20,8 @@ class PlansDataStructure {
 
   static const String purchasingPlanProductIdName = "purchasingPlanProductId";
 
+  String purchasingPrice = "";
+
   Map<String, dynamic> plansDocumentData = <String, dynamic>{};
 
   PlansDataStructure(DocumentSnapshot signalsDocument) {
@@ -40,7 +42,7 @@ class PlansDataStructure {
 
   String purchasingPlanPrice() {
 
-    return plansDocumentData[PlansDataStructure.purchasingPlanPriceName];
+    return purchasingPrice;
   }
 
   String purchasingPlanProductId() {

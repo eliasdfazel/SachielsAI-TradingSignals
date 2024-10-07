@@ -424,13 +424,19 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
             FirebaseFirestore.instance
                 .collection("/Sachiels/Signals/Plans")
                 .orderBy("purchasingPlanPrice")
-                .get().then((QuerySnapshot querySnapshot) {
+                .get().then((QuerySnapshot querySnapshot) async {
 
                   List<PlansDataStructure> plansDataStructure = [];
 
                   for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-                    plansDataStructure.add(PlansDataStructure(queryDocumentSnapshot));
+                    final ProductDetailsResponse productDetailsResponse  = await InAppPurchase.instance.queryProductDetails({SachielsDigitalStore.platinumTier});
+
+                    PlansDataStructure planDataStructure = PlansDataStructure(queryDocumentSnapshot);
+
+                    planDataStructure.purchasingPrice = productDetailsResponse.productDetails.first.price;
+
+                    plansDataStructure.add(planDataStructure);
 
                   }
 
