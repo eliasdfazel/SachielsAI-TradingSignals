@@ -408,7 +408,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
     User firebaseUser = FirebaseAuth.instance.currentUser!;
 
     FirebaseFirestore.instance
-        .doc("/Sachiels/Subscribers/External/${firebaseUser.email}")
+        .doc("/Sachiels/Subscribers/Externals/${firebaseUser.email}")
         .get().then((DocumentSnapshot documentSnapshot) {
 
           if (documentSnapshot.exists) {
