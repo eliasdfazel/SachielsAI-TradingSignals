@@ -73,39 +73,22 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
           }
 
           FirebaseFirestore.instance
-              .collection("/Sachiels/Academy/News")
+              .collection("/Sachiels/Academy/Tutorials")
               .limit(3)
               .orderBy("articleTimestamp")
               .get().then((QuerySnapshot querySnapshot) {
 
                 for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
 
-                  articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.newsPostType));
+                  articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.tutorialPostType));
 
                 }
 
-                FirebaseFirestore.instance
-                    .collection("/Sachiels/Academy/Tutorials")
-                    .limit(3)
-                    .orderBy("articleTimestamp")
-                    .get().then((QuerySnapshot querySnapshot) {
+                if (articlesDataStructure.isNotEmpty) {
 
-                      for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs) {
+                  prepareAcademyArticles(articlesDataStructure);
 
-                        articlesDataStructure.add(ArticlesDataStructure(queryDocumentSnapshot, ArticlesDataStructure.tutorialPostType));
-
-                      }
-
-                      if (articlesDataStructure.isNotEmpty) {
-
-                        prepareAcademyArticles(articlesDataStructure);
-
-                      }
-
-                    },
-                    onError: (e) => {
-
-                    });
+                }
 
               },
               onError: (e) => {
@@ -162,7 +145,7 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                   height: 751,
                   child: GridView(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
+                      crossAxisCount: 2,
                       childAspectRatio: 1.39,
                       crossAxisSpacing: 19.0,
                       mainAxisSpacing: 19.0,
