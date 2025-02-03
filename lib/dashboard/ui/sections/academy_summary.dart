@@ -225,12 +225,13 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                 children: [
 
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
 
                       /* Start - Article Cover */
                       SizedBox(
-                          height: 100,
+                          height: 137,
+                          width: double.maxFinite,
                           child: ClipRRect(
                             borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(17),
@@ -240,6 +241,8 @@ class _AcademySummaryInterfaceState extends State<AcademySummaryInterface> {
                             ),
                             child: Image.network(
                               articlesDataStructure.articleCover(),
+                              height: 137,
+                              width: double.maxFinite,
                               alignment: Alignment.center,
                               fit: BoxFit.cover,
                             ),
