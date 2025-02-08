@@ -102,7 +102,7 @@ void main() async {
 
     try {
 
-      final internetLookup = await InternetAddress.lookup('google.com');
+      final internetLookup = await InternetAddress.lookup('sachiel-s-signals.web.app');
 
       bool connectionResult = (internetLookup.isNotEmpty && internetLookup[0].rawAddress.isNotEmpty);
 
