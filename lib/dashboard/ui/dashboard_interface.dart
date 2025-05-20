@@ -9,6 +9,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -354,7 +355,20 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
     } else {
 
+      FirebaseFirestore.instance
+          .doc("/Sachiels/Subscribers/Externals/${FirebaseAuth.instance.currentUser!.email!.toLowerCase()}")
+          .get().then((DocumentSnapshot documentSnapshot) {
 
+        if (documentSnapshot.exists) {
+
+          FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+          firebaseMessaging.subscribeToTopic(documentSnapshot.get("purchasedPlan"));
+
+        }
+
+      }, onError: (e) => {
+
+      });
 
     }
 

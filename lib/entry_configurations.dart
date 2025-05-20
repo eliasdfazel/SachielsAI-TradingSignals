@@ -208,6 +208,8 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
 
                                                       if (documentSnapshot.exists) {
 
+
+
                                                         navigationCheckpoint();
 
                                                       }
