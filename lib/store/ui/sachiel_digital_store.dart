@@ -442,7 +442,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   if (plansDataStructure.isNotEmpty) {
 
-                    prepareSignalsHistoryItems(plansDataStructure);
+                    prepareStoreItems(plansDataStructure);
 
                   }
 
@@ -459,7 +459,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
   }
 
-  void prepareSignalsHistoryItems(List<PlansDataStructure> plansDataStructure) async {
+  void prepareStoreItems(List<PlansDataStructure> plansDataStructure) async {
 
     bool alreadyPurchased = await fileExist(StringsResources.filePurchasingPlan);
 
@@ -477,11 +477,11 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
     }
 
-    List<Widget> signalHistoryItem = [];
+    List<Widget> storeItems = [];
 
     for (PlansDataStructure planDataStructureItem in plansDataStructure) {
 
-      signalHistoryItem.add(plansDataStructureItemView(planDataStructureItem));
+      storeItems.add(plansDataStructureItemView(planDataStructureItem));
 
     }
 
@@ -493,7 +493,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
           padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
           physics: const PageScrollPhysics(),
           scrollDirection: Axis.horizontal,
-          children: signalHistoryItem,
+          children: storeItems,
         )
       );
 
@@ -550,7 +550,15 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   } else {
 
-                    PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+                    ProductDetails productDetails = productDetailsResponse.productDetails.first;
+
+                    if (productDetailsResponse.productDetails.length > 1) {
+
+                      productDetails = productDetailsResponse.productDetails[1];
+
+                    }
+
+                    PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetails);
 
                     await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
 
@@ -581,7 +589,15 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   } else {
 
-                    PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+                    ProductDetails productDetails = productDetailsResponse.productDetails.first;
+
+                    if (productDetailsResponse.productDetails.length > 1) {
+
+                      productDetails = productDetailsResponse.productDetails[1];
+
+                    }
+
+                    PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetails);
 
                     await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
 
@@ -612,7 +628,15 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                   } else {
 
-                    PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetailsResponse.productDetails.first);
+                    ProductDetails productDetails = productDetailsResponse.productDetails.first;
+
+                    if (productDetailsResponse.productDetails.length > 1) {
+
+                      productDetails = productDetailsResponse.productDetails[1];
+
+                    }
+
+                    PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetails);
 
                     await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
 
