@@ -14,7 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:in_app_purchase_android/billing_client_wrappers.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
-import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
+import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 
 class AndroidSubscriptionChanges {
 

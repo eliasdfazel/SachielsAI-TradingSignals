@@ -11,10 +11,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/history/ui/signals_history_interface.dart';
-import 'package:sachiel/in_application_store/utils/digital_store_utils.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/signals/data/signals_data_structure.dart';
 import 'package:sachiel/signals/signal_details/ui/signal_details_interface.dart';
+import 'package:sachiel/store/utils/digital_store_utils.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 
 class LatestSignalsOverview extends StatefulWidget {

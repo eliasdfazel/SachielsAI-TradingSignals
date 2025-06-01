@@ -21,9 +21,9 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/entry_configurations.dart';
 import 'package:sachiel/firebase_options.dart';
-import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
 import 'package:sachiel/resources/strings_resources.dart';
+import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/utils/data/texts.dart';
 import 'package:sachiel/utils/io/file_io.dart';
 

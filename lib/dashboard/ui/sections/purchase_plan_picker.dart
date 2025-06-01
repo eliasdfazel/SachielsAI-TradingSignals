@@ -9,8 +9,8 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/resources/colors_resources.dart';
+import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 
 class PurchasePlanPicker extends StatefulWidget {

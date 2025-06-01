@@ -12,8 +12,8 @@ import 'dart:async';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
-import 'package:sachiel/in_application_store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/resources/strings_resources.dart';
+import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/utils/io/file_io.dart';
 
 class DigitalStoreUtils {
