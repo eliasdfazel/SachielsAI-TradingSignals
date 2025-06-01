@@ -360,7 +360,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                                     if (alreadyPurchased) {
 
-                                      navigateTo(context, const DashboardInterface())
+                                      // navigateTo(context, const DashboardInterface())
 
                                     } else {
 
@@ -560,7 +560,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                     PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetails);
 
-                    await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
+                    await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam, );
 
                   }
 
@@ -804,7 +804,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
         FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
         await firebaseMessaging.subscribeToTopic(purchasedPlan);
 
-        navigateToWithPop(context, const DashboardInterface());
+        // navigateToWithPop(context, const DashboardInterface());
 
     })
 

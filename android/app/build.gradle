@@ -27,7 +27,7 @@ if (flutterVersionName == null) {
 android {
     namespace "co.geeksempire.sachiel.signals.sachiel"
 
-    compileSdkVersion 34
+    compileSdkVersion 35
     ndkVersion "25.2.9519653"
 
     compileOptions {
@@ -47,7 +47,7 @@ android {
         applicationId "co.geeksempire.sachiel.signals"
 
         minSdkVersion 26
-        targetSdkVersion 34
+        targetSdkVersion 35
 
         versionCode 43
         versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"

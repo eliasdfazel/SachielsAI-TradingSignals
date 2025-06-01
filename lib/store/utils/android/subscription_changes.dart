@@ -12,7 +12,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
-import 'package:in_app_purchase_android/billing_client_wrappers.dart';
 import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 
@@ -51,8 +50,7 @@ class AndroidSubscriptionChanges {
                     PurchaseParam purchaseParameters = GooglePlayPurchaseParam(
                         productDetails: productDetailsResponse.productDetails.first,
                         changeSubscriptionParam: ChangeSubscriptionParam(
-                            oldPurchaseDetails: purchaseDetails as GooglePlayPurchaseDetails,
-                            prorationMode: ProrationMode.immediateWithTimeProration));
+                            oldPurchaseDetails: purchaseDetails as GooglePlayPurchaseDetails));
 
                     InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParameters);
 
@@ -69,8 +67,7 @@ class AndroidSubscriptionChanges {
                     PurchaseParam purchaseParameters = GooglePlayPurchaseParam(
                         productDetails: productDetailsResponse.productDetails.first,
                         changeSubscriptionParam: ChangeSubscriptionParam(
-                            oldPurchaseDetails: purchaseDetails as GooglePlayPurchaseDetails,
-                            prorationMode: ProrationMode.immediateWithTimeProration));
+                            oldPurchaseDetails: purchaseDetails as GooglePlayPurchaseDetails));
 
                     InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParameters);
 
@@ -87,8 +84,7 @@ class AndroidSubscriptionChanges {
                     PurchaseParam purchaseParameters = GooglePlayPurchaseParam(
                         productDetails: productDetailsResponse.productDetails.first,
                         changeSubscriptionParam: ChangeSubscriptionParam(
-                            oldPurchaseDetails: purchaseDetails as GooglePlayPurchaseDetails,
-                            prorationMode: ProrationMode.immediateWithTimeProration));
+                            oldPurchaseDetails: purchaseDetails as GooglePlayPurchaseDetails));
 
                     InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParameters);
 
