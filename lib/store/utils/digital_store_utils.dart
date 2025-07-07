@@ -42,8 +42,6 @@ class DigitalStoreUtils {
 
     }
 
-    print(">>> >> > " + purchasingTier);
-
     return purchasingTier;
   }
 

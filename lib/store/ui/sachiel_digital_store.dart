@@ -803,8 +803,9 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
         FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
         await firebaseMessaging.subscribeToTopic(purchasedPlan);
+        await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
 
-        // navigateToWithPop(context, const DashboardInterface());
+        navigateToWithPop(context, const DashboardInterface());
 
     })
 
