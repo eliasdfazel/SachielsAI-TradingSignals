@@ -1,4 +1,3 @@
-
 /*
  * Copyright © 2022 By Geeks Empire.
  *
@@ -96,6 +95,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
       }
 
     });
+
+    externalSubscriberCheckpoint();
 
   }
 
