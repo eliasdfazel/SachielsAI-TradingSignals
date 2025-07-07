@@ -612,6 +612,16 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
 
                                   });
 
+                                  Future.delayed(const Duration(seconds: 3), () {
+
+                                    setState(() {
+
+                                      warningNoticePhoneNumber = null;
+
+                                    });
+
+                                  });
+
                                 }
 
                               },
@@ -852,8 +862,8 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
 
     Future.delayed(const Duration(milliseconds: 379), () {
 
-      fileExist(StringsResources.filePurchasingPlan).then((alreadyPurchased) => {
-        debugPrint("Already Purchased: ${alreadyPurchased}"),
+      fileExist(StringsResources.filePurchasingPlan).then((alreadyPurchased) {
+        debugPrint("Already Purchased: $alreadyPurchased");
 
         if (alreadyPurchased) {
 
@@ -869,7 +879,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
 
             }
 
-          })
+          });
 
         } else {
 
@@ -883,11 +893,11 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
 
               })
 
-            })
+            });
 
           } else {
 
-            navigateTo(context, SachielsDigitalStore(topPadding: statusBarHeight(context)))
+            navigateTo(context, SachielsDigitalStore(topPadding: statusBarHeight(context)));
 
           }
 
