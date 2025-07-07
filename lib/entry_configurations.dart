@@ -12,7 +12,6 @@ import 'dart:io';
 
 import 'package:app_settings/app_settings.dart';
 import 'package:blur/blur.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -200,24 +199,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                                             splashFactory: InkRipple.splashFactory,
                                             onTap: () {
 
-                                              if (FirebaseAuth.instance.currentUser != null) {
-
-                                                FirebaseFirestore.instance
-                                                    .doc("/Sachiels/Subscribers/Externals/${FirebaseAuth.instance.currentUser!.email!.toLowerCase()}")
-                                                    .get().then((DocumentSnapshot documentSnapshot) {
-
-                                                      if (documentSnapshot.exists) {
-
-
-
-                                                        navigationCheckpoint();
-
-                                                      }
-
-                                                    });
-
-                                              }
-
                                               if (phoneNumberController.text.isNotEmpty) {
 
                                                 if (titlePlaceholder == StringsResources.enterCode()) {
@@ -249,6 +230,16 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                                                 setState(() {
 
                                                   warningNoticePhoneNumber = StringsResources.warningEmptyText();
+
+                                                });
+
+                                                Future.delayed(const Duration(seconds: 3), () {
+
+                                                  setState(() {
+
+                                                    warningNoticePhoneNumber = null;
+
+                                                  });
 
                                                 });
 
