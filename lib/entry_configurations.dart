@@ -884,9 +884,9 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
 
           if (kDebugMode) {
 
-            createFileOfTexts(StringsResources.fileNameSliderTime, "TXT", DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
+            createFileOfTexts(StringsResources.fileSliderTime, DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
 
-              createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", "Palladium").then((value) => {
+              createFileOfTexts(StringsResources.filePurchasingPlan, "Palladium").then((value) => {
 
                 navigateToWithPop(context, const DashboardInterface())
 

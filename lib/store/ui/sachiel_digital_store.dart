@@ -467,7 +467,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
     if (alreadyPurchased) {
 
-      purchasedPlan = await readFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT");
+      purchasedPlan = await readFileOfTexts(StringsResources.filePurchasingPlan);
 
     }
 
@@ -764,7 +764,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
             }
           }
 
-          createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", purchaseDetails.productID);
+          createFileOfTexts(StringsResources.filePurchasingPlan, purchaseDetails.productID);
 
         }
 
@@ -772,7 +772,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
           await InAppPurchase.instance.completePurchase(purchaseDetails);
 
-          createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", purchaseDetails.productID);
+          createFileOfTexts(StringsResources.filePurchasingPlan, purchaseDetails.productID);
 
           if (widget.topPadding == 0) {
 
@@ -795,9 +795,9 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
   /// Formatted Text for Expiry Date MM-DD-YYYY
   void processExternalSubscriber(String emailAddress, String purchasedPlan, String expiryTime) {
 
-    createFileOfTexts(StringsResources.fileNamePurchasingTime, "TXT", expiryTime);
+    createFileOfTexts(StringsResources.filePurchasingTime, expiryTime);
 
-    createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", purchasedPlan).then((value) => {
+    createFileOfTexts(StringsResources.filePurchasingPlan, purchasedPlan).then((value) => {
 
       Future.delayed(const Duration(milliseconds: 137), () async {
 
@@ -829,7 +829,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
 
-          createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", "Palladium").then((value) => {
+          createFileOfTexts(StringsResources.filePurchasingPlan, "Palladium").then((value) => {
 
             navigateToWithPop(context, const DashboardInterface())
 

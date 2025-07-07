@@ -1285,7 +1285,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
   void shareSignalSnapshot(SignalsDataStructure signalsDataStructure, Uint8List capturedImage) async {
 
-    File snapshotFile = await createFileOfBytes("SachielsSignals", "PNG", capturedImage);
+    File snapshotFile = await createFileOfBytes("SachielsSignals", capturedImage, fileFormat: "PNG");
         
     Share.shareXFiles([XFile(snapshotFile.path)], text: "Trading Signal Powered By #SachielAI @sachielssignals"
         "\n"

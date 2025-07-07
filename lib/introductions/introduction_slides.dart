@@ -278,7 +278,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
     if (widget.firebaseRemoteConfig != null) {
 
-      createFileOfTexts(StringsResources.fileSliderTime, "TXT", widget.firebaseRemoteConfig!.getString(RemoteConfigurations.sliderTime));
+      createFileOfTexts(StringsResources.fileSliderTime, widget.firebaseRemoteConfig!.getString(RemoteConfigurations.sliderTime));
 
       /* Start - Introduction Liquid Slide */
       setState(() {
@@ -569,7 +569,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                 child: InkWell(
                   onTap: () {
 
-                    createFileOfTexts(StringsResources.fileNameSliderTime, "TXT", DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
+                    createFileOfTexts(StringsResources.fileSliderTime, DateTime.now().millisecondsSinceEpoch.toString()).then((value) => {
 
                       fileExist(StringsResources.filePurchasingPlan).then((alreadyPurchased) => {
 

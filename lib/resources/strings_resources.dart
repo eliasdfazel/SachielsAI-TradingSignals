@@ -233,14 +233,10 @@ class StringsResources {
 
   /// SliderTime.TXT
   static String fileSliderTime = "SliderTime.TXT";
-  /// SliderTime
-  static String fileNameSliderTime = "SliderTime";
   /// PurchasingPlan.TXT
   static String filePurchasingPlan = "PurchasingPlan.TXT";
   /// PurchasingPlan
-  static String fileNamePurchasingPlan = "PurchasingPlan";
-  /// PurchasingPlan
-  static String fileNamePurchasingTime = "PurchasingTime";
+  static String filePurchasingTime = "PurchasingTime.TXT";
 
   static List<String> marketsTypes() {
 

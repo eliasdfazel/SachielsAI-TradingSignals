@@ -271,7 +271,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
       firebaseRemoteConfigurations.activate().then((value) async {
 
-        int oldSliderTime = int.parse(await readFileOfTexts(StringsResources.fileNameSliderTime, "TXT"));
+        int oldSliderTime = int.parse(await readFileOfTexts(StringsResources.fileSliderTime));
 
         int newSliderTime = firebaseRemoteConfigurations.getInt(RemoteConfigurations.sliderTime);
 
@@ -319,12 +319,12 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
         if (sachielPrincipal.contains(FirebaseAuth.instance.currentUser!.email.toString())) {
 
           FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.platinumTopic);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.goldTopic);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.palladiumTopic);
 
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.previewTopic);
-
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
 
         }

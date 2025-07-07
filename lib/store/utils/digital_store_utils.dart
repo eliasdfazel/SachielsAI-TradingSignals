@@ -26,7 +26,7 @@ class DigitalStoreUtils {
 
     if (alreadyPurchased) {
 
-      String purchasingPlanDirectory = await readFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT");
+      String purchasingPlanDirectory = await readFileOfTexts(StringsResources.filePurchasingPlan);
 
       if (purchasingPlanDirectory == SachielsDigitalStore.previewTier) {
 
@@ -41,6 +41,8 @@ class DigitalStoreUtils {
       purchasingTier = purchasingPlanDirectory.replaceAll(".sachiel", "");
 
     }
+
+    print(">>> >> > " + purchasingTier);
 
     return purchasingTier;
   }
@@ -63,17 +65,17 @@ class DigitalStoreUtils {
             if (purchaseDetails.status == PurchaseStatus.error
                 || purchaseDetails.status == PurchaseStatus.canceled) {
 
-              deletePrivateFile("${StringsResources.fileNamePurchasingPlan}.TXT");
+              deletePrivateFile(StringsResources.filePurchasingPlan);
 
             } else if (purchaseDetails.status == PurchaseStatus.purchased
                 || purchaseDetails.status == PurchaseStatus.restored) {
 
-              createFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT", purchaseDetails.productID);
+              createFileOfTexts(StringsResources.filePurchasingPlan, purchaseDetails.productID);
 
               switch (purchaseDetails.productID) {
                 case SachielsDigitalStore.previewTier: {
 
-                  deletePrivateFile("${StringsResources.fileNamePurchasingPlan}.TXT");
+                  deletePrivateFile(StringsResources.filePurchasingPlan);
 
                   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
                   firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
@@ -114,7 +116,7 @@ class DigitalStoreUtils {
                 }
                 default: {
 
-                  deletePrivateFile("${StringsResources.fileNamePurchasingPlan}.TXT");
+                  deletePrivateFile(StringsResources.filePurchasingPlan);
 
                   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
                   firebaseMessaging.unsubscribeFromTopic(SachielsDigitalStore.platinumTopic);
@@ -154,13 +156,13 @@ class DigitalStoreUtils {
 
     bool expired = false;
 
-    bool fileExists = await fileExist("${StringsResources.fileNamePurchasingTime}.TXT");
+    bool fileExists = await fileExist(StringsResources.filePurchasingTime);
 
     if (fileExists) {
 
       DateTime nowTime = DateTime.now();
 
-      String expiryTime = await readFileOfTexts(StringsResources.fileNamePurchasingTime, "TXT");
+      String expiryTime = await readFileOfTexts(StringsResources.filePurchasingTime);
 
       int nowMonth = nowTime.month;
       int nowDay = nowTime.day;

@@ -65,7 +65,7 @@ void main() async {
 
     if (fileExist) {
 
-      readFileOfTexts(StringsResources.fileNamePurchasingPlan, "TXT").then((purchasedPlan) => {
+      readFileOfTexts(StringsResources.filePurchasingPlan).then((purchasedPlan) => {
 
         Future.delayed(Duration.zero, () {
           debugPrint("Purchased Plan: ${capitalizeFirstCharacter(purchasedPlan.split(".").first)}");
@@ -114,7 +114,11 @@ void main() async {
 
       if (FirebaseAuth.instance.currentUser != null) {
 
-        nextPage = const DashboardInterface();
+        if (FirebaseAuth.instance.currentUser!.phoneNumber != null) {
+
+          nextPage = const DashboardInterface();
+
+        }
 
       }
 
@@ -129,8 +133,6 @@ void main() async {
 
     } on SocketException catch (exception) {
       debugPrint(exception.message);
-
-
     }
 
   } else {
