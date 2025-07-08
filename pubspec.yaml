@@ -19,7 +19,6 @@ dependencies:
 
   ####### ####### #######
   app_settings: ^5.1.1
-  app_version_update: ^4.0.1
   ####### ####### #######
 
 

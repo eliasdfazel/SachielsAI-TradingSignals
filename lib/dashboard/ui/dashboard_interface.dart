@@ -13,8 +13,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:sachiel/Update/process/UpdateAvailability.dart';
-import 'package:sachiel/Update/ui/UpdateWidget.dart';
 import 'package:sachiel/dashboard/ui/sections/account_information_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/ai_status.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
@@ -43,8 +41,6 @@ class DashboardInterface extends StatefulWidget {
 
 }
 class _DashboardInterfaceState extends State<DashboardInterface> {
-
-  UpdateAvailability updateAvailability = UpdateAvailability();
 
   DigitalStoreUtils digitalStoreUtils = DigitalStoreUtils();
 
@@ -80,21 +76,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
     digitalStoreUtils.validateSubscriptions();
 
     principalsProcess();
-
-    updateAvailability.check().then((updateData) {
-      debugPrint("Update Available: ${updateData.$1}");
-
-      if (updateData.$1) {
-
-        setState(() {
-
-          updatePlaceholder = updateWidget(updateData.$2);
-
-        });
-
-      }
-
-    });
 
     externalSubscriberCheckpoint();
 
