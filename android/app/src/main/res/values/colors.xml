@@ -11,6 +11,7 @@
 
 <resources>
 
+        <color name="black">#000000</color>
         <color name="primaryColor">#FFB900</color>
 
 </resources>
