@@ -103,7 +103,7 @@ dependencies:
   ####### ####### #######
 
   ####### ####### #######
-  webview_flutter: ^4.7.0
+  webview_flutter: ^4.13.0
   widget_mask: ^1.0.0+0
   ####### ####### #######
 
