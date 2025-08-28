@@ -13,6 +13,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sachiel/dashboard/ui/sections/account_information_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/ai_status.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
@@ -78,6 +79,16 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
     principalsProcess();
 
     externalSubscriberCheckpoint();
+
+    Permission.notification.status.then((permissionStatus) {
+
+      if (permissionStatus.isDenied) {
+
+        Permission.notification.request();
+
+      }
+
+    });
 
   }
 
