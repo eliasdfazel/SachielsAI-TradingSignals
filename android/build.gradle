@@ -11,8 +11,6 @@ plugins {
 
 ext {
     majorVersion = "0"
-
-    kotlin_version = '2.2.0'
 }
 
 allprojects {

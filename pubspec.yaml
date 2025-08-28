@@ -55,7 +55,7 @@ dependencies:
 
   flutter_phoenix: ^1.0.0
   flutter_slidable: ^2.0.0
-  fluttertoast: ^8.0.9
+  fluttertoast: ^8.2.12
   ####### ####### #######
 
   ####### ####### #######
