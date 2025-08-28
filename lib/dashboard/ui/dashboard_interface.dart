@@ -31,7 +31,6 @@ import 'package:sachiel/utils/data/numbers.dart';
 import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
-import 'package:sachiel/utils/ui/system_bars.dart';
 
 class DashboardInterface extends StatefulWidget {
 
@@ -69,8 +68,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
   @override
   void initState() {
     super.initState();
-
-    changeColor(ColorsResources.black, ColorsResources.black);
 
     sliderCheckpoint();
 

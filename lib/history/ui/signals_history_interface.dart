@@ -22,7 +22,6 @@ import 'package:sachiel/store/utils/digital_store_utils.dart';
 import 'package:sachiel/utils/data/numbers.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
-import 'package:sachiel/utils/ui/system_bars.dart';
 import 'package:widget_mask/widget_mask.dart';
 
 import '../../signals/data/signals_data_structure.dart';
@@ -76,8 +75,6 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
     super.initState();
 
     retrieveSignalsHistory();
-
-    changeColor(ColorsResources.black, ColorsResources.black);
 
     BackButtonInterceptor.add(aInterceptor);
 

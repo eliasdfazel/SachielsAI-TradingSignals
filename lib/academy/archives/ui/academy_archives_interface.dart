@@ -24,7 +24,6 @@ import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/utils/data/numbers.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
-import 'package:sachiel/utils/ui/system_bars.dart';
 import 'package:sachiel/utils/widgets/gradient_text/gradient.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
@@ -74,8 +73,6 @@ class _AcademyArchivesInterfaceState extends State<AcademyArchivesInterface> {
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);
-
-    changeColor(ColorsResources.black, ColorsResources.black);
 
     retrieveAcademyTutorials();
 

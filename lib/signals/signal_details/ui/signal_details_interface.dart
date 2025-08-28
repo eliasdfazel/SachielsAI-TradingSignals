@@ -24,7 +24,6 @@ import 'package:sachiel/utils/data/numbers.dart';
 import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:sachiel/utils/ui/display.dart';
-import 'package:sachiel/utils/ui/system_bars.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -73,8 +72,6 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);
-
-    changeColor(ColorsResources.black, ColorsResources.black);
 
     prepareSignalDetails(widget.signalsDataStructure);
 
@@ -1471,13 +1468,16 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
 
     File snapshotFile = await createFileOfBytes("SachielsSignals", capturedImage, fileFormat: "PNG");
 
-    Share.shareFiles([snapshotFile.path], text: "Trading Signal Powered By #SachielAI @sachielssignals"
-        "\n"
-        "${signalsDataStructure.tradeCommand()} ${signalsDataStructure.tradeMarketPair()}"
-        "\n\n\n"
-        "#GeeksEmpire"
-        "\n"
-        "#TradingSignals");
+    SharePlus.instance.share(ShareParams(
+      files: [XFile(snapshotFile.path)],
+        text: "Trading Signal Powered By #SachielAI @sachielssignals"
+            "\n"
+            "${signalsDataStructure.tradeCommand()} ${signalsDataStructure.tradeMarketPair()}"
+            "\n\n\n"
+            "#GeeksEmpire"
+            "\n"
+            "#TradingSignals"
+    ));
 
   }
 
