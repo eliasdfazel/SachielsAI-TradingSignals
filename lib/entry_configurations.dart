@@ -128,43 +128,31 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
     }
 
     return SafeArea(
-        child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: StringsResources.applicationName(),
-            color: ColorsResources.primaryColor,
-            theme: ThemeData(
-              fontFamily: 'Ubuntu',
-              colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-              pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                TargetPlatform.android: ZoomPageTransitionsBuilder(),
-                TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
-              }),
-            ),
-            home: Scaffold(
-                resizeToAvoidBottomInset: false,
-                backgroundColor: ColorsResources.black,
-                body: Stack(
-                    children: [
+        child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: ColorsResources.black,
+            body: Stack(
+                children: [
 
-                      Container(
-                          decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(17),
-                                  topRight: Radius.circular(17),
-                                  bottomLeft: Radius.circular(17),
-                                  bottomRight: Radius.circular(17)
-                              ),
-                              color: ColorsResources.black,
-                              image: DecorationImage(
-                                  image: AssetImage("assets/entry_background.jpg"),
-                                  fit: BoxFit.cover
-                              )
+                  Container(
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(17),
+                              topRight: Radius.circular(17),
+                              bottomLeft: Radius.circular(17),
+                              bottomRight: Radius.circular(17)
+                          ),
+                          color: ColorsResources.black,
+                          image: DecorationImage(
+                              image: AssetImage("assets/entry_background.jpg"),
+                              fit: BoxFit.cover
                           )
-                      ),
+                      )
+                  ),
 
-                      Align(
-                        alignment: Alignment.center,
-                        child: Column(
+                  Align(
+                      alignment: Alignment.center,
+                      child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -181,94 +169,94 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                             phoneNumberAuthentication,
 
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 13, 0, 73),
+                                padding: const EdgeInsets.fromLTRB(0, 13, 0, 73),
                                 child: SizedBox(
-                                  height: 239,
-                                  width: 239,
-                                  child: WidgetMask(
-                                    blendMode: BlendMode.srcATop,
-                                    childSaveLayer: true,
-                                    mask /* Original Image */: Material(
-                                        shadowColor: Colors.transparent,
-                                        color: Colors.transparent,
-                                        child: InkWell(
-                                            splashColor: ColorsResources.lightestYellow.withOpacity(0.3),
-                                            splashFactory: InkRipple.splashFactory,
-                                            onTap: () {
+                                    height: 239,
+                                    width: 239,
+                                    child: WidgetMask(
+                                        blendMode: BlendMode.srcATop,
+                                        childSaveLayer: true,
+                                        mask /* Original Image */: Material(
+                                            shadowColor: Colors.transparent,
+                                            color: Colors.transparent,
+                                            child: InkWell(
+                                                splashColor: ColorsResources.lightestYellow.withOpacity(0.3),
+                                                splashFactory: InkRipple.splashFactory,
+                                                onTap: () {
 
-                                              if (phoneNumberController.text.isNotEmpty) {
+                                                  if (phoneNumberController.text.isNotEmpty) {
 
-                                                if (titlePlaceholder == StringsResources.enterCode()) {
+                                                    if (titlePlaceholder == StringsResources.enterCode()) {
 
-                                                  String smsCode = phoneNumberController.text;
+                                                      String smsCode = phoneNumberController.text;
 
-                                                  PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(verificationId: generatedVerificationId, smsCode: smsCode);
+                                                      PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(verificationId: generatedVerificationId, smsCode: smsCode);
 
-                                                  FirebaseAuth.instance.currentUser?.updatePhoneNumber(phoneAuthCredential).then((value) => {
+                                                      FirebaseAuth.instance.currentUser?.updatePhoneNumber(phoneAuthCredential).then((value) => {
 
-                                                    navigationCheckpoint()
+                                                        navigationCheckpoint()
 
-                                                  });
+                                                      });
 
-                                                } else {
+                                                    } else {
 
-                                                  authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
+                                                      authenticationsProcess.startPhoneNumberAuthentication(phoneNumberController.text, this);
 
-                                                }
+                                                    }
 
-                                                setState(() {
+                                                    setState(() {
 
-                                                  warningNoticePhoneNumber = null;
+                                                      warningNoticePhoneNumber = null;
 
-                                                });
+                                                    });
 
-                                              } else {
+                                                  } else {
 
-                                                setState(() {
+                                                    setState(() {
 
-                                                  warningNoticePhoneNumber = StringsResources.warningEmptyText();
+                                                      warningNoticePhoneNumber = StringsResources.warningEmptyText();
 
-                                                });
+                                                    });
 
-                                                Future.delayed(const Duration(seconds: 3), () {
+                                                    Future.delayed(const Duration(seconds: 3), () {
 
-                                                  setState(() {
+                                                      setState(() {
 
-                                                    warningNoticePhoneNumber = null;
+                                                        warningNoticePhoneNumber = null;
 
-                                                  });
+                                                      });
 
-                                                });
+                                                    });
 
-                                              }
+                                                  }
 
-                                            },
-                                            child: Visibility(
-                                                visible: entranceVisibility,
-                                                child: const Image(
-                                                  image: AssetImage("assets/entrance_next.png"),
-                                                  height: 239,
-                                                  fit: BoxFit.fitHeight,
+                                                },
+                                                child: Visibility(
+                                                    visible: entranceVisibility,
+                                                    child: const Image(
+                                                      image: AssetImage("assets/entrance_next.png"),
+                                                      height: 239,
+                                                      fit: BoxFit.fitHeight,
+                                                    )
                                                 )
                                             )
+                                        ),
+                                        child: const Image(
+                                          image: AssetImage("assets/entrance_next.png"),
                                         )
-                                    ),
-                                    child: const Image(
-                                      image: AssetImage("assets/entrance_next.png"),
                                     )
-                                  )
                                 )
                             )
 
                           ]
-                        )
-                      ),
+                      )
+                  ),
 
-                      Positioned(
-                        bottom: 19,
-                        right: 19,
-                        left: 19,
-                        child: ClipRRect(
+                  Positioned(
+                      bottom: 19,
+                      right: 19,
+                      left: 19,
+                      child: ClipRRect(
                           borderRadius: BorderRadius.circular(19),
                           child: Container(
                             decoration: BoxDecoration(
@@ -296,32 +284,32 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                                     children: [
 
                                       Expanded(
-                                        flex: 7,
-                                        child: SizedBox(
-                                          height: 53,
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                                            child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                    noticeMessage,
-                                                    maxLines: 1,
-                                                    style: TextStyle(
-                                                      color: ColorsResources.premiumLight,
-                                                      fontSize: 13,
-                                                      overflow: TextOverflow.ellipsis,
-                                                      shadows: [
-                                                        Shadow(
-                                                          color: ColorsResources.primaryColor.withOpacity(0.37),
-                                                          blurRadius: 7,
-                                                          offset: const Offset(0, 5)
-                                                        )
-                                                      ]
-                                                    )
-                                                )
-                                            )
+                                          flex: 7,
+                                          child: SizedBox(
+                                              height: 53,
+                                              child: Padding(
+                                                  padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                                                  child: Align(
+                                                      alignment: Alignment.centerLeft,
+                                                      child: Text(
+                                                          noticeMessage,
+                                                          maxLines: 1,
+                                                          style: TextStyle(
+                                                              color: ColorsResources.premiumLight,
+                                                              fontSize: 13,
+                                                              overflow: TextOverflow.ellipsis,
+                                                              shadows: [
+                                                                Shadow(
+                                                                    color: ColorsResources.primaryColor.withOpacity(0.37),
+                                                                    blurRadius: 7,
+                                                                    offset: const Offset(0, 5)
+                                                                )
+                                                              ]
+                                                          )
+                                                      )
+                                                  )
+                                              )
                                           )
-                                        )
                                       ),
 
                                       Expanded(
@@ -329,65 +317,65 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                                           child: SizedBox(
                                               height: 53,
                                               child: Center(
-                                                child: Padding(
-                                                    padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                                                    child: Container(
-                                                        height: 31,
-                                                        width: double.maxFinite,
-                                                        decoration: BoxDecoration(
-                                                            color: ColorsResources.black,
-                                                            borderRadius: BorderRadius.circular(11),
-                                                            border: Border.all(
-                                                                color: ColorsResources.primaryColor,
-                                                                width: 1.73,
-                                                                strokeAlign: BorderSide.strokeAlignOutside
-                                                            ),
-                                                            boxShadow: [
-                                                              BoxShadow(
-                                                                color: ColorsResources.primaryColor.withOpacity(0.73),
-                                                                blurRadius: 13,
-                                                              )
-                                                            ]
-                                                        ),
-                                                        child: ClipRRect(
-                                                          borderRadius: BorderRadius.circular(11),
-                                                          child: Material(
-                                                              shadowColor: Colors.transparent,
-                                                              color: Colors.transparent,
-                                                              child: InkWell(
-                                                                  splashColor: ColorsResources.lightestYellow.withOpacity(0.31),
-                                                                  splashFactory: InkRipple.splashFactory,
-                                                                  onTap: () {
+                                                  child: Padding(
+                                                      padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                                                      child: Container(
+                                                          height: 31,
+                                                          width: double.maxFinite,
+                                                          decoration: BoxDecoration(
+                                                              color: ColorsResources.black,
+                                                              borderRadius: BorderRadius.circular(11),
+                                                              border: Border.all(
+                                                                  color: ColorsResources.primaryColor,
+                                                                  width: 1.73,
+                                                                  strokeAlign: BorderSide.strokeAlignOutside
+                                                              ),
+                                                              boxShadow: [
+                                                                BoxShadow(
+                                                                  color: ColorsResources.primaryColor.withOpacity(0.73),
+                                                                  blurRadius: 13,
+                                                                )
+                                                              ]
+                                                          ),
+                                                          child: ClipRRect(
+                                                              borderRadius: BorderRadius.circular(11),
+                                                              child: Material(
+                                                                  shadowColor: Colors.transparent,
+                                                                  color: Colors.transparent,
+                                                                  child: InkWell(
+                                                                      splashColor: ColorsResources.lightestYellow.withOpacity(0.31),
+                                                                      splashFactory: InkRipple.splashFactory,
+                                                                      onTap: () {
 
-                                                                    Future.delayed(const Duration(milliseconds: 333), () {
+                                                                        Future.delayed(const Duration(milliseconds: 333), () {
 
-                                                                      if (noticeAction == StringsResources.read()) {
+                                                                          if (noticeAction == StringsResources.read()) {
 
-                                                                        launchUrlString("https://geeksempire.co/sachiel-ai-trading-signals/term-of-services/", mode: LaunchMode.externalApplication);
+                                                                            launchUrlString("https://geeksempire.co/sachiel-ai-trading-signals/term-of-services/", mode: LaunchMode.externalApplication);
 
-                                                                      } else {
+                                                                          } else {
 
-                                                                        AppSettings.openAppSettings(type: AppSettingsType.wifi);
+                                                                            AppSettings.openAppSettings(type: AppSettingsType.wifi);
 
-                                                                      }
+                                                                          }
 
-                                                                    });
+                                                                        });
 
-                                                                  },
-                                                                  child: Center(
-                                                                      child: Text(
-                                                                          noticeAction,
-                                                                          style: const TextStyle(
-                                                                              color: ColorsResources.premiumLight,
-                                                                              fontSize: 12
+                                                                      },
+                                                                      child: Center(
+                                                                          child: Text(
+                                                                              noticeAction,
+                                                                              style: const TextStyle(
+                                                                                  color: ColorsResources.premiumLight,
+                                                                                  fontSize: 12
+                                                                              )
                                                                           )
                                                                       )
                                                                   )
                                                               )
                                                           )
-                                                        )
-                                                    )
-                                                )
+                                                      )
+                                                  )
                                               )
                                           )
                                       )
@@ -397,11 +385,10 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                                 )
                             ),
                           )
-                        )
                       )
+                  )
 
-                    ]
-                )
+                ]
             )
         )
     );

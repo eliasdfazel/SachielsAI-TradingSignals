@@ -79,389 +79,377 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: StringsResources.applicationName(),
-        color: ColorsResources.primaryColor,
-        theme: ThemeData(
-          fontFamily: 'Ubuntu',
-          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-          pageTransitionsTheme: const PageTransitionsTheme(builders: {
-            TargetPlatform.android: ZoomPageTransitionsBuilder(),
-            TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
-          }),
-        ),
-        home: Scaffold(
-            backgroundColor: ColorsResources.black,
-            body: Stack(
-              children: [
+    return Scaffold(
+        backgroundColor: ColorsResources.black,
+        body: Stack(
+          children: [
 
-                /* Start - Gradient Background - Dark */
-                Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(17),
-                        topRight: Radius.circular(17),
-                        bottomLeft: Radius.circular(17),
-                        bottomRight: Radius.circular(17)
-                    ),
-                    border: Border(
-                        top: BorderSide(
-                          color: ColorsResources.black,
-                          width: 7,
-                        ),
-                        bottom: BorderSide(
-                          color: ColorsResources.black,
-                          width: 7,
-                        ),
-                        left: BorderSide(
-                          color: ColorsResources.black,
-                          width: 7,
-                        ),
-                        right: BorderSide(
-                          color: ColorsResources.black,
-                          width: 7,
-                        )
-                    ),
-                    gradient: LinearGradient(
-                        colors: [
-                          ColorsResources.premiumDark,
-                          ColorsResources.black,
-                        ],
-                        begin: FractionalOffset(0.0, 0.0),
-                        end: FractionalOffset(1.0, 0.0),
-                        stops: [0.0, 1.0],
-                        transform: GradientRotation(-45),
-                        tileMode: TileMode.clamp
-                    ),
-                  ),
+            /* Start - Gradient Background - Dark */
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(17),
+                    topRight: Radius.circular(17),
+                    bottomLeft: Radius.circular(17),
+                    bottomRight: Radius.circular(17)
                 ),
-                /* End - Gradient Background - Dark */
-
-                /* Start - Branding Transparent */
-                Align(
-                  alignment: Alignment.center,
-                  child: Opacity(
-                      opacity: 0.1,
-                      child: Transform.scale(
-                          scale: 1.7,
-                          child: const Image(
-                            image: AssetImage("assets/logo.png"),
-                          )
-                      )
-                  ),
-                ),
-                /* End - Branding Transparent */
-
-                /* Start - Gradient Background - Golden */
-                Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(17),
-                              topRight: Radius.circular(17),
-                              bottomLeft: Radius.circular(17),
-                              bottomRight: Radius.circular(17)
-                          ),
-                          gradient: RadialGradient(
-                            radius: 1.1,
-                            colors: <Color> [
-                              ColorsResources.primaryColorLighter.withOpacity(0.51),
-                              Colors.transparent,
-                            ],
-                            center: const Alignment(0.79, -0.87),
-                          )
-                      ),
-                      child: SizedBox(
-                        height: calculatePercentage(99, displayHeight()),
-                        width: calculatePercentage(99, displayWidth()),
-                      ),
+                border: Border(
+                    top: BorderSide(
+                      color: ColorsResources.black,
+                      width: 7,
+                    ),
+                    bottom: BorderSide(
+                      color: ColorsResources.black,
+                      width: 7,
+                    ),
+                    left: BorderSide(
+                      color: ColorsResources.black,
+                      width: 7,
+                    ),
+                    right: BorderSide(
+                      color: ColorsResources.black,
+                      width: 7,
                     )
                 ),
-                /* End - Gradient Background - Golden */
+                gradient: LinearGradient(
+                    colors: [
+                      ColorsResources.premiumDark,
+                      ColorsResources.black,
+                    ],
+                    begin: FractionalOffset(0.0, 0.0),
+                    end: FractionalOffset(1.0, 0.0),
+                    stops: [0.0, 1.0],
+                    transform: GradientRotation(-45),
+                    tileMode: TileMode.clamp
+                ),
+              ),
+            ),
+            /* End - Gradient Background - Dark */
 
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                  child: ListView(
-                    padding: const EdgeInsets.fromLTRB(0, 137, 0, 103),
-                    physics: const BouncingScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    children: [
+            /* Start - Branding Transparent */
+            Align(
+              alignment: Alignment.center,
+              child: Opacity(
+                  opacity: 0.1,
+                  child: Transform.scale(
+                      scale: 1.7,
+                      child: const Image(
+                        image: AssetImage("assets/logo.png"),
+                      )
+                  )
+              ),
+            ),
+            /* End - Branding Transparent */
 
-                      /* Start - Profile Image/Name */
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                              padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
+            /* Start - Gradient Background - Golden */
+            Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(17),
+                          topRight: Radius.circular(17),
+                          bottomLeft: Radius.circular(17),
+                          bottomRight: Radius.circular(17)
+                      ),
+                      gradient: RadialGradient(
+                        radius: 1.1,
+                        colors: <Color> [
+                          ColorsResources.primaryColorLighter.withOpacity(0.51),
+                          Colors.transparent,
+                        ],
+                        center: const Alignment(0.79, -0.87),
+                      )
+                  ),
+                  child: SizedBox(
+                    height: calculatePercentage(99, displayHeight()),
+                    width: calculatePercentage(99, displayWidth()),
+                  ),
+                )
+            ),
+            /* End - Gradient Background - Golden */
 
-                                  /* Start - Profile Image */
-                                  Expanded(
-                                      flex: 1,
-                                      child: SizedBox(
-                                          height: 201,
-                                          width: 201,
-                                          child: Stack(
-                                            children: [
-                                              WidgetMask(
-                                                blendMode: BlendMode.srcATop,
-                                                childSaveLayer: true,
-                                                mask /* Original Image */: Container(
-                                                  decoration: const BoxDecoration(
-                                                      gradient: LinearGradient(
-                                                          colors: [
-                                                            ColorsResources.white,
-                                                            ColorsResources.primaryColorLighter,
-                                                          ],
-                                                          transform: GradientRotation(45)
-                                                      )
-                                                  ),
-                                                ),
-                                                child: const Image(
-                                                  image: AssetImage("assets/squircle_shape.png"),
+            Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(0, 137, 0, 103),
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  children: [
+
+                    /* Start - Profile Image/Name */
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+
+                                /* Start - Profile Image */
+                                Expanded(
+                                    flex: 1,
+                                    child: SizedBox(
+                                        height: 201,
+                                        width: 201,
+                                        child: Stack(
+                                          children: [
+                                            WidgetMask(
+                                              blendMode: BlendMode.srcATop,
+                                              childSaveLayer: true,
+                                              mask /* Original Image */: Container(
+                                                decoration: const BoxDecoration(
+                                                    gradient: LinearGradient(
+                                                        colors: [
+                                                          ColorsResources.white,
+                                                          ColorsResources.primaryColorLighter,
+                                                        ],
+                                                        transform: GradientRotation(45)
+                                                    )
                                                 ),
                                               ),
-                                              Padding(
-                                                  padding: const EdgeInsets.all(1.7),
-                                                  child: WidgetMask(
-                                                    blendMode: BlendMode.srcATop,
-                                                    childSaveLayer: true,
-                                                    mask /* Original Image */: profileImage,
-                                                    child: const Image(
-                                                      image: AssetImage("assets/squircle_shape.png"),
-                                                    ),
-                                                  )
-                                              )
-                                            ],
-                                          )
-                                      )
-                                  ),
-                                  /* End - Profile Image */
-
-                                  /* Start - Profile Name */
-                                  Expanded(
-                                      flex: 1,
-                                      child: SizedBox(
-                                          height: 201,
-                                          width: 201,
-                                          child: Padding(
-                                              padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: GradientText(
-                                                  profileName.replaceFirst(" ", "\n"),
-                                                  overflow: TextOverflow.fade,
-                                                  style: const TextStyle(
-                                                      fontSize: 37
+                                              child: const Image(
+                                                image: AssetImage("assets/squircle_shape.png"),
+                                              ),
+                                            ),
+                                            Padding(
+                                                padding: const EdgeInsets.all(1.7),
+                                                child: WidgetMask(
+                                                  blendMode: BlendMode.srcATop,
+                                                  childSaveLayer: true,
+                                                  mask /* Original Image */: profileImage,
+                                                  child: const Image(
+                                                    image: AssetImage("assets/squircle_shape.png"),
                                                   ),
-                                                  gradientDirection: GradientDirection.tltbr,
-                                                  maxLinesNumber: 2,
-                                                  colors: const [
-                                                    ColorsResources.primaryColorLighter,
-                                                    ColorsResources.white
-                                                  ],
+                                                )
+                                            )
+                                          ],
+                                        )
+                                    )
+                                ),
+                                /* End - Profile Image */
+
+                                /* Start - Profile Name */
+                                Expanded(
+                                    flex: 1,
+                                    child: SizedBox(
+                                        height: 201,
+                                        width: 201,
+                                        child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: GradientText(
+                                                profileName.replaceFirst(" ", "\n"),
+                                                overflow: TextOverflow.fade,
+                                                style: const TextStyle(
+                                                    fontSize: 37
                                                 ),
+                                                gradientDirection: GradientDirection.tltbr,
+                                                maxLinesNumber: 2,
+                                                colors: const [
+                                                  ColorsResources.primaryColorLighter,
+                                                  ColorsResources.white
+                                                ],
+                                              ),
+                                            )
+                                        )
+                                    )
+                                )
+                                /* End - Profile Name */
+
+                              ],
+                            )
+                        )
+                    ),
+                    /* End - Profile Image/Name */
+
+                    const Divider(
+                      height: 31,
+                      color: Colors.transparent,
+                    ),
+
+                    /* Start - Twitter */
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                      child: Stack(
+                        children: [
+
+                          const SizedBox(
+                            height: 113,
+                            width: double.infinity,
+                            child: Image(
+                              image: AssetImage("assets/twitter_input.png"),
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: 113,
+                            width: double.infinity,
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
+                                child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: TextField(
+                                      controller: twitterInputController,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColorLighter,
+                                      decoration: const InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 0
+                                              )
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 0
                                               )
                                           )
-                                      )
-                                  )
-                                  /* End - Profile Name */
-
-                                ],
-                              )
+                                      ),
+                                      style: const TextStyle(
+                                          fontSize: 31,
+                                          color: ColorsResources.dark,
+                                          decoration: TextDecoration.none
+                                      ),
+                                    )
+                                )
+                            ),
                           )
+
+                        ],
                       ),
-                      /* End - Profile Image/Name */
+                    ),
+                    /* End - Twitter */
 
-                      const Divider(
-                        height: 31,
-                        color: Colors.transparent,
-                      ),
+                    const Divider(
+                      height: 3,
+                      color: Colors.transparent,
+                    ),
 
-                      /* Start - Twitter */
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                        child: Stack(
-                          children: [
+                    /* Start - Facebook */
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                      child: Stack(
+                        children: [
 
-                            const SizedBox(
-                              height: 113,
-                              width: double.infinity,
-                              child: Image(
-                                image: AssetImage("assets/twitter_input.png"),
-                              ),
+                          const SizedBox(
+                            height: 113,
+                            width: double.infinity,
+                            child: Image(
+                              image: AssetImage("assets/facebook_input.png"),
                             ),
+                          ),
 
-                            SizedBox(
-                              height: 113,
-                              width: double.infinity,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
-                                  child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: TextField(
-                                        controller: twitterInputController,
-                                        maxLines: 1,
-                                        cursorColor: ColorsResources.primaryColorLighter,
-                                        decoration: const InputDecoration(
-                                            enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 0
-                                                )
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 0
-                                                )
-                                            )
-                                        ),
-                                        style: const TextStyle(
-                                            fontSize: 31,
-                                            color: ColorsResources.dark,
-                                            decoration: TextDecoration.none
-                                        ),
-                                      )
-                                  )
-                              ),
-                            )
-
-                          ],
-                        ),
-                      ),
-                      /* End - Twitter */
-
-                      const Divider(
-                        height: 3,
-                        color: Colors.transparent,
-                      ),
-
-                      /* Start - Facebook */
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                        child: Stack(
-                          children: [
-
-                            const SizedBox(
-                              height: 113,
-                              width: double.infinity,
-                              child: Image(
-                                image: AssetImage("assets/facebook_input.png"),
-                              ),
+                          SizedBox(
+                            height: 113,
+                            width: double.infinity,
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
+                                child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: TextField(
+                                      controller: facebookInputController,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColorLighter,
+                                      decoration: const InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 0
+                                              )
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 0
+                                              )
+                                          )
+                                      ),
+                                      style: const TextStyle(
+                                          fontSize: 31,
+                                          color: ColorsResources.dark,
+                                          decoration: TextDecoration.none
+                                      ),
+                                    )
+                                )
                             ),
+                          )
 
-                            SizedBox(
-                              height: 113,
-                              width: double.infinity,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
-                                  child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: TextField(
-                                        controller: facebookInputController,
-                                        maxLines: 1,
-                                        cursorColor: ColorsResources.primaryColorLighter,
-                                        decoration: const InputDecoration(
-                                            enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 0
-                                                )
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 0
-                                                )
-                                            )
-                                        ),
-                                        style: const TextStyle(
-                                            fontSize: 31,
-                                            color: ColorsResources.dark,
-                                            decoration: TextDecoration.none
-                                        ),
-                                      )
-                                  )
-                              ),
-                            )
-
-                          ],
-                        ),
+                        ],
                       ),
-                      /* End - Facebook */
+                    ),
+                    /* End - Facebook */
 
-                      const Divider(
-                        height: 3,
-                        color: Colors.transparent,
-                      ),
+                    const Divider(
+                      height: 3,
+                      color: Colors.transparent,
+                    ),
 
-                      /* Start - Facebook */
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                        child: Stack(
-                          children: [
+                    /* Start - Facebook */
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                      child: Stack(
+                        children: [
 
-                            const SizedBox(
-                              height: 113,
-                              width: double.infinity,
-                              child: Image(
-                                image: AssetImage("assets/instagram_input.png"),
-                              ),
+                          const SizedBox(
+                            height: 113,
+                            width: double.infinity,
+                            child: Image(
+                              image: AssetImage("assets/instagram_input.png"),
                             ),
+                          ),
 
-                            SizedBox(
-                              height: 113,
-                              width: double.infinity,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
-                                  child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: TextField(
-                                        controller: instagramInputController,
-                                        maxLines: 1,
-                                        cursorColor: ColorsResources.primaryColorLighter,
-                                        decoration: const InputDecoration(
-                                            enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 0
-                                                )
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 0
-                                                )
-                                            )
-                                        ),
-                                        style: const TextStyle(
-                                            fontSize: 31,
-                                            color: ColorsResources.dark,
-                                            decoration: TextDecoration.none
-                                        ),
-                                      )
-                                  )
-                              ),
-                            )
+                          SizedBox(
+                            height: 113,
+                            width: double.infinity,
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
+                                child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: TextField(
+                                      controller: instagramInputController,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColorLighter,
+                                      decoration: const InputDecoration(
+                                          enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 0
+                                              )
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 0
+                                              )
+                                          )
+                                      ),
+                                      style: const TextStyle(
+                                          fontSize: 31,
+                                          color: ColorsResources.dark,
+                                          decoration: TextDecoration.none
+                                      ),
+                                    )
+                                )
+                            ),
+                          )
 
-                          ],
-                        ),
+                        ],
                       ),
-                      /* End - Facebook */
+                    ),
+                    /* End - Facebook */
 
-                      const Divider(
-                        height: 7,
-                        color: Colors.transparent,
-                      ),
+                    const Divider(
+                      height: 7,
+                      color: Colors.transparent,
+                    ),
 
-                      /* Start - Submit Button */
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                        child: Align(
+                    /* Start - Submit Button */
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                      child: Align(
                           alignment: Alignment.center,
                           child: InkWell(
                             onTap: () {
@@ -475,332 +463,331 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                               width: 173,
                             ),
                           )
-                        ),
                       ),
-                      /* End - Submit Button */
-
-                    ],
-                  )
-                ),
-
-                /* Start - Back */
-                Row(
-                  children: [
-
-                    /* Start - Back */
-                    Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                            padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
-                            child: SizedBox(
-                                height: 59,
-                                width: 59,
-                                child: InkWell(
-                                  onTap: () {
-
-                                    navigatePop(context);
-
-                                  },
-                                  child: const Image(
-                                    image: AssetImage("assets/back_icon.png"),
-                                  ),
-                                )
-                            )
-                        )
                     ),
-                    /* End - Back */
-
-                    /* Start - Title */
-                    Align(
-                        alignment: Alignment.topLeft,
-                        child: Padding(
-                            padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
-                            child: SizedBox(
-                                height: 59,
-                                width: 155,
-                                child: Stack(
-                                  children: [
-                                    WidgetMask(
-                                      blendMode: BlendMode.srcATop,
-                                      childSaveLayer: true,
-                                      mask /* Original Image */: Container(
-                                        decoration: const BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  ColorsResources.premiumDark,
-                                                  ColorsResources.black,
-                                                ],
-                                                transform: GradientRotation(45)
-                                            )
-                                        ),
-                                      ),
-                                      child: const Image(
-                                        image: AssetImage("assets/rectircle_shape.png"),
-                                      ),
-                                    ),
-                                    Align(
-                                        alignment: Alignment.center,
-                                        child: Padding(
-                                            padding: const EdgeInsets.all(1.9),
-                                            child: WidgetMask(
-                                                blendMode: BlendMode.srcATop,
-                                                childSaveLayer: true,
-                                                mask /* Original Image */: Container(
-                                                  decoration: const BoxDecoration(
-                                                      gradient: LinearGradient(
-                                                          colors: [
-                                                            ColorsResources.black,
-                                                            ColorsResources.premiumDark,
-                                                          ],
-                                                          transform: GradientRotation(45)
-                                                      )
-                                                  ),
-                                                ),
-                                                child: const Image(
-                                                  image: AssetImage("assets/rectircle_shape.png"),
-                                                )
-                                            )
-                                        )
-                                    ),
-                                    Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                            child: Text(
-                                                StringsResources.profileTitle(),
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: const TextStyle(
-                                                    color: ColorsResources.premiumLight,
-                                                    fontSize: 19
-                                                )
-                                            )
-                                        )
-                                    )
-                                  ],
-                                )
-                            )
-                        )
-                    ),
-                    /* End - Title */
+                    /* End - Submit Button */
 
                   ],
+                )
+            ),
+
+            /* Start - Back */
+            Row(
+              children: [
+
+                /* Start - Back */
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                        padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                        child: SizedBox(
+                            height: 59,
+                            width: 59,
+                            child: InkWell(
+                              onTap: () {
+
+                                navigatePop(context);
+
+                              },
+                              child: const Image(
+                                image: AssetImage("assets/back_icon.png"),
+                              ),
+                            )
+                        )
+                    )
                 ),
                 /* End - Back */
 
-                /* Start - Delete Account */
-                Positioned(
-                    top: 19,
-                    right: 19,
-                    child: Container(
-                        decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  color: ColorsResources.black.withOpacity(0.73),
-                                  blurRadius: 19
-                              )
-                            ]
-                        ),
-                        child: const WidgetMask(
-                            blendMode: BlendMode.srcATop,
-                            childSaveLayer: true,
-                            mask: ColoredBox(
-                                color: ColorsResources.primaryColorDarkest
-                            ),
-                            child: Image(
-                              image: AssetImage("assets/squircle_shape.png"),
-                              height: 59,
-                              width: 59,
+                /* Start - Title */
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                        padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                        child: SizedBox(
+                            height: 59,
+                            width: 155,
+                            child: Stack(
+                              children: [
+                                WidgetMask(
+                                  blendMode: BlendMode.srcATop,
+                                  childSaveLayer: true,
+                                  mask /* Original Image */: Container(
+                                    decoration: const BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                              ColorsResources.premiumDark,
+                                              ColorsResources.black,
+                                            ],
+                                            transform: GradientRotation(45)
+                                        )
+                                    ),
+                                  ),
+                                  child: const Image(
+                                    image: AssetImage("assets/rectircle_shape.png"),
+                                  ),
+                                ),
+                                Align(
+                                    alignment: Alignment.center,
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(1.9),
+                                        child: WidgetMask(
+                                            blendMode: BlendMode.srcATop,
+                                            childSaveLayer: true,
+                                            mask /* Original Image */: Container(
+                                              decoration: const BoxDecoration(
+                                                  gradient: LinearGradient(
+                                                      colors: [
+                                                        ColorsResources.black,
+                                                        ColorsResources.premiumDark,
+                                                      ],
+                                                      transform: GradientRotation(45)
+                                                  )
+                                              ),
+                                            ),
+                                            child: const Image(
+                                              image: AssetImage("assets/rectircle_shape.png"),
+                                            )
+                                        )
+                                    )
+                                ),
+                                Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                        child: Text(
+                                            StringsResources.profileTitle(),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                                color: ColorsResources.premiumLight,
+                                                fontSize: 19
+                                            )
+                                        )
+                                    )
+                                )
+                              ],
                             )
                         )
                     )
                 ),
-                Positioned(
-                    top: 19,
-                    right: 19,
-                    child: WidgetMask(
-                      blendMode: BlendMode.srcIn,
-                      childSaveLayer: true,
-                      mask: Material(
-                          shadowColor: Colors.transparent,
-                          color: Colors.transparent,
-                          child: InkWell(
-                              splashColor: ColorsResources.primaryColor,
-                              splashFactory: InkRipple.splashFactory,
-                              onTap: () {
+                /* End - Title */
 
-                                setState(() {
+              ],
+            ),
+            /* End - Back */
 
-                                  confirmOpacity = 1.0;
+            /* Start - Delete Account */
+            Positioned(
+                top: 19,
+                right: 19,
+                child: Container(
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: ColorsResources.black.withOpacity(0.73),
+                              blurRadius: 19
+                          )
+                        ]
+                    ),
+                    child: const WidgetMask(
+                        blendMode: BlendMode.srcATop,
+                        childSaveLayer: true,
+                        mask: ColoredBox(
+                            color: ColorsResources.primaryColorDarkest
+                        ),
+                        child: Image(
+                          image: AssetImage("assets/squircle_shape.png"),
+                          height: 59,
+                          width: 59,
+                        )
+                    )
+                )
+            ),
+            Positioned(
+                top: 19,
+                right: 19,
+                child: WidgetMask(
+                  blendMode: BlendMode.srcIn,
+                  childSaveLayer: true,
+                  mask: Material(
+                      shadowColor: Colors.transparent,
+                      color: Colors.transparent,
+                      child: InkWell(
+                          splashColor: ColorsResources.primaryColor,
+                          splashFactory: InkRipple.splashFactory,
+                          onTap: () {
 
-                                });
+                            setState(() {
 
-                              },
-                              child: const Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 19, 0, 19),
-                                  child: Image(
-                                    image: AssetImage("assets/delete_account.png"),
-                                    height: 31,
-                                    width: 31,
-                                  )
+                              confirmOpacity = 1.0;
+
+                            });
+
+                          },
+                          child: const Padding(
+                              padding: EdgeInsets.fromLTRB(0, 19, 0, 19),
+                              child: Image(
+                                image: AssetImage("assets/delete_account.png"),
+                                height: 31,
+                                width: 31,
                               )
                           )
-                      ),
-                      child: const Image(
-                        image: AssetImage("assets/squircle_shape.png"),
-                        height: 59,
-                        width: 59,
-                      ),
-                    )
-                ),
-                /* End - Delete Account */
+                      )
+                  ),
+                  child: const Image(
+                    image: AssetImage("assets/squircle_shape.png"),
+                    height: 59,
+                    width: 59,
+                  ),
+                )
+            ),
+            /* End - Delete Account */
 
-                /* Start - Confirm */
-                Positioned(
-                    bottom: 19,
-                    right: 19,
-                    left: 19,
-                    child: AnimatedOpacity(
-                      duration: const Duration(milliseconds: 357),
-                      opacity: confirmOpacity,
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(19),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        color: ColorsResources.primaryColor.withOpacity(0.31),
-                                        width: 3,
-                                        strokeAlign: BorderSide.strokeAlignInside
-                                    )
-                                ),
-                                gradient: LinearGradient(
-                                    colors: [
-                                      ColorsResources.black.withOpacity(0.73),
-                                      ColorsResources.primaryColor.withOpacity(0.73)
-                                    ],
-                                    stops: const [0.47, 1.0],
-                                    transform: GradientRotation(degreeToRadian(90))
-                                )
-                            ),
-                            child: SizedBox(
-                                height: 53,
-                                width: double.maxFinite,
-                                child: Row(
+            /* Start - Confirm */
+            Positioned(
+                bottom: 19,
+                right: 19,
+                left: 19,
+                child: AnimatedOpacity(
+                    duration: const Duration(milliseconds: 357),
+                    opacity: confirmOpacity,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(19),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  bottom: BorderSide(
+                                      color: ColorsResources.primaryColor.withOpacity(0.31),
+                                      width: 3,
+                                      strokeAlign: BorderSide.strokeAlignInside
+                                  )
+                              ),
+                              gradient: LinearGradient(
+                                  colors: [
+                                    ColorsResources.black.withOpacity(0.73),
+                                    ColorsResources.primaryColor.withOpacity(0.73)
+                                  ],
+                                  stops: const [0.47, 1.0],
+                                  transform: GradientRotation(degreeToRadian(90))
+                              )
+                          ),
+                          child: SizedBox(
+                              height: 53,
+                              width: double.maxFinite,
+                              child: Row(
 
-                                    children: [
+                                  children: [
 
-                                      Expanded(
-                                          flex: 7,
-                                          child: SizedBox(
-                                              height: 53,
-                                              child: Padding(
-                                                  padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                                                  child: Align(
-                                                      alignment: Alignment.centerLeft,
-                                                      child: Text(
-                                                          StringsResources.signOutNotice(),
-                                                          maxLines: 1,
-                                                          style: TextStyle(
-                                                              color: ColorsResources.premiumLight,
-                                                              fontSize: 13,
-                                                              overflow: TextOverflow.ellipsis,
-                                                              shadows: [
-                                                                Shadow(
-                                                                    color: ColorsResources.primaryColor.withOpacity(0.37),
-                                                                    blurRadius: 7,
-                                                                    offset: const Offset(0, 5)
-                                                                )
-                                                              ]
-                                                          )
-                                                      )
-                                                  )
-                                              )
-                                          )
-                                      ),
+                                    Expanded(
+                                        flex: 7,
+                                        child: SizedBox(
+                                            height: 53,
+                                            child: Padding(
+                                                padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                                                child: Align(
+                                                    alignment: Alignment.centerLeft,
+                                                    child: Text(
+                                                        StringsResources.signOutNotice(),
+                                                        maxLines: 1,
+                                                        style: TextStyle(
+                                                            color: ColorsResources.premiumLight,
+                                                            fontSize: 13,
+                                                            overflow: TextOverflow.ellipsis,
+                                                            shadows: [
+                                                              Shadow(
+                                                                  color: ColorsResources.primaryColor.withOpacity(0.37),
+                                                                  blurRadius: 7,
+                                                                  offset: const Offset(0, 5)
+                                                              )
+                                                            ]
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    ),
 
-                                      Expanded(
-                                          flex: 3,
-                                          child: SizedBox(
-                                              height: 53,
-                                              child: Center(
-                                                  child: Padding(
-                                                      padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                                                      child: Container(
-                                                          height: 31,
-                                                          width: double.maxFinite,
-                                                          decoration: BoxDecoration(
-                                                              color: ColorsResources.black,
-                                                              borderRadius: BorderRadius.circular(11),
-                                                              border: Border.all(
-                                                                  color: ColorsResources.primaryColor,
-                                                                  width: 1.73,
-                                                                  strokeAlign: BorderSide.strokeAlignOutside
-                                                              ),
-                                                              boxShadow: [
-                                                                BoxShadow(
-                                                                  color: ColorsResources.primaryColor.withOpacity(0.73),
-                                                                  blurRadius: 13,
-                                                                )
-                                                              ]
-                                                          ),
-                                                          child: ClipRRect(
-                                                              borderRadius: BorderRadius.circular(11),
-                                                              child: Material(
-                                                                  shadowColor: Colors.transparent,
-                                                                  color: Colors.transparent,
-                                                                  child: InkWell(
-                                                                      splashColor: ColorsResources.lightestYellow.withOpacity(0.31),
-                                                                      splashFactory: InkRipple.splashFactory,
-                                                                      onTap: () async {
+                                    Expanded(
+                                        flex: 3,
+                                        child: SizedBox(
+                                            height: 53,
+                                            child: Center(
+                                                child: Padding(
+                                                    padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                                                    child: Container(
+                                                        height: 31,
+                                                        width: double.maxFinite,
+                                                        decoration: BoxDecoration(
+                                                            color: ColorsResources.black,
+                                                            borderRadius: BorderRadius.circular(11),
+                                                            border: Border.all(
+                                                                color: ColorsResources.primaryColor,
+                                                                width: 1.73,
+                                                                strokeAlign: BorderSide.strokeAlignOutside
+                                                            ),
+                                                            boxShadow: [
+                                                              BoxShadow(
+                                                                color: ColorsResources.primaryColor.withOpacity(0.73),
+                                                                blurRadius: 13,
+                                                              )
+                                                            ]
+                                                        ),
+                                                        child: ClipRRect(
+                                                            borderRadius: BorderRadius.circular(11),
+                                                            child: Material(
+                                                                shadowColor: Colors.transparent,
+                                                                color: Colors.transparent,
+                                                                child: InkWell(
+                                                                    splashColor: ColorsResources.lightestYellow.withOpacity(0.31),
+                                                                    splashFactory: InkRipple.splashFactory,
+                                                                    onTap: () async {
 
-                                                                        FirebaseAuth.instance.currentUser?.delete().then((value) => {
+                                                                      FirebaseAuth.instance.currentUser?.delete().then((value) => {
 
-                                                                          FirebaseAuth.instance.signOut().then((value) => {
+                                                                        FirebaseAuth.instance.signOut().then((value) => {
 
-                                                                            Future.delayed(const Duration(milliseconds: 333), () async {
+                                                                          Future.delayed(const Duration(milliseconds: 333), () async {
 
-                                                                              navigatePop(context);
+                                                                            navigatePop(context);
 
-                                                                              Phoenix.rebirth(context);
-
-                                                                            })
+                                                                            Phoenix.rebirth(context);
 
                                                                           })
 
-                                                                        });
+                                                                        })
 
-                                                                      },
-                                                                      child: Center(
-                                                                          child: Text(
-                                                                              StringsResources.confirm(),
-                                                                              style: const TextStyle(
-                                                                                  color: ColorsResources.premiumLight,
-                                                                                  fontSize: 12
-                                                                              )
-                                                                          )
-                                                                      )
-                                                                  )
-                                                              )
-                                                          )
-                                                      )
-                                                  )
-                                              )
-                                          )
-                                      )
+                                                                      });
 
-                                    ]
+                                                                    },
+                                                                    child: Center(
+                                                                        child: Text(
+                                                                            StringsResources.confirm(),
+                                                                            style: const TextStyle(
+                                                                                color: ColorsResources.premiumLight,
+                                                                                fontSize: 12
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
 
-                                )
-                            ),
-                          )
-                      )
+                                  ]
+
+                              )
+                          ),
+                        )
                     )
                 )
-                /* End - Confirm */
-
-              ],
             )
+            /* End - Confirm */
+
+          ],
         )
     );
   }

@@ -22,6 +22,7 @@ import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/entry_configurations.dart';
 import 'package:sachiel/firebase_options.dart';
 import 'package:sachiel/remote/remote_configurations.dart';
+import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/utils/data/texts.dart';
@@ -126,6 +127,16 @@ void main() async {
           Phoenix(
               child: MaterialApp(
                   debugShowCheckedModeBanner: false,
+                  title: StringsResources.applicationName(),
+                  color: ColorsResources.primaryColor,
+                  theme: ThemeData(
+                    fontFamily: 'Ubuntu',
+                    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
+                    pageTransitionsTheme: const PageTransitionsTheme(builders: {
+                      TargetPlatform.android: ZoomPageTransitionsBuilder(),
+                      TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+                    }),
+                  ),
                   home: nextPage
               )
           )
