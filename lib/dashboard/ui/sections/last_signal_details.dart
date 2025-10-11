@@ -19,6 +19,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/signals/data/signals_data_structure.dart';
+import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/store/utils/digital_store_utils.dart';
 import 'package:sachiel/utils/data/numbers.dart';
 import 'package:sachiel/utils/io/file_io.dart';
@@ -83,20 +84,55 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
     if (purchasingTier.isNotEmpty) {
 
-      FirebaseFirestore.instance
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection("/Sachiels"
           "/Signals"
           "/$purchasingTier")
           .limit(1)
           .orderBy("tradeTimestamp", descending: true)
-          .get().then((QuerySnapshot querySnapshot) {
-            debugPrint("Last Signal Details Data: ${querySnapshot.docs.first.data()}");
+          .get();
 
-            SignalsDataStructure signalsDataStructure = SignalsDataStructure(querySnapshot.docs.first);
+      if (querySnapshot.docs.isEmpty) {
 
-            prepareLastSignalsDetails(signalsDataStructure);
+        if (purchasingTier == SachielsDigitalStore.palladiumTier) {
 
-          }, onError: (e) => debugPrint("$e"));
+          querySnapshot = await FirebaseFirestore.instance
+              .collection("/Sachiels"
+              "/Signals"
+              "/${SachielsDigitalStore.goldTier}")
+              .limit(1)
+              .orderBy("tradeTimestamp", descending: true)
+              .get();
+
+          if (querySnapshot.docs.isEmpty) {
+
+            querySnapshot = await FirebaseFirestore.instance
+                .collection("/Sachiels"
+                "/Signals"
+                "/${SachielsDigitalStore.platinumTier}")
+                .limit(1)
+                .orderBy("tradeTimestamp", descending: true)
+                .get();
+
+          }
+
+        } else {
+
+          querySnapshot = await FirebaseFirestore.instance
+              .collection("/Sachiels"
+              "/Signals"
+              "/${SachielsDigitalStore.platinumTier}")
+              .limit(1)
+              .orderBy("tradeTimestamp", descending: true)
+              .get();
+
+        }
+
+      }
+
+      SignalsDataStructure signalsDataStructure = SignalsDataStructure(querySnapshot.docs.first);
+
+      prepareLastSignalsDetails(signalsDataStructure);
 
     }
 

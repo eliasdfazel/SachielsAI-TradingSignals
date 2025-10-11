@@ -14,6 +14,7 @@ import 'package:sachiel/history/ui/signals_history_interface.dart';
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/signals/data/signals_data_structure.dart';
 import 'package:sachiel/signals/signal_details/ui/signal_details_interface.dart';
+import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/store/utils/digital_store_utils.dart';
 import 'package:sachiel/utils/navigations/navigation_commands.dart';
 
@@ -62,36 +63,69 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
 
     if (purchasingTier.isNotEmpty) {
 
-      FirebaseFirestore.instance
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection("/Sachiels"
           "/Signals"
           "/$purchasingTier")
           .limit(13)
           .orderBy("tradeTimestamp", descending: true)
-          .get().then((QuerySnapshot querySnapshot) {
+          .get();
 
-            List<SignalsDataStructure> signalsDataStructure = [];
+      if (querySnapshot.docs.isEmpty) {
 
-            if (querySnapshot.docs.length > 1) {
+        if (purchasingTier == SachielsDigitalStore.palladiumTier) {
 
-              for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs.getRange(1, querySnapshot.docs.length)) {
+          querySnapshot = await FirebaseFirestore.instance
+              .collection("/Sachiels"
+              "/Signals"
+              "/${SachielsDigitalStore.goldTier}")
+              .limit(13)
+              .orderBy("tradeTimestamp", descending: true)
+              .get();
 
-                signalsDataStructure.add(SignalsDataStructure(queryDocumentSnapshot));
+          if (querySnapshot.docs.isEmpty) {
 
-              }
+            querySnapshot = await FirebaseFirestore.instance
+                .collection("/Sachiels"
+                "/Signals"
+                "/${SachielsDigitalStore.platinumTier}")
+                .limit(13)
+                .orderBy("tradeTimestamp", descending: true)
+                .get();
 
-              if (signalsDataStructure.isNotEmpty) {
+          }
 
-                prepareLatestSignalsDetails(signalsDataStructure);
+        } else {
 
-              }
+          querySnapshot = await FirebaseFirestore.instance
+              .collection("/Sachiels"
+              "/Signals"
+              "/${SachielsDigitalStore.platinumTier}")
+              .limit(13)
+              .orderBy("tradeTimestamp", descending: true)
+              .get();
 
-            }
+        }
 
-          },
-          onError: (e) => {
+      }
 
-          });
+      List<SignalsDataStructure> signalsDataStructure = [];
+
+      if (querySnapshot.docs.length > 1) {
+
+        for (QueryDocumentSnapshot queryDocumentSnapshot in querySnapshot.docs.getRange(1, querySnapshot.docs.length)) {
+
+          signalsDataStructure.add(SignalsDataStructure(queryDocumentSnapshot));
+
+        }
+
+        if (signalsDataStructure.isNotEmpty) {
+
+          prepareLatestSignalsDetails(signalsDataStructure);
+
+        }
+
+      }
 
     }
 
