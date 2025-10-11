@@ -96,9 +96,9 @@ class SignalsDataStructure {
   }
 
   /// Trade Timestamp
-  String tradeTimestamp() {
+  int tradeTimestamp() {
 
-    return signalsDocumentData[SignalsDataStructure.tradeTimestampName];
+    return (signalsDocumentData[SignalsDataStructure.tradeTimestampName] as Timestamp).millisecondsSinceEpoch;
   }
 
 }

@@ -107,30 +107,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
               /* Start - Gradient Background - Dark */
               Container(
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(17),
-                      topRight: Radius.circular(17),
-                      bottomLeft: Radius.circular(17),
-                      bottomRight: Radius.circular(17)
-                  ),
-                  border: Border(
-                      top: BorderSide(
-                        color: ColorsResources.black,
-                        width: 7,
-                      ),
-                      bottom: BorderSide(
-                        color: ColorsResources.black,
-                        width: 7,
-                      ),
-                      left: BorderSide(
-                        color: ColorsResources.black,
-                        width: 7,
-                      ),
-                      right: BorderSide(
-                        color: ColorsResources.black,
-                        width: 7,
-                      )
-                  ),
                   gradient: LinearGradient(
                       colors: [
                         ColorsResources.premiumDark,

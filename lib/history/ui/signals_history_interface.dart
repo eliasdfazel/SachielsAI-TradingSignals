@@ -85,237 +85,215 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-        backgroundColor: ColorsResources.black,
-        body: Stack(
-          children: [
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: ColorsResources.black,
+          body: Stack(
+            children: [
 
-            /* Start - Gradient Background - Dark */
-            Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(17),
-                      topRight: Radius.circular(17),
-                      bottomLeft: Radius.circular(17),
-                      bottomRight: Radius.circular(17)
-                  ),
-                  border: Border(
-                      top: BorderSide(
-                        color: ColorsResources.black,
-                        width: 7,
-                      ),
-                      bottom: BorderSide(
-                        color: ColorsResources.black,
-                        width: 7,
-                      ),
-                      left: BorderSide(
-                        color: ColorsResources.black,
-                        width: 7,
-                      ),
-                      right: BorderSide(
-                        color: ColorsResources.black,
-                        width: 7,
-                      )
-                  ),
-                  gradient: LinearGradient(
-                      colors: [
-                        ColorsResources.premiumDark,
-                        ColorsResources.black,
-                      ],
-                      begin: FractionalOffset(0.0, 0.0),
-                      end: FractionalOffset(1.0, 0.0),
-                      stops: [0.0, 1.0],
-                      transform: GradientRotation(-45),
-                      tileMode: TileMode.clamp
-                  ),
-                )
-            ),
-            /* End - Gradient Background - Dark */
-
-            /* Start - Branding Transparent */
-            Align(
-              alignment: Alignment.center,
-              child: Opacity(
-                  opacity: 0.1,
-                  child: Transform.scale(
-                      scale: 1.7,
-                      child: const Image(
-                        image: AssetImage("assets/logo.png"),
-                      )
+              /* Start - Gradient Background - Dark */
+              Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [
+                          ColorsResources.premiumDark,
+                          ColorsResources.black,
+                        ],
+                        begin: FractionalOffset(0.0, 0.0),
+                        end: FractionalOffset(1.0, 0.0),
+                        stops: [0.0, 1.0],
+                        transform: GradientRotation(-45),
+                        tileMode: TileMode.clamp
+                    ),
                   )
               ),
-            ),
-            /* End - Branding Transparent */
+              /* End - Gradient Background - Dark */
 
-            /* Start - Gradient Background - Golden */
-            Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(17),
-                          topRight: Radius.circular(17),
-                          bottomLeft: Radius.circular(17),
-                          bottomRight: Radius.circular(17)
-                      ),
-                      gradient: RadialGradient(
-                        radius: 1.1,
-                        colors: <Color> [
-                          ColorsResources.primaryColorLighter.withOpacity(0.51),
-                          Colors.transparent,
-                        ],
-                        center: const Alignment(0.79, -0.87),
-                      )
-                  ),
-                  child: SizedBox(
-                    height: calculatePercentage(99, displayHeight()),
-                    width: calculatePercentage(99, displayWidth()),
-                  ),
-                )
-            ),
-            /* End - Gradient Background - Golden */
-
-            allSignalsHistory,
-
-            /* Start - Back */
-            Row(
-              children: [
-
-                /* Start - Back */
-                Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                        padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
-                        child: SizedBox(
-                            height: 59,
-                            width: 59,
-                            child: InkWell(
-                              onTap: () {
-
-                                navigatePop(context);
-
-                              },
-                              child: const Image(
-                                image: AssetImage("assets/back_icon.png"),
-                              ),
-                            )
+              /* Start - Branding Transparent */
+              Align(
+                alignment: Alignment.center,
+                child: Opacity(
+                    opacity: 0.1,
+                    child: Transform.scale(
+                        scale: 1.7,
+                        child: const Image(
+                          image: AssetImage("assets/logo.png"),
                         )
                     )
                 ),
-                /* End - Back */
+              ),
+              /* End - Branding Transparent */
 
-                /* Start - Title */
-                Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                        padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
-                        child: SizedBox(
-                            height: 59,
-                            width: 155,
-                            child: Stack(
-                              children: [
-                                WidgetMask(
-                                  blendMode: BlendMode.srcATop,
-                                  childSaveLayer: true,
-                                  mask /* Original Image */: Container(
-                                    decoration: const BoxDecoration(
-                                        gradient: LinearGradient(
-                                            colors: [
-                                              ColorsResources.premiumDark,
-                                              ColorsResources.black,
-                                            ],
-                                            transform: GradientRotation(45)
-                                        )
-                                    ),
-                                  ),
-                                  child: const Image(
-                                    image: AssetImage("assets/rectircle_shape.png"),
-                                  ),
-                                ),
-                                Align(
-                                    alignment: Alignment.center,
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(1.9),
-                                        child: WidgetMask(
-                                            blendMode: BlendMode.srcATop,
-                                            childSaveLayer: true,
-                                            mask /* Original Image */: Container(
-                                              decoration: const BoxDecoration(
-                                                  gradient: LinearGradient(
-                                                      colors: [
-                                                        ColorsResources.black,
-                                                        ColorsResources.premiumDark,
-                                                      ],
-                                                      transform: GradientRotation(45)
-                                                  )
-                                              ),
-                                            ),
-                                            child: const Image(
-                                              image: AssetImage("assets/rectircle_shape.png"),
-                                            )
-                                        )
-                                    )
-                                ),
-                                Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                        child: Text(
-                                            StringsResources.historyTitle(),
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: const TextStyle(
-                                                color: ColorsResources.premiumLight,
-                                                fontSize: 19
-                                            )
-                                        )
-                                    )
-                                )
-                              ],
-                            )
+              /* Start - Gradient Background - Golden */
+              Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(17),
+                            topRight: Radius.circular(17),
+                            bottomLeft: Radius.circular(17),
+                            bottomRight: Radius.circular(17)
+                        ),
+                        gradient: RadialGradient(
+                          radius: 1.1,
+                          colors: <Color> [
+                            ColorsResources.primaryColorLighter.withOpacity(0.51),
+                            Colors.transparent,
+                          ],
+                          center: const Alignment(0.79, -0.87),
                         )
-                    )
-                ),
-                /* End - Title */
+                    ),
+                    child: SizedBox(
+                      height: calculatePercentage(99, displayHeight()),
+                      width: calculatePercentage(99, displayWidth()),
+                    ),
+                  )
+              ),
+              /* End - Gradient Background - Golden */
 
-              ],
-            ),
-            /* End - Back */
+              allSignalsHistory,
 
-            /* Start - Purchase Plan Picker */
-            const Positioned(
-                right: 19,
-                top: 19,
-                child: PurchasePlanPicker()
-            ),
-            /* End - Purchase Plan Picker */
+              /* Start - Back */
+              Row(
+                children: [
 
-            /* Start - Purchase Plan Picker */
-            Positioned(
-              right: 19,
-              bottom: 37,
-              child: Visibility(
-                  visible: filterVisibility,
-                  child: SizedBox(
-                      height: 59,
-                      width: 59,
-                      child: InkWell(
-                          onTap: () {
+                  /* Start - Back */
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                          child: SizedBox(
+                              height: 59,
+                              width: 59,
+                              child: InkWell(
+                                onTap: () {
 
-                            setupAdvancedFilter();
+                                  navigatePop(context);
 
-                          },
-                          child: const Image(
-                            image: AssetImage("assets/filter_icon.png"),
+                                },
+                                child: const Image(
+                                  image: AssetImage("assets/back_icon.png"),
+                                ),
+                              )
                           )
                       )
-                  )
-              ),
-            ),
-            /* End - Purchase Plan Picker */
+                  ),
+                  /* End - Back */
 
-          ],
-        )
+                  /* Start - Title */
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(19, 19, 0, 0),
+                          child: SizedBox(
+                              height: 59,
+                              width: 155,
+                              child: Stack(
+                                children: [
+                                  WidgetMask(
+                                    blendMode: BlendMode.srcATop,
+                                    childSaveLayer: true,
+                                    mask /* Original Image */: Container(
+                                      decoration: const BoxDecoration(
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                ColorsResources.premiumDark,
+                                                ColorsResources.black,
+                                              ],
+                                              transform: GradientRotation(45)
+                                          )
+                                      ),
+                                    ),
+                                    child: const Image(
+                                      image: AssetImage("assets/rectircle_shape.png"),
+                                    ),
+                                  ),
+                                  Align(
+                                      alignment: Alignment.center,
+                                      child: Padding(
+                                          padding: const EdgeInsets.all(1.9),
+                                          child: WidgetMask(
+                                              blendMode: BlendMode.srcATop,
+                                              childSaveLayer: true,
+                                              mask /* Original Image */: Container(
+                                                decoration: const BoxDecoration(
+                                                    gradient: LinearGradient(
+                                                        colors: [
+                                                          ColorsResources.black,
+                                                          ColorsResources.premiumDark,
+                                                        ],
+                                                        transform: GradientRotation(45)
+                                                    )
+                                                ),
+                                              ),
+                                              child: const Image(
+                                                image: AssetImage("assets/rectircle_shape.png"),
+                                              )
+                                          )
+                                      )
+                                  ),
+                                  Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                          child: Text(
+                                              StringsResources.historyTitle(),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(
+                                                  color: ColorsResources.premiumLight,
+                                                  fontSize: 19
+                                              )
+                                          )
+                                      )
+                                  )
+                                ],
+                              )
+                          )
+                      )
+                  ),
+                  /* End - Title */
+
+                ],
+              ),
+              /* End - Back */
+
+              /* Start - Purchase Plan Picker */
+              const Positioned(
+                  right: 19,
+                  top: 19,
+                  child: PurchasePlanPicker()
+              ),
+              /* End - Purchase Plan Picker */
+
+              /* Start - Purchase Plan Picker */
+              Positioned(
+                right: 19,
+                bottom: 37,
+                child: Visibility(
+                    visible: filterVisibility,
+                    child: SizedBox(
+                        height: 59,
+                        width: 59,
+                        child: InkWell(
+                            onTap: () {
+
+                              setupAdvancedFilter();
+
+                            },
+                            child: const Image(
+                              image: AssetImage("assets/filter_icon.png"),
+                            )
+                        )
+                    )
+                ),
+              ),
+              /* End - Purchase Plan Picker */
+
+            ],
+          )
+      )
     );
   }
 
@@ -405,7 +383,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
 
     }
 
-    DateTime tradeTimestamp = DateTime.fromMillisecondsSinceEpoch(int.parse(signalsDataStructure.tradeTimestamp()));
+    DateTime tradeTimestamp = DateTime.fromMillisecondsSinceEpoch(signalsDataStructure.tradeTimestamp());
 
     var tradeTimestampText = tradeTimestamp.toString();
 
@@ -535,7 +513,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
                                 Padding(
                                     padding: const EdgeInsets.fromLTRB(9, 0, 0, 0),
                                     child: Text(
-                                      signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", ""),
+                                      double.parse(signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", "")).round().toString(),
                                       style: const TextStyle(
                                           color: ColorsResources.white,
                                           fontSize: 101,

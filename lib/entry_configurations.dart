@@ -136,12 +136,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
 
                   Container(
                       decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(17),
-                              topRight: Radius.circular(17),
-                              bottomLeft: Radius.circular(17),
-                              bottomRight: Radius.circular(17)
-                          ),
                           color: ColorsResources.black,
                           image: DecorationImage(
                               image: AssetImage("assets/entry_background.jpg"),

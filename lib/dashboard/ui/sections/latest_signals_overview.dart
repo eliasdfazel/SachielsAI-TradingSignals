@@ -214,13 +214,12 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
 
                       /* Start - Percentage */
                       Positioned(
-                          top: -140,
-                          left: -23,
+                          top: -137,
                           child: Text(
                               "%",
                               style: TextStyle(
-                                  color: ColorsResources.black.withOpacity(0.07),
-                                  fontSize: 351,
+                                  color: ColorsResources.black.withAlpha(59),
+                                  fontSize: 379,
                                   fontFamily: "Handwriting"
                               )
                           )
@@ -267,7 +266,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                               padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
                               alignment: Alignment.center,
                               child: Text(
-                                signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", ""),
+                                double.parse(signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", "")).round().toString(),
                                 style: TextStyle(
                                     fontSize: 47,
                                     fontWeight: FontWeight.bold,

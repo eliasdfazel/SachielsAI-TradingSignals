@@ -86,7 +86,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
       FirebaseFirestore.instance
           .collection("/Sachiels"
           "/Signals"
-          "/${purchasingTier}")
+          "/$purchasingTier")
           .limit(1)
           .orderBy("tradeTimestamp", descending: true)
           .get().then((QuerySnapshot querySnapshot) {
@@ -140,7 +140,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
     }
 
-    DateTime tradeTimestamp = DateTime.fromMillisecondsSinceEpoch(int.parse(signalsDataStructure.tradeTimestamp()));
+    DateTime tradeTimestamp = DateTime.fromMillisecondsSinceEpoch(signalsDataStructure.tradeTimestamp());
 
     var tradeTimestampText = tradeTimestamp.toString();
 
@@ -186,15 +186,12 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                   Positioned(
                       bottom: -79,
                       left: 3,
-                      child: Transform.rotate(
-                        angle: degreeToRadian(-19.0),
-                        child: Text(
-                          "\$",
-                          style: TextStyle(
-                              color: ColorsResources.black.withOpacity(0.17),
-                              fontSize: 207,
-                              fontFamily: "Handwriting"
-                          ),
+                      child: Text(
+                        "\$",
+                        style: TextStyle(
+                            color: ColorsResources.black.withOpacity(0.17),
+                            fontSize: 301,
+                            fontFamily: "Handwriting"
                         ),
                       )
                   ),
@@ -280,7 +277,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                   Padding(
                                       padding: const EdgeInsets.fromLTRB(9, 0, 0, 0),
                                       child: Text(
-                                        signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", ""),
+                                        double.parse(signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", "")).round().toString(),
                                         style: const TextStyle(
                                             color: ColorsResources.white,
                                             fontSize: 101,
@@ -299,8 +296,10 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                 ],
                               ),
 
+                              const Spacer(),
+
                               Text(
-                                signalsDataStructure.tradeProfitAmount().replaceAll("\$", ""),
+                                signalsDataStructure.tradeProfitAmount(),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -315,34 +314,28 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                       )
                                     ]
                                 ),
-                              )
+                              ),
+
+                              Container(
+                                width: 351,
+                                height: 59,
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                                alignment: Alignment.bottomLeft,
+                                child: Text(
+                                  tradeTimestampText,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    color: ColorsResources.premiumLight,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ),
 
                             ],
                           )
                       )
                   ),
-
-                  /* Start - Trade Time */
-                  Positioned(
-                    left: 13,
-                    bottom: 7,
-                    child: Container(
-                      width: 351,
-                      height: 59,
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        tradeTimestampText,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: ColorsResources.premiumLight,
-                          fontSize: 17,
-                        ),
-                      ),
-                    ),
-                  ),
-                  /* End - Trade Time */
 
                   /* Start - Next Slide */
                   Positioned(
@@ -379,7 +372,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
     }
 
-    DateTime tradeTimestamp = DateTime.fromMillisecondsSinceEpoch(int.parse(signalsDataStructure.tradeTimestamp()));
+    DateTime tradeTimestamp = DateTime.fromMillisecondsSinceEpoch(signalsDataStructure.tradeTimestamp());
 
     var tradeTimestampText = tradeTimestamp.toString();
 
@@ -932,7 +925,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
     }
 
-    DateTime tradeTimestamp = DateTime.fromMillisecondsSinceEpoch(int.parse(signalsDataStructure.tradeTimestamp()));
+    DateTime tradeTimestamp = DateTime.fromMillisecondsSinceEpoch(signalsDataStructure.tradeTimestamp());
 
     var tradeTimestampText = tradeTimestamp.toString();
 
@@ -1057,7 +1050,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                                   Padding(
                                       padding: const EdgeInsets.fromLTRB(9, 0, 0, 0),
                                       child: Text(
-                                        signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", ""),
+                                        double.parse(signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", "")).round().toString(),
                                         style: TextStyle(
                                             color: ColorsResources.white,
                                             fontSize: 101,
