@@ -10,8 +10,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:quick_actions/quick_actions.dart';
-import 'package:sachiel/history/ui/signals_history_interface.dart';
-import 'package:sachiel/utils/navigations/navigation_commands.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -33,19 +31,10 @@ class DynamicShortcuts {
 
         });
 
-      } else if (shortcutType == 'history') {
-        debugPrint("Quick Action: History");
+      } else if (shortcutType == 'x') {
+        debugPrint("Quick Action: X");
 
-        Future.delayed(const Duration(milliseconds: 1777), () {
-
-          navigateTo(context, const SignalsHistoryInterface());
-
-        });
-
-      } else if (shortcutType == 'twitter') {
-        debugPrint("Quick Action: Twitter");
-
-        launchUrlString("https://twitter.com/SachielsAI", mode: LaunchMode.externalApplication);
+        launchUrlString("https://x.com/SachielsAI", mode: LaunchMode.externalApplication);
 
       } else if (shortcutType == 'threads') {
         debugPrint("Quick Action: Threads");
@@ -58,8 +47,7 @@ class DynamicShortcuts {
 
     quickActions.setShortcutItems(<ShortcutItem>[
       const ShortcutItem(type: 'share', localizedTitle: 'Share', icon: 'share_icon'),
-      const ShortcutItem(type: 'history', localizedTitle: 'History', icon: 'squircle_logo'),
-      const ShortcutItem(type: 'twitter', localizedTitle: 'X', icon: 'twitter_icon'),
+      const ShortcutItem(type: 'x', localizedTitle: 'X', icon: 'twitter_icon'),
       const ShortcutItem(type: 'threads', localizedTitle: 'Threads', icon: 'threads_icon')
     ]);
 
