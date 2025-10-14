@@ -27,7 +27,9 @@ class DynamicShortcuts {
 
         Future.delayed(const Duration(milliseconds: 1777), () {
 
-          Share.share('Sachiels AI; Trading Signals For Forex, Cryptocurrency, Stock Market https://GeeksEmpire.co/SachielsAI');
+          SharePlus.instance.share(ShareParams(
+            text: 'Sachiels AI; Trading Signals For Forex, Cryptocurrency, Gold Market https://play.google.com/store/apps/details?id=co.geeksempire.sachiel.signals'
+          ));
 
         });
 

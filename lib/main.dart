@@ -17,6 +17,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/entry_configurations.dart';
@@ -33,6 +34,8 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage remoteMessage) asy
   debugPrint("Sachiels Signal Received: ${remoteMessage.data}");
 }
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
 void main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -40,6 +43,8 @@ void main() async {
   var firebaseInitialized = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await initializeNotifications();
 
   var appCheckProvider = AndroidProvider.playIntegrity;
 
@@ -151,6 +156,28 @@ void main() async {
 
 
   }
+
+}
+
+const AndroidNotificationChannel notificationChannel = AndroidNotificationChannel(
+    'test',
+    'Test',
+    description: 'Test Notification Channel',
+    importance: Importance.high
+);
+
+const AndroidNotificationChannel forexChannel = AndroidNotificationChannel(
+    'forex',
+    'Forex Notifications',
+    description: 'Forex Markets Trading Signals, Status.',
+    importance: Importance.high
+);
+
+Future<void> initializeNotifications() async {
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(notificationChannel);
 
 }
 
