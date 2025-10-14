@@ -167,14 +167,14 @@ const AndroidNotificationChannel metalChannel = AndroidNotificationChannel(
 );
 
 const AndroidNotificationChannel forexChannel = AndroidNotificationChannel(
-    'forex',
+    'foreignexchange',
     'Forex Notifications',
     description: 'Forex Markets Trading Signals, Status.',
     importance: Importance.high
 );
 
 const AndroidNotificationChannel cryptoChannel = AndroidNotificationChannel(
-    'crypto',
+    'cryptocurrency',
     'Crypto Notifications',
     description: 'Crypto Markets Trading Signals, Status.',
     importance: Importance.high
