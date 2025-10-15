@@ -242,7 +242,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                         )
                       ]
                   ),
-                  child:Stack(
+                  child: Stack(
                     fit: StackFit.expand,
                     children: [
 
@@ -253,7 +253,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                               "%",
                               style: TextStyle(
                                   color: ColorsResources.black.withAlpha(59),
-                                  fontSize: 379,
+                                  fontSize: 313,
                                   fontFamily: "Handwriting"
                               )
                           )

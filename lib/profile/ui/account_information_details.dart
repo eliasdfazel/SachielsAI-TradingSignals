@@ -210,7 +210,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                       flex: 3,
                                       child: SizedBox(
                                           child: Padding(
-                                              padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
+                                              padding: const EdgeInsets.fromLTRB(31, 0, 0, 0),
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
                                                 child: GradientText(
