@@ -8,9 +8,6 @@
  * https://opensource.org/licenses/MIT
  */
 
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +18,6 @@ import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/signals/data/signals_data_structure.dart';
 import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/store/utils/digital_store_utils.dart';
-import 'package:sachiel/utils/io/file_io.dart';
-import 'package:share_plus/share_plus.dart';
 
 class LastSignalDetails extends StatefulWidget {
 
@@ -924,20 +919,6 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
           )
         )
     );
-  }
-
-  void shareSignalSnapshot(SignalsDataStructure signalsDataStructure, Uint8List capturedImage) async {
-
-    File snapshotFile = await createFileOfBytes("SachielsSignals", capturedImage, fileFormat: "PNG");
-        
-    Share.shareXFiles([XFile(snapshotFile.path)], text: "Trading Signal Powered By #SachielAI @sachielssignals"
-        "\n"
-        "${signalsDataStructure.tradeCommand()} ${signalsDataStructure.tradeMarketPair()}"
-        "\n\n\n"
-        "#GeeksEmpire"
-        "\n"
-        "#TradingSignals");
-
   }
 
 }

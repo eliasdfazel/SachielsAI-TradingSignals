@@ -13,59 +13,59 @@ import 'dart:typed_data';
 
 import 'package:path_provider/path_provider.dart';
 
-Future<bool> fileExist(String fileName, {String fileFormat = "TXT"}) async {
+Future<bool> fileExist(String fileName) async {
 
   Directory appDocumentsDirectory = await getApplicationSupportDirectory();
 
   String appDocumentsPath = appDocumentsDirectory.path;
 
-  String filePath = '$appDocumentsPath/$fileName.$fileFormat';
+  String filePath = '$appDocumentsPath/$fileName';
 
   File file = File(filePath);
 
   return file.exists();
 }
 
-Future<File> createFileOfBytes(String fileName, Uint8List contentBytes, {String fileFormat = "TXT"}) async {
+Future<File> createFileOfBytes(String fileName, Uint8List contentBytes) async {
 
   Directory appDocumentsDirectory = await getApplicationSupportDirectory();
 
   String appDocumentsPath = appDocumentsDirectory.path;
 
-  String filePath = '$appDocumentsPath/$fileName.$fileFormat';
+  String filePath = '$appDocumentsPath/$fileName';
 
   return File(filePath).writeAsBytes(contentBytes);
 }
 
-Future<File> createFileOfTexts(String fileName, String contentBytes, {String fileFormat = "TXT"}) async {
+Future<File> createFileOfTexts(String fileName, String contentBytes) async {
 
   Directory appDocumentsDirectory = await getApplicationSupportDirectory();
 
   String appDocumentsPath = appDocumentsDirectory.path;
 
-  String filePath = '$appDocumentsPath/$fileName.$fileFormat';
+  String filePath = '$appDocumentsPath/$fileName';
 
   return File(filePath).writeAsString(contentBytes);
 }
 
-Future<String> readFileOfTexts(String fileName, {String fileFormat = "TXT"}) async {
+Future<String?> readFileOfTexts(String fileName) async {
 
   Directory appDocumentsDirectory = await getApplicationSupportDirectory();
 
   String appDocumentsPath = appDocumentsDirectory.path;
 
-  String filePath = '$appDocumentsPath/$fileName.$fileFormat';
+  String filePath = '$appDocumentsPath/$fileName';
 
   return File(filePath).readAsString();
 }
 
-void deletePrivateFile(String fileName, {String fileFormat = "TXT"}) async {
+void deletePrivateFile(String fileName) async {
 
   Directory appDocumentsDirectory = await getApplicationSupportDirectory();
 
   String appDocumentsPath = appDocumentsDirectory.path;
 
-  String filePath = '$appDocumentsPath/$fileName$fileFormat';
+  String filePath = '$appDocumentsPath/$fileName';
 
   File(filePath).delete();
 

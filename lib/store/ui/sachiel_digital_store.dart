@@ -429,7 +429,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
     if (alreadyPurchased) {
 
-      purchasedPlan = await readFileOfTexts(StringsResources.filePurchasingPlan);
+      purchasedPlan = (await readFileOfTexts(StringsResources.filePurchasingPlan))!!;
 
     }
 

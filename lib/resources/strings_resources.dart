@@ -232,11 +232,11 @@ class StringsResources {
   }
 
   /// SliderTime.TXT
-  static String fileSliderTime = "SliderTime.TXT";
+  static String fileSliderTime = "SliderTime";
   /// PurchasingPlan.TXT
-  static String filePurchasingPlan = "PurchasingPlan.TXT";
+  static String filePurchasingPlan = "PurchasingPlan";
   /// PurchasingPlan
-  static String filePurchasingTime = "PurchasingTime.TXT";
+  static String filePurchasingTime = "PurchasingTime";
 
   static List<String> marketsTypes() {
 

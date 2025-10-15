@@ -26,7 +26,7 @@ class DigitalStoreUtils {
 
     if (alreadyPurchased) {
 
-      String purchasingPlanDirectory = await readFileOfTexts(StringsResources.filePurchasingPlan);
+      String purchasingPlanDirectory = (await readFileOfTexts(StringsResources.filePurchasingPlan))!!;
 
       if (purchasingPlanDirectory == SachielsDigitalStore.previewTier) {
 
@@ -160,7 +160,7 @@ class DigitalStoreUtils {
 
       DateTime nowTime = DateTime.now();
 
-      String expiryTime = await readFileOfTexts(StringsResources.filePurchasingTime);
+      String expiryTime = (await readFileOfTexts(StringsResources.filePurchasingTime))!!;
 
       int nowMonth = nowTime.month;
       int nowDay = nowTime.day;

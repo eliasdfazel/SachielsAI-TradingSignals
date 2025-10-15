@@ -224,11 +224,17 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
       firebaseRemoteConfigurations.activate().then((value) async {
 
-        int oldSliderTime = int.parse(await readFileOfTexts(StringsResources.fileSliderTime));
+        int oldSliderTime = 0;
+
+        if (await fileExist(StringsResources.fileSliderTime)) {
+
+          oldSliderTime = int.parse((await readFileOfTexts(StringsResources.fileSliderTime) ?? "0"));
+
+        }
 
         int newSliderTime = firebaseRemoteConfigurations.getInt(RemoteConfigurations.sliderTime);
 
-        if (1000000 > oldSliderTime) {
+        if (newSliderTime > oldSliderTime) {
 
           setState(() {
 

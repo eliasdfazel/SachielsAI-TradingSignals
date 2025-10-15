@@ -72,8 +72,7 @@ void main() async {
       readFileOfTexts(StringsResources.filePurchasingPlan).then((purchasedPlan) => {
 
         Future.delayed(Duration.zero, () {
-          debugPrint("Purchased Plan: ${capitalizeFirstCharacter(purchasedPlan.split(".").first)}");
-
+          debugPrint("Purchased Plan: ${capitalizeFirstCharacter(purchasedPlan!.split(".").first)}");
 
           if (purchasedPlan == SachielsDigitalStore.previewTier) {
 
