@@ -19,6 +19,8 @@ class DynamicShortcuts {
 
     const QuickActions quickActions = QuickActions();
 
+    await quickActions.clearShortcutItems();
+
     quickActions.initialize((shortcutType) {
       debugPrint("Shortcut Type: $shortcutType");
 

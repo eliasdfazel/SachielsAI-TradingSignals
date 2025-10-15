@@ -34,8 +34,6 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage remoteMessage) asy
   debugPrint("Sachiels Signal Received: ${remoteMessage.data}");
 }
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
 void main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -159,28 +157,40 @@ void main() async {
 
 }
 
-const AndroidNotificationChannel metalChannel = AndroidNotificationChannel(
-    'metal',
-    'Metal Notifications',
-    description: 'Metal Markets Trading Signals, Status.',
-    importance: Importance.high
-);
-
-const AndroidNotificationChannel forexChannel = AndroidNotificationChannel(
-    'foreignexchange',
-    'Forex Notifications',
-    description: 'Forex Markets Trading Signals, Status.',
-    importance: Importance.high
-);
-
-const AndroidNotificationChannel cryptoChannel = AndroidNotificationChannel(
-    'cryptocurrency',
-    'Crypto Notifications',
-    description: 'Crypto Markets Trading Signals, Status.',
-    importance: Importance.high
-);
-
 Future<void> initializeNotifications() async {
+
+  const AndroidNotificationChannel metalChannel = AndroidNotificationChannel(
+      'metal',
+      'Metal Notifications',
+      description: 'Metal Markets Trading Signals, Status.',
+      importance: Importance.high
+  );
+
+  const AndroidNotificationChannel forexChannel = AndroidNotificationChannel(
+      'foreignexchange',
+      'Forex Notifications',
+      description: 'Forex Markets Trading Signals, Status.',
+      importance: Importance.high
+  );
+
+  const AndroidNotificationChannel cryptoChannel = AndroidNotificationChannel(
+      'cryptocurrency',
+      'Crypto Notifications',
+      description: 'Crypto Markets Trading Signals, Status.',
+      importance: Importance.high
+  );
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('logo');
+  const DarwinInitializationSettings darwinSettingsAndroid = DarwinInitializationSettings();
+
+  const InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+    iOS: darwinSettingsAndroid
+  );
+
+  flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
