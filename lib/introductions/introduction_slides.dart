@@ -10,7 +10,6 @@
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
@@ -27,15 +26,15 @@ import 'package:widget_mask/widget_mask.dart';
 
 class IntroductionSlides extends StatefulWidget {
 
-  FirebaseRemoteConfig? firebaseRemoteConfig;
-
-  IntroductionSlides({Key? key, firebaseRemoteConfig}) : super(key: key);
+  IntroductionSlides({Key? key}) : super(key: key);
 
   @override
   State<IntroductionSlides> createState() => IntroductionSlidesState();
 
 }
 class IntroductionSlidesState extends State<IntroductionSlides> {
+
+  RemoteConfigurations remoteConfigurations = RemoteConfigurations();
 
   LiquidController liquidController = LiquidController();
 
@@ -239,41 +238,36 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
   void retrieveRemoteConfigurations() {
 
-    if (widget.firebaseRemoteConfig != null) {
+    remoteConfigurations.initialize().then((firebaseRemoteConfigurations) {
 
-      createFileOfTexts(StringsResources.fileSliderTime, widget.firebaseRemoteConfig!.getString(RemoteConfigurations.sliderTime));
+      firebaseRemoteConfigurations.activate().then((value) async {
 
-      /* Start - Introduction Liquid Slide */
-      setState(() {
+        createFileOfTexts(StringsResources.fileSliderTime, firebaseRemoteConfigurations.getString(RemoteConfigurations.sliderTime));
 
-        allContent = setupSlider();
+        /* Start - Introduction Liquid Slide */
+        setState(() {
 
-      });
-      /* End - Introduction Liquid Slide */
+          allContent = setupSlider(firebaseRemoteConfigurations);
 
-    } else {
+        });
+        /* End - Introduction Liquid Slide */
 
-      /* Start - Introduction Liquid Slide */
-      setState(() {
-
-        allContent = setupSlider();
 
       });
-      /* End - Introduction Liquid Slide */
 
-    }
+    });
 
   }
 
-  Widget setupSlider() {
+  Widget setupSlider(firebaseRemoteConfigurations) {
 
     List<Widget> sliderContent = [
 
-      firstSlideIntroduction(),
+      firstSlideIntroduction(firebaseRemoteConfigurations),
 
-      secondSlideIntroduction(),
+      secondSlideIntroduction(firebaseRemoteConfigurations),
 
-      thirdSlideIntroduction(),
+      thirdSlideIntroduction(firebaseRemoteConfigurations),
 
     ];
 
@@ -323,13 +317,13 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
     );
   }
 
-  Widget firstSlideIntroduction() {
+  Widget firstSlideIntroduction(firebaseRemoteConfig) {
 
     String htmlContent = ".<b>.</b><big>.</big>";
 
-    if (widget.firebaseRemoteConfig != null) {
+    if (firebaseRemoteConfig != null) {
 
-      htmlContent = widget.firebaseRemoteConfig!.getString(RemoteConfigurations.slideTwoContent);
+      htmlContent = firebaseRemoteConfig!.getString(RemoteConfigurations.slideOneContent);
 
     } else {
 
@@ -369,12 +363,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                           padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
 
                           child: Html(
-                              data: htmlContent,
-                              style: {
-                                'p': Style(
-                                    color: ColorsResources.light
-                                )
-                              }
+                              data: htmlContent
                           )
                         ),
                         child: SizedBox(
@@ -392,13 +381,13 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
     );
   }
 
-  Widget secondSlideIntroduction() {
+  Widget secondSlideIntroduction(firebaseRemoteConfig) {
 
     String htmlContent = ".<b>.</b><big>.</big>";
 
-    if (widget.firebaseRemoteConfig != null) {
+    if (firebaseRemoteConfig != null) {
 
-      htmlContent = widget.firebaseRemoteConfig!.getString(RemoteConfigurations.slideOneContent);
+      htmlContent = firebaseRemoteConfig!.getString(RemoteConfigurations.slideTwoContent);
 
     } else {
 
@@ -437,12 +426,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                         overlay: Padding(
                           padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
                           child: Html(
-                              data: htmlContent,
-                              style: {
-                                'p': Style(
-                                    color: ColorsResources.light
-                                )
-                              }
+                              data: htmlContent
                           ),
                         ),
                         child: SizedBox(
@@ -460,13 +444,13 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
     );
   }
 
-  Widget thirdSlideIntroduction() {
+  Widget thirdSlideIntroduction(firebaseRemoteConfig) {
 
     String htmlContent = ".<b>.</b><big>.</big>";
 
-    if (widget.firebaseRemoteConfig != null) {
+    if (firebaseRemoteConfig != null) {
 
-      htmlContent = widget.firebaseRemoteConfig!.getString(RemoteConfigurations.slideThreeContent);
+      htmlContent = firebaseRemoteConfig!.getString(RemoteConfigurations.slideThreeContent);
 
     } else {
 
@@ -505,12 +489,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                         overlay: Padding(
                           padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
                           child: Html(
-                              data: htmlContent,
-                              style: {
-                                'p': Style(
-                                    color: ColorsResources.dark
-                                )
-                              }
+                              data: htmlContent
                           ),
                         ),
                         child: SizedBox(

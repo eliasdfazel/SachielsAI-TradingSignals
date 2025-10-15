@@ -247,7 +247,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                   child: InkWell(
                       onTap: () async {
 
-                        navigateTo(context, IntroductionSlides(firebaseRemoteConfig: firebaseRemoteConfigurations));
+                        navigateTo(context, IntroductionSlides());
 
                       },
                       child: const Image(
