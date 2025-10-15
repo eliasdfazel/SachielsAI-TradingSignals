@@ -53,7 +53,7 @@ class PurchasePlanPickerStates extends State<PurchasePlanPicker> {
           child: InkWell(
               onTap: () {
 
-                navigateTo(context, SachielsDigitalStore(topPadding: 0));
+                navigateTo(context, SachielsDigitalStore());
 
               },
               child: const Image(

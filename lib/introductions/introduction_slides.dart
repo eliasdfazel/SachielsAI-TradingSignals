@@ -542,7 +542,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
                         } else {
 
-                          navigateTo(context, SachielsDigitalStore(topPadding: 0))
+                          navigateTo(context, SachielsDigitalStore())
 
                         }
 

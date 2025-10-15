@@ -18,6 +18,7 @@ import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/signals/data/signals_data_structure.dart';
 import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/store/utils/digital_store_utils.dart';
+import 'package:sachiel/utils/navigations/navigation_commands.dart';
 
 class LastSignalDetails extends StatefulWidget {
 
@@ -126,6 +127,10 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
       SignalsDataStructure signalsDataStructure = SignalsDataStructure(querySnapshot.docs.first);
 
       prepareLastSignalsDetails(signalsDataStructure);
+
+    } else {
+
+      navigateToWithPop(context, SachielsDigitalStore());
 
     }
 

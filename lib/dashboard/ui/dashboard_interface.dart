@@ -310,7 +310,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
           fontSize: 13.0
       );
 
-      navigateTo(context, SachielsDigitalStore(topPadding: statusBarHeight(context)));
+      navigateTo(context, SachielsDigitalStore());
 
     } else {
 
