@@ -491,7 +491,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                                 padding: const EdgeInsets.fromLTRB(0, 31, 0, 0),
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  signalsDataStructure.tradeProfitAmount().replaceAll("\$", ""),
+                                  signalsDataStructure.tradeProfitAmount(),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -1348,7 +1348,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                                 padding: const EdgeInsets.fromLTRB(0, 37, 0, 0),
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  signalsDataStructure.tradeProfitAmount().replaceAll("\$", ""),
+                                  signalsDataStructure.tradeProfitAmount(),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
