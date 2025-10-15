@@ -167,8 +167,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                   Expanded(
                                       flex: 1,
                                       child: SizedBox(
-                                          height: 201,
-                                          width: 201,
+
                                           child: Stack(
                                             children: [
                                               WidgetMask(
@@ -208,10 +207,8 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
 
                                   /* Start - Profile Name */
                                   Expanded(
-                                      flex: 1,
+                                      flex: 3,
                                       child: SizedBox(
-                                          height: 201,
-                                          width: 201,
                                           child: Padding(
                                               padding: const EdgeInsets.fromLTRB(19, 0, 0, 0),
                                               child: Align(
@@ -246,7 +243,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                         color: Colors.transparent,
                       ),
 
-                      /* Start - Twitter */
+                      /* Start - X */
                       Padding(
                         padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
                         child: Stack(
@@ -264,7 +261,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                               height: 113,
                               width: double.infinity,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
+                                  padding: const EdgeInsets.fromLTRB(123, 0, 19, 0),
                                   child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: TextField(
@@ -298,7 +295,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                           ],
                         ),
                       ),
-                      /* End - Twitter */
+                      /* End - X */
 
                       const Divider(
                         height: 3,
@@ -323,7 +320,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                               height: 113,
                               width: double.infinity,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
+                                  padding: const EdgeInsets.fromLTRB(123, 0, 19, 0),
                                   child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: TextField(
@@ -364,7 +361,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                         color: Colors.transparent,
                       ),
 
-                      /* Start - Facebook */
+                      /* Start - Instagram */
                       Padding(
                         padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
                         child: Stack(
@@ -382,7 +379,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                               height: 113,
                               width: double.infinity,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(119, 0, 19, 0),
+                                  padding: const EdgeInsets.fromLTRB(123, 0, 19, 0),
                                   child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: TextField(
@@ -416,10 +413,10 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                           ],
                         ),
                       ),
-                      /* End - Facebook */
+                      /* End - Instagram */
 
                       const Divider(
-                        height: 7,
+                        height: 13,
                         color: Colors.transparent,
                       ),
 
@@ -427,7 +424,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
                         child: Align(
-                            alignment: Alignment.center,
+                            alignment: Alignment.centerRight,
                             child: InkWell(
                               onTap: () {
 
@@ -530,7 +527,7 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
                                   Align(
                                       alignment: Alignment.centerLeft,
                                       child: Padding(
-                                          padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                          padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
                                           child: Text(
                                               StringsResources.profileTitle(),
                                               maxLines: 1,
