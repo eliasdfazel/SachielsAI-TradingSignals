@@ -237,7 +237,7 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
                                   Align(
                                       alignment: Alignment.centerLeft,
                                       child: Padding(
-                                          padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                          padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
                                           child: Text(
                                               StringsResources.historyTitle(),
                                               maxLines: 1,

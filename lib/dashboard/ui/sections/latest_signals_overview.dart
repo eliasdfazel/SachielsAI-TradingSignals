@@ -246,19 +246,17 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                     fit: StackFit.expand,
                     children: [
 
-                      /* Start - Percentage */
-                      Positioned(
-                          top: -137,
-                          child: Text(
-                              "%",
-                              style: TextStyle(
-                                  color: ColorsResources.black.withAlpha(59),
-                                  fontSize: 313,
-                                  fontFamily: "Handwriting"
+                      Container(
+                          alignment: Alignment.bottomCenter,
+                          child: Opacity(
+                              opacity: 0.31,
+                              child: Image(
+                                image: AssetImage("assets/percent_sign.png"),
+                                height: 173,
+                                fit: BoxFit.cover,
                               )
                           )
                       ),
-                      /* End - Percentage */
 
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,

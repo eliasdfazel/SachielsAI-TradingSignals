@@ -191,207 +191,207 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
     return SizedBox(
         height: 399,
         width: 351,
-        child: Stack(
-            children: [
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(19),
+          child: Stack(
+              children: [
 
-              Blur(
-                  blur: 3,
-                  blurColor: ColorsResources.premiumLight,
-                  borderRadius: BorderRadius.circular(19),
-                  colorOpacity: 0.07,
-                  alignment: Alignment.center,
-                  child: const SizedBox(
+                Blur(
+                    blur: 3,
+                    blurColor: ColorsResources.premiumLight,
+                    borderRadius: BorderRadius.circular(19),
+                    colorOpacity: 0.07,
+                    alignment: Alignment.center,
+                    child: const SizedBox(
+                      height: 399,
+                      width: 351,
+                    )
+                ),
+
+                Container(
+                    alignment: Alignment.topRight,
+                    child: Opacity(
+                        opacity: 0.31,
+                        child: Image(
+                          image: AssetImage("assets/percent_sign.png"),
+                          height: 179,
+                        )
+                    )
+                ),
+
+                Container(
+                    alignment: Alignment.bottomLeft,
+                    child: Opacity(
+                        opacity: 0.31,
+                        child: Image(
+                          image: AssetImage("assets/dollar_sign.png"),
+                          height: 199,
+                        )
+                    )
+                ),
+
+                Container(
                     height: 399,
                     width: 351,
-                  )
-              ),
-
-              Container(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    "%",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: ColorsResources.black.withAlpha(79),
-                        fontSize: 179,
-                        fontFamily: "Handwriting"
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(19),
+                          topRight: Radius.circular(19),
+                          bottomLeft: Radius.circular(19),
+                          bottomRight: Radius.circular(19)
+                      ),
+                      border: Border(
+                          top: BorderSide(
+                            color: ColorsResources.black,
+                            width: 1.3,
+                          ),
+                          bottom: BorderSide(
+                            color: ColorsResources.black,
+                            width: 1.3,
+                          ),
+                          left: BorderSide(
+                            color: ColorsResources.black,
+                            width: 1.3,
+                          ),
+                          right: BorderSide(
+                            color: ColorsResources.black,
+                            width: 1.3,
+                          )
+                      ),
                     ),
-                  )
-              ),
+                    child: Padding(
+                        padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
 
-              Container(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    "\$",
-                    style: TextStyle(
-                        color: ColorsResources.black.withAlpha(79),
-                        fontSize: 179,
-                        fontFamily: "Handwriting"
-                    ),
-                  )
-              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
 
-              Container(
-                  height: 399,
-                  width: 351,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(19),
-                        topRight: Radius.circular(19),
-                        bottomLeft: Radius.circular(19),
-                        bottomRight: Radius.circular(19)
-                    ),
-                    border: Border(
-                        top: BorderSide(
-                          color: ColorsResources.black,
-                          width: 1.3,
-                        ),
-                        bottom: BorderSide(
-                          color: ColorsResources.black,
-                          width: 1.3,
-                        ),
-                        left: BorderSide(
-                          color: ColorsResources.black,
-                          width: 1.3,
-                        ),
-                        right: BorderSide(
-                          color: ColorsResources.black,
-                          width: 1.3,
-                        )
-                    ),
-                  ),
-                  child: Padding(
-                      padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                                /* Start - Trade Command */
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
 
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
+                                    Text(
+                                        signalsDataStructure.tradeCommand().toUpperCase(),
+                                        style: TextStyle(
+                                            color: tradeCommandColor,
+                                            fontSize: tradeCommandFontSize,
+                                            fontWeight: FontWeight.bold,
+                                            shadows: [
+                                              Shadow(
+                                                  color: ColorsResources.black.withAlpha(130),
+                                                  blurRadius: 19,
+                                                  offset: const Offset(0, 5)
+                                              )
+                                            ]
+                                        )
+                                    ),
 
-                              /* Start - Trade Command */
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                    Text(
+                                        signalsDataStructure.tradeMarketPair(),
+                                        style: const TextStyle(
+                                            color: ColorsResources.premiumLight,
+                                            fontSize: 47,
+                                            fontWeight: FontWeight.bold,
+                                            letterSpacing: 1.3
+                                        )
+                                    )
 
-                                  Text(
-                                      signalsDataStructure.tradeCommand().toUpperCase(),
-                                      style: TextStyle(
-                                          color: tradeCommandColor,
-                                          fontSize: tradeCommandFontSize,
-                                          fontWeight: FontWeight.bold,
+                                  ],
+                                ),
+                                /* End - Trade Command */
+
+                                /* Start - Trade Accuracy */
+                                Padding(
+                                    padding: const EdgeInsets.fromLTRB(9, 0, 0, 0),
+                                    child: Text(
+                                      double.parse(signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", "")).round().toString(),
+                                      style: const TextStyle(
+                                          color: ColorsResources.white,
+                                          fontSize: 101,
                                           shadows: [
                                             Shadow(
-                                                color: ColorsResources.black.withAlpha(130),
-                                                blurRadius: 19,
-                                                offset: const Offset(0, 5)
+                                                color: ColorsResources.black,
+                                                blurRadius: 13,
+                                                offset: Offset(0.0, 3.0)
                                             )
                                           ]
-                                      )
-                                  ),
+                                      ),
+                                    )
+                                )
+                                /* End - Trade Accuracy */
 
-                                  Text(
-                                      signalsDataStructure.tradeMarketPair(),
-                                      style: const TextStyle(
-                                          color: ColorsResources.premiumLight,
-                                          fontSize: 47,
-                                          fontWeight: FontWeight.bold,
-                                          letterSpacing: 1.3
-                                      )
-                                  )
-
-                                ],
-                              ),
-                              /* End - Trade Command */
-
-                              /* Start - Trade Accuracy */
-                              Padding(
-                                  padding: const EdgeInsets.fromLTRB(9, 0, 0, 0),
-                                  child: Text(
-                                    double.parse(signalsDataStructure.tradeAccuracyPercentage().replaceAll("%", "")).round().toString(),
-                                    style: const TextStyle(
-                                        color: ColorsResources.white,
-                                        fontSize: 101,
-                                        shadows: [
-                                          Shadow(
-                                              color: ColorsResources.black,
-                                              blurRadius: 13,
-                                              offset: Offset(0.0, 3.0)
-                                          )
-                                        ]
-                                    ),
-                                  )
-                              )
-                              /* End - Trade Accuracy */
-
-                            ],
-                          ),
-
-                          const Spacer(),
-
-                          Text(
-                            signalsDataStructure.tradeProfitAmount(),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                color: ColorsResources.premiumLight,
-                                fontSize: 73,
-                                letterSpacing: 1.3,
-                                shadows: [
-                                  Shadow(
-                                      color: ColorsResources.black.withOpacity(0.5),
-                                      blurRadius: 13,
-                                      offset: const Offset(0.0, 3.0)
-                                  )
-                                ]
+                              ],
                             ),
-                          ),
 
-                          Container(
-                            width: 351,
-                            height: 59,
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              tradeTimestampText,
+                            const Spacer(),
+
+                            Text(
+                              signalsDataStructure.tradeProfitAmount(),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                color: ColorsResources.premiumLight,
-                                fontSize: 17,
+                              style: TextStyle(
+                                  color: ColorsResources.premiumLight,
+                                  fontSize: 73,
+                                  letterSpacing: 1.3,
+                                  shadows: [
+                                    Shadow(
+                                        color: ColorsResources.black.withOpacity(0.5),
+                                        blurRadius: 13,
+                                        offset: const Offset(0.0, 3.0)
+                                    )
+                                  ]
                               ),
                             ),
-                          ),
 
-                        ],
-                      )
-                  )
-              ),
+                            Container(
+                              width: 351,
+                              height: 59,
+                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                              alignment: Alignment.bottomLeft,
+                              child: Text(
+                                tradeTimestampText,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  color: ColorsResources.premiumLight,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ),
 
-              /* Start - Next Slide */
-              Positioned(
-                  bottom: 7,
-                  right: 11,
-                  child: InkWell(
-                      onTap: () {
+                          ],
+                        )
+                    )
+                ),
 
-                        scrollController.animateTo(387, duration: const Duration(milliseconds: 313), curve: Curves.easeOut);
+                /* Start - Next Slide */
+                Positioned(
+                    bottom: 7,
+                    right: 11,
+                    child: InkWell(
+                        onTap: () {
 
-                      },
-                      child: const Image(
-                        image: AssetImage("assets/next_icon.png"),
-                        height: 37,
-                        width: 37,
-                      )
-                  )
-              )
-              /* End - Next Slide */
+                          scrollController.animateTo(387, duration: const Duration(milliseconds: 313), curve: Curves.easeOut);
 
-            ]
+                        },
+                        child: const Image(
+                          image: AssetImage("assets/next_icon.png"),
+                          height: 37,
+                          width: 37,
+                        )
+                    )
+                )
+                /* End - Next Slide */
+
+              ]
+          )
         )
     );
   }
@@ -421,504 +421,507 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
     return SizedBox(
         height: 399,
         width: 351,
-        child: Stack(
-            children: [
-              Blur(
-                  blur: 3,
-                  blurColor: ColorsResources.premiumLight,
-                  borderRadius: BorderRadius.circular(19),
-                  colorOpacity: 0.07,
-                  alignment: Alignment.center,
-                  child: const SizedBox(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(19),
+          child: Stack(
+              children: [
+                Blur(
+                    blur: 3,
+                    blurColor: ColorsResources.premiumLight,
+                    borderRadius: BorderRadius.circular(19),
+                    colorOpacity: 0.07,
+                    alignment: Alignment.center,
+                    child: const SizedBox(
+                      height: 399,
+                      width: 351,
+                    )
+                ),
+
+                Container(
                     height: 399,
                     width: 351,
-                  )
-              ),
-
-              Container(
-                  height: 399,
-                  width: 351,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(19),
-                        topRight: Radius.circular(19),
-                        bottomLeft: Radius.circular(19),
-                        bottomRight: Radius.circular(19)
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(19),
+                          topRight: Radius.circular(19),
+                          bottomLeft: Radius.circular(19),
+                          bottomRight: Radius.circular(19)
+                      ),
+                      border: Border(
+                          top: BorderSide(
+                            color: ColorsResources.black,
+                            width: 1.3,
+                          ),
+                          bottom: BorderSide(
+                            color: ColorsResources.black,
+                            width: 1.3,
+                          ),
+                          left: BorderSide(
+                            color: ColorsResources.black,
+                            width: 1.3,
+                          ),
+                          right: BorderSide(
+                            color: ColorsResources.black,
+                            width: 1.3,
+                          )
+                      ),
                     ),
-                    border: Border(
-                        top: BorderSide(
-                          color: ColorsResources.black,
-                          width: 1.3,
-                        ),
-                        bottom: BorderSide(
-                          color: ColorsResources.black,
-                          width: 1.3,
-                        ),
-                        left: BorderSide(
-                          color: ColorsResources.black,
-                          width: 1.3,
-                        ),
-                        right: BorderSide(
-                          color: ColorsResources.black,
-                          width: 1.3,
+                    child: Padding(
+                        padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
+                        child: Column(
+                          children: [
+
+                            /* Start - Trade Command */
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    "${signalsDataStructure.tradeCommand().toUpperCase()}" " ",
+                                    style: TextStyle(
+                                        color: tradeCommandColor,
+                                        fontSize: 47,
+                                        fontWeight: FontWeight.bold,
+                                        shadows: [
+                                          Shadow(
+                                              color: ColorsResources.black.withOpacity(0.3),
+                                              blurRadius: 19,
+                                              offset: const Offset(0, 5)
+                                          )
+                                        ]
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    " " "${signalsDataStructure.tradeMarketPair().toUpperCase()}",
+                                    style: const TextStyle(
+                                        color: ColorsResources.premiumLight,
+                                        fontSize: 47,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 1.5
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            /* End - Trade Command */
+
+                            const Divider(
+                              height: 11,
+                            ),
+
+                            Container(
+                              width: 351,
+                              height: 31,
+                              padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          StringsResources.accuracyText(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.premiumLight.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                  const Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Image(
+                                          image: AssetImage("assets/point_icon.png"),
+                                          height: 19,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          signalsDataStructure.tradeAccuracyPercentage(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.premiumLight.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.black.withOpacity(0.59),
+                                                    blurRadius: 7,
+                                                    offset: const Offset(0, 3)
+                                                )
+                                              ]
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 351,
+                              height: 31,
+                              padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          StringsResources.lotSizeText(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.premiumLight.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                  const Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Image(
+                                          image: AssetImage("assets/point_icon.png"),
+                                          height: 19,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          signalsDataStructure.tradeLotSize(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.premiumLight.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.black.withOpacity(0.59),
+                                                    blurRadius: 7,
+                                                    offset: const Offset(0, 3)
+                                                )
+                                              ]
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 351,
+                              height: 31,
+                              padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          StringsResources.earningsText(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.premiumLight.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                  const Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Image(
+                                          image: AssetImage("assets/point_icon.png"),
+                                          height: 19,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          "~" " " "${signalsDataStructure.tradeProfitAmount()}",
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.premiumLight.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.black.withOpacity(0.59),
+                                                    blurRadius: 7,
+                                                    offset: const Offset(0, 3)
+                                                )
+                                              ]
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            const Divider(
+                              height: 15,
+                            ),
+
+                            Container(
+                              width: 351,
+                              height: 31,
+                              padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          StringsResources.entryPriceText(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.entryPriceColor.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Image(
+                                          image: const AssetImage("assets/point_icon.png"),
+                                          color: ColorsResources.entryPriceColor.withOpacity(0.91),
+                                          height: 19,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          signalsDataStructure.tradeEntryPrice(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.entryPriceColor.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.black.withOpacity(0.59),
+                                                    blurRadius: 7,
+                                                    offset: const Offset(0, 3)
+                                                )
+                                              ]
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 351,
+                              height: 31,
+                              padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          StringsResources.takeProfitText(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.takeProfitColor.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Image(
+                                          image: const AssetImage("assets/point_icon.png"),
+                                          color: ColorsResources.takeProfitColor.withOpacity(0.91),
+                                          height: 19,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          signalsDataStructure.tradeTakeProfit(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.takeProfitColor.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.black.withOpacity(0.59),
+                                                    blurRadius: 7,
+                                                    offset: const Offset(0, 3)
+                                                )
+                                              ]
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 351,
+                              height: 31,
+                              padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          StringsResources.stopLossText(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.stopLossColor.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Image(
+                                          image: const AssetImage("assets/point_icon.png"),
+                                          color: ColorsResources.stopLossColor.withOpacity(0.91),
+                                          height: 19,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          signalsDataStructure.tradeStopLoss(),
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.stopLossColor.withOpacity(0.91),
+                                              fontWeight: FontWeight.normal,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.black.withOpacity(0.59),
+                                                    blurRadius: 7,
+                                                    offset: const Offset(0, 3)
+                                                )
+                                              ]
+                                          ),
+                                        ),
+                                      )
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                          ],
                         )
+                    )
+                ),
+
+                /* Start - Trade Timeframe */
+                Positioned(
+                  left: 13,
+                  bottom: 27,
+                  child: Container(
+                    width: 351,
+                    height: 39,
+                    padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      signalsDataStructure.tradeTimeframe(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          color: ColorsResources.premiumLight,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.5,
+                          shadows: [
+                            Shadow(
+                                color: ColorsResources.black.withOpacity(0.5),
+                                blurRadius: 11,
+                                offset: const Offset(0.0, 3.0)
+                            )
+                          ]
+                      ),
                     ),
                   ),
-                  child: Padding(
-                      padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
-                      child: Column(
-                        children: [
+                ),
+                /* End - Trade Timeframe */
 
-                          /* Start - Trade Command */
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "${signalsDataStructure.tradeCommand().toUpperCase()}" " ",
-                                  style: TextStyle(
-                                      color: tradeCommandColor,
-                                      fontSize: 47,
-                                      fontWeight: FontWeight.bold,
-                                      shadows: [
-                                        Shadow(
-                                            color: ColorsResources.black.withOpacity(0.3),
-                                            blurRadius: 19,
-                                            offset: const Offset(0, 5)
-                                        )
-                                      ]
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  " " "${signalsDataStructure.tradeMarketPair().toUpperCase()}",
-                                  style: const TextStyle(
-                                      color: ColorsResources.premiumLight,
-                                      fontSize: 47,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1.5
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          /* End - Trade Command */
-
-                          const Divider(
-                            height: 11,
-                          ),
-
-                          Container(
-                            width: 351,
-                            height: 31,
-                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        StringsResources.accuracyText(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.premiumLight.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal
-                                        ),
-                                      ),
-                                    )
-                                ),
-                                const Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Image(
-                                        image: AssetImage("assets/point_icon.png"),
-                                        height: 19,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    )
-                                ),
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Text(
-                                        signalsDataStructure.tradeAccuracyPercentage(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.premiumLight.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal,
-                                            shadows: [
-                                              Shadow(
-                                                  color: ColorsResources.black.withOpacity(0.59),
-                                                  blurRadius: 7,
-                                                  offset: const Offset(0, 3)
-                                              )
-                                            ]
-                                        ),
-                                      ),
-                                    )
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: 351,
-                            height: 31,
-                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        StringsResources.lotSizeText(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.premiumLight.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal
-                                        ),
-                                      ),
-                                    )
-                                ),
-                                const Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Image(
-                                        image: AssetImage("assets/point_icon.png"),
-                                        height: 19,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    )
-                                ),
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Text(
-                                        signalsDataStructure.tradeLotSize(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.premiumLight.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal,
-                                            shadows: [
-                                              Shadow(
-                                                  color: ColorsResources.black.withOpacity(0.59),
-                                                  blurRadius: 7,
-                                                  offset: const Offset(0, 3)
-                                              )
-                                            ]
-                                        ),
-                                      ),
-                                    )
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: 351,
-                            height: 31,
-                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        StringsResources.earningsText(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.premiumLight.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal
-                                        ),
-                                      ),
-                                    )
-                                ),
-                                const Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Image(
-                                        image: AssetImage("assets/point_icon.png"),
-                                        height: 19,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    )
-                                ),
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Text(
-                                        "~" " " "${signalsDataStructure.tradeProfitAmount()}",
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.premiumLight.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal,
-                                            shadows: [
-                                              Shadow(
-                                                  color: ColorsResources.black.withOpacity(0.59),
-                                                  blurRadius: 7,
-                                                  offset: const Offset(0, 3)
-                                              )
-                                            ]
-                                        ),
-                                      ),
-                                    )
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          const Divider(
-                            height: 15,
-                          ),
-
-                          Container(
-                            width: 351,
-                            height: 31,
-                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        StringsResources.entryPriceText(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.entryPriceColor.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal
-                                        ),
-                                      ),
-                                    )
-                                ),
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Image(
-                                        image: const AssetImage("assets/point_icon.png"),
-                                        color: ColorsResources.entryPriceColor.withOpacity(0.91),
-                                        height: 19,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    )
-                                ),
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Text(
-                                        signalsDataStructure.tradeEntryPrice(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.entryPriceColor.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal,
-                                            shadows: [
-                                              Shadow(
-                                                  color: ColorsResources.black.withOpacity(0.59),
-                                                  blurRadius: 7,
-                                                  offset: const Offset(0, 3)
-                                              )
-                                            ]
-                                        ),
-                                      ),
-                                    )
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: 351,
-                            height: 31,
-                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        StringsResources.takeProfitText(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.takeProfitColor.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal
-                                        ),
-                                      ),
-                                    )
-                                ),
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Image(
-                                        image: const AssetImage("assets/point_icon.png"),
-                                        color: ColorsResources.takeProfitColor.withOpacity(0.91),
-                                        height: 19,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    )
-                                ),
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Text(
-                                        signalsDataStructure.tradeTakeProfit(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.takeProfitColor.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal,
-                                            shadows: [
-                                              Shadow(
-                                                  color: ColorsResources.black.withOpacity(0.59),
-                                                  blurRadius: 7,
-                                                  offset: const Offset(0, 3)
-                                              )
-                                            ]
-                                        ),
-                                      ),
-                                    )
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: 351,
-                            height: 31,
-                            padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        StringsResources.stopLossText(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.stopLossColor.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal
-                                        ),
-                                      ),
-                                    )
-                                ),
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Image(
-                                        image: const AssetImage("assets/point_icon.png"),
-                                        color: ColorsResources.stopLossColor.withOpacity(0.91),
-                                        height: 19,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    )
-                                ),
-                                Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Text(
-                                        signalsDataStructure.tradeStopLoss(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.stopLossColor.withOpacity(0.91),
-                                            fontWeight: FontWeight.normal,
-                                            shadows: [
-                                              Shadow(
-                                                  color: ColorsResources.black.withOpacity(0.59),
-                                                  blurRadius: 7,
-                                                  offset: const Offset(0, 3)
-                                              )
-                                            ]
-                                        ),
-                                      ),
-                                    )
-                                ),
-                              ],
-                            ),
-                          ),
-
-                        ],
-                      )
-                  )
-              ),
-
-              /* Start - Trade Timeframe */
-              Positioned(
-                left: 13,
-                bottom: 27,
-                child: Container(
-                  width: 351,
-                  height: 39,
-                  padding: const EdgeInsets.fromLTRB(0, 1, 0, 1),
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    signalsDataStructure.tradeTimeframe(),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                /* Start - Trade Time */
+                Positioned(
+                  left: 13,
+                  bottom: 7,
+                  child: Container(
+                    width: 351,
+                    height: 59,
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      tradeTimestampText,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
                         color: ColorsResources.premiumLight,
                         fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.5,
-                        shadows: [
-                          Shadow(
-                              color: ColorsResources.black.withOpacity(0.5),
-                              blurRadius: 11,
-                              offset: const Offset(0.0, 3.0)
-                          )
-                        ]
+                      ),
                     ),
                   ),
                 ),
-              ),
-              /* End - Trade Timeframe */
+                /* End - Trade Time */
 
-              /* Start - Trade Time */
-              Positioned(
-                left: 13,
-                bottom: 7,
-                child: Container(
-                  width: 351,
-                  height: 59,
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    tradeTimestampText,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: ColorsResources.premiumLight,
-                      fontSize: 17,
-                    ),
-                  ),
-                ),
-              ),
-              /* End - Trade Time */
-
-            ]
+              ]
+          )
         )
     );
   }

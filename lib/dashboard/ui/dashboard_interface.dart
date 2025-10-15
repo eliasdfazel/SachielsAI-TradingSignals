@@ -228,7 +228,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
         int newSliderTime = firebaseRemoteConfigurations.getInt(RemoteConfigurations.sliderTime);
 
-        if (newSliderTime > oldSliderTime) {
+        if (1000000 > oldSliderTime) {
 
           setState(() {
 
