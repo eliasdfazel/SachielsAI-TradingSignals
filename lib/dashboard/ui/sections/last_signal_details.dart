@@ -206,25 +206,26 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                   )
               ),
 
-              Align(
+              Container(
                   alignment: Alignment.topRight,
                   child: Text(
                     "%",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         color: ColorsResources.black.withAlpha(79),
-                        fontSize: 151,
+                        fontSize: 179,
                         fontFamily: "Handwriting"
                     ),
                   )
               ),
 
-              Align(
+              Container(
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     "\$",
                     style: TextStyle(
                         color: ColorsResources.black.withAlpha(79),
-                        fontSize: 151,
+                        fontSize: 179,
                         fontFamily: "Handwriting"
                     ),
                   )
