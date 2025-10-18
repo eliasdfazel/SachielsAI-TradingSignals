@@ -319,7 +319,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
   Widget firstSlideIntroduction(firebaseRemoteConfig) {
 
-    String htmlContent = ".<b>.</b><big>.</big>";
+    String htmlContent = "";
 
     if (firebaseRemoteConfig != null) {
 
@@ -361,7 +361,6 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
                         colorOpacity: 0.13,
                         overlay: Padding(
                           padding: const EdgeInsets.fromLTRB(13, 31, 13, 31),
-
                           child: Html(
                               data: htmlContent
                           )
@@ -383,7 +382,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
   Widget secondSlideIntroduction(firebaseRemoteConfig) {
 
-    String htmlContent = ".<b>.</b><big>.</big>";
+    String htmlContent = "";
 
     if (firebaseRemoteConfig != null) {
 
@@ -446,7 +445,7 @@ class IntroductionSlidesState extends State<IntroductionSlides> {
 
   Widget thirdSlideIntroduction(firebaseRemoteConfig) {
 
-    String htmlContent = ".<b>.</b><big>.</big>";
+    String htmlContent = "";
 
     if (firebaseRemoteConfig != null) {
 

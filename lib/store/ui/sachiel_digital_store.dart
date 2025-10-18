@@ -17,6 +17,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
@@ -413,7 +414,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
         });
 
-    prototypeProcess();
+    principalSubscriptions();
 
   }
 
@@ -763,7 +764,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
   }
 
-  void prototypeProcess() {
+  void principalSubscriptions() {
 
     remoteConfigurations.initialize().then((firebaseRemoteConfigurations) {
 
@@ -782,9 +783,19 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.statusTopic);
 
-          createFileOfTexts(StringsResources.filePurchasingPlan, "Palladium").then((value) => {
+          createFileOfTexts(StringsResources.filePurchasingPlan, "Palladium").then((value) {
 
-            navigateToWithPop(context, const DashboardInterface())
+            Fluttertoast.showToast(
+                msg: 'Principal Identified.',
+                toastLength: Toast.LENGTH_LONG,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: ColorsResources.dark,
+                textColor: ColorsResources.light,
+                fontSize: 13.0
+            );
+
+            navigateToWithPop(context, const DashboardInterface());
 
           });
 
