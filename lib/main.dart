@@ -109,7 +109,7 @@ void main() async {
 
       bool connectionResult = (internetLookup.isNotEmpty && internetLookup[0].rawAddress.isNotEmpty);
 
-      prototypeProcess();
+      principalSubscriptions();
 
       await FirebaseAuth.instance.currentUser?.reload();
 
@@ -205,7 +205,7 @@ Future<void> initializeNotifications() async {
 
 }
 
-void prototypeProcess() {
+void principalSubscriptions() {
 
   RemoteConfigurations remoteConfigurations = RemoteConfigurations();
 

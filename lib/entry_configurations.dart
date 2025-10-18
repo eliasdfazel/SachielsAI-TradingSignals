@@ -17,6 +17,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/introductions/introduction_slides.dart';
 import 'package:sachiel/resources/colors_resources.dart';
@@ -75,29 +76,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
 
     if (widget.internetConnection) {
 
-      if (firebaseAuthentication.currentUser == null) {
-        debugPrint("Google Not Authenticated");
-
-        Future.delayed(const Duration(milliseconds: 1357), () async {
-          debugPrint("Google Authenticating...");
-
-          UserCredential userCredential = await authenticationsProcess.startGoogleAuthentication();
-
-          if (userCredential.user!.phoneNumber == null) {
-            debugPrint("Phone Number Not Authenticated");
-
-            phoneNumberCheckpoint();
-
-          } else {
-
-            navigationCheckpoint();
-
-          }
-
-        });
-
-      }
-
       if (firebaseAuthentication.currentUser != null) {
 
         if (firebaseAuthentication.currentUser!.phoneNumber == null) {
@@ -125,6 +103,16 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
       noticeAction = StringsResources.ok();
 
     }
+
+    Fluttertoast.showToast(
+        msg: 'Press On Next.',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: ColorsResources.dark,
+        textColor: ColorsResources.light,
+        fontSize: 13.0
+    );
 
     return SafeArea(
         child: Scaffold(
@@ -177,7 +165,28 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                                                 splashFactory: InkRipple.splashFactory,
                                                 onTap: () {
 
-                                                  if (phoneNumberController.text.isNotEmpty) {
+                                                  if (firebaseAuthentication.currentUser == null) {
+                                                    debugPrint("Google Not Authenticated");
+
+                                                    Future.delayed(const Duration(milliseconds: 1357), () async {
+                                                      debugPrint("Google Authenticating...");
+
+                                                      UserCredential userCredential = await authenticationsProcess.startGoogleAuthentication();
+
+                                                      if (userCredential.user!.phoneNumber == null) {
+                                                        debugPrint("Phone Number Not Authenticated");
+
+                                                        phoneNumberCheckpoint();
+
+                                                      } else {
+
+                                                        navigationCheckpoint();
+
+                                                      }
+
+                                                    });
+
+                                                  } else if (phoneNumberController.text.isNotEmpty) {
 
                                                     if (titlePlaceholder == StringsResources.enterCode()) {
 
@@ -273,7 +282,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                                 height: 53,
                                 width: double.maxFinite,
                                 child: Row(
-
                                     children: [
 
                                       Expanded(
@@ -374,7 +382,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                                       )
 
                                     ]
-
                                 )
                             ),
                           )
