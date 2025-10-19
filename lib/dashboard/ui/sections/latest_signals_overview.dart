@@ -248,7 +248,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
 
                       Container(
                           alignment: Alignment.bottomCenter,
-                          child: Opacity(
+                          child: const Opacity(
                               opacity: 0.31,
                               child: Image(
                                 image: AssetImage("assets/percent_sign.png"),

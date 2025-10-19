@@ -210,8 +210,8 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
                 Container(
                     alignment: Alignment.topRight,
-                    child: Opacity(
-                        opacity: 0.31,
+                    child: const Opacity(
+                        opacity: 0.23,
                         child: Image(
                           image: AssetImage("assets/percent_sign.png"),
                           height: 179,
@@ -221,8 +221,8 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
 
                 Container(
                     alignment: Alignment.bottomLeft,
-                    child: Opacity(
-                        opacity: 0.31,
+                    child: const Opacity(
+                        opacity: 0.23,
                         child: Image(
                           image: AssetImage("assets/dollar_sign.png"),
                           height: 199,
