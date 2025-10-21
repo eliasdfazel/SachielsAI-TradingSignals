@@ -68,9 +68,9 @@ class SocialMediaStates extends State<SocialMedia> {
                     child: InkWell(
                         onTap: () {
 
-                          Share.share("${StringsResources.applicationName()}\n"
+                          SharePlus.instance.share(ShareParams(text: "${StringsResources.applicationName()}\n"
                               "${StringsResources.applicationSummary()}\n"
-                              "${StringsResources.applicationLink()}");
+                              "${StringsResources.applicationLink()}"));
 
                         },
                         child: SizedBox(
