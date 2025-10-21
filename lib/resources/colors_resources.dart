@@ -61,35 +61,17 @@ class ColorsResources {
   static const Color greenGrayLight = Color.fromARGB(255, 220, 238, 217);
   static const Color grayLight = Color.fromARGB(255, 203, 203, 203);
 
-  static const goldenColor = Color.fromARGB(255, 246, 201, 14);
-
-  static const Color springColor = Color.fromARGB(255, 238,111,104);
-  static const Color summerColor = Color.fromARGB(255, 117, 238, 104);
-  static const Color autumnColor = Color.fromARGB(255, 238, 200, 104);
-  static const Color winterColor = Color.fromARGB(255, 104, 238, 234);
-
   static const Color light = Color.fromARGB(255, 242, 247, 255);
-  static const Color lightTransparent = Color.fromARGB(130, 242, 247, 255);
 
   static const Color dark = Color.fromARGB(255, 10, 15, 24);
   static const Color darkTransparent = Color.fromARGB(130, 10, 15, 24);
 
   static const Color premiumDark = Color.fromARGB(255, 60, 67, 77);
   static const Color premiumDarkLighter = Color.fromARGB(255, 143, 159, 183);
-  static const Color premiumDarkTransparent = Color.fromARGB(131, 60, 67, 77);
   static const Color premiumLight = Color.fromARGB(255, 213, 224, 243);
-  static const Color premiumLightTransparent = Color.fromARGB(131, 213, 224, 243);
 
   static const Color white = Color.fromARGB(255, 255, 255, 255);
-  static const Color whiteTransparent = Color.fromARGB(201, 255, 255, 255);
 
   static const Color black = Color.fromARGB(255, 0, 0, 0);
-  static const Color blackTransparent = Color.fromARGB(201, 0, 0, 0);
-
-  static const Color applicationGeeksEmpire = Color.fromARGB(255, 35, 125, 174);
-  static const Color applicationLightGeeksEmpire = Color.fromARGB(255, 36, 176, 255);
-  static const Color applicationDarkGeeksEmpire = Color.fromARGB(255, 10, 65, 94);
-  static const Color gameGeeksEmpire = Color.fromARGB(255, 174, 35, 87);
-  static const Color gameLightGeeksEmpire = Color.fromARGB(255, 255, 0, 94);
 
 }

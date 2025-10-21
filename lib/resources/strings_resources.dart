@@ -180,6 +180,11 @@ class StringsResources {
     return "Confirm";
   }
 
+  static String analyseNow() {
+
+    return 'Analyse Now';
+  }
+
   /*
    * Start - Authentications
    */
@@ -231,11 +236,8 @@ class StringsResources {
     return "https://www.tradingview.com/chart/?aff_id=136528&symbol=${marketPair}";
   }
 
-  /// SliderTime.TXT
   static String fileSliderTime = "SliderTime";
-  /// PurchasingPlan.TXT
   static String filePurchasingPlan = "PurchasingPlan";
-  /// PurchasingPlan
   static String filePurchasingTime = "PurchasingTime";
 
   static List<String> marketsTypes() {
@@ -250,6 +252,17 @@ class StringsResources {
     allMarketsTypes.add("Metal");
 
     return allMarketsTypes;
+  }
+
+  static List<String> marketPairs() {
+
+    List<String> allMarketPairs = [];
+    allMarketPairs.add("EURUSD");
+    allMarketPairs.add("BTCUSD");
+    allMarketPairs.add("XRPUSD");
+    allMarketPairs.add("XAUUSD");
+
+    return allMarketPairs;
   }
 
 }

@@ -16,6 +16,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sachiel/dashboard/ui/sections/account_information_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/ai_status.dart';
+import 'package:sachiel/dashboard/ui/sections/analyse_now.dart';
 import 'package:sachiel/dashboard/ui/sections/last_signal_details.dart';
 import 'package:sachiel/dashboard/ui/sections/latest_signals_overview.dart';
 import 'package:sachiel/dashboard/ui/sections/purchase_plan_picker.dart';
@@ -185,6 +186,13 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                   /* Start - The Latest Signals Overview */
                   latestSignalsOverview,
                   /* End - The Latest Signals Overview */
+
+                  const Divider(
+                    height: 37,
+                    color: Colors.transparent,
+                  ),
+
+                  analyseNow(context),
 
                   /* Start - Social Media */
                   const Padding(
