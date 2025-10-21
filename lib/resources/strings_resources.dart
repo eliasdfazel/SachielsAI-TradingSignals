@@ -258,8 +258,12 @@ class StringsResources {
 
     List<String> allMarketPairs = [];
     allMarketPairs.add("EURUSD");
+    allMarketPairs.add("USDJPY");
+    allMarketPairs.add("GBPJPY");
+
     allMarketPairs.add("BTCUSD");
     allMarketPairs.add("XRPUSD");
+
     allMarketPairs.add("XAUUSD");
 
     return allMarketPairs;
