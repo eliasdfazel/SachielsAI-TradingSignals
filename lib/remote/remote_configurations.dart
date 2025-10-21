@@ -13,6 +13,7 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 class RemoteConfigurations {
 
   static const String sachielPrincipal = "sachielPrincipal";
+  static const String aiNowEndpoint = "aiNowEndpoint";
 
   static const String slideOneContent = "slideOneContent";
   static const String slideTwoContent = "slideTwoContent";

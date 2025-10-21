@@ -13,7 +13,7 @@ import 'package:http/http.dart' as https;
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 
-Widget analyseNow(buildContext, List<String> allMarketPairs) {
+Widget analyseNow(buildContext, List<String> allMarketPairs, String aiNowEndpoint) {
 
   return Container(
       height: 51,
@@ -51,7 +51,7 @@ Widget analyseNow(buildContext, List<String> allMarketPairs) {
 
                                       Navigator.pop(buildContext);
 
-                                      final lookupResponse = await https.get(Uri.parse('https://us-central1-sachiel-s-signals.cloudfunctions.net/aiNow?pinCode=1337&marketPair=${allMarketPairs[index]}'));
+                                      final lookupResponse = await https.get(Uri.parse('${aiNowEndpoint}${allMarketPairs[index]}'));
 
                                       if (lookupResponse.statusCode == 200) {}
 

@@ -291,9 +291,11 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.previewTopic);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
 
+          final aiNowEndpoint = firebaseRemoteConfigurations.getString(RemoteConfigurations.aiNowEndpoint);
+
           setState(() {
 
-            analyseNowProcess = analyseNow(context, StringsResources.marketPairs());
+            analyseNowProcess = analyseNow(context, StringsResources.marketPairs(), aiNowEndpoint);
 
           });
 
