@@ -299,13 +299,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                                                               color: ColorsResources.premiumLight,
                                                               fontSize: 13,
                                                               overflow: TextOverflow.ellipsis,
-                                                              shadows: [
-                                                                Shadow(
-                                                                    color: ColorsResources.primaryColor.withOpacity(0.37),
-                                                                    blurRadius: 7,
-                                                                    offset: const Offset(0, 5)
-                                                                )
-                                                              ]
                                                           )
                                                       )
                                                   )
@@ -506,13 +499,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                               style: TextStyle(
                                   color: ColorsResources.light,
                                   fontSize: 37.0,
-                                  shadows: [
-                                    Shadow(
-                                        color: ColorsResources.primaryColorLighter.withOpacity(0.71),
-                                        blurRadius: 17,
-                                        offset: const Offset(0.0, 3.0)
-                                    )
-                                  ]
                               ),
                               decoration: InputDecoration(
                                 alignLabelWithHint: true,
@@ -704,14 +690,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
                               textInputAction: TextInputAction.done,
                               style: TextStyle(
                                   color: ColorsResources.light,
-                                  fontSize: 37.0,
-                                  shadows: [
-                                    Shadow(
-                                        color: ColorsResources.primaryColorLighter.withOpacity(0.71),
-                                        blurRadius: 17,
-                                        offset: const Offset(0.0, 3.0)
-                                    )
-                                  ]
+                                  fontSize: 37.0
                               ),
                               decoration: InputDecoration(
                                 alignLabelWithHint: true,
