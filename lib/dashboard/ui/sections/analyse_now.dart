@@ -49,11 +49,11 @@ Widget analyseNow(buildContext, List<String> allMarketPairs) {
                                     onTap: () async {
                                       debugPrint('Analyse Now: ${allMarketPairs[index]}');
 
+                                      Navigator.pop(buildContext);
+
                                       final lookupResponse = await https.get(Uri.parse('https://us-central1-sachiel-s-signals.cloudfunctions.net/aiNow?pinCode=1337&marketPair=${allMarketPairs[index]}'));
 
                                       if (lookupResponse.statusCode == 200) {}
-
-                                      Navigator.pop(buildContext);
 
                                     },
                                     child: Container(
