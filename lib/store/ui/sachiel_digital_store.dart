@@ -66,8 +66,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
   Widget allPurchasingPlans = Container(
     alignment: Alignment.center,
     child: LoadingAnimationWidget.staggeredDotsWave(
-      colorOne: ColorsResources.premiumLight,
-      colorTwo: ColorsResources.primaryColor,
+      colorOne: ColorsResources.black,
+      colorTwo: ColorsResources.black,
       size: 73,
     )
   );
@@ -345,8 +345,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
                       child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 153),
                           child: LoadingAnimationWidget.staggeredDotsWave(
-                            colorOne: ColorsResources.premiumLight,
-                            colorTwo: ColorsResources.primaryColor,
+                            colorOne: ColorsResources.black,
+                            colorTwo: ColorsResources.black,
                             size: 53,
                           )
                       )

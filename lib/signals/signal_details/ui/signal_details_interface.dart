@@ -38,8 +38,8 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
   Widget signalDetailsPlaceholder = Container(
     alignment: Alignment.center,
     child: LoadingAnimationWidget.staggeredDotsWave(
-      colorOne: ColorsResources.premiumLight,
-      colorTwo: ColorsResources.primaryColor,
+      colorOne: ColorsResources.black,
+      colorTwo: ColorsResources.black,
       size: 73,
     ),
   );

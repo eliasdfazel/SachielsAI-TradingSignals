@@ -9,6 +9,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/profile/ui/account_information_details.dart';
@@ -76,7 +77,7 @@ class SocialMediaStates extends State<SocialMedia> {
                         child: SizedBox(
                             height: 59,
                             width: 59,
-                            child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Fshare_icon_small.png?alt=media")
+                            child: CachedNetworkImage(imageUrl: "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Fshare_icon_small.png?alt=media")
                         )
                     )
                 )
@@ -98,7 +99,7 @@ class SocialMediaStates extends State<SocialMedia> {
                       child: SizedBox(
                           height: 59,
                           width: 59,
-                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Finstagram_icon.png?alt=media")
+                          child: CachedNetworkImage(imageUrl: "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Finstagram_icon.png?alt=media")
                       )
                   )
               )
@@ -119,7 +120,7 @@ class SocialMediaStates extends State<SocialMedia> {
                       child: SizedBox(
                           height: 59,
                           width: 59,
-                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Ffacebook_icon.png?alt=media")
+                          child: CachedNetworkImage(imageUrl: "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Ffacebook_icon.png?alt=media")
                       )
                   )
               )
@@ -140,7 +141,7 @@ class SocialMediaStates extends State<SocialMedia> {
                       child: SizedBox(
                           height: 59,
                           width: 59,
-                          child: Image.network("https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Ftwitter_icon.png?alt=media")
+                          child: CachedNetworkImage(imageUrl: "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Ftwitter_icon.png?alt=media")
                       )
                   )
               )

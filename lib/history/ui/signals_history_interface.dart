@@ -44,8 +44,8 @@ class _SignalsHistoryInterfaceState extends State<SignalsHistoryInterface> with 
   Widget allSignalsHistory = Container(
     alignment: Alignment.center,
     child: LoadingAnimationWidget.staggeredDotsWave(
-      colorOne: ColorsResources.premiumLight,
-      colorTwo: ColorsResources.primaryColor,
+      colorOne: ColorsResources.black,
+      colorTwo: ColorsResources.black,
       size: 73,
     ),
   );
