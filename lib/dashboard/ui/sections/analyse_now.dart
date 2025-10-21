@@ -99,7 +99,3 @@ Widget analyseNow(buildContext, List<String> allMarketPairs, String aiNowEndpoin
       )
   );
 }
-
-void _analyseNowProcess(String marketPair) {
-
-}
