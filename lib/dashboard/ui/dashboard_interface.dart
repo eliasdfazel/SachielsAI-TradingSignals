@@ -293,7 +293,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
           setState(() {
 
-            analyseNowProcess = analyseNow(context);
+            analyseNowProcess = analyseNow(context, StringsResources.marketPairs());
 
           });
 
