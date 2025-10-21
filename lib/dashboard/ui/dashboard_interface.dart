@@ -57,6 +57,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   DynamicShortcuts dynamicShortcuts = DynamicShortcuts();
 
+  Widget analyseNowProcess = Container();
+
   Widget sliderInvocation = Container();
 
   @override
@@ -192,7 +194,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                     color: Colors.transparent,
                   ),
 
-                  analyseNow(context),
+                  analyseNowProcess,
 
                   /* Start - Social Media */
                   const Padding(
@@ -288,6 +290,12 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.previewTopic);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
+
+          setState(() {
+
+            analyseNowProcess = analyseNow(context);
+
+          });
 
         }
 
