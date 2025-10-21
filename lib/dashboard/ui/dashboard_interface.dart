@@ -58,8 +58,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   Widget sliderInvocation = Container();
 
-  Widget updatePlaceholder = Container();
-
   @override
   void dispose() {
     super.dispose();
@@ -165,40 +163,39 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
               ),
               /* End - Gradient Background - Golden */
 
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-                child: ListView(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 37),
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  children: [
+              /* Start - Content */
+              ListView(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 37),
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                children: [
 
-                    /* Start - Account Information Overview */
-                    accountInformationOverview,
-                    /* End - Account Information Overview */
+                  /* Start - Account Information Overview */
+                  accountInformationOverview,
+                  /* End - Account Information Overview */
 
-                    /* Start - Sachiel AI Status */
-                    statusAi,
-                    /* End - Sachiel AI Status */
+                  /* Start - Sachiel AI Status */
+                  statusAi,
+                  /* End - Sachiel AI Status */
 
-                    /* Start - The Last Signal Details */
-                    lastSignalDetails,
-                    /* End - The Last Signal Details */
+                  /* Start - The Last Signal Details */
+                  lastSignalDetails,
+                  /* End - The Last Signal Details */
 
-                    /* Start - The Latest Signals Overview */
-                    latestSignalsOverview,
-                    /* End - The Latest Signals Overview */
+                  /* Start - The Latest Signals Overview */
+                  latestSignalsOverview,
+                  /* End - The Latest Signals Overview */
 
-                    /* Start - Social Media */
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 37, 0, 0),
-                      child: SocialMedia(),
-                    )
-                    /* End - Social Media */
+                  /* Start - Social Media */
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 37, 0, 0),
+                    child: SocialMedia(),
+                  )
+                  /* End - Social Media */
 
-                  ],
-                ),
+                ],
               ),
+              /* End - Content */
 
               /* Start - Purchase Plan Picker */
               const Positioned(
@@ -209,8 +206,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
               /* End - Purchase Plan Picker */
 
               sliderInvocation,
-
-              updatePlaceholder
 
             ],
           )
