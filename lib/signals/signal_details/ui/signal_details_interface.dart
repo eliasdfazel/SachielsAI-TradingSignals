@@ -359,7 +359,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                   Container(
                       alignment: Alignment.topRight,
                       child: const Opacity(
-                          opacity: 0.23,
+                          opacity: 0.19,
                           child: Image(
                             image: AssetImage("assets/percent_sign.png"),
                             height: 179,
@@ -370,7 +370,7 @@ class _SignalsDetailsInterfaceState extends State<SignalsDetailsInterface> {
                   Container(
                       alignment: Alignment.bottomLeft,
                       child: const Opacity(
-                          opacity: 0.23,
+                          opacity: 0.19,
                           child: Image(
                             image: AssetImage("assets/dollar_sign.png"),
                             height: 199,

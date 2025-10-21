@@ -51,7 +51,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
   Widget build(BuildContext context) {
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+      padding: const EdgeInsets.fromLTRB(7, 37, 7, 0),
       child: latestSignalsDetails
     );
   }
@@ -249,7 +249,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                       Container(
                           alignment: Alignment.bottomCenter,
                           child: const Opacity(
-                              opacity: 0.31,
+                              opacity: 0.19,
                               child: Image(
                                 image: AssetImage("assets/percent_sign.png"),
                                 height: 173,

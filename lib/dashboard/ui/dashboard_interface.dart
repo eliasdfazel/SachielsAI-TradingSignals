@@ -165,7 +165,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
               /* Start - Content */
               ListView(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 37),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 137),
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 children: [

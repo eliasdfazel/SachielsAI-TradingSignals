@@ -65,7 +65,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
       height: 399,
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(7, 37, 7, 13),
+        padding: const EdgeInsets.fromLTRB(7, 37, 7, 0),
         child: lastSignalDetails
       )
     );
@@ -211,7 +211,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                 Container(
                     alignment: Alignment.topRight,
                     child: const Opacity(
-                        opacity: 0.23,
+                        opacity: 0.19,
                         child: Image(
                           image: AssetImage("assets/percent_sign.png"),
                           height: 179,
@@ -222,7 +222,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
                 Container(
                     alignment: Alignment.bottomLeft,
                     child: const Opacity(
-                        opacity: 0.23,
+                        opacity: 0.19,
                         child: Image(
                           image: AssetImage("assets/dollar_sign.png"),
                           height: 199,
