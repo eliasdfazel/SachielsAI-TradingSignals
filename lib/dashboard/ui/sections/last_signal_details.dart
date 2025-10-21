@@ -197,10 +197,10 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
               children: [
 
                 Blur(
-                    blur: 3,
-                    blurColor: ColorsResources.premiumLight,
+                    blur: 7,
+                    blurColor: ColorsResources.black,
                     borderRadius: BorderRadius.circular(19),
-                    colorOpacity: 0.07,
+                    colorOpacity: 0.19,
                     alignment: Alignment.center,
                     child: const SizedBox(
                       height: 399,

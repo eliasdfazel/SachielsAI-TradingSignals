@@ -150,7 +150,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                 height: 211,
                 width: double.infinity,
                 child: ListView(
-                  padding: const EdgeInsets.fromLTRB(13, 17, 0, 17),
+                  padding: const EdgeInsets.fromLTRB(13, 17, 0, 0),
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   controller: scrollController,
@@ -159,7 +159,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
             ),
 
             Padding(
-                padding: const EdgeInsets.fromLTRB(0, 7, 19, 0),
+                padding: const EdgeInsets.fromLTRB(0, 19, 19, 0),
                 child: Align(
                     alignment: Alignment.centerRight,
                     child: InkWell(
@@ -233,14 +233,7 @@ class _LatestSignalsOverviewState extends State<LatestSignalsOverview> {
                             width: 1.3,
                           )
                       ),
-                      color: ColorsResources.premiumDark,
-                      boxShadow: [
-                        BoxShadow(
-                            color: ColorsResources.primaryColorLightest.withOpacity(0.11),
-                            blurRadius: 19,
-                            offset: const Offset(0, 0)
-                        )
-                      ]
+                      color: ColorsResources.black.withAlpha(73),
                   ),
                   child: Stack(
                     fit: StackFit.expand,
