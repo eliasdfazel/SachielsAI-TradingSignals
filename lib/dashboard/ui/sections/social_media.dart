@@ -159,8 +159,8 @@ class SocialMediaStates extends State<SocialMedia> {
 
       profileName = firebaseUser!.displayName!;
 
-      profileImage = Image.network(
-        firebaseUser!.photoURL.toString(),
+      profileImage = CachedNetworkImage(
+        imageUrl: firebaseUser!.photoURL.toString(),
         fit: BoxFit.cover,
       );
 

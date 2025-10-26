@@ -9,6 +9,7 @@
  */
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -570,8 +571,8 @@ class AccountInformationDetailsStates extends State<AccountInformationDetails> {
 
       profileName = firebaseUser!.displayName!;
 
-      profileImage = Image.network(
-        firebaseUser!.photoURL.toString(),
+      profileImage = CachedNetworkImage(
+        imageUrl: firebaseUser!.photoURL.toString(),
         fit: BoxFit.cover,
         height: 301,
         width: 301,

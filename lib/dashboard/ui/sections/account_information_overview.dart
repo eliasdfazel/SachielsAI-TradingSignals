@@ -8,6 +8,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/profile/ui/account_information_details.dart';
@@ -198,8 +199,8 @@ class AccountInformationOverviewStates extends State<AccountInformationOverview>
 
       profileName = firebaseUser!.displayName!;
 
-      profileImage = Image.network(
-        firebaseUser!.photoURL.toString(),
+      profileImage = CachedNetworkImage(
+        imageUrl: firebaseUser!.photoURL.toString(),
         fit: BoxFit.cover,
       );
 
