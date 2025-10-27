@@ -28,6 +28,7 @@ import 'package:sachiel/resources/strings_resources.dart';
 import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/utils/data/texts.dart';
 import 'package:sachiel/utils/io/file_io.dart';
+import 'package:sachiel/utils/network/Networking.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage remoteMessage) async {
@@ -105,9 +106,11 @@ void main() async {
 
     try {
 
-      final internetLookup = await InternetAddress.lookup('sachiel-s-signals.web.app');
+      Networking networking = Networking();
 
-      bool connectionResult = (internetLookup.isNotEmpty && internetLookup[0].rawAddress.isNotEmpty);
+      final internetLookup = await networking.getRequest('https://8.8.8.8/');
+
+      bool connectionResult = (int.parse(internetLookup[Networking.networkStatus].toString()) == 200);
 
       principalSubscriptions();
 
