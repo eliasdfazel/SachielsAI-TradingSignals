@@ -27,7 +27,7 @@ class StringsResources {
 
   static String twitterLink() {
 
-    return "https://twitter.com/SachielsAI";
+    return "https://x.com/SachielsAI";
   }
 
   static String facebookLink() {

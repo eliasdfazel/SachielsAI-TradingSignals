@@ -417,6 +417,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
     principalSubscriptions();
 
+    InAppPurchase.instance.restorePurchases();
+
   }
 
   void prepareStoreItems(List<PlansDataStructure> plansDataStructure) async {

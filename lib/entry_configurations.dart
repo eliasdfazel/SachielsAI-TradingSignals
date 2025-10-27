@@ -345,7 +345,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> implements  A
 
                                                                           if (noticeAction == StringsResources.read()) {
 
-                                                                            launchUrlString("https://geeksempire.co/sachiel-ai-trading-signals/term-of-services/", mode: LaunchMode.externalApplication);
+                                                                            launchUrlString("https://geeksempire.co/sachiels-ai-trading-signals/term-of-services/", mode: LaunchMode.externalApplication);
 
                                                                           } else {
 
