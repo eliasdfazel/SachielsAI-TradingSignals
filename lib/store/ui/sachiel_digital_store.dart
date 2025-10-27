@@ -415,7 +415,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
         });
 
-    principalSubscriptions();
+    // principalSubscriptions();
 
     InAppPurchase.instance.restorePurchases();
 
@@ -522,7 +522,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                     PurchaseParam purchaseParam = PurchaseParam(productDetails: productDetails);
 
-                    await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam, );
+                    await InAppPurchase.instance.buyNonConsumable(purchaseParam: purchaseParam);
 
                   }
 
