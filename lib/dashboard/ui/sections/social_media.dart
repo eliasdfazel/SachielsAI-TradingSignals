@@ -93,13 +93,13 @@ class SocialMediaStates extends State<SocialMedia> {
                   child: InkWell(
                       onTap: () {
 
-                        launchUrl(Uri.parse(StringsResources.instagramLink()));
+                        launchUrl(Uri.parse(StringsResources.threadsLink()));
 
                       },
                       child: SizedBox(
                           height: 59,
                           width: 59,
-                          child: CachedNetworkImage(imageUrl: "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Finstagram_icon.png?alt=media")
+                          child: CachedNetworkImage(imageUrl: "https://firebasestorage.googleapis.com/v0/b/sachiel-s-signals.appspot.com/o/Sachiels%2FAssets%2FSocialMedia%2Fthreads_icon.png?alt=media")
                       )
                   )
               )

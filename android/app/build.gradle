@@ -28,7 +28,7 @@ android {
     namespace "co.geeksempire.sachiel.signals.sachiel"
 
     compileSdkVersion 36
-    ndkVersion = "27.0.12077973"
+    ndkVersion = "29.0.14206865"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -51,7 +51,7 @@ android {
         minSdkVersion 26
         targetSdkVersion 36
 
-        versionCode 67
+        versionCode 69
         versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"
     }
 

@@ -12,6 +12,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sachiel/ai_status/data/ai_status_data_structure.dart';
 import 'package:sachiel/resources/colors_resources.dart';
+import 'package:sachiel/resources/strings_resources.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class StatusAi extends StatefulWidget {
@@ -48,7 +49,7 @@ class _StatusAiState extends State<StatusAi> {
       child: InkWell(
         onTap: () {
 
-          launchUrl(Uri.parse("https://twitter.com/SachielsSignals"), mode: LaunchMode.externalApplication);
+          launchUrl(Uri.parse(StringsResources.threadsLink()), mode: LaunchMode.externalApplication);
 
         },
         child: Padding(

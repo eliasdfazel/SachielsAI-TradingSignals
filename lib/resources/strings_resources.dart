@@ -35,9 +35,9 @@ class StringsResources {
     return "https://facebook.com/SachielsAI";
   }
 
-  static String instagramLink() {
+  static String threadsLink() {
 
-    return "https://instagram.com/SachielsAI";
+    return "https://www.threads.net/@sachielsai";
   }
 
   static String sachielsAI() {
