@@ -158,19 +158,17 @@ class DigitalStoreUtils {
 
     if (fileExists) {
 
-      DateTime nowTime = DateTime.now();
+      int nowTime = DateTime.now().millisecondsSinceEpoch;
 
-      String expiryTime = (await readFileOfTexts(StringsResources.filePurchasingTime))!!;
+      String expiryDate = (await readFileOfTexts(StringsResources.filePurchasingTime))!;
 
-      int nowMonth = nowTime.month;
-      int nowDay = nowTime.day;
-      int nowYear = nowTime.year;
+      int savedMonth = int.parse(expiryDate.split("-")[0]);
+      int savedDay = int.parse(expiryDate.split("-")[1]);
+      int savedYear = int.parse(expiryDate.split("-")[2]);
 
-      int savedMonth = int.parse(expiryTime.split("-")[0]);
-      int savedDay = int.parse(expiryTime.split("-")[1]);
-      int savedYear = int.parse(expiryTime.split("-")[2]);
+      int expiryTime = DateTime(savedYear, savedMonth, savedDay).millisecondsSinceEpoch;
 
-      expired = (nowYear + nowMonth + nowDay) > (savedYear + savedMonth + savedDay);
+      expired = nowTime > expiryTime;
 
     }
 
