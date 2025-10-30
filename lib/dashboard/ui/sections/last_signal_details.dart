@@ -39,8 +39,7 @@ class _LastSignalDetailsState extends State<LastSignalDetails> {
     width: 351,
     alignment: Alignment.center,
     child: LoadingAnimationWidget.staggeredDotsWave(
-      colorOne: ColorsResources.black,
-      colorTwo: ColorsResources.black,
+      color: ColorsResources.black,
       size: 73,
     ),
   );
