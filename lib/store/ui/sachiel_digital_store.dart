@@ -113,6 +113,8 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
     retrievePurchasingPlans();
 
+    principalSubscriptions();
+
     super.initState();
   }
 
@@ -316,15 +318,7 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
                               fileExist(StringsResources.filePurchasingPlan).then((alreadyPurchased) => {
 
-                                if (alreadyPurchased) {
-
-                                  // navigateTo(context, const DashboardInterface())
-
-                                } else {
-
-                                  launchUrl(Uri.parse("https://GeeksEmpire.co/Sachiels/PurchasingPlans"), mode: LaunchMode.externalApplication)
-
-                                }
+                                launchUrl(Uri.parse("https://www.threads.com/@sachielsai"), mode: LaunchMode.externalApplication)
 
                               });
 
@@ -753,11 +747,19 @@ class _SachielsDigitalStoreState extends State<SachielsDigitalStore> {
 
       Future.delayed(const Duration(milliseconds: 137), () async {
 
+        Fluttertoast.showToast(
+            msg: StringsResources.externalNotice(),
+            toastLength: Toast.LENGTH_LONG,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: ColorsResources.dark,
+            textColor: ColorsResources.light,
+            fontSize: 13.0
+        );
+
         FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
         await firebaseMessaging.subscribeToTopic(purchasedPlan);
         await firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
-
-        navigateToWithPop(context, const DashboardInterface());
 
     })
 

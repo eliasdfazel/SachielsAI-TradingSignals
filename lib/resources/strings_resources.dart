@@ -90,6 +90,11 @@ class StringsResources {
     return "Subscription Expired. Purchase Now Or Contact Support@GeeksEmpire.co";
   }
 
+  static String externalNotice() {
+
+    return "You Are External Subscriber. Contact @SachielsAI for For Upgrade and Further Support.";
+  }
+
   static String accuracyText() {
 
     return "Accuracy";

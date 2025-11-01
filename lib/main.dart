@@ -226,6 +226,8 @@ void principalSubscriptions() {
 
         firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
 
+        createFileOfTexts(StringsResources.filePurchasingPlan, "Palladium");
+
       }
 
     });

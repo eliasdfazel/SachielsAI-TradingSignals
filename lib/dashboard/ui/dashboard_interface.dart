@@ -291,6 +291,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.previewTopic);
           firebaseMessaging.subscribeToTopic(SachielsDigitalStore.privilegedTopic);
 
+          createFileOfTexts(StringsResources.filePurchasingPlan, "Palladium");
+
           final aiNowEndpoint = firebaseRemoteConfigurations.getString(RemoteConfigurations.aiNowEndpoint);
 
           setState(() {
@@ -309,40 +311,40 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   void externalSubscriberCheckpoint() async {
 
-    bool subscriberExpired = await digitalStoreUtils.subscriberExpired();
+    FirebaseFirestore.instance
+        .doc("/Sachiels/Subscribers/Externals/${FirebaseAuth.instance.currentUser!.email!.toLowerCase()}")
+        .get().then((DocumentSnapshot documentSnapshot) async {
 
-    if (subscriberExpired) {
+          if (documentSnapshot.exists) {
 
-      Fluttertoast.showToast(
-          msg: StringsResources.subscriptionExpired(),
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ColorsResources.dark,
-          textColor: ColorsResources.light,
-          fontSize: 13.0
-      );
+            bool subscriberExpired = await digitalStoreUtils.subscriberExpired();
 
-      navigateTo(context, SachielsDigitalStore());
+            if (subscriberExpired) {
 
-    } else {
+              Fluttertoast.showToast(
+                  msg: StringsResources.subscriptionExpired(),
+                  toastLength: Toast.LENGTH_LONG,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: ColorsResources.dark,
+                  textColor: ColorsResources.light,
+                  fontSize: 13.0
+              );
 
-      FirebaseFirestore.instance
-          .doc("/Sachiels/Subscribers/Externals/${FirebaseAuth.instance.currentUser!.email!.toLowerCase()}")
-          .get().then((DocumentSnapshot documentSnapshot) {
+              navigateTo(context, SachielsDigitalStore());
 
-        if (documentSnapshot.exists) {
+            } else {
 
-          FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-          firebaseMessaging.subscribeToTopic(documentSnapshot.get("purchasedPlan"));
+              FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+              firebaseMessaging.subscribeToTopic(documentSnapshot.get("purchasedPlan"));
 
-        }
+            }
 
-      }, onError: (e) => {
+          }
 
-      });
+    }, onError: (e) => {
 
-    }
+    });
 
   }
 
