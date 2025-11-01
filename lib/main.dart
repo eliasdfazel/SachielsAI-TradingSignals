@@ -97,12 +97,12 @@ void main() async {
 
   });
 
-  final connectivityResult = await (Connectivity().checkConnectivity());
+  final connectivityResults = await (Connectivity().checkConnectivity());
 
-  if (connectivityResult == ConnectivityResult.mobile
-      || connectivityResult == ConnectivityResult.wifi
-      || connectivityResult == ConnectivityResult.vpn
-      || connectivityResult == ConnectivityResult.ethernet) {
+  if (connectivityResults.contains(ConnectivityResult.mobile)
+      || connectivityResults.contains(ConnectivityResult.wifi)
+      || connectivityResults.contains(ConnectivityResult.vpn)
+      || connectivityResults.contains(ConnectivityResult.ethernet)) {
 
     try {
 
@@ -118,13 +118,10 @@ void main() async {
 
       Widget nextPage = EntryConfigurations(internetConnection: connectionResult);
 
-      if (FirebaseAuth.instance.currentUser != null) {
+      if (FirebaseAuth.instance.currentUser != null
+          && FirebaseAuth.instance.currentUser!.phoneNumber != null) {
 
-        if (FirebaseAuth.instance.currentUser!.phoneNumber != null) {
-
-          nextPage = const DashboardInterface();
-
-        }
+        nextPage = const DashboardInterface();
 
       }
 
