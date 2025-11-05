@@ -13,7 +13,7 @@ import 'package:http/http.dart' as https;
 import 'package:sachiel/resources/colors_resources.dart';
 import 'package:sachiel/resources/strings_resources.dart';
 
-Widget analyseNow(buildContext, List<String> allMarketPairs, String aiNowEndpoint) {
+Widget analyseNowWidget(buildContext, List<String> allMarketPairs, String aiNowEndpoint) {
 
   return Container(
       height: 51,
@@ -49,11 +49,7 @@ Widget analyseNow(buildContext, List<String> allMarketPairs, String aiNowEndpoin
                                     onTap: () async {
                                       debugPrint('Analyse Now: ${allMarketPairs[index]}');
 
-                                      Navigator.pop(buildContext);
-
-                                      final lookupResponse = await https.get(Uri.parse('${aiNowEndpoint}${allMarketPairs[index]}'));
-
-                                      if (lookupResponse.statusCode == 200) {}
+                                      analyseNow(buildContext, allMarketPairs[index], aiNowEndpoint);
 
                                     },
                                     child: Container(
@@ -98,4 +94,20 @@ Widget analyseNow(buildContext, List<String> allMarketPairs, String aiNowEndpoin
           )
       )
   );
+}
+
+void analyseNow(buildContext, String marketPair, String aiNowEndpoint) async {
+
+  final lookupResponse = await https.post(Uri.parse('${aiNowEndpoint}${marketPair}'));
+
+  if (lookupResponse.statusCode == 200) {
+
+    Navigator.pop(buildContext);
+
+  } else {
+
+    Navigator.pop(buildContext);
+
+  }
+
 }

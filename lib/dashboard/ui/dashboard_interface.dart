@@ -57,7 +57,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   DynamicShortcuts dynamicShortcuts = DynamicShortcuts();
 
-  Widget analyseNowProcess = Container();
+  Widget analyseNowProcessWidget = Container();
 
   Widget sliderInvocation = Container();
 
@@ -194,7 +194,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                     color: Colors.transparent,
                   ),
 
-                  analyseNowProcess,
+                  analyseNowProcessWidget,
 
                   /* Start - Social Media */
                   const Padding(
@@ -297,7 +297,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
           setState(() {
 
-            analyseNowProcess = analyseNow(context, StringsResources.marketPairs(), aiNowEndpoint);
+            analyseNowProcessWidget = analyseNowWidget(context, StringsResources.marketPairs(), aiNowEndpoint);
 
           });
 
