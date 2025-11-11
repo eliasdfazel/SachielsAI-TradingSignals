@@ -179,6 +179,13 @@ Future<void> initializeNotifications() async {
       importance: Importance.high
   );
 
+  const AndroidNotificationChannel investmentChannel = AndroidNotificationChannel(
+      'investment',
+      'Investment Notifications',
+      description: 'Investment Deep Insights',
+      importance: Importance.high
+  );
+
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('logo');
@@ -202,6 +209,10 @@ Future<void> initializeNotifications() async {
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(cryptoChannel);
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(investmentChannel);
 
 }
 
