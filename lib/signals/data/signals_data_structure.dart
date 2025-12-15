@@ -86,7 +86,17 @@ class SignalsDataStructure {
   /// Trade Profit Amount In Dollar
   String tradeProfitAmount() {
 
-    return double.parse(signalsDocumentData[SignalsDataStructure.tradeProfitAmountName]).round().toString();
+    int profitAmount = double.parse(signalsDocumentData[SignalsDataStructure.tradeProfitAmountName]).round();
+
+    String profitAmountText = 'N/A';
+
+    if (profitAmount > 0) {
+
+      profitAmountText = profitAmount.toString();
+
+    }
+
+    return profitAmountText;
   }
 
   /// Trade Timeframe (Interval - 1 Hour, 4 Hours, Daily & etc)
