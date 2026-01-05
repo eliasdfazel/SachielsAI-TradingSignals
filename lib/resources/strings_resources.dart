@@ -8,6 +8,10 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:collection';
+
+import 'package:firebase_database/firebase_database.dart';
+
 class StringsResources {
 
   static String applicationName() {
@@ -259,7 +263,7 @@ class StringsResources {
     return allMarketsTypes;
   }
 
-  static List<String> marketPairs() {
+  static Future<List<String>> marketPairs() async {
 
     List<String> allMarketPairs = [];
     allMarketPairs.add("EURUSD");
@@ -269,7 +273,24 @@ class StringsResources {
     allMarketPairs.add("BTCUSD");
     allMarketPairs.add("XRPUSD");
 
-    allMarketPairs.add("XAUUSD");
+    allMarketPairs.add("XRPUSD");
+    allMarketPairs.add("XAGUSD");
+
+    FirebaseDatabase.instance.ref('/SachielsSignals/Now').orderByPriority().once().then((databaseEvent)  {
+
+      allMarketPairs.clear();
+
+      LinkedHashMap<dynamic, dynamic> nowMarkets = databaseEvent.snapshot.value as LinkedHashMap<dynamic, dynamic>;
+
+      for (var element in nowMarkets.values) {
+
+        allMarketPairs.add(element);
+
+      }
+
+      allMarketPairs.sort();
+
+    });
 
     return allMarketPairs;
   }

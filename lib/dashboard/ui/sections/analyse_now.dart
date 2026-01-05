@@ -11,7 +11,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as https;
 import 'package:sachiel/resources/colors_resources.dart';
-import 'package:sachiel/resources/strings_resources.dart';
 
 Widget analyseNowWidget(buildContext, List<String> allMarketPairs, String aiNowEndpoint) {
 
@@ -40,7 +39,7 @@ Widget analyseNowWidget(buildContext, List<String> allMarketPairs, String aiNowE
                       ),
                       child: ListView.builder(
                           padding: const EdgeInsets.only(left: 37, top: 19, right: 37, bottom: 73),
-                          itemCount: StringsResources.marketPairs().length,
+                          itemCount: allMarketPairs.length,
                           itemBuilder: (BuildContext context, int index) {
 
                             return Container(

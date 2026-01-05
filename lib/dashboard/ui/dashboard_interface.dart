@@ -295,9 +295,11 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
           final aiNowEndpoint = firebaseRemoteConfigurations.getString(RemoteConfigurations.aiNowEndpoint);
 
+          final nowMarketPairs = await StringsResources.marketPairs();
+
           setState(() {
 
-            analyseNowProcessWidget = analyseNowWidget(context, StringsResources.marketPairs(), aiNowEndpoint);
+            analyseNowProcessWidget = analyseNowWidget(context, nowMarketPairs, aiNowEndpoint);
 
           });
 
