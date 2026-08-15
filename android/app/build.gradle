@@ -51,7 +51,7 @@ android {
         minSdkVersion 26
         targetSdkVersion 36
 
-        versionCode 87
+        versionCode 89
         versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"
     }
 

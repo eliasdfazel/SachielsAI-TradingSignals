@@ -158,13 +158,6 @@ void main() async {
 
 Future<void> initializeNotifications() async {
 
-  const AndroidNotificationChannel metalChannel = AndroidNotificationChannel(
-      'metal',
-      'Metal Notifications',
-      description: 'Metal Markets Trading Signals.',
-      importance: Importance.high
-  );
-
   const AndroidNotificationChannel forexChannel = AndroidNotificationChannel(
       'foreignexchange',
       'Forex Notifications',
@@ -179,10 +172,17 @@ Future<void> initializeNotifications() async {
       importance: Importance.high
   );
 
-  const AndroidNotificationChannel statusChannel = AndroidNotificationChannel(
-      'status',
-      'Market Status Notifications',
-      description: 'Crypto Markets Status.',
+  const AndroidNotificationChannel metalChannel = AndroidNotificationChannel(
+      'metal',
+      'Metal Notifications',
+      description: 'Metal Markets Trading Signals.',
+      importance: Importance.high
+  );
+
+  const AndroidNotificationChannel stockChannel = AndroidNotificationChannel(
+      'stock',
+      'Stock Notifications',
+      description: 'Stock Markets Recommendation.',
       importance: Importance.high
   );
 
@@ -190,6 +190,13 @@ Future<void> initializeNotifications() async {
       'investment',
       'Investment Notifications',
       description: 'Investment Deep Insights',
+      importance: Importance.high
+  );
+
+  const AndroidNotificationChannel statusChannel = AndroidNotificationChannel(
+      'status',
+      'Market Status Notifications',
+      description: 'Crypto Markets Status.',
       importance: Importance.high
   );
 
@@ -207,10 +214,6 @@ Future<void> initializeNotifications() async {
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(metalChannel);
-
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(forexChannel);
 
   await flutterLocalNotificationsPlugin
@@ -219,11 +222,19 @@ Future<void> initializeNotifications() async {
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(statusChannel);
+      ?.createNotificationChannel(metalChannel);
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(stockChannel);
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(investmentChannel);
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(statusChannel);
 
 }
 
