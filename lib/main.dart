@@ -20,6 +20,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:fluttertoast/fluttertoast.dart' show Fluttertoast, Toast, ToastGravity;
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/entry_configurations.dart';
 import 'package:sachiel/firebase_options.dart';
