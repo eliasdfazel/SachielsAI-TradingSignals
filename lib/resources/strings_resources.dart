@@ -276,7 +276,7 @@ class StringsResources {
     allMarketPairs.add("XRPUSD");
     allMarketPairs.add("XAGUSD");
 
-    FirebaseDatabase.instance.ref('/SachielsSignals/Now').orderByPriority().once().then((databaseEvent)  {
+    FirebaseDatabase.instance.ref('/Signals/Now').orderByPriority().once().then((databaseEvent)  {
 
       allMarketPairs.clear();
 

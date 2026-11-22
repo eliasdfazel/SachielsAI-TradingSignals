@@ -1,103 +1,104 @@
 plugins {
-    id "com.android.application"
-    id "com.google.gms.google-services"
-    id "com.google.firebase.crashlytics"
-    id "kotlin-android"
-    id "dev.flutter.flutter-gradle-plugin"
+        id "com.android.application"
+        id "com.google.gms.google-services"
+        id "com.google.firebase.crashlytics"
+        id "dev.flutter.flutter-gradle-plugin"
 }
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
+        localPropertiesFile.withReader('UTF-8') { reader ->
+                localProperties.load(reader)
+        }
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+        flutterVersionCode = '1'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
+        flutterVersionName = '1.0'
 }
 
 android {
-    namespace "co.geeksempire.sachiel.signals.sachiel"
+        namespace "co.geeksempire.sachiel.signals.sachiel"
 
-    compileSdkVersion 36
-    ndkVersion = "29.0.14206865"
+        compileSdkVersion 37
+        ndkVersion = "29.0.14206865"
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        compileOptions {
+                sourceCompatibility JavaVersion.VERSION_17
+                targetCompatibility JavaVersion.VERSION_17
 
-        coreLibraryDesugaringEnabled true
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-
-    defaultConfig {
-        applicationId "co.geeksempire.sachiel.signals"
-
-        minSdkVersion 26
-        targetSdkVersion 36
-
-        versionCode 89
-        versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"
-    }
-
-    signingConfigs {
-        release {
-            storeFile file("D:\\Xine\\Android\\AppsScreenshotsKeys\\SachielsSignals\\sachiels.jks")
-            storePassword '*sachiels#signals$'
-            keyAlias 'sachielssignals'
-            keyPassword '*sachiels#signals$'
+                coreLibraryDesugaringEnabled true
         }
-    }
 
-    buildTypes {
-        release {
-            signingConfig signingConfigs.release
+        kotlin {
+                compilerOptions {
+                        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+                }
         }
-        debug {
-            debuggable true
+
+        sourceSets {
+                main.java.srcDirs += 'src/main/kotlin'
         }
-    }
+
+        defaultConfig {
+                applicationId "co.geeksempire.sachiel.signals"
+
+                minSdkVersion 26
+                targetSdkVersion 36
+
+                versionCode 91
+                versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"
+        }
+
+        signingConfigs {
+                release {
+                        storeFile file("D:\\Xine\\Android\\AppsScreenshotsKeys\\SachielsSignals\\sachiels.jks")
+                        storePassword '*sachiels#signals$'
+                        keyAlias 'sachielssignals'
+                        keyPassword '*sachiels#signals$'
+                }
+        }
+
+        buildTypes {
+                release {
+                        signingConfig signingConfigs.release
+                }
+                debug {
+                        debuggable true
+                }
+        }
 }
 
 flutter {
-    source '../..'
+        source '../..'
 }
 
 static def getDateYear() {
-    def date = new Date()
-    def formattedDate = date.format('yyyy')//yyyyMMdd
-    return formattedDate
+        def date = new Date()
+        def formattedDate = date.format('yyyy')//yyyyMMdd
+        return formattedDate
 }
 
 static def getDateMonth() {
-    def date = new Date()
-    def formattedDate = date.format('MM')//yyyyMMdd
-    return formattedDate
+        def date = new Date()
+        def formattedDate = date.format('MM')//yyyyMMdd
+        return formattedDate
 }
 
 static def getDateDay() {
-    def date = new Date()
-    def formattedDate = date.format('dd')//yyyyMMdd
-    return formattedDate
+        def date = new Date()
+        def formattedDate = date.format('dd')//yyyyMMdd
+        return formattedDate
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.2.0"
+//        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.4.20"
 
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
+        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
 }

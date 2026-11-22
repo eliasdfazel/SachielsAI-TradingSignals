@@ -29,6 +29,7 @@ import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/utils/data/texts.dart';
 import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/network/Networking.dart';
+import 'package:age_range_signals/age_range_signals.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage remoteMessage) async {
@@ -45,14 +46,8 @@ void main() async {
 
   await initializeNotifications();
 
-  var appCheckProvider = AndroidProvider.playIntegrity;
-
-  if (kDebugMode) {
-    appCheckProvider = AndroidProvider.debug;
-  }
-
   await FirebaseAppCheck.instance.activate(
-    androidProvider: appCheckProvider,
+    providerAndroid: kDebugMode ? const AndroidDebugProvider() : const AndroidPlayIntegrityProvider(),
   );
 
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
@@ -105,6 +100,20 @@ void main() async {
       || connectivityResults.contains(ConnectivityResult.ethernet)) {
 
     try {
+
+      await AgeRangeSignals.instance.initialize(ageGates: [18]);
+
+      final access = await AgeRangeSignals.instance.requestAgeSignalsAccess();
+
+      if (access == AgeSignalsAccessStatus.shared) {
+
+        final result = await AgeRangeSignals.instance.checkAgeSignals();
+
+        if (result.status == AgeSignalsStatus.verified) {
+
+        }
+
+      }
 
       Networking networking = Networking();
 
