@@ -50,7 +50,7 @@ android {
                 applicationId "co.geeksempire.sachiel.signals"
 
                 minSdkVersion 26
-                targetSdkVersion 36
+                targetSdkVersion 37
 
                 versionCode 91
                 versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"
