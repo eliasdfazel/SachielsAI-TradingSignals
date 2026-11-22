@@ -10,6 +10,7 @@
 
 import 'dart:io';
 
+import 'package:age_range_signals/age_range_signals.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,7 +30,6 @@ import 'package:sachiel/store/ui/sachiel_digital_store.dart';
 import 'package:sachiel/utils/data/texts.dart';
 import 'package:sachiel/utils/io/file_io.dart';
 import 'package:sachiel/utils/network/Networking.dart';
-import 'package:age_range_signals/age_range_signals.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage remoteMessage) async {
@@ -101,57 +101,59 @@ void main() async {
 
     try {
 
-      await AgeRangeSignals.instance.initialize(ageGates: [18]);
+      await AgeRangeSignals.instance.initialize(
+          ageGates: [18]
+      );
 
-      final access = await AgeRangeSignals.instance.requestAgeSignalsAccess();
+      final ageSignalsAccess = await AgeRangeSignals.instance.requestAgeSignalsAccess();
 
-      if (access == AgeSignalsAccessStatus.shared) {
+      if (ageSignalsAccess == AgeSignalsAccessStatus.shared) {
 
-        final result = await AgeRangeSignals.instance.checkAgeSignals();
+        final ageSignalResult = await AgeRangeSignals.instance.checkAgeSignals();
 
-        if (result.status == AgeSignalsStatus.verified) {
+        if (ageSignalResult.status == AgeSignalsStatus.verified) {
+
+          Networking networking = Networking();
+
+          final internetLookup = await networking.getRequest('https://8.8.8.8/');
+
+          bool connectionResult = (int.parse(internetLookup[Networking.networkStatus].toString()) == 200);
+
+          principalSubscriptions();
+
+          await FirebaseAuth.instance.currentUser?.reload();
+
+          Widget nextPage = EntryConfigurations(internetConnection: connectionResult);
+
+          if (FirebaseAuth.instance.currentUser != null
+              && FirebaseAuth.instance.currentUser!.phoneNumber != null) {
+
+            nextPage = const DashboardInterface();
+
+          }
+
+          runApp(
+              Phoenix(
+                  child: MaterialApp(
+                      debugShowCheckedModeBanner: false,
+                      title: StringsResources.applicationName(),
+                      color: ColorsResources.primaryColor,
+                      theme: ThemeData(
+                        fontFamily: 'Ubuntu',
+                        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
+                        pageTransitionsTheme: const PageTransitionsTheme(builders: {
+                          TargetPlatform.android: ZoomPageTransitionsBuilder(),
+                          TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+                        }),
+                      ),
+                      home: nextPage
+                  )
+              )
+          );
 
         }
 
       }
-
-      Networking networking = Networking();
-
-      final internetLookup = await networking.getRequest('https://8.8.8.8/');
-
-      bool connectionResult = (int.parse(internetLookup[Networking.networkStatus].toString()) == 200);
-
-      principalSubscriptions();
-
-      await FirebaseAuth.instance.currentUser?.reload();
-
-      Widget nextPage = EntryConfigurations(internetConnection: connectionResult);
-
-      if (FirebaseAuth.instance.currentUser != null
-          && FirebaseAuth.instance.currentUser!.phoneNumber != null) {
-
-        nextPage = const DashboardInterface();
-
-      }
-
-      runApp(
-          Phoenix(
-              child: MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: StringsResources.applicationName(),
-                  color: ColorsResources.primaryColor,
-                  theme: ThemeData(
-                    fontFamily: 'Ubuntu',
-                    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-                    pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                      TargetPlatform.android: ZoomPageTransitionsBuilder(),
-                      TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
-                    }),
-                  ),
-                  home: nextPage
-              )
-          )
-      );
 
     } on SocketException catch (exception) {
       debugPrint(exception.message);
@@ -159,7 +161,15 @@ void main() async {
 
   } else {
 
-
+    Fluttertoast.showToast(
+        msg: "Age Restriction Applied! You May Not Proceed.",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.amber,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
 
   }
 
