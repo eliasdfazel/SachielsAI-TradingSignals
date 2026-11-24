@@ -367,13 +367,36 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
 
 
+      } else {
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('WARNING: Verify Your Age: 18+'),
+            duration: const Duration(seconds: 37),
+            behavior: SnackBarBehavior.floating, // Floats above bottom UI
+            backgroundColor: Colors.grey,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(19),
+            ),
+            action: SnackBarAction(
+              label: 'PROCEED',
+              textColor: Colors.amber,
+              onPressed: () {
+
+                launchUrl(Uri.parse("https://myaccount.google.com/age-verification"), mode: LaunchMode.externalApplication);
+
+              },
+            ),
+          ),
+        );
+
       }
 
     } else {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: const Text('WARNING: Verify Your Age!'),
+          content: const Text('WARNING: Verify Your Age: 18+'),
           duration: const Duration(seconds: 37),
           behavior: SnackBarBehavior.floating, // Floats above bottom UI
           backgroundColor: Colors.grey,
