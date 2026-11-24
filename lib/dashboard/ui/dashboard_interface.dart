@@ -357,6 +357,10 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   void ageVerification() async {
 
+    await AgeRangeSignals.instance.initialize(
+        ageGates: [18]
+    );
+
     final ageSignalsAccess = await AgeRangeSignals.instance.requestAgeSignalsAccess();
 
     if (ageSignalsAccess == AgeSignalsAccessStatus.shared) {

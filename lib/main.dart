@@ -10,7 +10,6 @@
 
 import 'dart:io';
 
-import 'package:age_range_signals/age_range_signals.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -137,9 +136,6 @@ void main() async {
                   home: nextPage
               )
           )
-      );
-      await AgeRangeSignals.instance.initialize(
-          ageGates: [18]
       );
 
     } on SocketException catch (exception) {
