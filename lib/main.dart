@@ -20,7 +20,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:fluttertoast/fluttertoast.dart' show Fluttertoast, Toast, ToastGravity;
 import 'package:sachiel/dashboard/ui/dashboard_interface.dart';
 import 'package:sachiel/entry_configurations.dart';
 import 'package:sachiel/firebase_options.dart';
@@ -102,59 +101,46 @@ void main() async {
 
     try {
 
+      Networking networking = Networking();
+
+      final internetLookup = await networking.getRequest('https://8.8.8.8/');
+
+      bool connectionResult = (int.parse(internetLookup[Networking.networkStatus].toString()) == 200);
+
+      principalSubscriptions();
+
+      await FirebaseAuth.instance.currentUser?.reload();
+
+      Widget nextPage = EntryConfigurations(internetConnection: connectionResult);
+
+      if (FirebaseAuth.instance.currentUser != null
+          && FirebaseAuth.instance.currentUser!.phoneNumber != null) {
+
+        nextPage = const DashboardInterface();
+
+      }
+
+      runApp(
+          Phoenix(
+              child: MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: StringsResources.applicationName(),
+                  color: ColorsResources.primaryColor,
+                  theme: ThemeData(
+                    fontFamily: 'Ubuntu',
+                    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
+                    pageTransitionsTheme: const PageTransitionsTheme(builders: {
+                      TargetPlatform.android: ZoomPageTransitionsBuilder(),
+                      TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+                    }),
+                  ),
+                  home: nextPage
+              )
+          )
+      );
       await AgeRangeSignals.instance.initialize(
           ageGates: [18]
       );
-
-      final ageSignalsAccess = await AgeRangeSignals.instance.requestAgeSignalsAccess();
-
-      if (ageSignalsAccess == AgeSignalsAccessStatus.shared) {
-
-        final ageSignalResult = await AgeRangeSignals.instance.checkAgeSignals();
-
-        if (ageSignalResult.status == AgeSignalsStatus.verified) {
-
-          Networking networking = Networking();
-
-          final internetLookup = await networking.getRequest('https://8.8.8.8/');
-
-          bool connectionResult = (int.parse(internetLookup[Networking.networkStatus].toString()) == 200);
-
-          principalSubscriptions();
-
-          await FirebaseAuth.instance.currentUser?.reload();
-
-          Widget nextPage = EntryConfigurations(internetConnection: connectionResult);
-
-          if (FirebaseAuth.instance.currentUser != null
-              && FirebaseAuth.instance.currentUser!.phoneNumber != null) {
-
-            nextPage = const DashboardInterface();
-
-          }
-
-          runApp(
-              Phoenix(
-                  child: MaterialApp(
-                      debugShowCheckedModeBanner: false,
-                      title: StringsResources.applicationName(),
-                      color: ColorsResources.primaryColor,
-                      theme: ThemeData(
-                        fontFamily: 'Ubuntu',
-                        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-                        pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                          TargetPlatform.android: ZoomPageTransitionsBuilder(),
-                          TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
-                        }),
-                      ),
-                      home: nextPage
-                  )
-              )
-          );
-
-        }
-
-      }
 
     } on SocketException catch (exception) {
       debugPrint(exception.message);
@@ -162,15 +148,7 @@ void main() async {
 
   } else {
 
-    Fluttertoast.showToast(
-        msg: "Age Restriction Applied! You May Not Proceed.",
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.amber,
-        textColor: Colors.white,
-        fontSize: 16.0
-    );
+
 
   }
 
